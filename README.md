@@ -1,7 +1,7 @@
 # GlovePIEWithoutEmotiv
 GlovePIE is a Wii Remote emulator which allows you to translate actions on a Wii remote (button presses, shaking, nunchuck analog stick, etc) into keyboard presses, mouse movements, or anything else. 
 
-The original was taken down, so this is a reupload of its latest version (0.4.3). No source code is available.
+The original was taken down, so this is a reupload of its latest version (0.4.3). Unfortunately, no source code is available. This exists as a Github repository so you can see exactly what you are downloading.
 
 ### How to download:
 1) Download this repo by pressing the green ``Clone or Download`` button, and then ``Download Zip``
