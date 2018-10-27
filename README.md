@@ -11,7 +11,7 @@ The original was taken down, so this is a reupload of its latest version (0.4.3)
 
 
 ### How to use:
-Please visit [carlkenner](https://sites.google.com/site/carlkenner/glovepie)'s website which has all the information about how to use this program.
+Please visit [carlkenner](https://sites.google.com/site/carlkenner/glovepie)'s website (the original creator of this program) which has all the information about how to use this program.
 
 ### Copyright
 I did not make this program. [Carl Kenner](https://sites.google.com/site/carlkenner/glovepie) created it, however he moved it to a different site which no longer works. If he would like me to remove this repository, contact me, and I will remove it.
