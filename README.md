@@ -50,7 +50,7 @@ You don't need any special hardware.
 
 
 ### How to use:
-Please visit [carlkenner](https://sites.google.com/site/carlkenner/glovepie)'s website (the original creator of this program) which has all the information about how to use this program.
+Please visit [carlkenner](https://sites.google.com/site/carlkenner/glovepie)'s website (the original creator of this program) which has all the official information about how to use this program. Because the site is starting to deteriorate over time, I have copied all the information to this repository's [Wiki](https://github.com/Ravbug/GlovePIE/wiki).
 
 ### Copyright
 I did not make this program. [Carl Kenner](https://sites.google.com/site/carlkenner/glovepie) created it, however he moved it to a different site which no longer works. If he would like me to remove this repository, contact me, and I will remove it.
