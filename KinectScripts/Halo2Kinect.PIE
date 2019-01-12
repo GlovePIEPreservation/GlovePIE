@@ -1,0 +1,62 @@
+﻿
+if player1.right_arm_x > 12 inches then
+  var.MouseYaw += RemoveUnits(1600*delta(timestamp))
+end if
+if player1.right_arm_x < -12 inches then
+  var.MouseYaw -= RemoveUnits(1600*delta(timestamp))
+end if
+
+var.AboveRightShoulder = |(player1.RightHand.Pos-player1.RightShoulder.Pos)| < 20 cm
+... and player1.RightHand.y > player1.RightShoulder.z
+
+F = (smooth(delta(player1.righthand.z)/delta(timestamp)) > 2.5 mps)
+... and (not KeepDown(var.AboveRightShoulder, 3 seconds))
+
+FakeMouse.DInputX = var.MouseYaw+MapRange(smooth(player1.right_arm_x), -12 inches,12 inches, -1200, 1200)
+FakeMouse.DInputY = MapRange(smooth(player1.right_arm_y), -12 inches,12 inches, 800, -800)
+
+Q = keepdown((player1.tracking) and (player1.lefthand.y <= player1.leftfoot.y + 20 cm), 1 second)
+Q = pressed(keepdown(var.AboveRightShoulder, 3 seconds))
+
+W = Player1.rightFoot.z > player1.leftfoot.z + 20 cm
+S = Player1.rightfoot.z < player1.leftfoot.z - 20 cm
+
+LeftShift = player1.head.y < 1.4 metres
+
+Space = Smooth(delta(player1.leftfoot.y)/delta(timestamp))> 1.5 mps
+
+// Voice commands like Halo Anniversary
+r = said('reload', 1)
+x = said('flashlight', 2) or said('torch')
+q = said('change weapon', 2)
+
+if said('pause game', 1) then
+  // The pause key would work better, but GlovePIE can't emulate it
+  press Esc
+  wait 10 ms
+  release Esc
+end if
+
+if said('resume game', 1) then
+  press Esc
+  wait 10 ms
+  release Esc
+  // in case the game wasn't paused, select Resume Game from menu
+  wait 500 ms
+  press Enter
+  wait 10 ms
+  release Enter
+end if
+
+if said('grenade',1) then
+  // drop Dual Wield gun ASAP, Melee attack is fastest way
+  press F
+  wait 10 ms
+  release F
+  // throw the grenade
+  press mouse.RightButton
+  wait 10 ms
+  release mouse.RightButton
+end if
+
+Alt+Tab=keepdown(said('olt tab'), 100 ms)

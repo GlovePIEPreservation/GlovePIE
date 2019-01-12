@@ -1,0 +1,149 @@
+﻿
+if starting then
+  var.CursorActive = 1
+  cursor1.visible = false
+  cursor2.visible = false
+  cursor1.PermanentCursor = 1
+  cursor2.PermanentCursor = 1
+  pie.MouseDPI = 200
+endif
+
+// The real cursor changes which mouse is controlling it
+mouse.Swallow = true
+if var.CursorActive = 1 then
+  fakemouse.DirectInputX += delta(mouse1.DirectInputX)
+  fakemouse.DirectInputY += delta(mouse1.DirectInputY)
+  var.mouse1x = mouse.CursorPosX
+  var.mouse1y = mouse.CursorPosY
+  var.LMB = mouse1.LeftButton
+  var.RMB = mouse1.RightButton
+  var.MMB = mouse1.MiddleButton
+  var.XB1 = mouse1.XButton1
+  var.XB2 = mouse1.XButton2
+else if var.CursorActive = 2 then
+  fakemouse.DirectInputX += delta(mouse2.DirectInputX)
+  fakemouse.DirectInputY += delta(mouse2.DirectInputY)
+  var.mouse2x = mouse.CursorPosX
+  var.mouse2y = mouse.CursorPosY
+  var.LMB = mouse2.LeftButton
+  var.RMB = mouse2.RightButton
+  var.MMB = mouse2.MiddleButton
+  var.XB1 = mouse2.XButton1
+  var.XB2 = mouse2.XButton2
+end if
+LMB = var.LMB
+RMB = var.RMB
+MMB = var.MMB
+mouse.XButton1 = var.XB1
+mouse.XButton2 = var.XB2
+
+
+// Show a fake cursor 1
+if mouse1.present but not var.shown1 then
+  cursor1.visible = var.CursorActive != 1
+  var.Mouse1x = mouse.CursorPosX
+  var.Mouse1y = mouse.CursorPosY
+  var.shown1 = true
+endif
+
+// Show a fake cursor 2
+if mouse2.present but not var.shown2 then
+  cursor2.visible = var.CursorActive != 2    s
+  var.Mouse2x = mouse.CursorPosX
+  var.Mouse2y = mouse.CursorPosY
+  var.shown2 = true
+endif
+
+// Do mouse pointer 1
+if mouse1.present but var.CursorActive != 1 then
+  // How much has mouse 2 moved?
+  var.deltax1 = Delta(mouse1.DirectInputX)
+  var.deltay1 = Delta(mouse1.DirectInputY)
+
+  // Mouse ballistics attempt
+  var.velocity = ([(smooth(var.deltaX1) / 24ms) in inches per second, (smooth(var.deltaY1) / 24ms) in inches per second] )
+  var.speed = |var.velocity|
+  if var.speed <= 0.2 then
+    var.deltax1 = var.deltax1 * 2
+    var.deltay1 = var.deltay1 * 2
+  endif
+  if var.speed > 0.2 and var.speed <= 0.4 then
+    var.deltax1 = var.deltax1 * 4
+    var.deltay1 = var.deltay1 * 4
+  endif
+  if var.speed > 0.4 and var.speed <= 1.25 then
+    var.deltax1 = var.deltax1 * 7
+    var.deltay1 = var.deltay1 * 7
+  endif
+  if var.speed > 1.25 and var.speed <= 3.9 then
+    var.deltax1 = var.deltax1 *12 //* 7
+    var.deltay1 = var.deltay1 *12 //* 7
+  endif
+  if var.speed > 3.9 then
+    var.deltax1 = var.deltax1 * 20// * 13.77
+    var.deltay1 = var.deltay1 * 20// * 13.77
+  endif
+  var.Mouse1x = var.Mouse1x pixels + (var.deltax1 in pixels)
+  var.Mouse1y = var.Mouse1y pixels + (var.deltay1 in pixels)
+  if var.Mouse1x < screen.DesktopLeft then var.Mouse1x = screen.DesktopLeft
+  if var.Mouse1x > screen.DesktopRight then var.Mouse1x = screen.DesktopRight
+  if var.Mouse1y < screen.DesktopTop then var.Mouse1y = screen.DesktopTop
+  if var.Mouse1y > screen.DesktopBottom then var.Mouse1y = screen.DesktopBottom
+  if Mouse1.LeftButton then
+    mouse.CursorPos = [var.Mouse1x, var.Mouse1y]
+    Cursor2.PermanentCursor = 1
+    Cursor1.Visible = False
+    if var.CursorActive = 2 then Cursor2.Visible = true
+    var.CursorActive = 1
+  end if
+endif
+Cursor1.PosX = var.Mouse1x
+Cursor1.PosY = var.Mouse1y
+
+// Do mouse pointer 2
+if mouse2.present but var.CursorActive != 2 then
+  // How much has mouse 2 moved?
+  var.deltax2 = Delta(mouse2.DirectInputX)
+  var.deltay2 = Delta(mouse2.DirectInputY)
+
+  // Mouse ballistics attempt
+  var.velocity = ([(smooth(var.deltaX2) / 24ms) in inches per second, (smooth(var.deltaY2) / 24ms) in inches per second] )
+  var.speed = |var.velocity|
+  if var.speed <= 0.2 then
+    var.deltax2 = var.deltax2 * 2
+    var.deltay2 = var.deltay2 * 2
+  endif
+  if var.speed > 0.2 and var.speed <= 0.4 then
+    var.deltax2 = var.deltax2 * 4
+    var.deltay2 = var.deltay2 * 4
+  endif
+  if var.speed > 0.4 and var.speed <= 1.25 then
+    var.deltax2 = var.deltax2 * 7
+    var.deltay2 = var.deltay2 * 7
+  endif
+  if var.speed > 1.25 and var.speed <= 3.9 then
+    var.deltax2 = var.deltax2 *12 //* 7
+    var.deltay2 = var.deltay2 *12 //* 7
+  endif
+  if var.speed > 3.9 then
+    var.deltax2 = var.deltax2 * 20// * 13.77
+    var.deltay2 = var.deltay2 * 20// * 13.77
+  endif
+  var.Mouse2x = var.Mouse2x pixels + (var.deltax2 in pixels)
+  var.Mouse2y = var.Mouse2y pixels + (var.deltay2 in pixels)
+  if var.Mouse2x < screen.DesktopLeft then var.Mouse2x = screen.DesktopLeft
+  if var.Mouse2x > screen.DesktopRight then var.Mouse2x = screen.DesktopRight
+  if var.Mouse2y < screen.DesktopTop then var.Mouse2y = screen.DesktopTop
+  if var.Mouse2y > screen.DesktopBottom then var.Mouse2y = screen.DesktopBottom
+  if Mouse2.LeftButton then
+    mouse.CursorPos = [var.Mouse2x, var.Mouse2y]
+    Cursor2.Visible = false
+    Cursor1.PermanentCursor = 1
+    if var.CursorActive = 1 then Cursor1.Visible = true
+    var.CursorActive = 2
+  end if
+endif
+Cursor2.PosX = var.Mouse2x
+Cursor2.PosY = var.Mouse2y
+
+

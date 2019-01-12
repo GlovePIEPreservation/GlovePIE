@@ -1,0 +1,11 @@
+﻿faketrackir.yaw = random(90)
+faketrackir.pitch = random(90)
+faketrackir.roll = random(90) // roll is verified in degrees
+faketrackir.x = 0 cm
+faketrackir.z = var.y cm
+
+// status display
+debug = var.y+' Game='+IntToHex(FakeTrackIR.ProfileId)+'H, TrackIR='+FakeTrackIR.active
+if pressed(NumPadPlus) then var.y += 1
+if pressed(NumPadMinus) then var.y -= 1
+

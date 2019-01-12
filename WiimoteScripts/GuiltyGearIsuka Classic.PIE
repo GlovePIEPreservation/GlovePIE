@@ -1,0 +1,12 @@
+﻿WASD = Classic.DPad + Classic.LeftStick
+O = Classic.a
+U = classic.b
+I = classic.x
+J = classic.y
+Eight = (classic.L > 0.3) or (Classic.LFull)
+Nine = classic.ZL
+L = (classic.R > 0.3) or (Classic.RFull)
+Seven = classic.ZR
+B = classic.Select
+Space = classic.Start
+Escape = classic.Home

@@ -1,0 +1,51 @@
+﻿// Press 1 for Susan/Ginormica mode
+// Press 2 for Missing Link mode
+// Double click 1 for Bob mode
+
+WASD = Nunchuk.Joy
+Numpad = Wiimote.DPad
+R = Wiimote.Minus
+Esc = Wiimote.Plus
+Space = Wiimote.A
+LeftShift = Nunchuk.C
+
+
+if var.SusanMode then
+  LeftCtrl = Nunchuk.Z
+else
+  RightCtrl = Nunchuk.Z
+end if
+
+if var.BobMode then
+  LeftCtrl = Wiimote.A
+  RightShift = Wiimote.B or Wiimote.Shake
+  Enter = Nunchuk.C
+  Backspace = Nunchuk.Shake and Random
+else
+  Enter = Wiimote.B
+  RightShift = Wiimote.Shake
+  Backspace = Nunchuk.Shake
+end if
+
+if SingleClicked(Wiimote.One) then
+  var.SusanMode = true
+  var.LinkMode = false
+  var.BobMode = false
+end if
+
+if SingleClicked(Wiimote.Two) then
+  var.SusanMode = false
+  var.LinkMode = true
+  var.BobMode = false
+end if
+
+if DoubleClicked(Wiimote.One) then
+  var.SusanMode = false
+  var.LinkMode = false
+  var.BobMode = true
+end if
+
+
+if pressed(var.BobMode) then say "Bob"
+if pressed(var.LinkMode) then say "The Missing Link"
+if pressed(var.SusanMode) then say "Ginormica"

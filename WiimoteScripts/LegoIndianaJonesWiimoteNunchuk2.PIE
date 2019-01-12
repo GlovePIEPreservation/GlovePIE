@@ -1,0 +1,36 @@
+﻿// Lego Indiana Jones, Wiimote+Nunchuk, by Carl Kenner
+WASD = nunchuk1.Joy + Wiimote1.DPad
+Enter = Wiimote1.Plus
+Esc = Wiimote1.Minus
+U = Wiimote1.A
+H = Wiimote1.B or Wiimote1.Stabbing or Nunchuk1.Stabbing
+J = Nunchuk1.Z or Wiimote1.SwingVertical or Wiimote1.SwingHorizontal or var.poo
+K = nunchuk1.C
+Space = Wiimote1.One
+LCtrl = Wiimote1.Two
+
+H = (Nunchuk1.Shake) and (not Nunchuk1.Z)
+
+if pressed(p) then toggle(var.poomode)
+
+if var.poomode then
+  var.poo = random
+else
+  var.poo = false
+end if
+
+Numpad2 = (var.poomode) and (random)
+
+/*
+ArrowKeys = nunchuk1.Joy + Wiimote1.DPad
+NumpadEnter = Wiimote1.Plus
+F2 = Wiimote1.Minus
+Numpad5 = Wiimote1.A
+Numpad1 = Wiimote1.B or Wiimote1.Stabbing or Nunchuk1.Stabbing
+Numpad2 = nunchuk1.Z or Wiimote1.SwingVertical
+Numpad3 = nunchuk1.C
+NumPad0 = Wiimote1.One
+RCtrl = Wiimote1.Two
+
+Numpad1 = (Nunchuk1.Shake) and (not Nunchuk1.Z)
+*/

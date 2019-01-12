@@ -1,0 +1,32 @@
+﻿r = said('reload', 1)
+x = said('flashlight', 2) or said('torch')
+q = said('change weapon', 2)
+
+if said('pause game', 1) then
+  // The pause key would work better, but GlovePIE can't emulate it
+  press Esc
+  wait 10 ms
+  release Esc
+end if
+
+if said('resume game', 1) then
+  press Esc
+  wait 10 ms
+  release Esc
+  // in case the game wasn't paused, select Resume Game from menu
+  wait 500 ms
+  press Enter
+  wait 10 ms
+  release Enter
+end if
+
+if said('grenade',1) then
+  // drop Dual Wield gun ASAP, Melee attack is fastest way
+  press F
+  wait 10 ms
+  release F
+  // throw the grenade
+  press mouse.RightButton
+  wait 10 ms
+  release mouse.RightButton
+end if

@@ -1,0 +1,16 @@
+﻿FakeTrackIR.yaw = smooth(Player1.ShoulderYaw)
+FakeTrackIR.x = smooth(Player1.Head.x)
+FakeTrackIR.y = smooth(Player1.Head.y)-0.38
+FakeTrackIR.z = smooth(Player1.Head.z)+2.0
+debug = Player1.head.y+', '+player1.head.z
+var.Steering = |(player1.RightHand.pos-player1.lefthand.pos)| <= 70cm
+... and (player1.RightHand.z > player1.torso.z + 10 cm)  and (player1.LeftHand.z > player1.torso.z + 10 cm)
+if var.steering then
+  mouse.x = MapRange(Smooth(player1.SteeringAngle), -180,180, 0,1)
+end if
+q = mouse.MiddleButton
+s = mouse.WheelUp
+x = mouse.WheelDown
+
+
+

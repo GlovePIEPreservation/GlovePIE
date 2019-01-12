@@ -1,0 +1,76 @@
+﻿// StepMania (download free from stepmania.com, you also need to download songs)
+// by Carl Kenner
+// Raise your right hand to calibrate
+// Then move either foot forwards, backwards, left, or right for arrows
+// Right punch = enter (green)
+// left punch = escape (red)
+
+if player1.righthand.y > player1.head.y then
+  var.pad1x = (player1.leftfoot.x + player1.rightfoot.x)/2
+  var.pad1y = (player1.leftfoot.y + player1.rightfoot.y)/2
+  var.pad1z = (player1.leftfoot.z + player1.rightfoot.z)/2
+end if
+
+if player1.tracking then
+  // right foot
+  var.p1rx = player1.rightfoot.x - var.pad1x
+  var.p1rz = player1.rightfoot.z - var.pad1z
+  var.p1re = sin(45 degrees)*var.p1rx+sin(45 degrees)*var.p1rz
+  var.p1rc = sin(45 degrees)*var.p1rx-sin(45 degrees)*var.p1rz
+  // left foot
+  var.p1lx = player1.leftfoot.x - var.pad1x
+  var.p1lz = player1.leftfoot.z - var.pad1z
+  var.p1le = sin(45 degrees)*var.p1rx+sin(45 degrees)*var.p1rz
+  var.p1lc = sin(45 degrees)*var.p1rx-sin(45 degrees)*var.p1rz
+else
+  var.p1rx=0
+  var.p1rz=0
+  var.p1re=0
+  var.p1rc=0
+  var.p1lx=0
+  var.p1lz=0
+  var.p1le=0
+  var.p1lc=0
+end if
+
+up = var.p1lz > 30 cm or var.p1rz > 30 cm
+down = var.p1lz < -30 cm or var.p1rz < -30cm
+left = var.p1lx < -30 cm or var.p1rx < -30 cm
+right = var.p1lx > 30 cm or var.p1rx > 30 cm
+// Set game mode to "pump" for these diagonals
+e = var.p1re > 30 cm or var.p1le > 30 cm
+z = var.p1re < -30 cm or var.p1le < -30 cm
+c = var.p1rc > 30 cm or var.p1lc > 30 cm
+q = var.p1rc < -30 cm or var.p1lc < -30 cm
+s = ((-20cm <= var.p1re <= 20cm) and (-20cm <= var.p1rc <= 20cm))
+s = ((-20cm <= var.p1le <= 20cm) and (-20cm <= var.p1lc <= 20cm))
+
+Enter = player1.tracking and player1.righthand.z > player1.torso.z + 60 cm
+Esc = player1.tracking and player1.lefthand.z > player1.torso.z + 60 cm
+
+if player2.righthand.y > player2.head.y then
+  var.pad2x = (player2.leftfoot.x + player2.rightfoot.x)/2
+  var.pad2y = (player2.leftfoot.y + player2.rightfoot.y)/2
+  var.pad2z = (player2.leftfoot.z + player2.rightfoot.z)/2
+end if
+
+if player1.tracking then
+  var.p2rx = player2.rightfoot.x - var.pad2x
+  var.p2rz = player2.rightfoot.z - var.pad2z
+  var.p2lx = player2.leftfoot.x - var.pad2x
+  var.p2lz = player2.leftfoot.z - var.pad2z
+else
+  var.p2rx=0
+  var.p2rz=0
+  var.p2lx=0
+  var.p2lz=0
+end if
+
+numpad8 = var.p2lz > 30 cm or var.p2rz > 30 cm
+numpad2 = var.p2lz < -30 cm or var.p2rz < -30cm
+numpad4 = var.p2lx < -30 cm or var.p2rx < -30 cm
+numpad6 = var.p2lx > 30 cm or var.p2rx > 30 cm
+
+NumpadEnter = player2.tracking and player2.righthand.z > player2.torso.z + 60 cm
+NumpadMinus = player2.tracking and player2.lefthand.z > player2.torso.z + 60 cm
+

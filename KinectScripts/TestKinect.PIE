@@ -1,0 +1,94 @@
+﻿// Show Kinect Player 1's joints, and the floor
+
+debug = player1.UserID+', '+player1.TrackingID
+pie.DebugFontSize = 14
+
+cam.pos = [0,0,-5]
+cam.BgColour = 0x0020A0
+cam.vFov = 45 degrees
+//cam.pitch = -45 degrees
+
+obj0.size = [0.3,0.07,0.1]
+obj0.pos = [0,0,0]
+obj0.colour = [0,0,0]
+
+obj1.size = [0.25,0.3,0.3]
+obj1.pos = player1.head.pos
+
+obj2.CubeSize = 10cm
+obj2.pos = player1.neck.pos
+
+obj3.CubeSize = 10cm
+obj3.pos = player1.LeftHand.pos
+obj3.colour = [1,0,0]
+
+obj4.CubeSize = 10cm
+obj4.pos = player1.RightHand.pos
+obj4.colour = [0,1,1]
+
+obj5.CubeSize = 10cm
+obj5.pos = player1.LeftShoulder.pos
+obj5.colour = [0.5,0,0]
+
+obj6.CubeSize = 10cm
+obj6.pos = player1.RightShoulder.pos
+obj6.colour = [0,0.5,0.5]
+
+obj7.CubeSize = 10cm
+obj7.pos = player1.LeftHip.pos
+obj7.colour = [0.5,0,0]
+
+obj8.CubeSize = 10cm
+obj8.pos = player1.RightHip.pos
+obj8.colour = [0,0.5,0.5]
+
+obj9.CubeSize = 10cm
+obj9.pos = player1.LeftKnee.pos
+obj9.colour = [0.5,0,0]
+
+obj10.CubeSize = 10cm
+obj10.pos = player1.RightKnee.pos
+obj10.colour = [0,0.5,0.5]
+
+obj11.CubeSize = 10cm
+obj11.pos = player1.LeftFoot.pos
+obj11.colour = [0.8,0,0]
+
+obj12.CubeSize = 10cm
+obj12.pos = player1.RightFoot.pos
+obj12.colour = [0,0.8,0.8]
+
+obj13.CubeSize = 10cm
+obj13.pos = player1.LeftElbow.pos
+obj13.colour = [0.5,0,0]
+
+obj14.CubeSize = 10cm
+obj14.pos = player1.RightElbow.pos
+obj14.colour = [0,0.5,0.5]
+
+obj15.CubeSize = 10cm
+obj15.pos = player1.torso.pos
+
+obj16.CubeSize = 10cm
+obj16.pos = player1.hipcenter.pos
+
+obj17.CubeSize = 10cm
+obj17.pos = player1.LeftWrist.pos
+obj17.colour = [0.5,0,0]
+
+obj18.CubeSize = 10cm
+obj18.pos = player1.RightWrist.pos
+obj18.colour = [0,0.5,0.5]
+
+obj19.CubeSize = 10cm
+obj19.pos = player1.LeftAnkle.pos
+obj19.colour = [0.5,0,0]
+
+obj20.CubeSize = 10cm
+obj20.pos = player1.RightAnkle.pos
+obj20.colour = [0,0.5,0.5]
+
+obj21.Size = [50cm,1cm,50cm]
+obj21.pos = player1.floor.point
+obj21.RotMat = player1.floor.rotmat
+obj21.colour = [0,0.7,0]

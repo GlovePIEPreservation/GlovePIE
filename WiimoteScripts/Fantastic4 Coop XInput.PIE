@@ -1,0 +1,55 @@
+﻿// Move
+WASD = XInput1.LeftStick
+
+// Switch characters
+One = XInput1.Up
+Two = XInput1.Down
+Three = XInput1.Left
+Four = XInput1.Right
+
+// actions
+H = XInput1.A // light attack
+J = XInput1.B // action
+K = XInput1.LeftShoulder // block
+F = XInput1.RightShoulder or (XInput1.RightTrigger > 30%) // cosmic
+U = XInput1.X // heavy attack
+Spacebar = XInput1.Y // jump
+Comma = XInput1.LeftTrigger // targetting
+
+// menu
+F1 = XInput1.Start // Start
+Backspace = XInput1.Back // select
+
+// Camera controls
+Mouse.DirectInputX += Deadzone(XInput1.RightStickX)^3 * 10
+Mouse.DirectInputY += Deadzone(XInput1.RightStickY)^3 * 10
+R = XInput1.RightThumb
+
+// Move
+ArrowKeys = XInput2.LeftStick
+
+// Switch characters
+NumpadPlus = XInput2.Up
+NumpadDivide = XInput2.Down
+NumpadMultiply = XInput2.Left
+NumpadMinus = XInput2.Right
+
+// actions
+Numpad4 = XInput2.A // light attack
+Numpad5 = XInput2.B // action
+Numpad6 = XInput2.LeftShoulder // block
+F = XInput2.RightShoulder or (XInput2.RightTrigger > 30%) // cosmic
+Numpad8 = XInput2.X // heavy attack
+Numpad0 = XInput2.Y // jump
+LShift = XInput2.LeftTrigger // targetting
+
+// menu
+F1 = XInput2.Start // Start
+Backspace = XInput2.Back // select
+
+// Camera controls
+Mouse.DirectInputX += Deadzone(XInput2.RightStickX)^3 * 10
+Mouse.DirectInputY += Deadzone(XInput2.RightStickY)^3 * 10
+NumPad1 = XInput2.RightThumb
+
+

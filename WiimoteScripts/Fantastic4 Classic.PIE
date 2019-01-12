@@ -1,0 +1,27 @@
+﻿// Move
+WASD = Classic.LeftStick
+
+// Switch characters
+NumpadPlus = Classic.Up
+NumpadDivide = Classic.Down
+NumpadMultiply = Classic.Left
+NumpadMinus = Classic.Right
+
+// actions
+Numpad4 = Classic.b // light attack
+Numpad5 = Classic.a // action
+Numpad6 = Classic.L > 30% or Classic.LFull // block
+F = Classic.R > 30% or Classic.RFull // cosmic
+Numpad8 = Classic.y // heavy attack
+Spacebar = Classic.x // jump
+LShift = Classic.ZL // targetting
+
+// menu
+F1 = Classic1.Plus // Start
+Backspace = Classic1.Minus // select
+
+// Camera controls
+Mouse.DirectInputX += Deadzone(Classic.RightStickX)^3 * 10
+Mouse.DirectInputY += Deadzone(Classic.RightStickY)^3 * 10
+NumPad1 = Classic.ZR
+
