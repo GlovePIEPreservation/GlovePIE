@@ -5,12 +5,12 @@
 GlovePIE stands for Glove Programmable Input Emulator. It doesn't have to be used with VR Gloves, but it was originally started as a system for emulating Joystick and Keyboard Input using the Essential Reality P5 Glove. Now it supports emulating all kinds of input, using all kinds of devices, including Polhemus, Intersense, Ascension, WorldViz, 5DT, and eMagin products. It can also control MIDI or OSC output.
 
 In the GlovePIE window you type or load a simple script. For example to control the WASD keys with a glove:
-
+```
 W = glove.z > -50 cm  
 S = glove.z < -70 cm  
 A = glove.x < -10 cm  
 D = glove.x > 10 cm  
-
+```
 You can also use GlovePIE to play Joystick-only games without a joystick, or keyboard-only games with a joystick. Or you can use it to create macro buttons for complex keystrokes.
 
 You can even use it to control multiple mouse pointers with multiple mice.
