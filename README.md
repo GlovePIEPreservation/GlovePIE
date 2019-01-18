@@ -15,7 +15,7 @@ You can also use GlovePIE to play Joystick-only games without a joystick, or key
 
 You can even use it to control multiple mouse pointers with multiple mice.
 
-**See this repository's [Wiki](https://github.com/Ravbug/GlovePIE/wiki) for the complete GlovePIE Manual and detailed information!!"
+**See this repository's [Wiki](https://github.com/Ravbug/GlovePIE/wiki) for the complete GlovePIE Manual and detailed information!!**
 
 ## Supported hardware:
 * Nintendo Wii Remote (Wiimote)
