@@ -1,6 +1,9 @@
 # GlovePIEWithoutEmotiv
 **The original author stopped maintaining this program and the original site went down, so this is a reupload of its latest version (0.45).** Unfortunately, no source code is available. This exists as a Github repository so you can see exactly what you are downloading.
 
+## Help with the decompilation effort!
+Since this program no longer receives updates, eventually it will stop working due to Windows updates. I have begun the process of generating working source code here: [Ravbug/GlovePIEReverseEngineering](https://github.com/Ravbug/GlovePIEReverseEngineering). If you are interested, please join in!
+
 ## About
 GlovePIE stands for Glove Programmable Input Emulator. It doesn't have to be used with VR Gloves, but it was originally started as a system for emulating Joystick and Keyboard Input using the Essential Reality P5 Glove. Now it supports emulating all kinds of input, using all kinds of devices, including Polhemus, Intersense, Ascension, WorldViz, 5DT, and eMagin products. It can also control MIDI or OSC output.
 
