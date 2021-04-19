@@ -1,0 +1,175 @@
+// Google Earth Interface using Wii Remote IR
+// by J.Coulston
+// jcoulston.blogspot.com
+
+//Mouse Control Script using IR
+//by vkapadia with much assistance from inio
+//vkapadia@vkapadia.com
+
+//This script uses the IR interface developed by vkapadia. I have changed the
+//button layout to suit Google Earth, and you are free to change it further.
+
+//Calibrate your Wiimote!
+//Place the Wiimote face up on a flat surface. Change these values until the
+//debug line next to the run button shows zero for each axis.
+var.xtrim = 6
+var.ytrim = -37
+var.ztrim = 11
+
+//Set your Wiimote LEDs to your liking. Binary value, 1-15
+Wiimote.Leds = 1
+
+//Key Map
+Mouse.RightButton = Wiimote.B and not Wiimote.A
+Mouse.LeftButton = Wiimote.A and not Wiimote.B
+Mouse.MiddleButton =  Wiimote.B and Wiimote.A
+Keyboard.F11 = Wiimote.One
+Keyboard.Up = Wiimote.Up
+Keyboard.Down = Wiimote.Down
+Keyboard.Left = Wiimote.Left
+Keyboard.Right = Wiimote.Right
+Keyboard.R = Wiimote.Home
+
+//Plus and Minus Zoom
+if Wiimote.Plus then
+  Keyboard.Ctrl = True
+  Keyboard.Up = True
+  Wait 25ms
+  Keyboard.Ctrl = False
+  Keyboard.Up = False
+endif
+if wiimote.minus then
+  Keyboard.Ctrl = True
+  Keyboard.Down = True
+  Wait 25ms
+  Keyboard.Ctrl = False
+  Keyboard.Down = False
+endif
+
+var.accx = Wiimote.RawForceX + var.xtrim
+var.accy = Wiimote.RawForceY + var.ytrim
+var.accz = Wiimote.RawForceZ + var.ztrim
+
+//IR Control
+if wiimote.dot1vis and wiimote.dot2vis then
+
+  if var.accy > -7 then
+    var.orientation = 0
+  elseif var.accy > -45 then
+    if var.accx < 0 then
+      var.orientation = 3
+    else
+      var.orientation = 1
+    endif
+  else
+    var.orientation = 2
+  endif
+
+  if var.leftpoint = 0 then
+    if var.orientation = 0 then
+      if wiimote.dot1x < wiimote.dot2x then
+        var.leftpoint = 1
+      else
+        var.leftpoint = 2
+      endif
+    endif
+    if var.orientation = 1 then
+      if wiimote.dot1y > wiimote.dot2y then
+        var.leftpoint = 1
+      else
+        var.leftpoint = 2
+      endif
+    endif
+    if var.orientation = 2 then
+      if wiimote.dot1x > wiimote.dot2x then
+        var.leftpoint = 1
+      else
+        var.leftpoint = 2
+      endif
+    endif
+    if var.orientation = 3 then
+      if wiimote.dot1y < wiimote.dot2y then
+        var.leftpoint = 1
+      else
+        var.leftpoint = 2
+      endif
+    endif
+  endif
+
+  if var.leftpoint = 1 then
+    var.fix1x = wiimote.dot1x
+    var.fix1y = wiimote.dot1y
+    var.fix2x = wiimote.dot2x
+    var.fix2y = wiimote.dot2y
+  else
+    var.fix1x = wiimote.dot2x
+    var.fix1y = wiimote.dot2y
+    var.fix2x = wiimote.dot1x
+    var.fix2y = wiimote.dot1y
+  endif
+
+  var.dx = var.fix2x - var.fix1x
+  var.dy = var.fix2y - var.fix1y
+  var.cx = (var.fix1x+var.fix2x)/1024.0 - 1
+  var.cy = (var.fix1y+var.fix2y)/1024.0 - .75
+
+  var.d = sqrt(var.dx*var.dx+var.dy*var.dy)
+
+  var.dx = var.dx / var.d
+  var.dy = var.dy / var.d
+
+  var.ox = -var.dy*var.cy-var.dx*var.cx;
+  var.oy = -var.dx*var.cy+var.dy*var.cx;
+
+  var.ax = (var.ox * screen.desktopwidth) + (screen.desktopwidth / 2)
+  var.ay = (-var.oy * screen.desktopwidth) + (screen.desktopheight / 2)
+
+
+
+
+  var.dx = var.ax - mouse.cursorposx
+  var.dy = var.ay - mouse.cursorposy
+
+  var.d = sqrt((var.dx*var.dx)+(var.dy*var.dy))
+
+  var.a = 180 / (200 + var.d * var.d * var.d * .001)
+
+  var.finalx = mouse.cursorposx * var.a + var.ax * (1 - var.a)
+  var.finaly = mouse.cursorposy * var.a + var.ay * (1 - var.a)
+
+
+  mouse.cursorposx = var.finalx
+  mouse.cursorposy = var.finaly
+
+else
+
+  var.leftpoint = 0
+
+endif
+
+//Debug
+if Wiimote.Up
+   var.Button = "Up"
+elseif Wiimote.Down
+   var.Button = "Down"
+elseif wiimote.Left
+   var.Button = "Left"
+else if wiimote.Right
+   var.Button = "Right"
+elseif wiimote.A and not wiimote.B
+   var.Button = "A"
+elseif wiimote.B and not wiimote.A
+   var.button = "B"
+elseif wiimote.A and wiimote.B
+   var.button = "A + B"
+elseif wiimote.Home
+   var.button = "Home"
+elseif wiimote.Plus
+   var.button = "Plus"
+elseif wiimote.Minus
+   var.button = "Minus"
+else
+   var.button = ""
+endif
+
+debug = "x:" + var.accx + ", y:" + var.accy + ", z:" + var.accz + " " + var.Button

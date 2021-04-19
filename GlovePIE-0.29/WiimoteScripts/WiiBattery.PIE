@@ -1,0 +1,59 @@
+//Wiimote Battery Display
+//by J.Coulston
+// Modified by Carl Kenner for GlovePIE 0.25
+
+// use up battery power :-)
+// comment out this line if you don't need it
+Wiimote.Rumble = shift
+
+//A full battery gives 0xC0 (192)
+var.Batt = wiimote.Battery / 48
+
+if true then
+wait 5 seconds
+//it sends an instruction that tells the Wiimote to actually
+//send the report.
+Wiimote.Report15 = 0x80 | Int(wiimote.Rumble)
+end if
+
+//Display the battery level of your wiimote using the four LEDs on the bottom.
+//Battery level is displayed in four levels increasing to the right, like a cell
+//phone battery gauge. As the battery gets close to the next level down, the LED
+//for the current level will blink.
+
+//Blink rate
+var.Blink = 500ms
+
+debug = "Battery level: " + 100*48*var.Batt/192 + "%"
+
+if 0<=var.Batt<=0.25 then
+Wiimote.Leds = 1
+wait var.Blink
+Wiimote.Leds = 0
+wait var.Blink
+elseif 0.25 < var.Batt<=1 then
+Wiimote.Leds = 1
+elseif 1 < var.Batt<=1.25 then
+Wiimote.Leds = 3
+wait var.Blink
+Wiimote.Leds = 1
+wait var.Blink
+elseif 1.25 < var.Batt<=2 then
+Wiimote.Leds = 3
+elseif 2 < var.Batt<=2.25 then
+Wiimote.Leds = 7
+wait var.Blink
+Wiimote.Leds = 3
+wait var.Blink
+elseif 2.25 < var.Batt<=3 then
+Wiimote.Leds = 7
+elseif 3 < var.Batt<=3.25 then
+Wiimote.Leds = 15
+wait var.Blink
+Wiimote.Leds = 7
+wait var.Blink
+elseif 3.25 < var.Batt<=4 then
+Wiimote.Leds = 15
+else
+Wiimote.Leds = 0
+endif

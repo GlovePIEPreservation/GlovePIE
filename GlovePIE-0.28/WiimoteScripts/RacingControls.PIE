@@ -1,0 +1,212 @@
+//Wiimote Racing Controls by Freeman Speaketh/US of Anarchy 
+//Feel free to modify and redistribute, but leave this here 
+
+// Show wiimote forces 
+debug = "X="+Wiimote.RawForceX+' Y='+Wiimote.RawForceY+' Z='+Wiimote.RawForceZ 
+
+//LEDs setup 
+While Wiimote.RawForceZ < -10 and > -20 
+Keyboard.Left = 0 
+Keyboard.Right = 0 
+endif 
+
+While Wiimote.RawForceZ < -10 and > -20 
+Wiimote.Led1 = 0 
+Wiimote.Led2 = 0 
+Wiimote.Led3 = 0 
+Wiimote.Led4 = 0 
+endif 
+
+While Wiimote.RawForceZ > -10 and < -5 
+Wiimote.Led1 = 1 
+Wiimote.Led2 = 0 
+Wiimote.Led3 = 0 
+Wiimote.Led4 = 0 
+wait 500 ms 
+endif 
+
+While Wiimote.RawForceZ > -5 and < 0 
+Wiimote.Led1 = 1 
+Wiimote.Led2 = 1 
+Wiimote.Led3 = 0 
+Wiimote.Led4 = 0 
+wait 500 ms 
+endif 
+
+While Wiimote.RawForceZ > 0 and < 5 
+Wiimote.Led1 = 1 
+Wiimote.Led2 = 1 
+Wiimote.Led3 = 1 
+Wiimote.Led4 = 0 
+wait 500 ms 
+endif 
+
+While Wiimote.RawForceZ > 5 
+Wiimote.Led1 = 1 
+Wiimote.Led2 = 1 
+Wiimote.Led3 = 1 
+Wiimote.Led4 = 1 
+wait 500 ms 
+endif 
+
+While Wiimote.RawForceZ < -20 and > -25 
+Wiimote.Led1 = 1 
+Wiimote.Led2 = 0 
+Wiimote.Led3 = 0 
+Wiimote.Led4 = 0 
+wait 500 ms 
+endif 
+
+While Wiimote.RawForceZ < -25 and > -30 
+Wiimote.Led1 = 1 
+Wiimote.Led2 = 1 
+Wiimote.Led3 = 0 
+Wiimote.Led4 = 0 
+wait 500 ms 
+endif 
+
+While Wiimote.RawForceZ < -30 AND > -35 
+Wiimote.Led1 = 1 
+Wiimote.Led2 = 1 
+Wiimote.Led3 = 1 
+Wiimote.Led4 = 0 
+wait 500 ms 
+endif 
+
+While Wiimote.RawForceZ < -35 
+Wiimote.Led1 = 1 
+Wiimote.Led2 = 1 
+Wiimote.Led3 = 1 
+Wiimote.Led4 = 1 
+wait 500 ms 
+endif 
+
+//Toggles between mouse mode and racing mode 
+if wiimote.Home 
+Toggle Keyboard.Apostrophe 
+Endif 
+
+//Racing Mode: 
+If Keyboard.Apostrophe 
+
+Keyboard.Up = Wiimote.Two 
+Keyboard.Down = Wiimote.One 
+
+If Wiimote.One or Wiimote.Two 
+Wiimote.Rumble = 1 
+Else 
+Wiimote.Rumble = 0 
+endif 
+
+if Wiimote.RawForceZ > 0 
+Keyboard.Right = 1 
+endif 
+
+if Wiimote.RawForceZ < -30 
+Keyboard.Left = 1 
+endif 
+
+if Wiimote.RawForceZ > -30 and < 0 
+Keyboard.Left = 0 
+Keyboard.Right = 0 
+endif 
+endif 
+
+//Mouse Mode: 
+if not Keyboard.Apostrophe 
+
+Mouse.RightButton = Wiimote.B 
+Mouse.LeftButton = Wiimote.A 
+
+// set these to the offsets when the wiimote is at rest 
+// will be different for each wiimote 
+var.x = Wiimote.RawForceX +12 //trim to 0 
+var.y = Wiimote.RawForceY -36 // trim to 0 
+var.z = Wiimote.RawForceZ +14 //trim to 0 
+
+//precision 
+var.sense0 = 500 
+var.thresh0x = 5 
+var.thresh0y = 2 
+
+var.sense = 300 
+var.threshx = 10 
+var.threshy = 5 
+
+var.sense2 = 100 
+var.thresh2x = 15 
+var.thresh2y = 8 
+
+var.sense3 = 50 
+var.thresh3x = 20 
+var.thresh3y = 12 
+//first sensitivity setting 
+//xaxis 
+if var.x > var.thresh0x 
+mouse.x = mouse.x - 1/var.sense0 
+endif 
+if var.x < -var.thresh0x 
+mouse.x = mouse.x + 1/var.sense0 
+endif 
+
+//yaxis 
+if var.z > var.thresh0y 
+mouse.y = mouse.y - 1/var.sense0 
+endif 
+if var.z < -var.thresh0y 
+mouse.y = mouse.y + 1/var.sense0 
+endif 
+
+
+//second sensitivity setting 
+//xaxis 
+if var.x > var.threshx 
+mouse.x = mouse.x - 1/var.sense 
+endif 
+if var.x < -var.threshx 
+mouse.x = mouse.x + 1/var.sense 
+endif 
+
+//yaxis 
+if var.z > var.threshy 
+mouse.y = mouse.y - 1/var.sense 
+endif 
+if var.z < -var.threshy 
+mouse.y = mouse.y + 1/var.sense 
+endif 
+
+//third sensitivity setting 
+//xaxis 
+if var.x > var.thresh2x 
+mouse.x = mouse.x - 1/var.sense2 
+endif 
+if var.x < -var.thresh2x 
+mouse.x = mouse.x + 1/var.sense2 
+endif 
+
+//yaxis 
+if var.z > var.thresh2y 
+mouse.y = mouse.y - 1/var.sense2 
+endif 
+if var.z < -var.thresh2y 
+mouse.y = mouse.y + 1/var.sense2 
+endif 
+
+//fourth sensitivity setting 
+//xaxis 
+if var.x > var.thresh3x 
+mouse.x = mouse.x - 1/var.sense3 
+endif 
+if var.x < -var.thresh3x 
+mouse.x = mouse.x + 1/var.sense3 
+endif 
+
+//yaxis 
+if var.z > var.thresh3y 
+mouse.y = mouse.y - 1/var.sense3 
+endif 
+if var.z < -var.thresh3y 
+mouse.y = mouse.y + 1/var.sense3 
+endif 
+endif 
+

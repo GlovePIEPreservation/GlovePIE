@@ -1,0 +1,62 @@
+//Wiimote Midi Conductor by Freeman Speaketh/US of Anarchy 
+//Feel free to modify and redistribute, but leave this here 
+
+// set these to the offsets when the wiimote is at rest 
+// will be different for each wiimote 
+var.xOffset = 12 
+var.yOffset = -36 
+var.zOffset = 14 
+
+var.xRot = Wiimote.RawForceX + var.xOffset 
+var.yRot = Wiimote.RawForceY + var.yOffset 
+var.zRot = Wiimote.RawForceZ + var.zOffset 
+
+if Wiimote.Home 
+  if doubleclicked(Wiimote.Home)
+    ExitPie
+  else
+    wait 200 ms
+    ExitProgram
+  endif
+endif 
+
+if Wiimote.B = 1 
+  wait 250 ms
+  if Wiimote.B = 0
+    if Keyboard.Apostrophe = 0
+      Keyboard.Apostrophe = 1
+    else
+      Keyboard.Apostrophe = 0
+    endif
+  endif
+endif 
+
+if Keyboard.Apostrophe = 0 
+  Debug = "Press B "
+else 
+  debug = "Instrument = " +var.Instrument + " Pitch = " + var.Pitch + " Rests = " + var.Time
+
+  var.Pitch = var.zRot + 60
+  var.Time = 12 * var.xRot + 300
+  Midi.Instrument = var.Instrument
+
+  Midi.FirstNote = var.Pitch
+  wait var.Time ms
+
+  if Wiimote.Plus =1
+    if var.Instrument < 129
+      var.Instrument = var.Instrument + 1
+    else
+      var.Instrument = 1
+    endif
+  else if Wiimote.Minus = 1
+    if var.Instrument > 0
+       var.Instrument = var.Instrument - 1
+    else
+       var.Instrument = 128
+    endif
+  else if Wiimote.Minus = 0 and Wiimote.Plus = 0
+  endif
+endif 
+
+

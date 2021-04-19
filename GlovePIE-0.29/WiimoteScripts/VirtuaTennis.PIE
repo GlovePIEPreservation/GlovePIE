@@ -1,0 +1,67 @@
+//Virtua Tenis PC Script 
+//Aidan is learning! :D 
+
+//Hello, im a spanish wiimote user (sorry for my english).
+//Im not a good programmer, but i thinked, that it must be posible to
+//program a script to play virtua tennis 1.
+//Its a game with low minimun system requeriments but its wonderful,
+//and when i think that i could play it with wiimote....arrgggffhh
+//I think that its possible to program.
+//byez! thx!
+//-----------
+//Move: up down left right
+//This version is only playable with the normal shot. (Z in keyboard)
+//Please, can help me with the programation? I know that there is
+//things that are wrong... but i used other scripts to help me...
+
+
+//Player basic movement 
+Up = Wiimote.Up 
+Down = Wiimote.Down 
+Left = Wiimote.Left 
+Right = Wiimote.Right 
+
+//Led Control 
+Wiimote.leds = 1 
+
+var.xOffset = 0 
+var.yOffset = -17 
+var.zOffset = -10 
+
+var.xRot = Wiimote.RawForceX + var.xOffset 
+var.yRot = Wiimote.RawforceY + var.yOffset 
+var.zRot = Wiimote.RawforceZ + var.zOffset 
+
+
+debug = "Welcome to Virtua Tenis Script v0.0.0.1" 
+
+
+var.on = 1 
+
+if var.soundon = 1 
+keyboard.z = Wiimote.A 
+var.time = 100 
+wait(452ms) 
+endif 
+
+//Normal Shot 
+
+if (var.yrot > 40) then 
+keyboard.z  = true 
+var.strikey = 1 
+var.time = 0 
+Wiimote.Leds = 15 
+wait(0.3s) 
+var.time = 50 
+wait(0.38s) 
+var.strikey = 0 
+endif 
+
+
+
+if (var.swingy or var.swingx or var.swingz or var.strikey or var.strikex or var.strikez or var.hity or var.hitx or var.hitz) = 1 then 
+var.soundon = 0 
+else if var.on = 1 
+var.soundon = 1 
+endif 
+

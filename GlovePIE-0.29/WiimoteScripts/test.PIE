@@ -1,0 +1,741 @@
+//Mienaikage's Ultimate PPJoy Script v0.9.5 
+
+//Player 1 
+ppjoy1.Analog0 = wiimote1.Nunchuk.JoyX 
+ppjoy1.Analog1 = wiimote1.Nunchuk.JoyY 
+ppjoy1.Analog4 = MapRange(Wiimote1.Roll, -90 degrees,90 degrees, -1,1) 
+ppjoy1.Analog5 = MapRange(Wiimote1.Pitch, -45 degrees,45 degrees, -1,1) 
+ppjoy1.Analog6 = MapRange(Wiimote1.Nunchuk.Roll, -90 degrees,90 degrees, -1,1) 
+ppjoy1.Analog7 = MapRange(Wiimote1.Nunchuk.Pitch, -45 degrees,45 degrees, -1,1) 
+ppjoy1.Digital22 = wiimote1.up 
+ppjoy1.Digital23 = wiimote1.down 
+ppjoy1.Digital24 = wiimote1.left 
+ppjoy1.Digital25 = wiimote1.Right 
+ppjoy1.digital1 = wiimote1.A 
+ppjoy1.digital2 = wiimote1.B 
+ppjoy1.digital3 = wiimote1.minus 
+ppjoy1.digital4 = wiimote1.home 
+ppjoy1.digital5 = wiimote1.plus 
+ppjoy1.digital6 = wiimote1.one 
+ppjoy1.digital7 = wiimote1.two 
+ppjoy1.digital8 = wiimote1.Nunchuk.CButton 
+ppjoy1.digital9 = wiimote1.Nunchuk.ZButton 
+
+if (Wiimote1.dot1vis = true and Wiimote1.dot2vis = true and Wiimote1.dot1x > Wiimote1.dot2x and wiimote1.dot1x > 505 and wiimote1.dot2x < 505) or (Wiimote1.dot1vis = true and Wiimote1.dot2vis = true and Wiimote1.dot1x < Wiimote1.dot2x and wiimote1.dot1x < 505 and wiimote1.dot2x > 505) 
+PPJoy1.Analog2 = MapRange(Wiimote1.dot1x, 0,1023, -0,0) 
+var.warning1 = 0 
+endif 
+
+if (Wiimote1.dot1vis = true and Wiimote1.dot2vis = true and Wiimote1.dot1x > Wiimote1.dot2x and wiimote1.dot2x > 505) or (Wiimote1.dot1vis = true and Wiimote1.dot2vis = true and Wiimote1.dot1x < Wiimote1.dot2x and wiimote1.dot2x < 505) or (Wiimote1.dot1vis = false and Wiimote1.dot2vis = true) 
+PPJoy1.Analog2 = MapRange(Wiimote1.dot2x, 0,1023, -1,1) 
+var.warning1 = 0 
+endif 
+
+if (Wiimote1.dot1vis = true and Wiimote1.dot2vis = true and Wiimote1.dot1x > Wiimote1.dot2x and wiimote1.dot1x < 505) or (Wiimote1.dot1vis = true and Wiimote1.dot2vis = true and Wiimote1.dot1x < Wiimote1.dot2x and wiimote1.dot1x > 505) or (Wiimote1.dot1vis = true and Wiimote1.dot2vis = false) 
+PPJoy1.Analog2 = MapRange(Wiimote1.dot1x, 0,1023, -1,1) 
+var.warning1 = 0 
+endif 
+
+if (Wiimote1.dot1vis = true and Wiimote1.dot2vis = true and Wiimote1.dot1y > Wiimote1.dot2y and wiimote1.dot1y > 380 and wiimote1.dot2y < 380) or (Wiimote1.dot1vis = true and Wiimote1.dot2vis = true and Wiimote1.dot1y < Wiimote1.dot2y and wiimote1.dot1y < 380 and wiimote1.dot2y > 380) 
+PPJoy1.Analog3 = MapRange(Wiimote1.dot1y, 0,1023, -0,0) 
+var.warning1 = 0 
+endif 
+
+if (Wiimote1.dot1vis = true and Wiimote1.dot2vis = true and Wiimote1.dot1y > Wiimote1.dot2y and wiimote1.dot2y > 380) or (Wiimote1.dot1vis = true and Wiimote1.dot2vis = true and Wiimote1.dot1y < Wiimote1.dot2y and wiimote1.dot2y < 380) or (Wiimote1.dot1vis = false and Wiimote1.dot2vis = true) 
+PPJoy1.Analog3 = MapRange(Wiimote1.dot2y, 0,767, -1,1) 
+var.warning1 = 0 
+endif 
+
+if (Wiimote1.dot1vis = true and Wiimote1.dot2vis = true and Wiimote1.dot1y > Wiimote1.dot2y and wiimote1.dot1y < 380) or (Wiimote1.dot1vis = true and Wiimote1.dot2vis = true and Wiimote1.dot1y < Wiimote1.dot2y and wiimote1.dot1y > 380) or (Wiimote1.dot1vis = true and Wiimote1.dot2vis = false) 
+PPJoy1.Analog3 = MapRange(Wiimote1.dot1y, 0,767, -1,1) 
+var.warning1 = 0 
+endif 
+
+if Wiimote1.dot1vis = false and Wiimote1.dot2vis = false and var.offscreen1 = 0 
+var.warning1 = 1 
+var.offscreen1 = 1 
+endif 
+
+if Wiimote.dot1vis = true or Wiimote1.dot2vis = true 
+var.offscreen1 = 0 
+endif 
+
+if Wiimote1.dot1vis = false and Wiimote1.dot2vis = false and var.offscreen1 = 1 
+wait(3s) 
+PPJoy1.Analog2 = MapRange(Wiimote1.dot1x, 0,1023, -0,0) 
+PPJoy1.Analog3 = MapRange(Wiimote1.dot1y, 0,1023, -0,0) 
+var.warning1 = 0 
+endif 
+
+if var.warning1 = 1 
+Wiimote1.Rumble = 1 
+wait(0.05s) 
+Wiimote1.Rumble = 0 
+wait(0.4s) 
+endif 
+
+if Wiimote1.gx < -1.5 and var.gx1 = 0 
+var.gx1 = 1 
+ppjoy1.digital10 = 1 
+wait(0.1s) 
+ppjoy.digital10 = 0 
+wait(0.05s) 
+var.gx1 = 0 
+endif 
+
+if Wiimote1.gx > 1.5 and var.gx1 = 0 
+var.gx1 = 1 
+ppjoy1.digital11 = 1 
+wait(0.1s) 
+ppjoy1.digital11 = 0 
+wait(0.05s) 
+var.gx1 = 0 
+endif 
+
+if Wiimote1.gy < -0.5 and var.gy1 = 0 
+var.gy1 = 1 
+ppjoy1.digital12 = 1 
+wait(0.1s) 
+ppjoy1.digital12 = 0 
+wait(0.05s) 
+var.gy1 = 0 
+endif 
+
+if Wiimote1.gy > 2.0 and var.gy1 = 0 
+var.gy1 = 1 
+ppjoy1.digital13 = 1 
+wait(0.1s) 
+ppjoy1.digital13 = 0 
+wait(0.05s) 
+var.gy1 = 0 
+endif 
+
+if Wiimote1.gz < -1.5 and var.gz1 = 0 
+var.gz1 = 1 
+ppjoy1.digital14 = 1 
+wait(0.1s) 
+ppjoy1.digital14 = 0 
+wait(0.05s) 
+var.gz1 = 0 
+endif 
+
+if Wiimote1.gz > 1.5 and var.gz1 = 0 
+var.gz1 = 1 
+ppjoy1.digital15 = 1 
+wait(0.1s) 
+ppjoy1.digital15 = 0 
+wait(0.05s) 
+var.gz1 = 0 
+endif 
+
+
+if Wiimote1.Nunchuk.gx < -1.5 and var.ngx1 = 0 
+var.ngx1 = 1 
+ppjoy.digital16 = 1 
+wait(0.1s) 
+ppjoy.digital16 = 0 
+wait(0.05s) 
+var.ngx1 = 0 
+endif 
+
+if Wiimote1.Nunchuk.gx > 1.5 and var.ngx1 = 0 
+var.ngx1 = 1 
+ppjoy.digital17 = 1 
+wait(0.1s) 
+ppjoy.digital17 = 0 
+wait(0.05s) 
+var.ngx1 = 0 
+endif 
+
+if Wiimote1.Nunchuk.gy < -0.5 and var.ngy1 = 0 
+var.ngy1 = 1 
+ppjoy.digital18 = 1 
+wait(0.1s) 
+ppjoy.digital18 = 0 
+wait(0.05s) 
+var.ngy1 = 0 
+endif 
+
+if Wiimote1.Nunchuk.gy > 2.0 and var.ngy1 = 0 
+var.ngy1 = 1 
+ppjoy.digital19 = 1 
+wait(0.1s) 
+ppjoy.digital19 = 0 
+wait(0.05s) 
+var.ngy1 = 0 
+endif 
+
+if Wiimote1.Nunchuk.gz < -1.5 and var.ngz1 = 0 
+var.ngz1 = 1 
+ppjoy.digital20 = 1 
+wait(0.1s) 
+ppjoy.digital20 = 0 
+wait(0.05s) 
+var.ngz1 = 0 
+endif 
+
+if Wiimote1.Nunchuk.gz > 1.5 and var.ngz1 = 0 
+var.ngz1 = 1 
+ppjoy.digital21 = 1 
+wait(0.1s) 
+ppjoy.digital21 = 0 
+wait(0.05s) 
+var.ngz1 = 0 
+endif 
+
+Wiimote1.Led1 = 1 
+
+//Player 2 
+PPJoy2.Analog0 = Wiimote2.Nunchuk.JoyX 
+PPJoy2.Analog1 = Wiimote2.Nunchuk.JoyY 
+PPJoy2.Analog4 = MapRange(Wiimote2.Roll, -90 degrees,90 degrees, -1,1) 
+PPJoy2.Analog5 = MapRange(Wiimote2.Pitch, -45 degrees,45 degrees, -1,1) 
+PPJoy2.Analog6 = MapRange(Wiimote2.Nunchuk.Roll, -90 degrees,90 degrees, -1,1) 
+PPJoy2.Analog7 = MapRange(Wiimote2.Nunchuk.Pitch, -45 degrees,45 degrees, -1,1) 
+PPJoy2.Digital22 = Wiimote2.up 
+PPJoy2.Digital23 = Wiimote2.down 
+PPJoy2.Digital24 = Wiimote2.left 
+PPJoy2.Digital25 = Wiimote2.Right 
+PPJoy2.digital1 = Wiimote2.A 
+PPJoy2.digital2 = Wiimote2.B 
+PPJoy2.digital3 = Wiimote2.minus 
+PPJoy2.digital4 = Wiimote2.home 
+PPJoy2.digital5 = Wiimote2.plus 
+PPJoy2.digital6 = Wiimote2.one 
+PPJoy2.digital7 = Wiimote2.two 
+PPJoy2.digital8 = Wiimote2.Nunchuk.CButton 
+PPJoy2.digital9 = Wiimote2.Nunchuk.ZButton 
+
+if (Wiimote2.dot1vis = true and Wiimote2.dot2vis = true and Wiimote2.dot1x > Wiimote2.dot2x and Wiimote2.dot1x > 505 and Wiimote2.dot2x < 505) or (Wiimote2.dot1vis = true and Wiimote2.dot2vis = true and Wiimote2.dot1x < Wiimote2.dot2x and Wiimote2.dot1x < 505 and Wiimote2.dot2x > 505) 
+PPJoy2.Analog2 = MapRange(Wiimote2.dot1x, 0,1023, -0,0) 
+var.Warning2 = 0 
+endif 
+
+if (Wiimote2.dot1vis = true and Wiimote2.dot2vis = true and Wiimote2.dot1x > Wiimote2.dot2x and Wiimote2.dot2x > 505) or (Wiimote2.dot1vis = true and Wiimote2.dot2vis = true and Wiimote2.dot1x < Wiimote2.dot2x and Wiimote2.dot2x < 505) or (Wiimote2.dot1vis = false and Wiimote2.dot2vis = true) 
+PPJoy2.Analog2 = MapRange(Wiimote2.dot2x, 0,1023, -1,1) 
+var.Warning2 = 0 
+endif 
+
+if (Wiimote2.dot1vis = true and Wiimote2.dot2vis = true and Wiimote2.dot1x > Wiimote2.dot2x and Wiimote2.dot1x < 505) or (Wiimote2.dot1vis = true and Wiimote2.dot2vis = true and Wiimote2.dot1x < Wiimote2.dot2x and Wiimote2.dot1x > 505) or (Wiimote2.dot1vis = true and Wiimote2.dot2vis = false) 
+PPJoy2.Analog2 = MapRange(Wiimote2.dot1x, 0,1023, -1,1) 
+var.Warning2 = 0 
+endif 
+
+if (Wiimote2.dot1vis = true and Wiimote2.dot2vis = true and Wiimote2.dot1y > Wiimote2.dot2y and Wiimote2.dot1y > 380 and Wiimote2.dot2y < 380) or (Wiimote2.dot1vis = true and Wiimote2.dot2vis = true and Wiimote2.dot1y < Wiimote2.dot2y and Wiimote2.dot1y < 380 and Wiimote2.dot2y > 380) 
+PPJoy2.Analog3 = MapRange(Wiimote2.dot1y, 0,1023, -0,0) 
+var.Warning2 = 0 
+endif 
+
+if (Wiimote2.dot1vis = true and Wiimote2.dot2vis = true and Wiimote2.dot1y > Wiimote2.dot2y and Wiimote2.dot2y > 380) or (Wiimote2.dot1vis = true and Wiimote2.dot2vis = true and Wiimote2.dot1y < Wiimote2.dot2y and Wiimote2.dot2y < 380) or (Wiimote2.dot1vis = false and Wiimote2.dot2vis = true) 
+PPJoy2.Analog3 = MapRange(Wiimote2.dot2y, 0,767, -1,1) 
+var.Warning2 = 0 
+endif 
+
+if (Wiimote2.dot1vis = true and Wiimote2.dot2vis = true and Wiimote2.dot1y > Wiimote2.dot2y and Wiimote2.dot1y < 380) or (Wiimote2.dot1vis = true and Wiimote2.dot2vis = true and Wiimote2.dot1y < Wiimote2.dot2y and Wiimote2.dot1y > 380) or (Wiimote2.dot1vis = true and Wiimote2.dot2vis = false) 
+PPJoy2.Analog3 = MapRange(Wiimote2.dot1y, 0,767, -1,1) 
+var.Warning2 = 0 
+endif 
+
+if Wiimote2.dot1vis = false and Wiimote2.dot2vis = false and var.Offscreen2 = 0 
+var.Warning2 = 1 
+var.Offscreen2 = 1 
+endif 
+
+if Wiimote.dot1vis = true or Wiimote2.dot2vis = true 
+var.Offscreen2 = 0 
+endif 
+
+if Wiimote2.dot1vis = false and Wiimote2.dot2vis = false and var.Offscreen2 = 1 
+wait(3s) 
+PPJoy2.Analog2 = MapRange(Wiimote2.dot1x, 0,1023, -0,0) 
+PPJoy2.Analog3 = MapRange(Wiimote2.dot1y, 0,1023, -0,0) 
+var.Warning2 = 0 
+endif 
+
+if var.Warning2 = 1 
+Wiimote2.Rumble = 1 
+wait(0.05s) 
+Wiimote2.Rumble = 0 
+wait(0.4s) 
+endif 
+
+if Wiimote2.gx < -1.5 and var.gx2 = 0 
+var.gx2 = 1 
+PPJoy2.digital10 = 1 
+wait(0.1s) 
+ppjoy.digital10 = 0 
+wait(0.05s) 
+var.gx2 = 0 
+endif 
+
+if Wiimote2.gx > 1.5 and var.gx2 = 0 
+var.gx2 = 1 
+PPJoy2.digital11 = 1 
+wait(0.1s) 
+PPJoy2.digital11 = 0 
+wait(0.05s) 
+var.gx2 = 0 
+endif 
+
+if Wiimote2.gy < -0.5 and var.gy2 = 0 
+var.gy2 = 1 
+PPJoy2.digital12 = 1 
+wait(0.1s) 
+PPJoy2.digital12 = 0 
+wait(0.05s) 
+var.gy2 = 0 
+endif 
+
+if Wiimote2.gy > 2.0 and var.gy2 = 0 
+var.gy2 = 1 
+PPJoy2.digital13 = 1 
+wait(0.1s) 
+PPJoy2.digital13 = 0 
+wait(0.05s) 
+var.gy2 = 0 
+endif 
+
+if Wiimote2.gz < -1.5 and var.gz2 = 0 
+var.gz2 = 1 
+PPJoy2.digital14 = 1 
+wait(0.1s) 
+PPJoy2.digital14 = 0 
+wait(0.05s) 
+var.gz2 = 0 
+endif 
+
+if Wiimote2.gz > 1.5 and var.gz2 = 0 
+var.gz2 = 1 
+PPJoy2.digital15 = 1 
+wait(0.1s) 
+PPJoy2.digital15 = 0 
+wait(0.05s) 
+var.gz2 = 0 
+endif 
+
+
+if Wiimote2.Nunchuk.gx < -1.5 and var.ngx2 = 0 
+var.ngx2 = 1 
+ppjoy.digital16 = 1 
+wait(0.1s) 
+ppjoy.digital16 = 0 
+wait(0.05s) 
+var.ngx2 = 0 
+endif 
+
+if Wiimote2.Nunchuk.gx > 1.5 and var.ngx2 = 0 
+var.ngx2 = 1 
+ppjoy.digital17 = 1 
+wait(0.1s) 
+ppjoy.digital17 = 0 
+wait(0.05s) 
+var.ngx2 = 0 
+endif 
+
+if Wiimote2.Nunchuk.gy < -0.5 and var.ngy2 = 0 
+var.ngy2 = 1 
+ppjoy.digital18 = 1 
+wait(0.1s) 
+ppjoy.digital18 = 0 
+wait(0.05s) 
+var.ngy2 = 0 
+endif 
+
+if Wiimote2.Nunchuk.gy > 2.0 and var.ngy2 = 0 
+var.ngy2 = 1 
+ppjoy.digital19 = 1 
+wait(0.1s) 
+ppjoy.digital19 = 0 
+wait(0.05s) 
+var.ngy2 = 0 
+endif 
+
+if Wiimote2.Nunchuk.gz < -1.5 and var.ngz2 = 0 
+var.ngz2 = 1 
+ppjoy.digital20 = 1 
+wait(0.1s) 
+ppjoy.digital20 = 0 
+wait(0.05s) 
+var.ngz2 = 0 
+endif 
+
+if Wiimote2.Nunchuk.gz > 1.5 and var.ngz2 = 0 
+var.ngz2 = 1 
+ppjoy.digital21 = 1 
+wait(0.1s) 
+ppjoy.digital21 = 0 
+wait(0.05s) 
+var.ngz2 = 0 
+endif 
+
+Wiimote2.Led2 = 1 
+
+//Player 3 
+PPJoy3.Analog0 = Wiimote3.Nunchuk.JoyX 
+PPJoy3.Analog1 = Wiimote3.Nunchuk.JoyY 
+PPJoy3.Analog4 = MapRange(Wiimote3.Roll, -90 degrees,90 degrees, -1,1) 
+PPJoy3.Analog5 = MapRange(Wiimote3.Pitch, -45 degrees,45 degrees, -1,1) 
+PPJoy3.Analog6 = MapRange(Wiimote3.Nunchuk.Roll, -90 degrees,90 degrees, -1,1) 
+PPJoy3.Analog7 = MapRange(Wiimote3.Nunchuk.Pitch, -45 degrees,45 degrees, -1,1) 
+PPJoy3.Digital22 = Wiimote3.up 
+PPJoy3.Digital23 = Wiimote3.down 
+PPJoy3.Digital24 = Wiimote3.left 
+PPJoy3.Digital25 = Wiimote3.Right 
+PPJoy3.digital1 = Wiimote3.A 
+PPJoy3.digital2 = Wiimote3.B 
+PPJoy3.digital3 = Wiimote3.minus 
+PPJoy3.digital4 = Wiimote3.home 
+PPJoy3.digital5 = Wiimote3.plus 
+PPJoy3.digital6 = Wiimote3.one 
+PPJoy3.digital7 = Wiimote3.two 
+PPJoy3.digital8 = Wiimote3.Nunchuk.CButton 
+PPJoy3.digital9 = Wiimote3.Nunchuk.ZButton 
+
+if (Wiimote3.dot1vis = true and Wiimote3.dot2vis = true and Wiimote3.dot1x > Wiimote3.dot2x and Wiimote3.dot1x > 505 and Wiimote3.dot2x < 505) or (Wiimote3.dot1vis = true and Wiimote3.dot2vis = true and Wiimote3.dot1x < Wiimote3.dot2x and Wiimote3.dot1x < 505 and Wiimote3.dot2x > 505) 
+PPJoy3.Analog2 = MapRange(Wiimote3.dot1x, 0,1023, -0,0) 
+var.Warning3 = 0 
+endif 
+
+if (Wiimote3.dot1vis = true and Wiimote3.dot2vis = true and Wiimote3.dot1x > Wiimote3.dot2x and Wiimote3.dot2x > 505) or (Wiimote3.dot1vis = true and Wiimote3.dot2vis = true and Wiimote3.dot1x < Wiimote3.dot2x and Wiimote3.dot2x < 505) or (Wiimote3.dot1vis = false and Wiimote3.dot2vis = true) 
+PPJoy3.Analog2 = MapRange(Wiimote3.dot2x, 0,1023, -1,1) 
+var.Warning3 = 0 
+endif 
+
+if (Wiimote3.dot1vis = true and Wiimote3.dot2vis = true and Wiimote3.dot1x > Wiimote3.dot2x and Wiimote3.dot1x < 505) or (Wiimote3.dot1vis = true and Wiimote3.dot2vis = true and Wiimote3.dot1x < Wiimote3.dot2x and Wiimote3.dot1x > 505) or (Wiimote3.dot1vis = true and Wiimote3.dot2vis = false) 
+PPJoy3.Analog2 = MapRange(Wiimote3.dot1x, 0,1023, -1,1) 
+var.Warning3 = 0 
+endif 
+
+if (Wiimote3.dot1vis = true and Wiimote3.dot2vis = true and Wiimote3.dot1y > Wiimote3.dot2y and Wiimote3.dot1y > 380 and Wiimote3.dot2y < 380) or (Wiimote3.dot1vis = true and Wiimote3.dot2vis = true and Wiimote3.dot1y < Wiimote3.dot2y and Wiimote3.dot1y < 380 and Wiimote3.dot2y > 380) 
+PPJoy3.Analog3 = MapRange(Wiimote3.dot1y, 0,1023, -0,0) 
+var.Warning3 = 0 
+endif 
+
+if (Wiimote3.dot1vis = true and Wiimote3.dot2vis = true and Wiimote3.dot1y > Wiimote3.dot2y and Wiimote3.dot2y > 380) or (Wiimote3.dot1vis = true and Wiimote3.dot2vis = true and Wiimote3.dot1y < Wiimote3.dot2y and Wiimote3.dot2y < 380) or (Wiimote3.dot1vis = false and Wiimote3.dot2vis = true) 
+PPJoy3.Analog3 = MapRange(Wiimote3.dot2y, 0,767, -1,1) 
+var.Warning3 = 0 
+endif 
+
+if (Wiimote3.dot1vis = true and Wiimote3.dot2vis = true and Wiimote3.dot1y > Wiimote3.dot2y and Wiimote3.dot1y < 380) or (Wiimote3.dot1vis = true and Wiimote3.dot2vis = true and Wiimote3.dot1y < Wiimote3.dot2y and Wiimote3.dot1y > 380) or (Wiimote3.dot1vis = true and Wiimote3.dot2vis = false) 
+PPJoy3.Analog3 = MapRange(Wiimote3.dot1y, 0,767, -1,1) 
+var.Warning3 = 0 
+endif 
+
+if Wiimote3.dot1vis = false and Wiimote3.dot2vis = false and var.Offscreen3 = 0 
+var.Warning3 = 1 
+var.Offscreen3 = 1 
+endif 
+
+if Wiimote.dot1vis = true or Wiimote3.dot2vis = true 
+var.Offscreen3 = 0 
+endif 
+
+if Wiimote3.dot1vis = false and Wiimote3.dot2vis = false and var.Offscreen3 = 1 
+wait(3s) 
+PPJoy3.Analog2 = MapRange(Wiimote3.dot1x, 0,1023, -0,0) 
+PPJoy3.Analog3 = MapRange(Wiimote3.dot1y, 0,1023, -0,0) 
+var.Warning3 = 0 
+endif 
+
+if var.Warning3 = 1 
+Wiimote3.Rumble = 1 
+wait(0.05s) 
+Wiimote3.Rumble = 0 
+wait(0.4s) 
+endif 
+
+if Wiimote3.gx < -1.5 and var.gx3 = 0 
+var.gx3 = 1 
+PPJoy3.digital10 = 1 
+wait(0.1s) 
+ppjoy.digital10 = 0 
+wait(0.05s) 
+var.gx3 = 0 
+endif 
+
+if Wiimote3.gx > 1.5 and var.gx3 = 0 
+var.gx3 = 1 
+PPJoy3.digital11 = 1 
+wait(0.1s) 
+PPJoy3.digital11 = 0 
+wait(0.05s) 
+var.gx3 = 0 
+endif 
+
+if Wiimote3.gy < -0.5 and var.gy3 = 0 
+var.gy3 = 1 
+PPJoy3.digital12 = 1 
+wait(0.1s) 
+PPJoy3.digital12 = 0 
+wait(0.05s) 
+var.gy3 = 0 
+endif 
+
+if Wiimote3.gy > 2.0 and var.gy3 = 0 
+var.gy3 = 1 
+PPJoy3.digital13 = 1 
+wait(0.1s) 
+PPJoy3.digital13 = 0 
+wait(0.05s) 
+var.gy3 = 0 
+endif 
+
+if Wiimote3.gz < -1.5 and var.gz3 = 0 
+var.gz3 = 1 
+PPJoy3.digital14 = 1 
+wait(0.1s) 
+PPJoy3.digital14 = 0 
+wait(0.05s) 
+var.gz3 = 0 
+endif 
+
+if Wiimote3.gz > 1.5 and var.gz3 = 0 
+var.gz3 = 1 
+PPJoy3.digital15 = 1 
+wait(0.1s) 
+PPJoy3.digital15 = 0 
+wait(0.05s) 
+var.gz3 = 0 
+endif 
+
+
+if Wiimote3.Nunchuk.gx < -1.5 and var.ngx3 = 0 
+var.ngx3 = 1 
+ppjoy.digital16 = 1 
+wait(0.1s) 
+ppjoy.digital16 = 0 
+wait(0.05s) 
+var.ngx3 = 0 
+endif 
+
+if Wiimote3.Nunchuk.gx > 1.5 and var.ngx3 = 0 
+var.ngx3 = 1 
+ppjoy.digital17 = 1 
+wait(0.1s) 
+ppjoy.digital17 = 0 
+wait(0.05s) 
+var.ngx3 = 0 
+endif 
+
+if Wiimote3.Nunchuk.gy < -0.5 and var.ngy3 = 0 
+var.ngy3 = 1 
+ppjoy.digital18 = 1 
+wait(0.1s) 
+ppjoy.digital18 = 0 
+wait(0.05s) 
+var.ngy3 = 0 
+endif 
+
+if Wiimote3.Nunchuk.gy > 2.0 and var.ngy3 = 0 
+var.ngy3 = 1 
+ppjoy.digital19 = 1 
+wait(0.1s) 
+ppjoy.digital19 = 0 
+wait(0.05s) 
+var.ngy3 = 0 
+endif 
+
+if Wiimote3.Nunchuk.gz < -1.5 and var.ngz3 = 0 
+var.ngz3 = 1 
+ppjoy.digital20 = 1 
+wait(0.1s) 
+ppjoy.digital20 = 0 
+wait(0.05s) 
+var.ngz3 = 0 
+endif 
+
+if Wiimote3.Nunchuk.gz > 1.5 and var.ngz3 = 0 
+var.ngz3 = 1 
+ppjoy.digital21 = 1 
+wait(0.1s) 
+ppjoy.digital21 = 0 
+wait(0.05s) 
+var.ngz3 = 0 
+endif 
+
+Wiimote3.Led3 = 1 
+
+//Player 4 
+PPJoy4.Analog0 = Wiimote4.Nunchuk.JoyX 
+PPJoy4.Analog1 = Wiimote4.Nunchuk.JoyY 
+PPJoy4.Analog4 = MapRange(Wiimote4.Roll, -90 degrees,90 degrees, -1,1) 
+PPJoy4.Analog5 = MapRange(Wiimote4.Pitch, -45 degrees,45 degrees, -1,1) 
+PPJoy4.Analog6 = MapRange(Wiimote4.Nunchuk.Roll, -90 degrees,90 degrees, -1,1) 
+PPJoy4.Analog7 = MapRange(Wiimote4.Nunchuk.Pitch, -45 degrees,45 degrees, -1,1) 
+PPJoy4.Digital22 = Wiimote4.up 
+PPJoy4.Digital23 = Wiimote4.down 
+PPJoy4.Digital24 = Wiimote4.left 
+PPJoy4.Digital25 = Wiimote4.Right 
+PPJoy4.digital1 = Wiimote4.A 
+PPJoy4.digital2 = Wiimote4.B 
+PPJoy4.digital3 = Wiimote4.minus 
+PPJoy4.digital4 = Wiimote4.home 
+PPJoy4.digital5 = Wiimote4.plus 
+PPJoy4.digital6 = Wiimote4.one 
+PPJoy4.digital7 = Wiimote4.two 
+PPJoy4.digital8 = Wiimote4.Nunchuk.CButton 
+PPJoy4.digital9 = Wiimote4.Nunchuk.ZButton 
+
+if (Wiimote4.dot1vis = true and Wiimote4.dot2vis = true and Wiimote4.dot1x > Wiimote4.dot2x and Wiimote4.dot1x > 505 and Wiimote4.dot2x < 505) or (Wiimote4.dot1vis = true and Wiimote4.dot2vis = true and Wiimote4.dot1x < Wiimote4.dot2x and Wiimote4.dot1x < 505 and Wiimote4.dot2x > 505) 
+PPJoy4.Analog2 = MapRange(Wiimote4.dot1x, 0,1023, -0,0) 
+var.Warning4 = 0 
+endif 
+
+if (Wiimote4.dot1vis = true and Wiimote4.dot2vis = true and Wiimote4.dot1x > Wiimote4.dot2x and Wiimote4.dot2x > 505) or (Wiimote4.dot1vis = true and Wiimote4.dot2vis = true and Wiimote4.dot1x < Wiimote4.dot2x and Wiimote4.dot2x < 505) or (Wiimote4.dot1vis = false and Wiimote4.dot2vis = true) 
+PPJoy4.Analog2 = MapRange(Wiimote4.dot2x, 0,1023, -1,1) 
+var.Warning4 = 0 
+endif 
+
+if (Wiimote4.dot1vis = true and Wiimote4.dot2vis = true and Wiimote4.dot1x > Wiimote4.dot2x and Wiimote4.dot1x < 505) or (Wiimote4.dot1vis = true and Wiimote4.dot2vis = true and Wiimote4.dot1x < Wiimote4.dot2x and Wiimote4.dot1x > 505) or (Wiimote4.dot1vis = true and Wiimote4.dot2vis = false) 
+PPJoy4.Analog2 = MapRange(Wiimote4.dot1x, 0,1023, -1,1) 
+var.Warning4 = 0 
+endif 
+
+if (Wiimote4.dot1vis = true and Wiimote4.dot2vis = true and Wiimote4.dot1y > Wiimote4.dot2y and Wiimote4.dot1y > 380 and Wiimote4.dot2y < 380) or (Wiimote4.dot1vis = true and Wiimote4.dot2vis = true and Wiimote4.dot1y < Wiimote4.dot2y and Wiimote4.dot1y < 380 and Wiimote4.dot2y > 380) 
+PPJoy4.Analog3 = MapRange(Wiimote4.dot1y, 0,1023, -0,0) 
+var.Warning4 = 0 
+endif 
+
+if (Wiimote4.dot1vis = true and Wiimote4.dot2vis = true and Wiimote4.dot1y > Wiimote4.dot2y and Wiimote4.dot2y > 380) or (Wiimote4.dot1vis = true and Wiimote4.dot2vis = true and Wiimote4.dot1y < Wiimote4.dot2y and Wiimote4.dot2y < 380) or (Wiimote4.dot1vis = false and Wiimote4.dot2vis = true) 
+PPJoy4.Analog3 = MapRange(Wiimote4.dot2y, 0,767, -1,1) 
+var.Warning4 = 0 
+endif 
+
+if (Wiimote4.dot1vis = true and Wiimote4.dot2vis = true and Wiimote4.dot1y > Wiimote4.dot2y and Wiimote4.dot1y < 380) or (Wiimote4.dot1vis = true and Wiimote4.dot2vis = true and Wiimote4.dot1y < Wiimote4.dot2y and Wiimote4.dot1y > 380) or (Wiimote4.dot1vis = true and Wiimote4.dot2vis = false) 
+PPJoy4.Analog3 = MapRange(Wiimote4.dot1y, 0,767, -1,1) 
+var.Warning4 = 0 
+endif 
+
+if Wiimote4.dot1vis = false and Wiimote4.dot2vis = false and var.Offscreen4 = 0 
+var.Warning4 = 1 
+var.Offscreen4 = 1 
+endif 
+
+if Wiimote.dot1vis = true or Wiimote4.dot2vis = true 
+var.Offscreen4 = 0 
+endif 
+
+if Wiimote4.dot1vis = false and Wiimote4.dot2vis = false and var.Offscreen4 = 1 
+wait(3s) 
+PPJoy4.Analog2 = MapRange(Wiimote4.dot1x, 0,1023, -0,0) 
+PPJoy4.Analog3 = MapRange(Wiimote4.dot1y, 0,1023, -0,0) 
+var.Warning4 = 0 
+endif 
+
+if var.Warning4 = 1 
+Wiimote4.Rumble = 1 
+wait(0.05s) 
+Wiimote4.Rumble = 0 
+wait(0.4s) 
+endif 
+
+if Wiimote4.gx < -1.5 and var.gx4 = 0 
+var.gx4 = 1 
+PPJoy4.digital10 = 1 
+wait(0.1s) 
+ppjoy.digital10 = 0 
+wait(0.05s) 
+var.gx4 = 0 
+endif 
+
+if Wiimote4.gx > 1.5 and var.gx4 = 0 
+var.gx4 = 1 
+PPJoy4.digital11 = 1 
+wait(0.1s) 
+PPJoy4.digital11 = 0 
+wait(0.05s) 
+var.gx4 = 0 
+endif 
+
+if Wiimote4.gy < -0.5 and var.gy4 = 0 
+var.gy4 = 1 
+PPJoy4.digital12 = 1 
+wait(0.1s) 
+PPJoy4.digital12 = 0 
+wait(0.05s) 
+var.gy4 = 0 
+endif 
+
+if Wiimote4.gy > 2.0 and var.gy4 = 0 
+var.gy4 = 1 
+PPJoy4.digital13 = 1 
+wait(0.1s) 
+PPJoy4.digital13 = 0 
+wait(0.05s) 
+var.gy4 = 0 
+endif 
+
+if Wiimote4.gz < -1.5 and var.gz4 = 0 
+var.gz4 = 1 
+PPJoy4.digital14 = 1 
+wait(0.1s) 
+PPJoy4.digital14 = 0 
+wait(0.05s) 
+var.gz4 = 0 
+endif 
+
+if Wiimote4.gz > 1.5 and var.gz4 = 0 
+var.gz4 = 1 
+PPJoy4.digital15 = 1 
+wait(0.1s) 
+PPJoy4.digital15 = 0 
+wait(0.05s) 
+var.gz4 = 0 
+endif 
+
+
+if Wiimote4.Nunchuk.gx < -1.5 and var.ngx4 = 0 
+var.ngx4 = 1 
+ppjoy.digital16 = 1 
+wait(0.1s) 
+ppjoy.digital16 = 0 
+wait(0.05s) 
+var.ngx4 = 0 
+endif 
+
+if Wiimote4.Nunchuk.gx > 1.5 and var.ngx4 = 0 
+var.ngx4 = 1 
+ppjoy.digital17 = 1 
+wait(0.1s) 
+ppjoy.digital17 = 0 
+wait(0.05s) 
+var.ngx4 = 0 
+endif 
+
+if Wiimote4.Nunchuk.gy < -0.5 and var.ngy4 = 0 
+var.ngy4 = 1 
+ppjoy.digital18 = 1 
+wait(0.1s) 
+ppjoy.digital18 = 0 
+wait(0.05s) 
+var.ngy4 = 0 
+endif 
+
+if Wiimote4.Nunchuk.gy > 2.0 and var.ngy4 = 0 
+var.ngy4 = 1 
+ppjoy.digital19 = 1 
+wait(0.1s) 
+ppjoy.digital19 = 0 
+wait(0.05s) 
+var.ngy4 = 0 
+endif 
+
+if Wiimote4.Nunchuk.gz < -1.5 and var.ngz4 = 0 
+var.ngz4 = 1 
+ppjoy.digital20 = 1 
+wait(0.1s) 
+ppjoy.digital20 = 0 
+wait(0.05s) 
+var.ngz4 = 0 
+endif 
+
+if Wiimote4.Nunchuk.gz > 1.5 and var.ngz4 = 0 
+var.ngz4 = 1 
+ppjoy.digital21 = 1 
+wait(0.1s) 
+ppjoy.digital21 = 0 
+wait(0.05s) 
+var.ngz4 = 0 
+endif 
+
+Wiimote4.Led4 = 1

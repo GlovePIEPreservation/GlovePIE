@@ -1,0 +1,95 @@
+// Original code by Kasten 
+// Modified to fit the needs of Deetee. 
+
+/* Here you want to change the offset so it matches your mote. To do this, you 
+first have to put the wiimote down on a flat surface, then running the script. 
+
+When running the script, you will notice some X, Y, Z numbers on the rightside 
+of the run button. You want these to be 0,28,0 - so change the numbers under 
+to make your X,Y,Z fit these. 
+
+My numbers were -2, 30, -4 so I changed them to 0,28,0 by setting 
+x to 2 
+y to -2 
+z to 4 
+
+After you have done this, push the run button to make sure its 0,28,0.*/ 
+
+var.xOffset = 2 
+var.yOffset = -2 
+var.zOffset = 4 
+
+// This controls the cursorspeed - set it higher to get faster mouseaction. 
+var.speed = 1 
+
+// These settings controls the jittering of the control. If you have very steady 
+// hands, you can lower these settings, if you are a very jittery person 
+// ( like the one in duskwood ) you set the values higher 
+var.xCutoff = 4 
+var.zCutoff = 4 
+
+// Sets the mote straight by using the offset we used as inputs earlier in 
+// the script, and print it out at the debug screen. 
+var.xRot = Wiimote.RawForceX + var.xOffset 
+var.yRot = Wiimote.RawForceY + var.yOffset 
+var.zRot = Wiimote.RawForceZ + var.zOffset 
+
+debug = 'X:' + var.xRot + ', ' + 'Y:' + var.yRot + ', ' + 'Z:' + var.zRot 
+
+// The code for making the mouse move. Incorporates mouse x,y to the wiimotes 
+// X,Y,Z system 
+if var.xRot > var.xCutoff then mouse.x = mouse.x - .001 * var.speed * (var.xRot - var.xCutoff) 
+if var.xRot < -var.xCutoff then mouse.x = mouse.x - .001 * var.speed * (var.xRot + var.xCutoff) 
+if var.zRot > var.zCutoff then mouse.y = mouse.y - .001 * var.speed * (var.zRot - var.zCutoff) 
+if var.zRot < -var.zCutoff then mouse.y = mouse.y - .001 * var.speed * (var.zRot + var.zCutoff) 
+
+// Setting up the wiimote so that the controls on top of the wiimote works 
+// as WASD that is commonly used in FPS and other games. 
+w = Wiimote.Up 
+s = Wiimote.Down 
+a = Wiimote.Left 
+d = Wiimote.Right 
+
+// Here I set the nunchuk so it corresponts with my direction keys. 
+Right = 1 > Wiimote1.Nunchuk.JoyX > 0.5 
+Left = -1 < Wiimote1.Nunchuk.JoyX < -0.5 
+down = 1 > Wiimote1.Nunchuk.JoyY > 0.5 
+up = -1 < Wiimote1.Nunchuk.JoyY < -0.5 
+
+// Bind some keys to the mote, you can bind your own. 
+h = Wiimote.Plus 
+q = Wiimote.Minus 
+tab = Wiimote.Home 
+j = Wiimote.One 
+k = Wiimote.Two 
+// Nunchuck 
+u = Wiimote.Nunchuk.CButton 
+f = Wiimote.Nunchuk.ZButton 
+// B for left click and A for right click 
+mouse.LeftButton = Wiimote.B 
+mouse.RightButton = Wiimote.A 
+
+// You can use a combination of keys by adding a + in between, like this - if 
+// you want to bind one of the buttons for SHIFT+Loot. 
+// shift + mouse.RightButton = Wiimote.A 
+
+// Nothin' like a little rumblin' 
+Wiimote.Rumble = Wiimote.A 
+
+// Using the leds when pressing the buttons. Almost like having a GF. 
+Wiimote.Led1 = w 
+Wiimote.Led2 = s 
+Wiimote.Led3 = a 
+Wiimote.Led4 = d 
+Wiimote.Led1 = j 
+Wiimote.Led2 = k 
+Wiimote.Led3 = h 
+Wiimote.Led4 = alt+g 
+
+// Sets the wiimote rotation bindings - for jumping and mounting. 
+// By flicking it upwards, you jump 
+// By flicking it to the side, you mount ( or whatever you bound to alt+g ). 
+// You could probably do an Z rotation too, but that movement is strictly 
+// for watching pr0n. 
+if var.yRot >= 100 then space = true else space = false 
+if var.xRot >= 100 then alt+g = true else alt+g = false 

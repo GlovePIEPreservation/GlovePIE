@@ -1,0 +1,40 @@
+//RumbleFight V .2 made by Psycho. 
+//This little game is a 2 player zap game. 
+//You zap the other player with A and block there zaps with B. 
+//You cannot zap another player while you are blocking. 
+
+//Zap player 2 
+if Wiimote1.A = true then 
+   Wiimote2.Rumble = true 
+   wait 100ms 
+   Wiimote1.A = false 
+   wiimote2.Rumble =false 
+   endif 
+
+//Zap player 1 
+if Wiimote2.A = true then 
+   Wiimote1.Rumble = true 
+   wait 100ms 
+   Wiimote2.A = false 
+   wiimote1.Rumble =false 
+endif 
+
+//Block player 2 
+if wiimote1.b = true then 
+   wiimote1.rumble = false 
+   wiimote2.rumble = false 
+   wait 0ms 
+   wiimote1.b = false 
+   wiimote1.rumble = false 
+   wiimote2.rumble = false 
+endif 
+
+//Block player 1 
+if wiimote2.b = true then 
+   wiimote2.rumble = false 
+   wiimote1.rumble = false 
+   wait 0ms 
+   wiimote2.b = false 
+   wiimote2.rumble = false 
+   wiimote1.rumble = false 
+endif

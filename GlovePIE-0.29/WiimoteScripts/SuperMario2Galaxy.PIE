@@ -1,0 +1,85 @@
+/*  Super Mario 2... but with Super Mario Galaxy controls!
+    By Carl Kenner
+
+    Your SNES Emulator must use the default ZSNES config, which is:
+      DPAD = arrow keys, Start = Enter, Select = Right Shift
+      A = X, B = Z, x = S, y = A, L = D, R = C
+
+    Controls are the same as Super Mario Galaxy:
+      Nunchuk joystick = walk / run
+      Nunchuk Z = crouch
+      Wiimote A = jump
+      Wiimote B = grab things (no pointer function though, sorry)
+      Shake Wiimote or Nunchuk = Spin Attack!
+      + = Start
+      - = Select
+      Home = Exit level
+      Wiimote D-Pad = Change camera angle
+      Nunchuk C = center camera (not implemented, sorry)
+
+    The moves work like in most 3D Mario games...
+      Run, Crouch, Jump = Long Jump
+      Jump, Crouch = Butt Stomp (will land first then do it, sorry)
+      Crouch, Jump = Back Flip (wait till you glow before jumping)
+      Triple Jump and U-Turn flip are not implemented
+
+    Warning! Running will make you start levels, pick up, thow,
+    or various other side effects. Be careful where you run.
+
+    I will make GALAXY scripts for the other Mario games later.
+*/
+
+Wiimote.Leds = 1
+//Camera controls (L and R) = D-PAD
+D = KeepDown(Wiimote.Left,500ms)
+C = KeepDown(Wiimote.Right,500ms)
+
+// Jump (B) = A
+Z = Wiimote.A
+
+// Start = +, Select = -
+Enter = Wiimote.Plus
+RightShift = Wiimote.Minus
+// Exit level (Start+Select) = Home
+RightShift+Enter = Wiimote.Home
+
+// Butt-Stomp = A then Z
+if Wiimote.A but not Wiimote.Nunchuk.ZButton then var.JumpTime = Now
+if Wiimote.Nunchuk.ZButton and (Now-var.JumpTime) < 500ms then
+  wait 500ms
+  press(A)
+  wait 50ms
+  release(A)
+end if
+
+// Back Flip already works in this game
+
+// Run (x or y) = Joystick all the way
+var.Run = Abs(Wiimote.Nunchuk.JoyX) > 0.9
+
+// Joystick movement
+var.Fwd = Wiimote.Nunchuk.JoyY < -0.25
+var.Back = Wiimote.Nunchuk.JoyY > 0.25
+var.Left = Wiimote.Nunchuk.JoyX < -0.25
+var.Right = Wiimote.Nunchuk.JoyX > 0.25
+
+Left = var.Left
+Right = var.Right
+Up = var.Fwd
+// Z does crouch, unless you are running, in which case it does long jump
+Down = var.Back or (Wiimote.Nunchuk.ZButton and not var.Run)
+
+var.a1 = sqrt(sqr(Wiimote.gx)+sqr(wiimote.gy)+sqr(Wiimote.gz))
+var.a2 = sqrt(sqr(Wiimote.Nunchuk.gx)+sqr(Wiimote.Nunchuk.gy)+sqr(Wiimote.Nunchuk.gz))
+
+var.shake = keepdown(abs(var.a1-1)> 0.8, 300ms) or keepdown(abs(var.a2-1)> 0.8, 300ms)
+
+// Spin Attack (A) = Shake either Wiimote or Nunchuk
+// Grab or Run (x or y) = B or Joystick or shake
+A = Wiimote.B or var.Run or var.Shake
+
+
+
+
+
+

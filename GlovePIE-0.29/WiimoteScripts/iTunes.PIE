@@ -1,0 +1,37 @@
+
+//            **Coded by JoCliMe** 
+//       ***iTunes Wiimote for Windows*** 
+
+//Play/Pause as A button 
+space = wiimote.A 
+
+//Next/previous as Right and Left 
+control + right = wiimote.right 
+control + left = wiimote.left 
+
+//Volume up, mute, and down as +, home, and - 
+control + up = wiimote.Plus 
+control + down = wiimote.minus 
+control + alt + down = wiimote.Home 
+
+//Scrolling up and down as up and down 
+if wiimote.Up 
+  Up = true
+  Wait 50 ms
+  Up = false
+endif 
+if wiimote.Down 
+  Down = true
+  Wait 50 ms
+  Down = false
+endif 
+
+//Play selected song 
+Enter = wiimote.One 
+
+//Show Visualizer 
+control + T = wiimote.B 
+
+//Select All (in case iTunes playlist window loses focus for scrolling 
+control + A = wiimote.Two 
+

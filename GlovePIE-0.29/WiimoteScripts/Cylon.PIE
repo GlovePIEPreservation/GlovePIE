@@ -1,0 +1,22 @@
+// Cylon Wiimote
+// We all knew it would happen, it was just a matter of time.
+// by Klipart13
+
+if true then
+  wiimote.Leds = 1
+  wait 200ms
+  wiimote.Leds = 1+2
+  wait 75ms
+  wiimote.Leds = 2
+  wait 200ms
+  wiimote.Leds = 2+4
+  wait 75ms
+  wiimote.Leds = 4
+  wait 200ms
+  wiimote.Leds = 4+8
+  wait 75ms
+  wiimote.Leds = 8
+  wait 200ms
+  wiimote.Leds = 8+1
+  wait 75ms
+end if

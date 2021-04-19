@@ -1,0 +1,215 @@
+/*Trackmania (Nations) WiiMote Script by Sousuke/Brot 
+Download Trackmania Nations for free: trackmanianations dot com 
+Hold your WiiMote sideways so that the expansion port is right.*/ 
+debug = 'Z=' + Wiimote.gz + 'g' 
+var.led = 0 //1 = Leds on ; 0 = Leds off 
+var.BaseOn = 30 
+var.AddOn = 4 
+var.BaseOff = 20 
+var.AddOff = 0 
+var.zBase = 0.20 
+var.zAdd = 0.04 
+/*Controls: 
+         A = Enter 
+         1 = Down 
+         2 = Up 
+         Home = Escape 
+         Up = View 1 
+         Right = View 2 
+         Down = Cockpitview 
+*/ 
+Keyboard.Enter = Wiimote.A 
+Keyboard.Down = Wiimote.One 
+Keyboard.Up = Wiimote.Two 
+Keyboard.Escape = Wiimote.Home 
+Keyboard.NUMPAD1 = Wiimote.Up 
+Keyboard.NUMPAD2 = Wiimote.Right 
+Keyboard.NUMPAD3 = Wiimote.Down 
+
+//Controls for steering to the right 
+if Wiimote.gZ >= var.zBase and < (var.zBase + var.zAdd) 
+   Keyboard.Right = 1 
+   wait (var.baseon ms) 
+   Keyboard.Right = 0 
+   wait (var.baseoff ms) 
+endif 
+
+if Wiimote.gZ >= (var.zBase + var.zAdd) and < (var.zBase + var.zAdd * 2) 
+   Keyboard.Right = 1 
+   wait (var.baseon + var.addon ms) 
+   Keyboard.Right = 0 
+   wait (var.baseoff + var.addoff ms) 
+endif 
+  
+if Wiimote.gZ >= (var.zBase + var.zAdd * 2) and < (var.zBase + var.zAdd * 3) 
+   Keyboard.Right = 1 
+   wait (var.baseon + var.addon * 2 ms) 
+   Keyboard.Right = 0 
+   wait (var.baseoff + var.addoff * 2 ms) 
+endif 
+    
+if Wiimote.gZ >= (var.zBase + var.zAdd * 3) and < (var.zBase + var.zAdd * 4) 
+   Keyboard.Right = 1 
+   wait (var.baseon + var.addon * 3 ms) 
+   Keyboard.Right = 0 
+   wait (var.baseoff + var.addoff * 3 ms) 
+endif 
+    
+if Wiimote.gZ >= (var.zBase + var.zAdd * 4) and < (var.zBase + var.zAdd * 5) 
+   Keyboard.Right = 1 
+   wait (var.baseon + var.addon * 4 ms) 
+   Keyboard.Right = 0 
+   wait (var.baseoff + var.addoff * 4 ms) 
+endif 
+    
+if Wiimote.gZ >= (var.zBase + var.zAdd * 5) and < (var.zBase + var.zAdd * 6) 
+   Keyboard.Right = 1 
+   wait (var.baseon + var.addon * 5 ms) 
+   Keyboard.Right = 0 
+   wait (var.baseoff + var.addoff * 5 ms) 
+endif 
+      
+if Wiimote.gZ >= (var.zBase + var.zAdd * 6) and < (var.zBase + var.zAdd * 7) 
+   Keyboard.Right = 1 
+   wait (var.baseon + var.addon * 6 ms) 
+   Keyboard.Right = 0 
+   wait (var.baseoff + var.addoff * 6 ms) 
+endif 
+    
+if Wiimote.gZ >= (var.zBase + var.zAdd * 7) and < (var.zBase + var.zAdd * 8) 
+   Keyboard.Right = 1 
+   wait (var.baseon + var.addon * 7 ms) 
+   Keyboard.Right = 0 
+   wait (var.baseoff + var.addoff * 7 ms) 
+endif 
+    
+if Wiimote.gZ >= (var.zBase + var.zAdd * 8) and < (var.zBase + var.zAdd * 9) 
+   Keyboard.Right = 1 
+   wait (var.baseon + var.addon * 8 ms) 
+   Keyboard.Right = 0 
+   wait (var.baseoff + var.addoff * 8 ms) 
+endif 
+    
+if Wiimote.gZ >= (var.zBase + var.zAdd * 9) and < (var.zBase + var.zAdd * 10) 
+   Keyboard.Right = 1 
+   wait (var.baseon + var.addon * 9 ms) 
+   Keyboard.Right = 0 
+   wait (var.baseoff + var.addoff * 9 ms) 
+endif 
+    
+if Wiimote.gZ >= (var.zBase + var.zAdd * 10) and < (var.zBase + var.zAdd * 11) 
+   Keyboard.Right = 1 
+   wait (var.baseon + var.addon * 10 ms) 
+   Keyboard.Right = 0 
+   wait (var.baseoff + var.addoff * 10 ms) 
+endif 
+
+if Wiimote.gZ >= (var.zBase + var.zAdd * 11) 
+   Keyboard.Right = 1 
+endif 
+////End of the Controls for steering to the right 
+
+//Controls for steering to the left 
+if Wiimote.gZ <= -(var.zBase) and > -(var.zBase + var.zAdd) 
+   Keyboard.Left = 1 
+   wait (var.baseon ms) 
+   Keyboard.Left = 0 
+   wait (var.baseoff ms) 
+endif 
+    
+if Wiimote.gZ <= -(var.zBase + var.zAdd) and > -(var.zBase + var.zAdd * 2) 
+   Keyboard.Left = 1 
+   wait (var.baseon + var.addon ms) 
+   Keyboard.Left = 0 
+   wait (var.baseoff + var.addoff ms) 
+endif 
+    
+if Wiimote.gZ <= -(var.zBase + var.zAdd * 2) and > -(var.zBase + var.zAdd * 3) 
+   Keyboard.Left = 1 
+   wait (var.baseon + var.addon * 2 ms) 
+   Keyboard.Left = 0 
+   wait (var.baseoff + var.addoff * 2 ms) 
+endif 
+    
+if Wiimote.gZ <= -(var.zBase + var.zAdd * 3) and > -(var.zBase + var.zAdd * 4) 
+   Keyboard.Left = 1 
+   wait (var.baseon + var.addon * 3 ms) 
+   Keyboard.Left = 0 
+   wait (var.baseoff + var.addoff * 3 ms) 
+endif 
+    
+if Wiimote.gZ <= -(var.zBase + var.zAdd * 4) and > -(var.zBase + var.zAdd * 5) 
+   Keyboard.Left = 1 
+   wait (var.baseon + var.addon * 4 ms) 
+   Keyboard.Left = 0 
+   wait (var.baseoff + var.addoff * 4 ms) 
+endif 
+    
+if Wiimote.gZ <= -(var.zBase + var.zAdd * 5) and > -(var.zBase + var.zAdd * 6) 
+   Keyboard.Left = 1 
+   wait (var.baseon + var.addon * 5 ms) 
+   Keyboard.Left = 0 
+   wait (var.baseoff + var.addoff * 5 ms) 
+endif 
+    
+if Wiimote.gZ <= -(var.zBase + var.zAdd * 6) and > -(var.zBase + var.zAdd * 7) 
+   Keyboard.Left = 1 
+   wait (var.baseon + var.addon * 6 ms) 
+   Keyboard.Left = 0 
+   wait (var.baseoff + var.addoff * 6 ms) 
+endif 
+    
+if Wiimote.gZ <= -(var.zBase + var.zAdd * 7) and > -(var.zBase + var.zAdd * 8) 
+   Keyboard.Left = 1 
+   wait (var.baseon + var.addon * 7 ms) 
+   Keyboard.Left = 0 
+   wait 20ms 
+endif 
+    
+if Wiimote.gZ <= -(var.zBase + var.zAdd * 8) and > -(var.zBase + var.zAdd * 9) 
+   Keyboard.Left = 1 
+   wait (var.baseon + var.addon * 8 ms) 
+   Keyboard.Left = 0 
+   wait (var.baseoff + var.addoff * 8 ms) 
+endif 
+    
+if Wiimote.gZ <= -(var.zBase + var.zAdd * 9) and > -(var.zBase + var.zAdd * 10) 
+   Keyboard.Left = 1 
+   wait (var.baseon + var.addon * 9 ms) 
+   Keyboard.Left = 0 
+   wait (var.baseoff + var.addoff * 9 ms) 
+endif 
+    
+if Wiimote.gZ <= -(var.zBase + var.zAdd * 10) and > -(var.zBase + var.zAdd * 11) 
+   Keyboard.Left = 1 
+   wait (var.baseon + var.addon * 10 ms) 
+   Keyboard.Left = 0 
+   wait (var.baseoff + var.addoff * 10 ms) 
+endif 
+
+if Wiimote.gZ <= -(var.zBase + var.zAdd * 11) 
+   Keyboard.Left = 1 
+endif 
+////End of the Controls for steering to the left 
+
+//Controls for idling and leds 
+if Wiimote.gZ > -(var.zBase) and < var.zBase 
+   Keyboard.Left = 0 
+   Keyboard.Right = 0 
+   if var.led = 1 
+      Wiimote.Leds = 6 
+   endif 
+endif 
+
+if var.led = 1 and (Wiimote.gz > 0.20 and < 0.50) 
+   Wiimote.Leds = 3 
+endif 
+if var.led = 1 and Wiimote.gz >= 0.50 
+   Wiimote.Leds = 1 
+endif 
+if var.led = 1 and (Wiimote.gz < -0.20 and > -0.50) 
+   Wiimote.Leds = 12 
+endif 
+if var.led = 1 and Wiimote.gz <= -0.50 
+   Wiimote.Leds = 8 
+endif

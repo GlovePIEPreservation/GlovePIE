@@ -1,0 +1,37 @@
+// Oddworld GameSpeak
+// This has only been tried on Demo1 Version 5 on the ePSXe playstation emulator
+// with Delta2 V2.00
+// Things you can say when you are Abe:
+//   Hello, Follow Me, Stay Here, Grrr, I don't know, hehehe, brrr (fart),
+//   Do-you-yo-you-yo-you-yo-you (praying)
+// Things you can say when you are a slig:
+//   Ike, here boy, get em, help, what, look out, bwur, hahaha
+// Things you can't say yet: Whistle 1, whistle 2, slig's uh-uh, slig's mechanical
+//
+// The controls are assumed to be: L1 = Left Shift, L2 = Left Ctrl, R1 = Right Shift, etc.
+// X = X, C = Circle, S = triangle, Z = square
+// These controls are not the default (They normally do L1 and L2 backwards)
+
+
+var.Hello = said('hello') or said('Ike') or said("I") or said("hi")
+var.IDontKnow = said("I don't know") or said("I dunno") or said("what")
+var.FollowMe = said("follow me") or said("come with me") or said("here boy")
+var.StayHere = said("stay here") or said("stay there") or said("get erm") or said("get him")
+var.Grrr = said("gerr") or said("help")
+var.Laugh = said("he he he") or said("hahaha") or said("hehehe")
+var.Pray = said("Do-you") or said("Do-you-yo-you") or said("do-you-yo-you-yo-you") or said("dooyoo") or said("dooyoo yohyoo")
+var.Fart = said("Berr") or said("look out")
+var.Buwer = said("buwer") or said("blur")
+
+var.Speak = var.Hello or var.FollowMe or var.StayHere or var.Grrr
+var.Sound = var.Laugh or var.Fart
+
+key.LeftShift = KeepDown(var.Speak, 300ms) or KeepDown(var.Pray, 5s)
+key.LeftCtrl = KeepDown(var.Sound, 300ms) or KeepDown(var.Pray, 5s)
+key.S = KeepDown(var.Hello, 300ms)
+key.Z = KeepDown(var.FollowMe or var.IDontKnow  or var.Laugh, 300ms)
+key.X = KeepDown(var.StayHere or var.Buwer, 300ms)
+key.C = KeepDown(var.Grrr or var.Fart, 300ms)
+
+
+

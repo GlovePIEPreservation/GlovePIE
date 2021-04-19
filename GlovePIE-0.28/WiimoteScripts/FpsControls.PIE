@@ -1,0 +1,153 @@
+//Wiimote FPS Controls by Freeman Speaketh/US of Anarchy 
+//Feel free to modify and redistribute, but leave this here 
+
+// Show wiimote forces 
+debug = "X="+Wiimote.RawForceX+' Y='+Wiimote.RawForceY+' Z='+Wiimote.RawForceZ 
+
+//Movement Keys. Works for both arrow keys and WASD. 
+Keyboard.W and Keyboard.Up = Wiimote.Up 
+Keyboard.S and Keyboard.Down = Wiimote.Down 
+Keyboard.A and Keyboard.Left = Wiimote.Left 
+Keyboard.D and Keyboard.Right = Wiimote.Right 
+
+//Key assignments. Feel Free to change 
+Keyboard.Esc = Wiimote.Home 
+Keyboard.Space = Wiimote.One 
+Keyboard.E and Keyboard.F = Wiimote.Two 
+Keyboard.R = Wiimote.Plus 
+Keyboard.G = Wiimote.Minus 
+
+//You might want to switch these depending on your tastes 
+Mouse.LeftButton = Wiimote.B 
+Mouse.RightButton = Wiimote.A 
+
+//Controls rumble 
+//Note: If for some reason your game uses the apostrophe key, change this! 
+if Wiimote.A = 1 and Keyboard.Apostrophe = 0 
+Wiimote.Rumble = 1 
+wait 75 ms 
+wiimote.Rumble = 0 
+Keyboard.Apostophe = 1 
+endif 
+
+if Wiimote.B = 1 and Keyboard.Apostrophe = 0 
+Wiimote.Rumble = 1 
+wait 75 ms 
+wiimote.Rumble = 0 
+Keyboard.Apostophe = 1 
+endif 
+
+if Wiimote.A = 0 and Wiimote.B = 0 
+Keyboard.Apostrophe = 0 
+endif 
+
+//Controls LEDs 
+if Wiimote.A or Wiimote.B 
+Wiimote.Led1 = 1 
+wait 500 ms 
+Wiimote.Led2 = 1 
+wait 500 ms 
+Wiimote.Led3 = 1 
+wait 500 ms 
+Wiimote.Led4 = 1 
+wait 500 ms 
+endif 
+
+if Wiimote.A = 0 and Wiimote.B = 0 
+Wiimote.Led1 = 0 
+Wiimote.Led2 = 0 
+Wiimote.Led3 = 0 
+Wiimote.Led4 = 0 
+endif 
+
+// set these to the offsets when the wiimote is at rest 
+// will be different for each wiimote 
+var.x = Wiimote.RawForceX +12 //trim to 0 
+var.y = Wiimote.RawForceY -36 // trim to 0 
+var.z = Wiimote.RawForceZ +14 //trim to 0 
+
+//precision 
+var.sense0 = 500 
+var.thresh0x = 5 
+var.thresh0y = 2 
+
+var.sense = 300 
+var.threshx = 10 
+var.threshy = 5 
+
+var.sense2 = 100 
+var.thresh2x = 15 
+var.thresh2y = 8 
+
+var.sense3 = 50 
+var.thresh3x = 20 
+var.thresh3y = 12 
+
+//first sensitivity setting 
+//xaxis 
+if var.x > var.thresh0x 
+mouse.x = mouse.x - 1/var.sense0 
+endif 
+if var.x < -var.thresh0x 
+mouse.x = mouse.x + 1/var.sense0 
+endif 
+
+//yaxis 
+if var.z > var.thresh0y 
+mouse.y = mouse.y - 1/var.sense0 
+endif 
+if var.z < -var.thresh0y 
+mouse.y = mouse.y + 1/var.sense0 
+endif 
+
+
+//second sensitivity setting 
+//xaxis 
+if var.x > var.threshx 
+mouse.x = mouse.x - 1/var.sense 
+endif 
+if var.x < -var.threshx 
+mouse.x = mouse.x + 1/var.sense 
+endif 
+
+//yaxis 
+if var.z > var.threshy 
+mouse.y = mouse.y - 1/var.sense 
+endif 
+if var.z < -var.threshy 
+mouse.y = mouse.y + 1/var.sense 
+endif 
+
+//third sensitivity setting 
+//xaxis 
+if var.x > var.thresh2x 
+mouse.x = mouse.x - 1/var.sense2 
+endif 
+if var.x < -var.thresh2x 
+mouse.x = mouse.x + 1/var.sense2 
+endif 
+
+//yaxis 
+if var.z > var.thresh2y 
+mouse.y = mouse.y - 1/var.sense2 
+endif 
+if var.z < -var.thresh2y 
+mouse.y = mouse.y + 1/var.sense2 
+endif 
+
+//fourth sensitivity setting 
+//xaxis 
+if var.x > var.thresh3x 
+mouse.x = mouse.x - 1/var.sense3 
+endif 
+if var.x < -var.thresh3x 
+mouse.x = mouse.x + 1/var.sense3 
+endif 
+
+//yaxis 
+if var.z > var.thresh3y 
+mouse.y = mouse.y - 1/var.sense3 
+endif 
+if var.z < -var.thresh3y 
+mouse.y = mouse.y + 1/var.sense3 
+endif 

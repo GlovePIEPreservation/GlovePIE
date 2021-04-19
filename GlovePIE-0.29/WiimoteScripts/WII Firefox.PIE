@@ -1,0 +1,556 @@
+//Michael Novati - wiimote@novati.ca
+//Buttons:
+//A = right click
+//Home = left click
+//Left/Right/Up/Down = arrow keys
+//Plus = firefox forward
+//Minus = firefox backward
+//B = activate mouse cursor (vased on the Mouse with Acceleration script)
+//WHILE HOLDING "1"
+//	B = active address bar in firefox
+//	Left = firefox scroll tabs left
+//	Right = firefox scrool tabs right
+//	Down = pagedown
+//	Up = pageup
+//	Minus = close tab
+//	Plus = new tab
+//WHILE HOLDING "2"
+//	B = enter
+//	Left = scroll letters A-F (press multiple times to scroll, release 2 with desired letter)
+//	Right = scroll letters G-L 
+//	Down = scroll letters M-R
+//	Up = scroll letters S-Z + " " + "."
+//	Minus = backspace
+//	Plus = type "http://www."
+
+if wiimote.One then
+if wiimote.B then
+   Key.Alt = true
+   wait 20 ms
+   Key.D = true
+   wait 20 ms
+   Key.Alt = false
+   Key.D = false
+endif
+if wiimote.Up then
+   Key.PageUp = true
+   wait 200 ms
+   Key.PageUp = false
+endif
+if wiimote.Down then
+   Key.PageDown = true
+   wait 200 ms
+   Key.PageDown = false
+endif
+if wiimote.Left then
+   Key.Ctrl = true
+   wait 20 ms
+   Key.Shift = true
+   wait 20 ms
+   Key.Tab = true
+   wait 50 ms
+   Key.Ctrl = false
+   Key.Shift = false
+   Key.Tab = false
+endif
+if wiimote.Right then
+   Key.Ctrl = true
+   wait 20 ms
+   Key.Tab = true
+   wait 50 ms
+   Key.Ctrl = false
+   Key.Tab = false
+endif
+if wiimote.Minus then
+   Key.Ctrl = true
+   wait 20 ms
+   Key.F4 = true
+   wait 200 ms
+   Key.Ctrl = false
+   Key.F4 = false
+endif
+if wiimote.Plus then
+   Key.Ctrl = true
+   wait 20 ms
+   Key.T = true
+   wait 200 ms
+   Key.Ctrl = false
+   Key.T = false
+endif
+endif
+
+if (wiimote.Down && !wiimote.One && !wiimote.two) then
+   Key.Down = true
+   wait 120 ms
+   Key.Down = false
+endif
+
+if (wiimote.Up && !wiimote.One && !wiimote.two) then
+   Key.Up = true
+   wait 120 ms
+   Key.Up = false
+endif
+
+if (wiimote.Left && !wiimote.One && !wiimote.two) then
+   Key.Left = true
+   wait 120 ms
+   Key.Left = false
+endif
+
+if (wiimote.Right && !wiimote.One && !wiimote.two) then
+   Key.Right = true
+   wait 120 ms
+   Key.Right = false
+endif
+
+if (wiimote.Minus && !wiimote.One && !wiimote.two) then
+   Key.Alt = true
+   wait 20 ms
+   Key.Left = true
+   wait 20 ms
+   Key.Alt = false
+   Key.Left = false
+endif
+
+if (wiimote.Plus && !wiimote.One  && !wiimote.two) then
+   Key.Alt = true
+   wait 20 ms
+   Key.Right = true
+   wait 20 ms
+   Key.Alt = false
+   Key.Right = false
+endif
+
+if !wiimote.Two then
+var.left = 0
+var.right = 0
+var.up = 0
+var.down = 0
+var.rleft = 0
+var.rright = 0
+var.rup = 0
+var.rdown = 0
+endif
+
+if wiimote.Two then
+if wiimote.B then
+   Key.Enter = true
+   wait 100 ms
+   Key.Enter = false
+endif
+if wiimote.Left then
+   var.left = var.left + 1
+   if var.left > 6 then
+   var.left = 1
+   var.rleft = 1
+   endif
+   if var.left == 1 then
+   if var.rleft == 1 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   endif
+   Key.a = true
+   wait 5 ms
+   Key.a = false
+   endif
+   if var.left == 2 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.b = true
+   wait 5 ms
+   Key.b = false
+   endif
+   if var.left == 3 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.c = true
+   wait 5 ms
+   Key.c = false
+   endif
+   if var.left == 4 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.d = true
+   wait 5 ms
+   Key.d = false
+   endif
+   if var.left == 5 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.e = true
+   wait 5 ms
+   Key.e = false
+   endif
+   if var.left == 6 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.f = true
+   wait 5 ms
+   Key.f = false
+   endif
+   wait 200 ms
+endif
+if wiimote.Up then
+   var.up = var.up + 1
+   if var.up > 6 then
+   var.up = 1
+   var.rup = 1
+   endif
+   if var.up == 1 then
+   if var.rup == 1 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   endif
+   Key.g = true
+   wait 5 ms
+   Key.g = false
+   endif
+   if var.up == 2 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.h = true
+   wait 5 ms
+   Key.h = false
+   endif
+   if var.up == 3 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.i = true
+   wait 5 ms
+   Key.i = false
+   endif
+   if var.up == 4 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.j = true
+   wait 5 ms
+   Key.j = false
+   endif
+   if var.up == 5 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.k = true
+   wait 5 ms
+   Key.k = false
+   endif
+   if var.up == 6 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.l = true
+   wait 5 ms
+   Key.l = false
+   endif
+   wait 200 ms
+endif
+if wiimote.Right then
+   var.right = var.right + 1
+   if var.right > 6 then
+   var.right = 1
+   var.rright = 1
+   endif
+   if var.right == 1 then
+   if var.rright == 1 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   endif
+   Key.m = true
+   wait 5 ms
+   Key.m = false
+   endif
+   if var.right == 2 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.n = true
+   wait 5 ms
+   Key.n = false
+   endif
+   if var.right == 3 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.o = true
+   wait 5 ms
+   Key.o = false
+   endif
+   if var.right == 4 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.p = true
+   wait 5 ms
+   Key.p = false
+   endif
+   if var.right == 5 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.q = true
+   wait 5 ms
+   Key.q = false
+   endif
+   if var.right == 6 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.r = true
+   wait 5 ms
+   Key.r = false
+   endif
+   wait 200 ms
+endif
+if wiimote.Down then
+   var.down = var.down + 1
+   if var.down > 10 then
+   var.down = 1
+   var.rdown = 1
+   endif
+   if var.down == 1 then
+   if var.rdown == 1 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   endif
+   Key.s = true
+   wait 5 ms
+   Key.s = false
+   endif
+   if var.down == 2 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.t = true
+   wait 5 ms
+   Key.t = false
+   endif
+   if var.down == 3 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.u = true
+   wait 5 ms
+   Key.u = false
+   endif
+   if var.down == 4 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.v = true
+   wait 5 ms
+   Key.v = false
+   endif
+   if var.down == 5 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.w = true
+   wait 5 ms
+   Key.w = false
+   endif
+   if var.down == 6 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.x = true
+   wait 5 ms
+   Key.x = false
+   endif
+   if var.down == 7 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.y = true
+   wait 5 ms
+   Key.y = false
+   endif
+   if var.down == 8 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.z = true
+   wait 5 ms
+   Key.z = false
+   endif
+   if var.down == 9 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.Space = true
+   wait 5 ms
+   Key.space = false
+   endif
+   if var.down == 10 then
+   Key.Backspace = true
+   wait 5 ms
+   Key.BackSpace = false
+   Key.Dot = true
+   wait 5 ms
+   Key.dot = false
+   endif
+   wait 200 ms
+endif
+if wiimote.Minus then
+   Key.Backspace = true
+   wait 200 ms
+   Key.BackSpace = false
+endif
+if wiimote.Plus then
+   Key.H = true
+   wait 5 ms
+   Key.H = false
+   Key.t = true
+   wait 5 ms
+   Key.t = false
+   Key.t = true
+   wait 5 ms
+   Key.t = false
+   Key.p = true
+   wait 5 ms
+   Key.p = false
+   Key.shift = true
+   key.Semicolon = true
+   wait 5 ms
+   Key.shift = false
+   key.Semicolon = false
+   Key.slash = true
+   wait 5 ms
+   Key.Slash = false
+   Key.slash = true
+   wait 5 ms
+   Key.slash= false
+   Key.w = true
+   wait 5 ms
+   Key.w = false
+   Key.w = true
+   wait 5 ms
+   Key.w = false
+   Key.w = true
+   wait 5 ms
+   Key.w = false
+   Key.Dot = true
+   wait 5 ms
+   Key.Dot = false
+endif
+endif
+/*Key.Up = Wiimote.Up
+Keyboard.Down = Wiimote.Down
+Keyboard.Left = Wiimote.Left
+Keyboard.Right = Wiimote.Right*/
+mouse.LeftButton = Wiimote.A
+mouse.RightButton = wiimote.Home
+
+var.trimx = 6
+var.trimy = -31
+var.trimz = 6
+
+if wiimote.B && !wiimote.one && !wiimote.Two then
+//****Everything past here deals with mouse movement*****
+
+// set these to the offsets when the wiimote is at rest
+// will be different for each wiimote most likely
+var.x = Wiimote.RawForceX + var.trimx //trim to 0
+var.y = Wiimote.RawForceY + var.trimy // trim to 0
+var.z = Wiimote.RawForceZ + var.trimz //trim to 0
+
+//precision
+var.sense0 = 500
+var.thresh0x = 5
+var.thresh0y = 2
+
+var.sense = 300
+var.threshx = 10
+var.threshy = 5
+
+var.sense2 = 100
+var.thresh2x = 15
+var.thresh2y = 8
+
+var.sense3 = 50
+var.thresh3x = 20
+var.thresh3y = 12
+
+//first sensitivity setting
+//xaxis
+if var.x > var.thresh0x
+mouse.x = mouse.x - 1/var.sense0
+endif
+if var.x < -var.thresh0x
+mouse.x = mouse.x + 1/var.sense0
+endif
+
+//yaxis
+if var.z > var.thresh0y
+mouse.y = mouse.y - 1/var.sense0
+endif
+if var.z < -var.thresh0y
+mouse.y = mouse.y + 1/var.sense0
+endif
+
+
+//second sensitivity setting
+//xaxis
+if var.x > var.threshx
+mouse.x = mouse.x - 1/var.sense
+endif
+if var.x < -var.threshx
+mouse.x = mouse.x + 1/var.sense
+endif
+
+//yaxis
+if var.z > var.threshy
+mouse.y = mouse.y - 1/var.sense
+endif
+if var.z < -var.threshy
+mouse.y = mouse.y + 1/var.sense
+endif
+
+//third sensitivity setting
+//xaxis
+if var.x > var.thresh2x
+mouse.x = mouse.x - 1/var.sense2
+endif
+if var.x < -var.thresh2x
+mouse.x = mouse.x + 1/var.sense2
+endif
+
+//yaxis
+if var.z > var.thresh2y
+mouse.y = mouse.y - 1/var.sense2
+endif
+if var.z < -var.thresh2y
+mouse.y = mouse.y + 1/var.sense2
+endif
+
+//fourth sensitivity setting
+//xaxis
+if var.x > var.thresh3x
+mouse.x = mouse.x - 1/var.sense3
+endif
+if var.x < -var.thresh3x
+mouse.x = mouse.x + 1/var.sense3
+endif
+
+//yaxis
+if var.z > var.thresh3y
+mouse.y = mouse.y - 1/var.sense3
+endif
+if var.z < -var.thresh3y
+mouse.y = mouse.y + 1/var.sense3
+endif
+endif
+
+
+

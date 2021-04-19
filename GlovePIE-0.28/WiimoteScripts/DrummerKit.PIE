@@ -1,0 +1,90 @@
+// Will T.'s Version of Carl's version of Bob's Version of Wii Drums! No other program required.
+// Edit - Allowed Two Wii-Motes at the same time.
+
+var.xOffset = 8
+var.yOffset = -37
+var.zOffset = 12
+
+var.xRot = Wiimote1.RawForceX + var.xOffset
+var.yRot = Wiimote1.RawForceY + var.yOffset
+var.zRot = Wiimote1.RawForceZ + var.zOffset
+
+// Debug
+debug = "X=" + var.xRot + "   Y=" + var.yRot + "   Z=" + var.zRot
+
+// Downward drum beat triggered
+if var.yRot > 30 then
+   var.B = Wiimote1.B and not (Wiimote1.A or Wiimote1.Minus or Wiimote1.Home or Wiimote1.Plus)
+   var.S = Wiimote1.A and not (Wiimote1.B or Wiimote1.Minus or Wiimote1.Home or Wiimote1.Plus)
+   var.C = Wiimote1.A and Wiimote1.B and not (Wiimote1.Minus or Wiimote1.Home or Wiimote1.Plus)
+   var.T = Wiimote1.Minus and not (Wiimote1.A or Wiimote1.B or Wiimote1.Home or Wiimote1.Plus)
+   var.M = Wiimote1.Home and not (Wiimote1.A or Wiimote1.B or Wiimote1.Minus or Wiimote1.Plus)
+   var.L = Wiimote1.Plus and not (Wiimote1.A or Wiimote1.B or Wiimote1.Minus or Wiimote1.Home)
+   var.H = not(Wiimote1.A or Wiimote1.B or Wiimote1.Minus or Wiimote1.Home or Wiimote1.Plus)
+else
+    var.B = false
+    var.S = false
+    var.H = false
+    var.C = false
+    var.T = false
+    var.M = false
+    var.L = false
+endif
+
+Midi.volume = 100%
+Midi.BassDrum1 = var.B
+Midi.AcousticSnare = var.S
+Midi.CrashCymbal1 = var.C
+Midi.HighMidTom = var.T
+Midi.LowMidTom = var.M
+Midi.LowTom = var.L
+Midi.ClosedHiHat = var.H
+
+// note, unfortunately you can't set those Midi values inside the IF
+// because IF statements in GlovePIE cause it to send the midi message
+// again even if it hasn't changed, whereas outside IF statements it
+// only sends a MIDI message if it has changed.
+
+var.xOffset = 8
+var.yOffset = -37
+var.zOffset = 12
+
+var.xRot = Wiimote2.RawForceX + var.xOffset
+var.yRot = Wiimote2.RawForceY + var.yOffset
+var.zRot = Wiimote2.RawForceZ + var.zOffset
+
+// Debug
+debug = "X=" + var.xRot + "   Y=" + var.yRot + "   Z=" + var.zRot
+
+// Downward drum beat triggered
+if var.yRot > 30 then
+   var.B = Wiimote2.B and not (Wiimote2.A or Wiimote2.Minus or Wiimote2.Home or Wiimote2.Plus)
+   var.S = Wiimote2.A and not (Wiimote2.B or Wiimote2.Minus or Wiimote2.Home or Wiimote2.Plus)
+   var.C = Wiimote2.A and Wiimote2.B and not (Wiimote2.Minus or Wiimote2.Home or Wiimote2.Plus)
+   var.T = Wiimote2.Minus and not (Wiimote2.A or Wiimote2.B or Wiimote2.Home or Wiimote2.Plus)
+   var.M = Wiimote2.Home and not (Wiimote2.A or Wiimote2.B or Wiimote2.Minus or Wiimote2.Plus)
+   var.L = Wiimote2.Plus and not (Wiimote2.A or Wiimote2.B or Wiimote2.Minus or Wiimote2.Home)
+   var.H = not(Wiimote2.A or Wiimote2.B or Wiimote2.Minus or Wiimote2.Home or Wiimote2.Plus)
+else
+    var.B = false
+    var.S = false
+    var.H = false
+    var.C = false
+    var.T = false
+    var.M = false
+    var.L = false
+endif
+
+Midi.volume = 100%
+Midi.BassDrum1 = var.B
+Midi.AcousticSnare = var.S
+Midi.CrashCymbal1 = var.C
+Midi.HighMidTom = var.T
+Midi.LowMidTom = var.M
+Midi.LowTom = var.L
+Midi.ClosedHiHat = var.H
+
+// note, unfortunately you can't set those Midi values inside the IF
+// because IF statements in GlovePIE cause it to send the midi message
+// again even if it hasn't changed, whereas outside IF statements it
+// only sends a MIDI message if it has changed.

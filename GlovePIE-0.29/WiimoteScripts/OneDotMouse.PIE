@@ -1,0 +1,10 @@
+var.x = ((1023-wiimote.dot1x)/1023)*1.2-0.1
+var.y = ((wiimote.dot1y)/767)*1.2-0.1
+
+mouse.LeftButton = Wiimote.A
+mouse.RightButton = Wiimote.B
+
+if wiimote.dot1vis then
+  mouse.x = Smooth(var.x,10)
+  mouse.y = Smooth(var.y,10)
+end if

@@ -1,0 +1,34 @@
+// EranmaneWiimote (universal music remote) 
+// Original coding by JoCliMe (iTunes Wiimote) 
+
+//Play/Pause as A button (also opens the default media player if not already opened) 
+key.Play = wiimote.A 
+
+//Next/previous as Right and Left 
+key.NextTrack = wiimote.right 
+key.PrevTrack = wiimote.left 
+
+//Volume up, mute, and down as +, home, and - 
+key.VolumeUp = wiimote.Plus 
+key.VolumeDown = wiimote.minus 
+key.Mute = wiimote.Home 
+
+//Scrolling up and down as up and down 
+if wiimote.Up 
+  Up = true 
+  Wait 50 ms 
+  Up = false 
+endif 
+if wiimote.Down 
+  Down = true 
+  Wait 50 ms 
+  Down = false 
+endif 
+
+//Play selected song 
+Enter = wiimote.One 
+
+//Quit program\Close Window 
+Alt + F4 = wiimote.Two 
+
+//The B button does nothing! ignore it!

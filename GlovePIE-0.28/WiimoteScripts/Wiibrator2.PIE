@@ -1,0 +1,54 @@
+//Wiibrator v2.0 
+//By deceased 
+
+// Does not control mouse so feel free to surf ^^ 
+// Leds let you know your speed 
+
+// pressing B turns it off 
+if wiimote.B then 
+  var.rmbl = false 
+  wiimote.Led1 = false 
+  wiimote.Led2 = false 
+  wiimote.Led3 = false 
+  wiimote.Led4 = false 
+endif 
+
+//rumble script 
+if var.rmbl then 
+   wiimote.Rumble = 1 
+   wait 1 ms 
+   wiimote.Rumble = 0 
+   wait var.time ms 
+endif 
+
+//choose speed with d-pad 
+//up = 1, left = 2, right =3, down = 4 
+if wiimote.Up then 
+   wiimote.Led1 = true 
+   wiimote.Led2 = false 
+   wiimote.Led3 = false 
+   wiimote.Led4 = false 
+   var.time = 50 
+   var.rmbl = true 
+elseif wiimote.Left then 
+   wiimote.Led1 = true 
+   wiimote.Led2 = true 
+   wiimote.Led3 = false 
+   wiimote.Led4 = false 
+   var.time = 40 
+   var.rmbl = true 
+elseif wiimote.Right then 
+   wiimote.Led1 = true 
+   wiimote.Led2 = true 
+   wiimote.Led3 = true 
+   wiimote.Led4 = false 
+   var.time = 25 
+   var.rmbl = true 
+elseif wiimote.Down then 
+   wiimote.Led1 = true 
+   wiimote.Led2 = true 
+   wiimote.Led3 = true 
+   wiimote.Led4 = true 
+   var.time = 0 
+   var.rmbl = true 
+endif

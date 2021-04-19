@@ -1,0 +1,19 @@
+/* The Cerebral Instrument!
+You can play each of the seven notes by moving your hand
+30 centimetres in each of the 6 possible directions
+(left, up, right, down, back, and forwards), or by
+making a fist for the seventh note.
+Also by turning your hand upside down you can make a cymbal crash. */
+
+// Make a Cymbal crash when you turn your hand upside down
+midi.CrashCymbal1 = p5.PalmUpVague
+
+// Play a different note in each of the 6 directions
+midi.MiddleC = p5.x < -30 cm
+midi.MiddleD = p5.y > 30 cm
+midi.MiddleE = p5.x > 30 cm
+midi.MiddleF = p5.y < -30 cm
+midi.MiddleG = p5.z < -90 cm
+midi.MiddleA = p5.z > -30 cm
+// To play the seventh note, make a fist
+midi.MiddleB = p5.xnnnn

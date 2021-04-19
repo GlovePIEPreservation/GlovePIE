@@ -1,0 +1,44 @@
+//Controls for Zelda: Ocarina of Time with nunchuck 
+//Written by Kunal Khiyani(based on vkapadia script) 
+// 
+// 
+//Set your emulator to these values: 
+//Analog Stick = Up, Down, Left, and Right Arrow Keys 
+//Start = S 
+//Z-Button = z 
+//R-Button = d 
+//A-Button = x 
+//B-Button = c 
+//L-Button = a 
+//C-Up = I 
+//C-Down = k 
+//C-Left = j 
+//C-Right = l 
+//Controls are as follows: 
+//D-Pad = Analog Stick 
+//A-Button = A-Button 
+//Minus = Left (L) 
+//Plus = Right (R) 
+//Home = C-Up 
+//One = C-Left 
+//Two = C-Right 
+//Shake Wiimote = B-Button 
+//A and B = Start 
+//B= Z button 
+
+Right = 1 > Wiimote1.Nunchuk.JoyX > 0.5 
+Left = -1 < Wiimote1.Nunchuk.JoyX < -0.5 
+down = 1 > Wiimote1.Nunchuk.JoyY > 0.5 
+up = -1 < Wiimote1.Nunchuk.JoyY < -0.5 
+
+S = wiimote.A and wiimote.B 
+Z = wiimote.B 
+D = wiimote.Plus 
+A = wiimote.minus 
+i = Wiimote.Up 
+j = Wiimote.Left 
+l = Wiimote.Right 
+k = Wiimote.Down 
+x = Wiimote.A 
+c and wiimote.Rumble = (wiimote.RawForceX >= 15)
+

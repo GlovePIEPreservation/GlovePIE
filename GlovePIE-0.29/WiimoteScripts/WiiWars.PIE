@@ -1,0 +1,106 @@
+//               **Coded by JoCliMe** 
+//       **WiiWars: SW JediKnight: Jedi Academy** 
+
+//Calibration: 
+//Change these values until the debug line says all zeros when the wiimote is at rest. 
+var.trimx = 9 
+var.trimy = -31 
+var.trimz = 11 
+var.xOffset = 8 
+var.yOffset = -37 
+var.zOffset = 12 
+
+var.xRot = Wiimote.RawForceX + var.xOffset 
+var.yRot = Wiimote.RawForceY + var.yOffset 
+var.zRot = Wiimote.RawForceZ + var.zOffset 
+
+// Debug 
+debug = "X=" + var.xRot + "   Y=" + var.yRot + "   Z=" + var.zRot 
+
+//Flick downward = Left mouse click (Saber) 
+if var.yRot> 30 then 
+mouse.leftbutton=true 
+wiimote.rumble=1 
+else 
+mouse.leftbutton=false 
+wiimote.rumble=false 
+end if 
+
+//Movement 
+if Wiimote.Nunchuk.JoyX > 0.2 { 
+   D = True 
+   wait 5 ms 
+   D = False 
+   } 
+if Wiimote.Nunchuk.JoyX < -0.2 { 
+   A = True 
+   wait 5 ms 
+   A = False 
+   } 
+if Wiimote.Nunchuk.JoyY > 0.2 { 
+   S = True 
+   wait 5 ms 
+   S = False 
+   } 
+if Wiimote.Nunchuk.JoyY < -0.2 { 
+   W = True 
+   wait 5 ms 
+   W = False 
+   } 
+
+
+//Interaction 
+mouse.rightbutton = wiimote.B    //Throw Saber 
+K = wiimote.minus                //Cycle Force Previous 
+L = wiimote.plus                 //Cycle Force Forward 
+F = wiimote.Home                 //Use Force 
+enter = wiimote.A                //Use 
+mouse.middlebutton = wiimote.Two //Cycle Saber Strengths 
+one = wiimote.one                //Power Up/Down saber 
+C = Wiimote.Nunchuk.CButton      //Crouch (hold) 
+Space = Wiimote.Nunchuk.ZButton  //Jump 
+f1 = wiimote.left                //Force Push 
+f2 = wiimote.right               //Force Pull 
+
+
+//Menu  (esc) 
+if Wiimote.Two && wiimote.Plus 
+esc = true 
+else 
+esc = false 
+end if 
+
+//Accel Movement 
+var.x = Wiimote.RawForceX + var.trimx //trim to 0 
+var.y = Wiimote.RawForceY + var.trimy // trim to 0 
+var.z = Wiimote.RawForceZ + var.trimz //trim to 0 
+
+//precision 
+var.sense0 = 500 
+var.thresh0x = 5 
+var.thresh0y = 2 
+
+var.sense = 300 
+var.threshx = 10 
+var.threshy = 5 
+
+var.sense2 = 100 
+var.thresh2x = 15 
+var.thresh2y = 8 
+
+var.sense3 = 50 
+var.thresh3x = 20 
+var.thresh3y = 12 
+
+//Turning Left/Right 
+if var.x > var.thresh0x 
+mouse.x = mouse.x - 20/var.sense0 
+endif 
+if var.x < -var.thresh0x 
+mouse.x = mouse.x + 20/var.sense0 
+endif 
+
+//Look Up/Down 
+pgup = wiimote.Up 
+pgdn = wiimote.Down 
+

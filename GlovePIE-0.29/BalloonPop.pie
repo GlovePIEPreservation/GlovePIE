@@ -1,0 +1,23 @@
+var.downleft = (p5.XVelocity < -1mps) and (p5.YVelocity < -1mps)
+var.downright = (p5.XVelocity > 1mps) and (p5.YVelocity < -1mps)
+var.straightright = (p5.XVelocity > 1mps) and (abs(p5.YVelocity) < 0.3mps) and (abs(p5.ZVelocity)<0.5mps)
+var.straightleft = (p5.XVelocity < -1mps) and (abs(p5.YVelocity) < 0.3mps) and (abs(p5.ZVelocity)<0.5mps)
+var.curvedright = (p5.XVelocity > 1mps) and (abs(p5.YVelocity) < 0.6mps) and (abs(p5.ZVelocity)<0.5mps)
+var.curvedleft = (p5.XVelocity < -1mps) and (abs(p5.YVelocity) < 0.6mps) and (abs(p5.ZVelocity)<0.5mps)
+var.down = (p5.YVelocity < -1mps) and (abs(p5.XVelocity) < 0.3mps) and (abs(p5.ZVelocity)<0.5mps)
+var.still = HeldDown(p5.Speed < 0.3mps, 250ms)
+var.curvedup = (abs(p5.xvelocity) < 0.6mps) and (abs(p5.YVelocity) > 1mps) and (abs(p5.ZVelocity<0.5mps))
+
+//var.one = p5.Speed < 0.1mps, (p5.YVelocity < -1mps), p5.Speed < 0.1mps
+//var.two = (p5.XVelocity > 1 mps) and (abs(p5.YVelocity) < 1mps), (P5.XVelocity < -1 mps) and (p5.YVelocity < -1mps), (p5.XVelocity > 1 mps) and (abs(p5.YVelocity)<0.2mps)
+//var.four = (p5.XVelocity < -1mps) and (p5.YVelocity<-1mps), (p5.XVelocity>
+var.one = var.still,var.down,var.still
+var.two = var.curvedright,var.downleft,var.straightright,var.still
+var.three = var.curvedright,var.downleft,var.downright,var.curvedleft
+var.four = var.downleft, var.straightright, var.down
+var.five = var.straightleft, var.down, var.curvedright, var.curvedleft, var.still
+var.six = var.downleft, var.downright, var.curvedup, var.curvedleft
+var.seven = var.straightright, var.downleft,var.still
+var.eight = var.curvedright, var.downleft, var.curvedright, var.upleft
+var.nine = var.curvedleft, var.curvedright, var.down
+debug = var.one +', '+var.two+', '+var.three+', '+var.four+', '+var.five+', '+var.Six+', '+var.Seven

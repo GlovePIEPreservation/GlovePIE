@@ -1,0 +1,22 @@
+// MatrixTest - Hand orientations
+//debug = Int(p5.mat11*100) + " " + Int(p5.mat12*100) + " " + int(p5.mat13*100)
+
+// mat1? = vector of new x axis (vector coming out right of glove)
+// mat2? = vector of new y axis (vector coming out the back of hand)
+// mat3? = vector of new z axis (vector coming out of fingers)
+
+var.FingersUp = abs(p5.mat32) > abs(p5.mat31) and abs(p5.mat32) > abs(p5.mat33) and p5.mat32 > 0
+var.FingersDown = abs(p5.mat32) > abs(p5.mat31) and abs(p5.mat32) > abs(p5.mat33) and p5.mat32 < 0
+var.FingersLeft = abs(p5.mat31) > abs(p5.mat32) and abs(p5.mat31) > abs(p5.mat33) and p5.mat31 < 0
+var.FingersRight = abs(p5.mat31) > abs(p5.mat32) and abs(p5.mat31) > abs(p5.mat33) and p5.mat31 > 0
+var.FingersForward = abs(p5.mat33) > abs(p5.mat32) and abs(p5.mat33) > abs(p5.mat31) and p5.mat33 > 0
+var.FingersBack = abs(p5.mat33) > abs(p5.mat32) and abs(p5.mat33) > abs(p5.mat31) and p5.mat33 < 0
+
+var.ThumbUp = abs(p5.mat12) > abs(p5.mat11) and abs(p5.mat12) > abs(p5.mat13) and p5.mat12 < 0
+var.ThumbDown = abs(p5.mat12) > abs(p5.mat11) and abs(p5.mat12) > abs(p5.mat13) and p5.mat12 > 0
+var.ThumbLeft = abs(p5.mat11) > abs(p5.mat12) and abs(p5.mat11) > abs(p5.mat13) and p5.mat11 > 0
+var.ThumbRight = abs(p5.mat11) > abs(p5.mat12) and abs(p5.mat11) > abs(p5.mat13) and p5.mat11 < 0
+var.ThumbForward = abs(p5.mat13) > abs(p5.mat12) and abs(p5.mat13) > abs(p5.mat11) and p5.mat13 < 0
+var.ThumbBack = abs(p5.mat13) > abs(p5.mat12) and abs(p5.mat13) > abs(p5.mat11) and p5.mat13 > 0
+
+debug = var.ThumbDown

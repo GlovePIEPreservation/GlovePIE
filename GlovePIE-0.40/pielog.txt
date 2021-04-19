@@ -1,0 +1,240 @@
+(0, 31-Dec-2009 17:50:00) Initializing PieLog
+(0, 31-Dec-2009 17:50:00) Initializing filemode variable
+(0, 31-Dec-2009 17:50:00) Initializing PieSpeech
+(0, 31-Dec-2009 17:50:00) Initializing PieVariables
+(0, 31-Dec-2009 17:50:00) Initializing PieCursorUnit
+(0, 31-Dec-2009 17:50:00) Initializing PieMouse
+(0, 31-Dec-2009 17:50:00) Initializing PieKeyboard
+(0, 31-Dec-2009 17:50:00) Initializing PieInput
+(0, 31-Dec-2009 17:50:00) Initializing PieOSC
+(0, 31-Dec-2009 17:50:00) Initializing PiePie
+(0, 31-Dec-2009 17:50:00) Initializing PieFunction
+(0, 31-Dec-2009 17:50:00) Initializing PieStatement
+(0, 31-Dec-2009 17:50:00) Initializing PieExpression
+(0, 31-Dec-2009 17:50:00) Initializing PieJoystick
+(0, 31-Dec-2009 17:50:00) Initializing PieP5
+(0, 31-Dec-2009 17:50:00) Initializing PieMidi
+(0, 31-Dec-2009 17:50:00) Initializing PiePPJoy
+(0, 31-Dec-2009 17:50:00) Initializing PieRemote
+(0, 31-Dec-2009 17:50:00) Initializing Pie Speech Recognition
+(0, 31-Dec-2009 17:50:00) Initializing PieScreen
+(0, 31-Dec-2009 17:50:00) GetMonitorEDID
+(0, 31-Dec-2009 17:50:00) Initializing PieWIndow
+(0, 31-Dec-2009 17:50:00) Initializing PieCursors
+(0, 31-Dec-2009 17:50:00) Initializing PieZ800
+(0, 31-Dec-2009 17:50:00) Initializing PieIntersense
+(0, 31-Dec-2009 17:50:00) Initializing PieFastrak
+(0, 31-Dec-2009 17:50:00) Initializing PiePPT
+(0, 31-Dec-2009 17:50:00) Initializing PieTrackIR
+(0, 31-Dec-2009 17:50:00) Initializing PiePinch
+(0, 31-Dec-2009 17:50:00) Starting main
+(0, 31-Dec-2009 17:50:00) Application object initialized
+(0, 31-Dec-2009 17:50:00) Creating main window
+(0, 31-Dec-2009 17:50:00) EditorForm.Create
+(0, 31-Dec-2009 17:50:00) Checking command line parameters:
+(0, 31-Dec-2009 17:50:00) Creating debug window
+(0, 31-Dec-2009 17:50:00) Assigning exception handler
+(0, 31-Dec-2009 17:50:00) Creating debug remote control window
+(0, 31-Dec-2009 17:50:00) Running application
+(0, 31-Dec-2009 17:50:05) Midi GUI Page
+(0, 31-Dec-2009 17:50:05) CompileCodeA
+(0, 31-Dec-2009 17:50:05) CompileCode
+(0, 31-Dec-2009 17:50:05) StartingInputMonitor CompileJoystick
+(0, 31-Dec-2009 17:50:05) EnumerateJoysticks
+(0, 31-Dec-2009 17:50:05) Enumerated... BadGamePad = False
+(0, 31-Dec-2009 17:50:05) StartCompileTimeP5 False
+(0, 31-Dec-2009 17:50:05) StoppingInputMonitor CompileJoystick
+(0, 31-Dec-2009 17:50:05) SetMidiLine(2)
+(0, 31-Dec-2009 17:50:05) Midi CategoryBox change
+(0, 31-Dec-2009 17:50:05) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:05) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:05) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:05) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:05) Midi DeviceBoxChange
+(0, 31-Dec-2009 17:50:05) Midi ChannelBoxChange
+(0, 31-Dec-2009 17:50:05) Midi CategoryBox change
+(0, 31-Dec-2009 17:50:05) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:05) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:05) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:05) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:05) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:05) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:05) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:05) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:05) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:05) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:05) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:05) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:07) StartingInputMonitor CompileJoystick
+(0, 31-Dec-2009 17:50:07) EnumerateJoysticks
+(0, 31-Dec-2009 17:50:08) Enumerated... BadGamePad = False
+(0, 31-Dec-2009 17:50:08) StartingInputMonitor Mouse
+(0, 31-Dec-2009 17:50:08) StartKeyboardMonitor
+(0, 31-Dec-2009 17:50:08) StartingInputMonitor keyboard
+(0, 31-Dec-2009 17:50:08) StartRuntimeJoystick
+(0, 31-Dec-2009 17:50:08) StartJoystickMonitor
+(0, 31-Dec-2009 17:50:08) StartingInputMonitor Joystick
+(0, 31-Dec-2009 17:50:08) EnumerateJoysticks
+(0, 31-Dec-2009 17:50:08) Enumerated... BadGamePad = False
+(0, 31-Dec-2009 17:50:08) CreateJoystickDevices
+(0, 31-Dec-2009 17:50:08) Acquiring joystick 1
+(0, 31-Dec-2009 17:50:08) CreateForceFeedbackDevices
+(0, 31-Dec-2009 17:50:08) JoystickFFUsed[0] = False
+(0, 31-Dec-2009 17:50:09) StoppingInputMonitor Mouse
+(0, 31-Dec-2009 17:50:09) StopKeyboardMonitor
+(0, 31-Dec-2009 17:50:09) StoppingInputMonitor Keyboard
+(0, 31-Dec-2009 17:50:09) StopRuntimeJoystick
+(0, 31-Dec-2009 17:50:09) StopJoystickMonitor
+(0, 31-Dec-2009 17:50:09) StoppingInputMonitor Joystick
+(0, 31-Dec-2009 17:50:09) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:09) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:09) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:09) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:09) Midi DeviceBoxChange
+(0, 31-Dec-2009 17:50:09) Midi ChannelBoxChange
+(0, 31-Dec-2009 17:50:09) Midi CategoryBox change
+(0, 31-Dec-2009 17:50:09) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:09) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:09) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:09) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:09) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:09) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:09) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:09) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:09) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:09) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:09) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:09) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:10) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:10) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:10) StartingInputMonitor CompileJoystick
+(0, 31-Dec-2009 17:50:10) EnumerateJoysticks
+(0, 31-Dec-2009 17:50:10) Enumerated... BadGamePad = False
+(0, 31-Dec-2009 17:50:10) StartCompileTimeP5 False
+(0, 31-Dec-2009 17:50:10) StartingInputMonitor Mouse
+(0, 31-Dec-2009 17:50:10) StartKeyboardMonitor
+(0, 31-Dec-2009 17:50:10) StartingInputMonitor keyboard
+(0, 31-Dec-2009 17:50:10) StartRuntimeJoystick
+(0, 31-Dec-2009 17:50:10) ************************* True
+(0, 31-Dec-2009 17:50:10) Start Glove Monitor
+(0, 31-Dec-2009 17:50:12) StoppingInputMonitor Mouse
+(0, 31-Dec-2009 17:50:12) StopKeyboardMonitor
+(0, 31-Dec-2009 17:50:12) StoppingInputMonitor Keyboard
+(0, 31-Dec-2009 17:50:12) StopRuntimeJoystick
+(0, 31-Dec-2009 17:50:12) StopJoystickMonitor
+(0, 31-Dec-2009 17:50:12) StoppingInputMonitor Joystick
+(0, 31-Dec-2009 17:50:12) StopGloveMonitor
+(0, 31-Dec-2009 17:50:12) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:12) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:14) MidiApplyButtonClick
+(0, 31-Dec-2009 17:50:14) Midi GUI Page
+(0, 31-Dec-2009 17:50:14) CompileCodeA
+(0, 31-Dec-2009 17:50:14) CompileCode
+(0, 31-Dec-2009 17:50:14) StartingInputMonitor CompileJoystick
+(0, 31-Dec-2009 17:50:14) EnumerateJoysticks
+(0, 31-Dec-2009 17:50:15) Enumerated... BadGamePad = False
+(0, 31-Dec-2009 17:50:15) StartCompileTimeP5 True
+(0, 31-Dec-2009 17:50:15) StoppingInputMonitor CompileJoystick
+(0, 31-Dec-2009 17:50:15) SetMidiLine(2)
+(0, 31-Dec-2009 17:50:15) Midi DeviceBoxChange
+(0, 31-Dec-2009 17:50:15) Midi ChannelBoxChange
+(0, 31-Dec-2009 17:50:15) Midi CategoryBox change
+(0, 31-Dec-2009 17:50:15) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:15) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:15) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:15) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:15) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:15) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:15) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:15) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:15) Midi ChannelBoxChange
+(0, 31-Dec-2009 17:50:15) Midi CategoryBox change
+(0, 31-Dec-2009 17:50:15) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:15) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:15) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:15) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:15) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:15) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:15) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:15) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:15) Midi CategoryBox change
+(0, 31-Dec-2009 17:50:15) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:15) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:15) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:15) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:15) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:15) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:15) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:15) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:15) Midi CategoryBox change
+(0, 31-Dec-2009 17:50:15) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:15) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:15) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:15) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:15) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:15) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:15) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:15) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:17) Midi DeviceBoxChange
+(0, 31-Dec-2009 17:50:17) Midi ChannelBoxChange
+(0, 31-Dec-2009 17:50:17) Midi CategoryBox change
+(0, 31-Dec-2009 17:50:17) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:17) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:17) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:17) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:17) MidiFieldBoxClick
+(0, 31-Dec-2009 17:50:17) MidiFuncBoxChange
+(0, 31-Dec-2009 17:50:17) MidiSourceDeviceBoxChange
+(0, 31-Dec-2009 17:50:17) MidiOpBoxChange
+(0, 31-Dec-2009 17:50:17) Script Page
+(0, 31-Dec-2009 17:50:19) RunButton
+(0, 31-Dec-2009 17:50:19) Compile>Run
+(0, 31-Dec-2009 17:50:19) Compile>Compile
+(0, 31-Dec-2009 17:50:19) CompileCode
+(0, 31-Dec-2009 17:50:19) StartingInputMonitor CompileJoystick
+(0, 31-Dec-2009 17:50:19) EnumerateJoysticks
+(0, 31-Dec-2009 17:50:19) Enumerated... BadGamePad = False
+(0, 31-Dec-2009 17:50:19) StartCompileTimeP5 False
+(0, 31-Dec-2009 17:50:19) StoppingInputMonitor CompileJoystick
+(0, 31-Dec-2009 17:50:19) StartRuntime
+(0, 31-Dec-2009 17:50:19) StartKeyboardMonitor
+(0, 31-Dec-2009 17:50:19) StartingInputMonitor keyboard
+(0, 31-Dec-2009 17:50:19) StartRuntimeJoystick
+(0, 31-Dec-2009 17:50:19) ************************* False
+(0, 31-Dec-2009 17:50:23) StopButton
+(0, 31-Dec-2009 17:50:23) Compile>Stop
+(0, 31-Dec-2009 17:50:23) StopRuntime
+(0, 31-Dec-2009 17:50:23) StopKeyboardMonitor
+(0, 31-Dec-2009 17:50:23) StoppingInputMonitor Keyboard
+(0, 31-Dec-2009 17:50:23) StopRuntimeJoystick
+(0, 31-Dec-2009 17:50:36) FormCloseQuery
+(0, 31-Dec-2009 17:50:36) Compile>Stop
+(0, 31-Dec-2009 17:50:36) Application finished
+(0, 31-Dec-2009 17:50:36) Destroying EditorForm
+(0, 31-Dec-2009 17:50:36) Finalizing PiePinch
+(0, 31-Dec-2009 17:50:36) Finalizing PieTrackIR
+(0, 31-Dec-2009 17:50:36) Finalizing PiePPT
+(0, 31-Dec-2009 17:50:36) Finalizing PieFastrak
+(0, 31-Dec-2009 17:50:36) Finalizing PieIntersense
+(0, 31-Dec-2009 17:50:36) Finalizing PieZ800
+(0, 31-Dec-2009 17:50:36) Finalizing PieCursors
+(0, 31-Dec-2009 17:50:36) Finalizing PieWindow
+(0, 31-Dec-2009 17:50:36) Finalizing PieScreen
+(0, 31-Dec-2009 17:50:36) Finalizing Pie Speech Recognition
+(0, 31-Dec-2009 17:50:36) Finalizing PieRemote
+(0, 31-Dec-2009 17:50:36) Finalizing PiePPJoy
+(0, 31-Dec-2009 17:50:36) Finalizing PieMidi
+(0, 31-Dec-2009 17:50:36) Finalizing PieP5
+(0, 31-Dec-2009 17:50:36) Finalizing PieJoystick
+(0, 31-Dec-2009 17:50:36) StopJoystickMonitor
+(0, 31-Dec-2009 17:50:36) StoppingInputMonitor Joystick
+(0, 31-Dec-2009 17:50:36) Finalizing PieStatement
+(0, 31-Dec-2009 17:50:36) Finalizing PieFunction
+(0, 31-Dec-2009 17:50:36) Finalizing PiePie
+(0, 31-Dec-2009 17:50:36) Finalizing PieOSC
+(0, 31-Dec-2009 17:50:36) Finalizing PieKeyboard
+(0, 31-Dec-2009 17:50:36) Finalizing PieMouse
+(0, 31-Dec-2009 17:50:36) Finalizing PieVariables
+(0, 31-Dec-2009 17:50:36) Finalizing PieSpeech
+(0, 31-Dec-2009 17:50:36) Finalizing PieLog
+(0, 31-Dec-2009 17:50:36) Closing log file

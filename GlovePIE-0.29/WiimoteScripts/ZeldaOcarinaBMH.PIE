@@ -1,0 +1,137 @@
+/* Zelda: Ocarina of Time with Nunchuk - BMH version 1.0. 
+Written by BMH (based on Kunal Khiyani & vkapadia scripts) 
+*/ 
+// 
+// Set your emulator to these values: 
+// Analog Stick = Up, Down, Left, and Right Arrow Keys 
+// Start = S 
+// Z-Button = z 
+// R-Button = r 
+// A-Button = a 
+// B-Button = b 
+// L-Button = l 
+// C-Up = I 
+// C-Down = k 
+// C-Left = j 
+// C-Right = l 
+// 
+// 
+// CONTROLS: 
+// 
+// Wiimote: 
+// 
+// Shake the wiimote = use sword 
+// D-pad = C buttons 
+// A =  A (blue button/ context sensitive button) 
+// B trigger = Use shield 
+// Minus = Green button (skip text/navigate through menus) 
+// Home = Nothing 
+// Plus = Start (/red button in menus) 
+// 1 = Start 
+// 2 = Show/hide map 
+// 
+// Nunchuk: 
+// 
+// Shake the nunchuk = spin attack 
+// Analoge stick = movement 
+// C = first person view/talk to navi 
+// Z = Z-targeting 
+
+
+// Nunchuk movement: 
+if 2 > Wiimote1.Nunchuk.JoyX > 0.5 then 
+Right = true 
+wait 60 ms 
+Right = false 
+endif 
+if -2 < Wiimote1.Nunchuk.JoyX < -0.5 then 
+left = true 
+wait 60 ms 
+left = false 
+endif 
+if 2 > Wiimote1.Nunchuk.JoyY > 0.5 then 
+down = true 
+wait 60 ms 
+down = false 
+endif 
+if -2 < Wiimote1.Nunchuk.JoyY < -0.5 then 
+up = true 
+wait 60 ms 
+up = false 
+endif 
+
+// Spin attack (needs work/Fail rate is too high) 
+if (wiimote.Nunchuk.RawAccX  > 20) then 
+up      = true 
+wait    10 ms 
+left    = true 
+wait    10 ms 
+up      = false 
+wait    10 ms 
+down    = true 
+wait    10 ms 
+left    = false 
+wait    10 ms 
+right   = true 
+wait    10 ms 
+down    = false 
+wait    10 ms 
+up      = true 
+wait    10 ms 
+right   = false 
+B       = true 
+wait    10 ms 
+B and up = false 
+wait           600 ms 
+wiimote.Rumble = false 
+endif 
+
+// LEDs & rumble during spin attack 
+if (wiimote.Nunchuk.RawAccX  > 20) then 
+wait 90 ms 
+wiimote.Rumble = true 
+wait 20 ms 
+Wiimote.Led1 = 1 
+wait 75 ms 
+Wiimote.Led2 = 1 
+wait 75 ms 
+Wiimote.Led3 = 1 
+wait 75 ms 
+Wiimote.Led4 = 1 
+wait 75 ms 
+Wiimote.Led1 = 0 
+wait 75 ms 
+Wiimote.Led2 = 0 
+wait 75 ms 
+Wiimote.Led3 = 0 
+wait 75 ms 
+Wiimote.Led4 = 0 
+wait 75 ms 
+wiimote.Rumble = false 
+endif 
+
+// Nunchuck controls 
+Z = wiimote.Nunchuk.ZButton 
+NUMPAD8 = Wiimote.Nunchuk.CButton 
+
+// Wiimote controls: 
+S = wiimote.Plus 
+b = wiimote.Minus 
+r = wiimote.b 
+NUMPAD8 = Wiimote.Up 
+NUMPAD4 = Wiimote.Left 
+NUMPAD6 = Wiimote.Right 
+NUMPAD5 = Wiimote.Down 
+a = Wiimote.A 
+S = wiimote.One 
+L = Wiimote.Two 
+
+// Swordfighting 
+if (wiimote.RelAccX > 25) or (wiimote.RelAccY > 25) or (wiimote.RelAccZ > 15) then 
+B = true 
+wiimote.Rumble = true 
+wait 60 ms 
+B = false 
+wait 100 ms 
+wiimote.Rumble = false 
+endif

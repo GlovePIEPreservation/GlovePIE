@@ -1,0 +1,234 @@
+/************************************************** 
+ *                       HL2.pie 
+ *                     ---------- 
+ *     BY:  Marco Ceppi <marco@ilmbsr.com> 
+ *    FOR:  GlovePIE 0.28+ 
+ *   DATE:  Thursday Dec. 21, 2006 
+ *  WSITE:  http://www.grapefruitage.com/marco/wiimii/ 
+ *   VERS:  1.0 
+ * RIGHTS:  Released under GNU License. Feel free 
+ *          to edit and use to your likeing. For all 
+ *          to enjoy. Marco Ceppi. 
+ * 
+ **************************************************/ 
+var.dummy = wiimote.rawforcex 
+
+// Get Nunchuk axis locations. Range is -0.99 to 0.99 
+// Multiply by 100 to get whole numbers. (-99 to 99) 
+var.xNunchuk = Wiimote.Nunchuk.JoyX * 100 
+var.yNunchuk = Wiimote.Nunchuk.JoyY * 100 
+// X/Y offsets for Analog. If it's too sensative then make the numbers larger. 
+var.xOff = 7 
+var.yOff = 7 
+// Acceleration ammount for Nunchuk Reload (default = 17.0) 
+var.nunchukAccX = 19.0 
+// Blink rate for battery check. 
+var.Blink = 500ms 
+// Mouse IR Offsets - Use these for calibrating. 
+var.xOffset = 0 
+var.yOffset = 0 
+var.irAmount = 2 
+// Master Sensitivity (Default 80) - Change Not Recommended 
+var.smooth = 80 
+// Look Speed (Default 1) 
+var.speed = 1 
+// Speed When Aiming Down Sight (Default 1/2) 
+var.zoom = 1/2 
+// Less Sensitive Area Around Cursor (Default 40) 
+var.deadzone = 40 
+
+// 
+// Analog Movements 
+// 
+if var.xNunchuk > var.xOff and var.yNunchuk > var.yOff then 
+   key.w = false 
+   key.a = false 
+   key.s = true 
+   key.d = true 
+   //debug = 'SE' 
+else if var.xNunchuk > var.xOff and var.yNunchuk < -var.yOff then 
+   key.w = true 
+   key.a = false 
+   key.s = false 
+   key.d = true 
+   //debug = 'NE' 
+else if var.xNunchuk < -var.xOff and var.yNunchuk < -var.yOff then 
+   key.w = true 
+   key.a = true 
+   key.s = false 
+   key.d = false 
+   //debug = 'NW' 
+else if var.xNunchuk < -var.xOff and var.yNunchuk > var.yOff then 
+   key.w = false 
+   key.a = true 
+   key.s = true 
+   key.d = false 
+   //debug = 'SW' 
+else if var.xNunchuk > var.xOff then 
+   key.w = false 
+   key.a = false 
+   key.s = false 
+   key.d = true 
+   //debug = 'Right' 
+else if var.xNunchuk < -var.xOff then 
+   key.w = false 
+   key.a = true 
+   key.s = false 
+   key.d = false 
+   //debug = 'Left' 
+else if var.yNunchuk < -var.yOff then 
+   key.w = true 
+   key.a = false 
+   key.s = false 
+   key.d = false 
+   //debug = 'Up' 
+else if var.yNunchuk > var.yOff then 
+   key.w = false 
+   key.a = false 
+   key.s = true 
+   key.d = false 
+   //debug = 'Down' 
+else if var.xNunchuk > -var.xOff and < var.xOff and var.yNunchuk < var.yOff and > -var.yOff then 
+   key.w = false 
+   key.a = false 
+   key.s = false 
+   key.d = false 
+   //debug = 'Khai sucks' 
+else 
+   key.w = false 
+   key.a = false 
+   key.s = false 
+   key.d = false 
+   //debug = 'Khai sucks' 
+endif 
+
+// 
+// Game buttons. 
+// 
+// Wiimote 
+key.Shift = Wiimote.Up 
+mouse.WheelUp = Wiimote.Left 
+mouse.WheelDown = Wiimote.Right 
+key.e = Wiimote.Down 
+
+mouse.LeftButton = Wiimote.B 
+Wiimote.Rumble = Wiimote.B 
+mouse.RightButton = Wiimote.A 
+
+key.q = Wiimote.Minus 
+key.escape = Wiimote.Home 
+key.f = Wiimote.Plus 
+
+key.One = Wiimote.One 
+// Wiimote.Two handles Battery. 
+
+// 
+// Nunchuk 
+// 
+key.space = Wiimote.Nunchuk.ZButton 
+key.Ctrl = Wiimote.Nunchuk.CButton 
+
+// 
+// Reload 
+// 
+if Wiimote.Nunchuk.RawAccX > var.nunchukAccX or < -var.nunchukAccX then 
+key.r = true 
+key.r = false 
+//debug = 'VROOM!' 
+endif 
+
+Wiimote.leds = 0 
+
+// 
+// Battery Check! 
+// 
+// A full battery gives 0xC0 (192) 
+if Wiimote.Two == true then 
+   var.Batt = wiimote.Battery / 48 
+
+   if true then 
+      wait 5 seconds 
+      // it sends an instruction that tells the Wiimote to actually 
+      // send the report. 
+      Wiimote.Report15 = 0x80 | Int(wiimote.Rumble) 
+   endif 
+
+   // Display the battery level of your wiimote using the four LEDs on the bottom. 
+   // Battery level is displayed in four levels increasing to the right, like a cell 
+   // phone battery gauge. As the battery gets close to the next level down, the LED 
+   // for the current level will blink. 
+
+   debug = "Battery level: " + 100*48*var.Batt/192 + "%" 
+   if 0 <= var.Batt <= 0.25 then 
+      Wiimote.Leds = 1 
+      wait var.Blink 
+      Wiimote.Leds = 0 
+      wait var.Blink 
+   elseif 0.25 < var.Batt<=1 then 
+      Wiimote.Leds = 1 
+   elseif 1 < var.Batt<=1.25 then 
+      Wiimote.Leds = 3 
+      wait var.Blink 
+      Wiimote.Leds = 1 
+      wait var.Blink 
+   elseif 1.25 < var.Batt<=2 then 
+      Wiimote.Leds = 3 
+   elseif 2 < var.Batt<=2.25 then 
+      Wiimote.Leds = 7 
+      wait var.Blink 
+      Wiimote.Leds = 3 
+      wait var.Blink 
+   elseif 2.25 < var.Batt<=3 then 
+      Wiimote.Leds = 7 
+   elseif 3 < var.Batt<=3.25 then 
+      Wiimote.Leds = 15 
+      wait var.Blink 
+      Wiimote.Leds = 7 
+      wait var.Blink 
+   elseif 3.25 < var.Batt<=4 then 
+      Wiimote.Leds = 15 
+   else 
+      Wiimote.Leds = 0 
+   endif 
+endif 
+
+// 
+// IR Mouse 
+// 
+If var.irAmount = 2 Then 
+   var.xPos = (Wiimote.dot1x + Wiimote.dot2x) / 2 
+   var.yPos = (Wiimote.dot1y + Wiimote.dot2y) / 2 
+Else 
+   var.xPos = Wiimote.dot1x 
+   var.yPos = Wiimote.dot1y 
+EndIf 
+
+If Wiimote.dot1vis Then 
+   // Locate Inrared Point Coordinates 
+   var.actualX = (1-(round(var.xPos) / 1024)) * Screen.Width 
+   var.actualY = ((round(var.yPos) / 768)) * Screen.Height 
+   // Determine Look Speed 
+   var.speedX = (((var.actualX / (Screen.Width / 2)) - 1) * var.smooth) + var.xOffset 
+   var.speedY = (((var.actualY / (Screen.Height / 2)) - 1) * var.smooth) + var.yOffset 
+   // Calculate Point-Range Multipliers 
+   If abs(var.speedX / var.deadzone) > 1 Then var.multX = 1 Else var.multX = abs(var.speedX / var.deadzone) 
+   If abs(var.speedY / var.deadzone) > 1 Then var.multY = 1 Else var.multY = abs(var.speedY / var.deadzone) 
+   // Scoped And Normal Multipliers 
+   If Wiimote.A = True Then 
+   var.speedX = var.speedX * var.zoom 
+   var.speedY = var.speedY * var.zoom 
+   Else 
+   var.speedX = var.speedX * var.speed 
+   var.speedY = var.speedY * var.speed 
+   EndIf 
+   // Move Cursor 
+   If abs(var.speedX) > 0 Then Mouse.CursorPosX = Mouse.CursorPosX + (var.speedX * var.multX) 
+   If abs(var.speedY) > 0 Then Mouse.CursorPosY = Mouse.CursorPosY + (var.speedY * var.multY) 
+   // Backup Last Motions 
+   var.lastX = var.speedX 
+   var.lasty = var.speedY 
+Else                        // If dot is not visible use last known value 
+   If abs(var.lastX) > 1 Then Mouse.CursorPosX = Mouse.CursorPosX + var.lastX 
+   If abs(var.lastY) > 1 Then Mouse.CursorPosY = Mouse.CursorPosY + var.lastY 
+EndIf 
+debug = 'Debug: SpeedY: ' + var.speedY + '  SpeedX: ' + var.speedX

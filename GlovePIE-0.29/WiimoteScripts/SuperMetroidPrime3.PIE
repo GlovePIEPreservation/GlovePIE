@@ -1,0 +1,202 @@
+/*  Super Metroid... but with Metroid Prime 3 controls!
+    By Carl Kenner
+
+    Your SNES Emulator must use the default ZSNES config, which is:
+      DPAD = arrow keys, Start = Enter, Select = Right Shift
+      A = X, B = Z, x = S, y = A, L = D, R = C
+
+    Controls are the same as either version of Metroid Prime 3:
+      Nunchuk joystick = walk / run
+      Nunchuk Z / Wiimote B = Jump (depends on version) or menu select
+      Wiimote A = fire
+      Wiimote aim up and down = aim up and down
+        (aiming straight down only works when jumping)
+      Nunchuk C = Morph Ball toggle
+      Wiimote D-Pad Down = Fire Missile (or Super Bomb in MorphBall)
+      Charge A then Wiimote D-Pad Down = Super Missile
+      Wiimote D-Pad Left/Right = X-Ray Visor
+      Wiimote D-Pad Up = X-Ray Visor or return to Combat Visor
+      Cast Nunchuk Forwards = Grapple Beam
+      Pull Nunchuk back = stop Grapple Beam
+    And these extra ones
+      Home = Toggle map / equipment editor
+      + (in Map) = equipment editor
+      - (in equipment editor) = map
+      1 = Run / activate Visor (not needed, use joystick and dpad)
+      2 = Select weapon (not needed unless you have the wrong items)
+
+    Note: Be careful to only change to and from morph-ball by using C
+    otherwise it will try to use super-bombs or missiles at the wrong
+    times. If you end up with incorrect behaviour, try pressing the C
+    button a couple of times.
+
+    You MUST have at least one of each item to use subsequent items!
+    Otherwise the automatic item selection and use won't work.
+    Collect the items in the correct order, and always keep one spare.
+    Trying to use items you don't have, like Grapple or X-Ray visor,
+    will cause unknown side-effects. Don't use things you haven't got
+    yet. If you do end up with incorrect item selection, you can select
+    items manually usings the 2 button. If you select the visor this
+    way, hold down 1 to use it.
+
+*/
+X = Wiimote.nunchuk.ZButton or Wiimote.B // For different versions!
+Left = Wiimote.Nunchuk.JoyX < -0.2
+Right = Wiimote.Nunchuk.JoyX > 0.2
+Up = Wiimote.Nunchuk.JoyY < -0.2 and (not var.MorphBall)
+Down = Wiimote.Nunchuk.JoyY > 0.2 or Wiimote.Pitch < -60
+Z = abs(Wiimote.Nunchuk.JoyX)>=0.9 or Wiimote.One or var.Visor = 1
+D = (Wiimote.Pitch < -22.5 and Wiimote.Pitch>=-60) or Wiimote.Minus or Wiimote.Pitch > 67.5
+C = Wiimote.Pitch > 22.5 or Wiimote.Plus
+S = Wiimote.A
+RightShift = Wiimote.Two
+Enter = Wiimote.Home
+
+// Grapple
+if (Wiimote.Nunchuk.gy > 2) and (not var.Grapple) then
+  Press(A)
+  Wait 20ms
+  Release(A)
+  Wait 5ms
+  Press(RightShift)
+  Wait 20ms
+  Release(RightShift)
+  Wait 5ms
+  Press(RightShift)
+  Wait 20ms
+  Release(RightShift)
+  Wait 5ms
+  Press(RightShift)
+  Wait 20ms
+  Release(RightShift)
+  Wait 5ms
+  Press(RightShift)
+  Wait 20ms
+  Release(RightShift)
+  Press(S)
+  var.Grapple = true
+end if
+if (Wiimote.Nunchuk.gy < -1 or Wiimote.Nunchuk.gz > 1.5) and (var.Grapple) then
+  Release(S)
+  Wait 30ms
+  Press(A)
+  Wait 30ms
+  Release(A)
+  Wait 500ms
+  var.Grapple = false
+end if
+
+// Morph Ball
+if pressed(Wiimote.Nunchuk.CButton) and var.MorphBall then
+  press(Up)
+  wait 50ms
+  release(Up)
+  wait 50ms
+  press(Up)
+  wait 50ms
+  release(Up)
+  var.MorphBall = false
+else if pressed(Wiimote.Nunchuk.CButton) and (not var.MorphBall) then
+  press(Down)
+  wait 50ms
+  release(Down)
+  wait 5ms
+  press(Down)
+  wait 50ms
+  release(Down)
+  var.MorphBall = true
+end if
+
+if pressed(Wiimote.Up) and var.visor<>0 then
+  // Combat Visor
+  Release(Z)
+  Press(A)
+  Wait 50ms
+  Release(A)
+  var.visor = 0
+else if (pressed(Wiimote.Up) or pressed(Wiimote.Left) or pressed(Wiimote.Right)) and var.visor=0 then
+  // Scan Visor / X-Ray Visor
+  Press(A)
+  Wait 30ms
+  Release(A)
+  Wait 5ms
+  Press(RightShift)
+  Wait 30ms
+  Release(RightShift)
+  Wait 5ms
+  Press(RightShift)
+  Wait 30ms
+  Release(RightShift)
+  Wait 5ms
+  Press(RightShift)
+  Wait 30ms
+  Release(RightShift)
+  Wait 5ms
+  Press(RightShift)
+  Wait 30ms
+  Release(RightShift)
+  Wait 5ms
+  Press(RightShift)
+  Wait 30ms
+  Release(RightShift)
+  Wait 5ms
+  Press(Z)
+  var.visor = 1
+end if
+
+// Missile
+if pressed(Wiimote.Down) and (not var.MorphBall) and (not Wiimote.A) then
+  press(RightShift)
+  wait 50ms
+  release(RightShift)
+  press(S)
+  wait 50ms
+  release(S)
+  wait 50ms
+  press(A)
+  wait 50ms
+  release(A)
+end if
+
+// Super Missile
+if pressed(Wiimote.Down) and Wiimote.A then
+  release(S)
+  press(RightShift)
+  wait 50ms
+  release(RightShift)
+  wait 50ms
+  press(RightShift)
+  wait 50ms
+  release(RightShift)
+  press(S)
+  wait 50ms
+  release(S)
+  wait 50ms
+  press(A)
+  wait 50ms
+  release(A)
+end if
+
+// Super Bomb
+if pressed(Wiimote.Down) and var.MorphBall then
+  release(S)
+  press(RightShift)
+  wait 30ms
+  release(RightShift)
+  wait 5ms
+  press(RightShift)
+  wait 30ms
+  release(RightShift)
+  wait 5ms
+  press(RightShift)
+  wait 30ms
+  release(RightShift)
+  press(S)
+  wait 30ms
+  release(S)
+  wait 30ms
+  press(A)
+  wait 30ms
+  release(A)
+end if
+

@@ -1,0 +1,85 @@
+// Was a reasonably intuitive script for controlling Winamp...
+// Until Will T. messed with it.
+// Originally By STKD
+// Edited by Will T.
+// Winamp Control Ultra Mk.II Edition
+// Controls set to Wiimote buttons
+
+//Edit Begin
+var.xOffset = 8
+var.yOffset = -37
+var.zOffset = 9
+
+var.xRot = Wiimote.RawForceX + var.xOffset
+var.yRot = Wiimote.RawForceY + var.yOffset
+var.zRot = Wiimote.RawForceZ + var.zOffset
+
+// Debug
+
+debug = "X=" + var.xRot + "   Y=" + var.yRot + "   Z=" + var.zRot
+
+// Motion Triggers sound up while holding plus
+// Motion Triggers sound Down while holding Minus
+
+if var.yRot > 10 then
+   var.B = Wiimote.Plus and not (Wiimote.A or Wiimote.Minus or Wiimote.Home or Wiimote.B)
+   var.S = Wiimote.Minus and not (Wiimote.B or Wiimote.Plus or Wiimote.Home or Wiimote.A)
+else
+    var.B = false
+    var.S = false
+end if
+
+Up = var.B
+Down = var.S
+
+if var.xRot > 10 then
+ var.B = Wiimote.Plus and not (Wiimote.A or Wiimote.Minus or Wiimote.Home or Wiimote.B)
+   var.S = Wiimote.Minus and not (Wiimote.B or Wiimote.Plus or Wiimote.Home or Wiimote.Plus)
+else
+    var.B = false
+    var.S = false
+endif
+
+Up = var.B
+Down = var.S
+
+if var.zRot > 10 then
+ var.B = Wiimote.Plus and not (Wiimote.A or Wiimote.Minus or Wiimote.Home or Wiimote.B)
+   var.S = Wiimote.Minus and not (Wiimote.B or Wiimote.Plus or Wiimote.Home or Wiimote.Plus)
+else
+    var.B = false
+    var.S = false
+endif
+
+Up = var.B
+Down = var.S
+
+//Working on the above for easier Sound up and down.
+//Edit End
+
+Ctrl+z = Wiimote.Up
+//Start of playlist (D-pad up)
+Ctrl+b = Wiimote.Down
+//End of playlist (D-pad down)
+Left = Wiimote.Left
+//Back 5 seconds (D-pad left)
+Right = Wiimote.Right
+//Jump 5 seconds (D-pad right)
+x = Wiimote.A
+//Play (Main "A" button on Wiimote)
+Alt+Space = Wiimote.B
+//Pause (Song Pauses "B" button on Wiimote)
+z = Wiimote.One
+//Next track ("1" button on Wiimote)
+b = Wiimote.Two
+//Previous track ("2" button on Wiimote)
+v = Wiimote.Home
+//Stop (Stop, "Home" button on Wiimote)
+Down = Wiimote.Minus
+//Volume Down ("-" button on Wiimote)
+Up = Wiimote.Plus
+//Volume Up ("+" button on Wiimote)
+Shift+v = Wiimote.B and Wiimote.A
+//Fade Out ("A" + "B" button on Wiimote)
+
+//Enjoy...
