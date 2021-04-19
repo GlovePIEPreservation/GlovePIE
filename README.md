@@ -1,4 +1,4 @@
-# GlovePIEWithoutEmotiv
+# GlovePIE Preservation
 **The original author stopped maintaining this program and the original site went down, so this is a reupload of its latest version (0.45).** Unfortunately, no source code is available. This exists as a Github repository so you can see exactly what you are downloading.
 
 ## Help with the decompilation effort!
