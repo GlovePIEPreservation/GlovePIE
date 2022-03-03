@@ -1,0 +1,22 @@
+﻿// Lego Batman, Indiana Jones, or Star Wars
+// Classic Controller script, by Carl Kenner
+WASD = classic1.LeftStick + classic1.DPad
+Enter = classic1.Start
+Esc = classic1.Select
+U = classic1.b
+H = classic1.y
+J = classic1.a
+K = classic1.x
+Space = (classic1.R > 0.3) or (classic1.RFull)
+LCtrl = (classic1.L > 0.3) or (classic1.LFull)
+
+ArrowKeys = classic2.LeftStick + classic2.DPad
+NumpadEnter = classic2.Start
+F2 = classic2.Select
+Numpad5 = classic2.b
+Numpad1 = classic2.y
+Numpad2 = classic2.a
+Numpad3 = classic2.x
+NumPad0 = (classic2.R > 0.3) or (classic2.RFull)
+RCtrl = (classic2.L > 0.3) or (classic2.LFull)
+

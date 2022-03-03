@@ -1,0 +1,71 @@
+(0, 16-Nov-2019 22:56:15) Initializing PieLog
+(0, 16-Nov-2019 22:56:15) Initializing filemode variable
+(0, 16-Nov-2019 22:56:15) Initializing PieSpeech
+(0, 16-Nov-2019 22:56:15) Initializing PieVariables
+(0, 16-Nov-2019 22:56:15) Initializing PieCursorUnit
+(0, 16-Nov-2019 22:56:15) Initializing PieMouse
+(0, 16-Nov-2019 22:56:15) Initializing PieKeyboard
+(0, 16-Nov-2019 22:56:15) Initializing PieInput
+(0, 16-Nov-2019 22:56:15) Initializing PieOSC
+(0, 16-Nov-2019 22:56:15) Initializing PiePie
+(0, 16-Nov-2019 22:56:15) Initializing PieFunction
+(0, 16-Nov-2019 22:56:15) Initializing PieStatement
+(0, 16-Nov-2019 22:56:15) Initializing PieExpression
+(0, 16-Nov-2019 22:56:15) Initializing PieJoystick
+(0, 16-Nov-2019 22:56:15) Initializing PieP5
+(0, 16-Nov-2019 22:56:15) Initializing PieMidi
+(0, 16-Nov-2019 22:56:15) Initializing PiePPJoy
+(0, 16-Nov-2019 22:56:15) Initializing PieRemote
+(0, 16-Nov-2019 22:56:15) Initializing Pie Speech Recognition
+(0, 16-Nov-2019 22:56:15) Initializing PieScreen
+(0, 16-Nov-2019 22:56:15) GetMonitorEDID
+(0, 16-Nov-2019 22:56:15) Initializing PieWIndow
+(0, 16-Nov-2019 22:56:15) Initializing PieCursors
+(0, 16-Nov-2019 22:56:15) Initializing PieZ800
+(0, 16-Nov-2019 22:56:15) Initializing PieIntersense
+(0, 16-Nov-2019 22:56:15) Initializing PieFastrak
+(0, 16-Nov-2019 22:56:15) Initializing PiePPT
+(0, 16-Nov-2019 22:56:15) Initializing PieTrackIR
+(0, 16-Nov-2019 22:56:15) Initializing PiePinch
+(0, 16-Nov-2019 22:56:15) Initializing PieBird
+(0, 16-Nov-2019 22:56:15) Initializing PieFiveDT
+(0, 16-Nov-2019 22:56:15) Starting main
+(0, 16-Nov-2019 22:56:15) Application object initialized
+(0, 16-Nov-2019 22:56:15) Creating main window
+(0, 16-Nov-2019 22:56:16) EditorForm.Create
+(0, 16-Nov-2019 22:56:16) Checking command line parameters:
+(0, 16-Nov-2019 22:56:16) Creating debug window
+(0, 16-Nov-2019 22:56:16) Assigning exception handler
+(0, 16-Nov-2019 22:56:16) Creating debug remote control window
+(0, 16-Nov-2019 22:56:16) Running application
+(0, 16-Nov-2019 22:56:17) FormCloseQuery
+(0, 16-Nov-2019 22:56:17) Compile>Stop
+(0, 16-Nov-2019 22:56:17) Application finished
+(0, 16-Nov-2019 22:56:18) Destroying EditorForm
+(0, 16-Nov-2019 22:56:18) Finalizing PieFiveDT
+(0, 16-Nov-2019 22:56:18) Finalizing PieBird
+(0, 16-Nov-2019 22:56:18) Finalizing PiePinch
+(0, 16-Nov-2019 22:56:18) Finalizing PieTrackIR
+(0, 16-Nov-2019 22:56:18) Finalizing PiePPT
+(0, 16-Nov-2019 22:56:18) Finalizing PieFastrak
+(0, 16-Nov-2019 22:56:18) Finalizing PieIntersense
+(0, 16-Nov-2019 22:56:18) Finalizing PieZ800
+(0, 16-Nov-2019 22:56:18) Finalizing PieCursors
+(0, 16-Nov-2019 22:56:18) Finalizing PieWindow
+(0, 16-Nov-2019 22:56:18) Finalizing PieScreen
+(0, 16-Nov-2019 22:56:18) Finalizing Pie Speech Recognition
+(0, 16-Nov-2019 22:56:18) Finalizing PieRemote
+(0, 16-Nov-2019 22:56:18) Finalizing PiePPJoy
+(0, 16-Nov-2019 22:56:18) Finalizing PieMidi
+(0, 16-Nov-2019 22:56:18) Finalizing PieP5
+(0, 16-Nov-2019 22:56:18) Finalizing PieJoystick
+(0, 16-Nov-2019 22:56:18) Finalizing PieStatement
+(0, 16-Nov-2019 22:56:18) Finalizing PieFunction
+(0, 16-Nov-2019 22:56:18) Finalizing PiePie
+(0, 16-Nov-2019 22:56:18) Finalizing PieOSC
+(0, 16-Nov-2019 22:56:18) Finalizing PieKeyboard
+(0, 16-Nov-2019 22:56:18) Finalizing PieMouse
+(0, 16-Nov-2019 22:56:18) Finalizing PieVariables
+(0, 16-Nov-2019 22:56:18) Finalizing PieSpeech
+(0, 16-Nov-2019 22:56:18) Finalizing PieLog
+(0, 16-Nov-2019 22:56:18) Closing log file

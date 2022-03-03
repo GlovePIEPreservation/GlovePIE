@@ -1,0 +1,6 @@
+﻿r = said('reload', 1)
+q = said('flashlight', 2) or said('torch')
+tab = said('change weapon', 2)
+Esc = said('pause game', 1) or said('resume game',2)
+mouse.RightButton = said('grenade',1)
+

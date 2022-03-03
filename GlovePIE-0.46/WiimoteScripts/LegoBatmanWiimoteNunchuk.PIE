@@ -1,0 +1,119 @@
+﻿// Lego Batman, Wiimote+Nunchuk, by Carl Kenner
+// B+swing wiimote and let go of B = throw battarang
+// swing wiimote up = bat grapple or lift up enemy
+// punch either hand = punch
+WASD = nunchuk1.Joy + Wiimote1.DPad
+Enter = Wiimote1.Plus
+Esc = Wiimote1.Minus
+U = Wiimote1.A
+K = nunchuk1.C
+Space = Wiimote1.One
+LCtrl = Wiimote1.Two
+
+var.leftpunch = pressed(Nunchuk1.Stabbing) or (pressed(Nunchuk1.Shake) and (not Nunchuk1.Z))
+var.rightpunch = pressed(Wiimote1.Stabbing)
+H = Wiimote1.B or var.hold or keepdown(var.leftpunch or var.rightpunch, 60ms)
+J = Nunchuk1.Z or (Wiimote1.SwingVertical and not Wiimote1.B)
+if Wiimote1.B and Wiimote1.SwingLeft then
+  var.hold = true
+  press H
+  wait 300 ms
+  press A
+  wait 900 ms
+  release A
+  wait 100 ms
+  release H
+  var.hold = false
+end if
+if Wiimote1.B and Wiimote1.SwingRight then
+  var.hold = true
+  press H
+  wait 300 ms
+  press D
+  wait 900 ms
+  release D
+  wait 100 ms
+  release H
+  var.hold = false
+end if
+if Wiimote1.B and Wiimote1.SwingUp then
+  var.hold = true
+  press H
+  wait 300 ms
+  press W
+  wait 900 ms
+  release W
+  wait 100 ms
+  release H
+  var.hold = false
+end if
+if Wiimote1.B and Wiimote1.SwingDown then
+  var.hold = true
+  press H
+  wait 300 ms
+  press(S)
+  wait 900 ms
+  release(S)
+  wait 100 ms
+  release H
+  var.hold = false
+end if
+
+
+ArrowKeys = nunchuk2.Joy + Wiimote2.DPad
+NumpadEnter = Wiimote2.Plus
+F2 = Wiimote2.Minus
+Numpad5 = Wiimote2.A
+Numpad3 = nunchuk2.C
+NumPad0 = Wiimote2.One
+RCtrl = Wiimote2.Two
+var.leftpunch2 = pressed(Nunchuk2.Stabbing) or (pressed(Nunchuk2.Shake) and (not Nunchuk2.Z))
+var.rightpunch2 = pressed(Wiimote2.Stabbing)
+Numpad1 = Wiimote2.B or var.hold2 or keepdown(var.leftpunch2 or var.rightpunch2, 60ms)
+Numpad2 = Nunchuk2.Z or (Wiimote2.SwingVertical and not Wiimote2.B)
+
+if Wiimote2.B and Wiimote2.SwingLeft then
+  var.hold2 = true
+  press Numpad1
+  wait 300 ms
+  press Left
+  wait 900 ms
+  release Left
+  wait 100 ms
+  release Numpad1
+  var.hold2 = false
+end if
+if Wiimote2.B and Wiimote2.SwingRight then
+  var.hold2 = true
+  press Numpad1
+  wait 300 ms
+  press Right
+  wait 900 ms
+  release Right
+  wait 100 ms
+  release Numpad1
+  var.hold2 = false
+end if
+if Wiimote2.B and Wiimote2.SwingUp then
+  var.hold2 = true
+  press Numpad1
+  wait 300 ms
+  press Up
+  wait 900 ms
+  release Up
+  wait 100 ms
+  release Numpad1
+  var.hold2 = false
+end if
+if Wiimote2.B and Wiimote2.SwingDown then
+  var.hold2 = true
+  press Numpad1
+  wait 300 ms
+  press Down
+  wait 900 ms
+  release Down
+  wait 100 ms
+  release Numpad1
+  var.hold2 = false
+end if
+

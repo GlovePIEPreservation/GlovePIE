@@ -1,0 +1,29 @@
+﻿// Move
+WASD = Nunchuk1.Joy
+
+// Switch characters
+NumpadPlus = Wiimote1.Up
+NumpadDivide = Wiimote1.Down
+NumpadMultiply = Wiimote1.Left
+NumpadMinus = Wiimote1.Right
+
+// actions
+Numpad4 = Wiimote1.A // light attack
+Numpad5 = Wiimote1.B // action
+Numpad6 = Nunchuk1.C // block
+F = Nunchuk1.Z // cosmic
+Numpad8 = Wiimote1.Minus // heavy attack
+Spacebar = Wiimote1.Two or Wiimote1.Plus // jump
+
+LShift = Wiimote1.One // targetting
+
+// Special moves
+F+Numpad8 = Wiimote1.CrossArms
+
+
+// menu
+F1 = Wiimote1.Home // Start
+//Backspace = Wiimote1.Home // select
+
+
+

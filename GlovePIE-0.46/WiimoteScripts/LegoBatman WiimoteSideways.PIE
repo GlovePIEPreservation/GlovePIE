@@ -1,0 +1,20 @@
+﻿// Lego Batman/Indiana Jones/Star Wars
+// Wiimote Sideways, by Carl Kenner
+WASD = Wiimote1.DPadSideways
+Enter = Wiimote1.Plus
+Esc = Wiimote1.Home
+Space = Wiimote1.Minus
+H = Wiimote1.One
+J = Wiimote1.A or Wiimote1.SwingVertical
+K = Wiimote1.B
+U = Wiimote1.Two
+
+ArrowKeys = Wiimote2.DPadSideways
+NumpadEnter = Wiimote2.Plus
+F2 = Wiimote2.Home
+NumPad0 = Wiimote2.Minus
+NumPad1 = Wiimote2.One
+NumPad2 = Wiimote2.A or Wiimote2.SwingVertical
+NumPad3 = Wiimote2.B
+NumPad5 = Wiimote2.Two
+

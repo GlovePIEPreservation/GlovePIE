@@ -1,0 +1,20 @@
+﻿// Lego Batman/Indiana Jones/Star Wars
+// Wiimote only, by Carl Kenner
+WASD = Wiimote1.DPad
+Enter = Wiimote1.Plus
+Esc = Wiimote1.Home
+Space = Wiimote1.Two
+H = Wiimote1.B or Wiimote1.SwingHorizontal or Wiimote1.Stabbing
+J = Wiimote1.Minus or Wiimote1.SwingVertical
+K = Wiimote1.One
+U = Wiimote1.A
+
+ArrowKeys = Wiimote2.DPad
+NumpadEnter = Wiimote2.Plus
+F2 = Wiimote2.Home
+NumPad0 = Wiimote2.Two
+NumPad1 = Wiimote2.B or Wiimote2.SwingHorizontal or Wiimote2.Stabbing
+NumPad2 = Wiimote2.A or Wiimote2.SwingVertical
+NumPad3 = Wiimote2.One
+NumPad5 = Wiimote2.A
+
