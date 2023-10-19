@@ -1,5 +1,5 @@
 # GlovePIE Preservation
-**The original author stopped maintaining this program and the original site went down, so this is a reupload of its latest version (0.45).** Unfortunately, no source code is available. This exists as a Github repository so you can see exactly what you are downloading.
+**The original author stopped maintaining this program and the original site went down, so this is a reupload as many versions as we can find.** Unfortunately, no source code is available. This exists as a Github repository so you can see exactly what you are downloading.
 
 ## Help with the decompilation effort!
 Since this program no longer receives updates, eventually it will stop working due to Windows updates. I have begun the process of generating working source code here: [GlovePIEPreservation/GlovePIEReverseEngineering](https://github.com/GlovePIEPreservation/GlovePIEReverseEngineering). If you are interested, please join in!
