@@ -2,7 +2,7 @@
 **The original author stopped maintaining this program and the original site went down, so this is a reupload of its latest version (0.45).** Unfortunately, no source code is available. This exists as a Github repository so you can see exactly what you are downloading.
 
 ## Help with the decompilation effort!
-Since this program no longer receives updates, eventually it will stop working due to Windows updates. I have begun the process of generating working source code here: [Ravbug/GlovePIEReverseEngineering](https://github.com/Ravbug/GlovePIEReverseEngineering). If you are interested, please join in!
+Since this program no longer receives updates, eventually it will stop working due to Windows updates. I have begun the process of generating working source code here: [GlovePIEPreservation/GlovePIEReverseEngineering](https://github.com/GlovePIEPreservation/GlovePIEReverseEngineering). If you are interested, please join in!
 
 ## About
 GlovePIE stands for Glove Programmable Input Emulator. It doesn't have to be used with VR Gloves, but it was originally started as a system for emulating Joystick and Keyboard Input using the Essential Reality P5 Glove. Now it supports emulating all kinds of input, using all kinds of devices, including Polhemus, Intersense, Ascension, WorldViz, 5DT, and eMagin products. It can also control MIDI or OSC output.
@@ -18,7 +18,7 @@ You can also use GlovePIE to play Joystick-only games without a joystick, or key
 
 You can even use it to control multiple mouse pointers with multiple mice.
 
-**See this repository's [Wiki](https://github.com/Ravbug/GlovePIE/wiki) for the complete GlovePIE Manual and detailed information!!**
+**See this repository's [Wiki](https://github.com/GlovePIEPreservation/GlovePIE/wiki) for the complete GlovePIE Manual and detailed information!!**
 
 ## Supported hardware:
 * Nintendo Wii Remote (Wiimote)
@@ -54,7 +54,7 @@ You don't need any special hardware.
 4) Inside the extracted folder, run ``GlovePIE.exe``. A window will open which will allow you to set up your control scheme.
 
 ## How to use:
-Please visit [carlkenner](https://sites.google.com/site/carlkenner/glovepie)'s website (the original creator of this program) which has all the official information about how to use this program. Because the site is starting to deteriorate over time, I have copied all the information to this repository's [Wiki](https://github.com/Ravbug/GlovePIE/wiki).
+Please visit [carlkenner](https://sites.google.com/site/carlkenner/glovepie)'s website (the original creator of this program) which has all the official information about how to use this program. Because the site is starting to deteriorate over time, I have copied all the information to this repository's [Wiki](https://github.com/GlovePIEPreservation/GlovePIE/wiki).
 
 ## Copyright
 I did not make this program. [Carl Kenner](https://sites.google.com/site/carlkenner/glovepie) created it, however he moved it to a different site which no longer works. If he would like me to remove this repository, contact me, and I will remove it.
