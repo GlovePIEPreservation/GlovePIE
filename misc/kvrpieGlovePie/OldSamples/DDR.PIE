@@ -1,0 +1,99 @@
+// Uncomment this to enable Pump It Up
+// var.Pump = true
+
+// Disable all filtering (we NEED accurate timing)
+p5.AveragingFilter = false
+p5.DeadbandFilter = false
+p5.FilterDistance = 0
+p5.FilterFrames = 0
+
+// Right Foot
+var.RightFootRight = glove1.x > 400 p5units;
+var.RightFootLeft = glove1.x < -600 p5units;
+var.RightFootForward = glove1.z > -1000 p5units;
+var.RightFootBack = glove1.z < -1800 p5units;
+if not var.RightFootBack then
+  var.RightFootFloor = glove1.y < -165 p5units;
+end
+if var.RightFootBack then
+  var.RightFootFloor = glove1.y < -200 p5units;
+end
+
+var.RightFootUpLeft = var.RightFootForward and var.RightFootLeft
+var.RightFootUpRight = var.RightFootForward and var.RightFootRight
+var.RightFootDownLeft = var.RightFootBack and var.RightFootLeft
+var.RightFootDownRight = var.RightFootBack and var.RightFootRight
+var.RightDiagonal = var.RightFootUpLeft or var.RightFootUpRight or var.RightFootDownLeft or var.RightFootDownRight
+var.RightFootCentre = (not var.RightFootRight) and (not var.RightFootLeft) and (not var.RightFootForward) and (not var.RightFootBack)
+
+// Left Foot
+var.LeftFootRight = glove2.x > 600 p5units;
+var.LeftFootLeft = glove2.x < -400 p5units;
+var.LeftFootForward = glove2.z > -1000 p5units;
+var.LeftFootBack = glove2.z < -1900 p5units;
+if not var.LeftFootBack then
+  var.LeftFootFloor = glove2.y < -200 p5units;
+end
+if var.LeftFootBack then
+  var.LeftFootFloor = glove2.y < -250 p5units;
+end
+
+var.LeftFootUpLeft = var.LeftFootForward and var.LeftFootLeft
+var.LeftFootUpRight = var.LeftFootForward and var.LeftFootRight
+var.LeftFootDownLeft = var.LeftFootBack and var.LeftFootLeft
+var.LeftFootDownRight = var.LeftFootBack and var.LeftFootRight
+var.LeftDiagonal = var.LeftFootUpLeft or var.LeftFootUpRight or var.LeftFootDownLeft or var.LeftFootDownRight
+var.LeftFootCentre = (not var.LeftFootRight) and (not var.LeftFootLeft) and (not var.LeftFootForward) and (not var.LeftFootBack)
+
+// Jump when both feet are off the ground
+var.Jump = (not var.RightFootFloor) and (not var.LeftFootFloor)
+
+// Combine both feet and ensure feet are on the floor
+var.Left = (var.RightFootFloor and var.RightFootLeft and not var.RightDiagonal) or (var.LeftFootFloor and var.LeftFootLeft and not var.LeftDiagonal)
+var.Right = (var.RightFootFloor and var.RightFootRight and not var.RightDiagonal) or (var.LeftFootFloor and var.LeftFootRight and not var.LeftDiagonal)
+var.Forward = (var.RightFootFloor and var.RightFootForward and not var.RightDiagonal) or (var.LeftFootFloor and var.LeftFootForward and not var.LeftDiagonal)
+var.Back = (var.RightFootFloor and var.RightFootBack and not var.RightDiagonal) or (var.LeftFootFloor and var.LeftFootBack and not var.LeftDiagonal)
+var.Centre = (var.RightFootFloor and var.RightFootCentre) or (var.LeftFootFloor and var.LeftFootCentre)
+var.UpLeft = (var.RightFootFloor and var.RightFootUpLeft) or (var.LeftFootFloor and var.LeftFootUpLeft)
+var.UpRight = (var.RightFootFloor and var.RightFootUpRight) or (var.LeftFootFloor and var.LeftFootUpRight)
+var.DownLeft = (var.RightFootFloor and var.RightFootDownLeft) or (var.LeftFootFloor and var.LeftFootDownLeft)
+var.DownRight = (var.RightFootFloor and var.RightFootDownRight) or (var.LeftFootFloor and var.LeftFootDownRight)
+
+// Dance Dance Revolution
+
+key.Left = var.Left
+key.Right = var.Right
+key.Down = var.Back
+key.Up = var.Forward
+key.Enter = var.Jump
+key.Home = var.UpLeft
+key.PageUp = var.PageUp
+
+// Pump It Up
+if var.Pump then
+  key.q = var.UpLeft
+  key.e = var.UpRight
+  key.z = var.DownLeft
+  key.c = var.DownRight
+  key.s = var.Centre
+end
+
+// Debug display
+debug = ""
+if var.Pump then
+  if var.Centre then debug = "x"
+end
+if var.Left then debug = "<- "
+if var.Forward then debug = "^ "
+if var.Back then debug = "v "
+if var.Right then debug = "-> "
+if var.UpLeft then debug = "'\"
+if var.UpRight then debug = "/'"
+if var.DownLeft then debug = ",/"
+if var.DownRight then debug = "\,"
+
+
+
+
+
+//debug = glove2.y +'   '+glove1.y

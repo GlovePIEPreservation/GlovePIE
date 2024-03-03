@@ -1,0 +1,101 @@
+// Wolfenstein Enemy Territory
+// Thumb up = level, thumb left = lean left, thumb right = lean right2
+// move the glove left/right/up/down to aim
+// index finger to fire
+// hold glove forwards to walk/run forwards
+// hold glove backwards to walk/run backwards
+
+p5.maxl = 30
+p5.minn = 45
+
+var.strafe = p5.xxxnl
+var.LeanLeft = p5.ThumbLeft and p5.FingersForward //0 < p5.roll < 45 degrees
+var.LeanRight = p5.ThumbRight and p5.FingersForward //90 degrees + 45 degrees < p5.roll < 180 degrees
+var.melee = p5.xnnnn and var.ThumbForward
+var.punch = p5.ZVelocity > 3000 p5units per second
+var.still = abs(p5.zv) < 2000 and abs(p5.xv) < 2000 and abs(p5.yv) < 2000
+var.fire = (p5.index > 40 and not p5.xxnnn) or (var.melee and var.Punch)
+var.reload = p5.A
+var.use = p5.xnnnn
+var.weapon1 = p5.middle > 30
+
+var.fastforwards = p5.z > -30cm and var.still
+var.forwards = p5.z > -35cm and var.still
+var.backwards = p5.z < -55cm and var.still
+var.fastbackwards = p5.z < -60cm and var.still
+
+if var.Strafe then
+  var.jump = p5.y > 15cm and var.still
+  var.crouch = p5.y < -15cm and var.still
+  var.prone = p5.y < -25cm and var.still
+else
+  var.jump = p5.FingersUp
+  var.crouch = p5.FingersDown and not var.melee
+  var.prone = p5.ThumbDown
+end if
+
+var.oldy = var.y
+var.oldx = var.x
+var.currentx = p5.RelativeX
+var.currenty = -p5.RelativeY
+var.x = (var.currentx + var.oldx)/2
+var.y = (var.currenty + var.oldy)/2
+
+if pressed(var.Strafe) then
+  var.StrafeX = p5.x
+  var.StrafeY = p5.y
+end if
+
+var.moveleft = p5.x - var.StrafeX < -10cm and var.strafe and var.still
+var.moveright = p5.x - var.StrafeY > 10cm and var.strafe and var.still
+var.moveleftfast = p5.x - var.StrafeX < -20cm and var.strafe and var.still
+var.moverightfast = p5.x - var.StrafeY > 20cm and var.strafe and var.still
+
+
+if p5.InRange then
+  if not var.Strafe then
+    mouse.DirectInputX = mouse.DirectInputX + var.x - var.prevx
+    mouse.DirectInputY = mouse.DirectInputY + var.y - var.prevy
+  end if
+  mouse.LeftButton = var.fire
+
+
+  key.Q = var.LeanLeft
+  key.E = var.LeanRight
+  key.C = var.Crouch
+  key.X = var.Prone
+  key.Space = var.Jump
+  key.CapsLock = not (var.fastforwards or var.fastbackwards or var.moveleftfast or var.moverightfast)
+  key.W = var.forwards
+  key.S = var.backwards
+  key.A = var.MoveLeft
+  key.D = var.MoveRight
+  key.F = var.punch or var.use
+  key.R = var.Reload
+
+  key.F1 = p5.B
+  key.F2 = p5.C
+end if
+
+var.prevx = var.x
+var.prevy = var.y
+
+
+// Weapons
+key.One = false
+key.Two = false
+key.Three = false
+if p5.inrange then
+  if var.melee and Random(40)=0 then
+    key.One = true
+  end if
+  if ((not var.melee) and Random(40)=0) then
+    if var.Weapon1 then
+      key.Two = true
+    else
+      key.Three = true
+    end if
+  end if
+end if
+
+

@@ -1,0 +1,62 @@
+// Type your program here!
+if mouse.cursorposx = 0 then
+  press shift
+  wait 0.1 seconds
+  press h
+  wait 0.1 seconds
+  release h
+  wait 0.1 seconds
+  release shift
+  wait 0.1 seconds
+
+  press e
+  wait 0.1 seconds
+  release e
+  wait 0.1 seconds
+
+  press l
+  wait 0.1 seconds
+  release l
+  wait 0.1 seconds
+
+  press l
+  wait 0.1 seconds
+  release l
+  wait 0.1 seconds
+
+  press o
+  wait 0.1 seconds
+  release o
+  wait 0.1 seconds
+
+  press space
+  wait 0.1 seconds
+  release space
+  wait 0.1 seconds
+
+  press w
+  wait 0.1 seconds
+  release w
+  wait 0.1 seconds
+
+  press o
+  wait 0.1 seconds
+  release o
+  wait 0.1 seconds
+
+  press r
+  wait 0.1 seconds
+  release r
+  wait 0.1 seconds
+
+  press l
+  wait 0.1 seconds
+  release l
+  wait 0.1 seconds
+
+  press d
+  wait 0.1 seconds
+  release d
+  wait 0.1 seconds
+end
+

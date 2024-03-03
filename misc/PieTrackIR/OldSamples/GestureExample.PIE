@@ -1,0 +1,53 @@
+// Step 1: start with fist (1 seconds)
+// Step 2: quick open of fist (<1 second)
+// Step 3: end with open hand (1 second)
+
+// Step 0 - wait for user to make a fist
+if (p5.xnnnn and (var.Step = 0)) then
+  // go to step 1 - user is making a fist, remember when they started
+  var.Step = 1
+  var.FistStartTime = Now()
+end
+
+// Step 1 - user is making a fist, wait for them to do it for 1 second
+if ((var.Step=1) and (Now - var.FistStartTime >= 1 second)) then
+  var.Step = 2
+  var.OpenStartTime = Now()
+end
+if var.Step=1 and not p5.xnnnn then
+  // go back to step 0 if they release before 1 second
+  var.Step = 0
+end
+
+// Step 2 - they have 1 second to open their hand before we give up
+if (var.Step=2 and (Now - var.OpenStartTime >= 1 second))  then
+  // if we stay in step 2 more than 1 second then go back to step 0
+  var.Step = 0
+end
+if (var.Step=2 and (p5.xllll)) then
+  var.Step = 3
+  var.FlatStartTime = Now()
+end 
+
+// Step 3 - They must leave their hand open for 1 second
+if (var.Step=3 and (Now - var.FlatStartTime >= 1 second)) then
+  var.DoSuchAndSuch = true
+  var.Step=0  
+end
+if (var.Step=3 and (not p5.xllll)) then
+  var.Step = 0
+end
+
+debug = Round(var.Step)
+
+midi.volume = 100%
+midi.c4 = keepdown(var.DoSuchAndSuch, 1)
+
+if var.DoSuchAndSuch then
+  // Add code to do such and such here!
+  debug = "Did such and such!"
+
+  var.DoSuchAndSuch = false
+end
+
+

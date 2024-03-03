@@ -1,0 +1,43 @@
+p5.minn = 40
+// Comment/Uncomment either of these lines
+var.VerticalMouse = true
+//var.HorizontalMouse = true
+
+if (not var.MouseMode) then var.WasInMouseMode = false
+var.MouseMode = p5.xllnn
+debug = (p5.FingerVelocity1 < -400)
+if var.MouseMode then
+  if not var.WasInMouseMode then
+    var.P5OldMouseX = p5.X
+    var.P5OldMouseY = p5.Y
+    var.P5OldMouseZ = p5.Z
+    var.WasInMouseMode = true
+  end
+
+  var.P5MouseDeltaX = p5.X - var.P5OldMouseX
+  var.P5MouseDeltaY = p5.Y - var.P5OldMouseY
+  var.P5MouseDeltaZ = p5.Z - var.P5OldMouseZ
+
+  Mouse.DirectInputX := Mouse.DirectInputX + var.P5MouseDeltaX/3
+  if var.VerticalMouse then
+    Mouse.DirectInputY := Mouse.DirectInputY - var.P5MouseDeltaY/3
+  end
+  if var.HorizontalMouse then
+    Mouse.DirectInputY := Mouse.DirectInputY - var.P5MouseDeltaZ/3
+  end
+
+  var.P5OldMouseX = p5.X
+  var.P5OldMouseY = p5.Y
+  var.P5OldMouseZ = p5.Z
+  var.LastTimeInMouseMode = Now
+end
+
+if Now - var.LastTimeInMouseMode < 1 seconds then
+  var.P5LMB = p5.FingerVelocity1 < -700
+  var.P5RMB = p5.FingerVelocity2 < -700
+end
+
+LMB = var.P5LMB
+RMB = var.P5RMB
+
+

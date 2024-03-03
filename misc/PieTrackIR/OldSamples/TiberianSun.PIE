@@ -1,0 +1,1105 @@
+// Command & Conquer: Tiberian Sun
+// Voice activation
+RMB = said("cancel") or said("select nothing") or said("select nobody") or said("deselect")
+A = said("Alliance") or said("Toggle Alliance") or said("Form Alliance") or said("Break Alliance")
+D = said("Deploy") or said("Deploy Object") or said("Undeploy") or said("Undeploy Object") or said("Deploy this") or said("Undeploy this")
+var.guard = said("Guard") or said("Guard Area") or said("Stand guard") or said("don't just stand there") or said("do something") or said("attack them") or said("harvest")
+var.scatter = said("scatter") or said("dodge") or said("don't all clump together you idiots") or said("don't all clump together") or said("seperate") or said("disperse") or said("spread out")
+H = said("show construction yard") or said("show home") or said("show my base") or said("home") or said("show base") or said("show my construction yard") or said("show me my base")
+
+NumPad5 = said("Center the view") or said("center view") or said("Show this")
+N = said("Next") or said("Next unit") or said("next object")
+B = said("previous") or said("last") or said("previous unit") or said("previous object")
+T = said("select all these") or said("select all of these") or said("all of these") or said("select all of this type") or said("select this type") or said("Select type")
+E = said("everything") or said("everyone") or said("select all") or said("select everything") or said("select everything I can see") or said("all my units") or said("all I can see")
+
+key.Decimal = said("Delete waypoint") or said("delete")
+F = said("Follow") or said("start following") or said("Stop following")
+V = said("show me") or said("where") or said("what") or said("which") or said("what unit") or said("what structure") or said("what harvester") or said("what base") or said("which unit") or said("which structure") or said("which harvester") or said("which base")
+Esc = said("options") or said("menu") or said("paws")
+
+var.power = said("power mode")
+var.pageuser = said("page user")
+var.repair = said("repair mode")
+var.radar = said("radar toggle") or said("radar on") or said("radar off")
+var.Stop = said("cut it out") or said("cut that out") or said("Stop") or said("stop that") or said("Don't do that") or said("don't go that way") or said("stay here") or said("Don't move")
+var.Sell = said("sell mode")
+S = var.Stop or var.Sell
+R = var.repair or var.radar
+p = var.Power or var.pageuser
+shift = var.radar or var.pageuser or var.Sell
+
+var.east = said("east") or said("scroll east")
+var.west = said("West") or said("Scroll west")
+var.south = said("south") or said("Scroll south")
+var.north = said("north") or said("scroll north")
+
+var.RepairThis = said("repair this") or said("repair that")
+var.RepairConstructionYard = said("repair construction yard") or said("repair my construction yard")
+
+if var.east or var.ScrollingRight then
+  Press(NumPad6)
+  release(NumPad6)
+  Press(NumPad6)
+  Release(NumPad6)
+  Press(NumPad6)
+  release(NumPad6)
+  Press(NumPad6)
+  Release(NumPad6)
+  Press(NumPad6)
+  release(NumPad6)
+  Press(NumPad6)
+  Release(NumPad6)
+  Press(NumPad6)
+  release(NumPad6)
+  Press(NumPad6)
+  Release(NumPad6)
+  Press(NumPad6)
+  release(NumPad6)
+  Press(NumPad6)
+  Release(NumPad6)
+end
+if var.West or var.ScrollingLeft then
+  Press(NumPad4)
+  Release(NumPad4)
+  Press(NumPad4)
+  Release(NumPad4)
+  Press(NumPad4)
+  Release(NumPad4)
+  Press(NumPad4)
+  Release(NumPad4)
+  Press(NumPad4)
+  Release(NumPad4)
+  Press(NumPad4)
+  Release(NumPad4)
+  Press(NumPad4)
+  Release(NumPad4)
+  Press(NumPad4)
+  Release(NumPad4)
+  Press(NumPad4)
+  Release(NumPad4)
+  Press(NumPad4)
+  Release(NumPad4)
+end
+if var.North or var.ScrollingUp then
+  Press(NumPad8)
+  Release(NumPad8)
+  Press(NumPad8)
+  Release(NumPad8)
+  Press(NumPad8)
+  Release(NumPad8)
+  Press(NumPad8)
+  Release(NumPad8)
+  Press(NumPad8)
+  Release(NumPad8)
+  Press(NumPad8)
+  Release(NumPad8)
+  Press(NumPad8)
+  Release(NumPad8)
+  Press(NumPad8)
+  Release(NumPad8)
+  Press(NumPad8)
+  Release(NumPad8)
+  Press(NumPad8)
+  Release(NumPad8)
+end
+if var.South or var.ScrollingDown then
+  Press(NumPad2)
+  Release(NumPad2)
+  Press(NumPad2)
+  Release(NumPad2)
+  Press(NumPad2)
+  Release(NumPad2)
+  Press(NumPad2)
+  Release(NumPad2)
+  Press(NumPad2)
+  Release(NumPad2)
+  Press(NumPad2)
+  Release(NumPad2)
+  Press(NumPad2)
+  Release(NumPad2)
+  Press(NumPad2)
+  Release(NumPad2)
+  Press(NumPad2)
+  Release(NumPad2)
+  Press(NumPad2)
+  Release(NumPad2)
+end
+
+Up = said("sidebar up")
+Down = said("Sidebar down")
+Left = said("sidebar page up")
+right = said("sidebar page down")
+
+var.ScreenCapture = said("screen capture") or said("capture screen")
+var.Place1 = said("show place one") or said("view place one") or said("place one") or said("location one") or said("position one") or said("bookmark one") or said("show location one") or said("show position one") or said("show bookmark one")
+var.Place2 = said("show place two") or said("view place two") or said("place two") or said("location two") or said("position two") or said("bookmark two") or said("show location two") or said("show position two") or said("show bookmark two")
+var.Place3 = said("show place three") or said("view place three") or said("place three") or said("location three") or said("position three") or said("bookmark three") or said("show location three") or said("show position three") or said("show bookmark three")
+var.Place4 = said("show place four") or said("view place four") or said("place four") or said("location four") or said("position four") or said("bookmark four") or said("show location four") or said("show position four") or said("show bookmark four")
+F9 = var.Place1
+F10 = var.Place2
+F11 = var.Place3
+F12 = var.Place4
+Ctrl = var.ScreenCapture
+C = var.ScreenCapture
+W = said("waypoint") or said("waypoint mode")
+var.Team1 = said("team one") or said("group one") or said("aircraft") or said("bombers") or said("airplanes") or said("aeroplanes") or said("planes") or said("orca bombers")
+var.Team2 = said("team two") or said("group two")
+var.Team3 = said("team three") or said("group three")
+var.Team4 = said("team four") or said("group four") or said("green ball guy") or said("green balley guy") or said("green ball thrower") or said("cyborg commando") or said("commando")
+var.Team5 = said("team five") or said("group five")
+var.Team6 = said("team six") or said("group six") or said("mammoth tank") or said("big guy") or said("mammoth mark two")
+var.Team7 = said("team seven") or said("group seven")
+var.Team8 = said("team eight") or said("group eight")
+var.Team9 = said("team nine") or said("group nine")
+var.Team10 = said("team ten") or said("team zero") or said("group ten") or said("group zero")
+var.ShowTeam1 = said("show team one") or said("show group one") or said("show aircraft")
+var.ShowTeam2 = said("show team two") or said("show group two")
+var.ShowTeam3 = said("show team three") or said("show group three")
+var.ShowTeam4 = said("show team four") or said("show group four")
+var.ShowTeam5 = said("show team five") or said("show group five")
+var.ShowTeam6 = said("show team six") or said("show group six")
+var.ShowTeam7 = said("show team seven") or said("show group seven")
+var.ShowTeam8 = said("show team eight") or said("show group eight")
+var.ShowTeam9 = said("show team nine") or said("show group nine")
+var.ShowTeam10 = said("show team ten") or said("show team zero") or said("show group ten") or said("show group zero")
+var.MakeTeam1 = said("make team one") or said("make group one") or said("make aircraft")
+var.MakeTeam2 = said("make team two") or said("make group two")
+var.MakeTeam3 = said("make team three") or said("make group three")
+var.MakeTeam4 = said("make team four") or said("make group four")
+var.MakeTeam5 = said("make team five") or said("make group five")
+var.MakeTeam6 = said("make team six") or said("make group six")
+var.MakeTeam7 = said("make team seven") or said("make group seven")
+var.MakeTeam8 = said("make team eight") or said("make group eight")
+var.MakeTeam9 = said("make team nine") or said("make group nine")
+var.MakeTeam10 = said("make team ten") or said("make team zero") or said("make group ten") or said("make group zero")
+var.AddTeam1 = said("add team one") or said("add group one") or said("add aircraft")
+var.AddTeam2 = said("add team two") or said("add group two")
+var.AddTeam3 = said("add team three") or said("add group three")
+var.AddTeam4 = said("add team four") or said("add group four")
+var.AddTeam5 = said("add team five") or said("add group five")
+var.AddTeam6 = said("add team six") or said("add group six")
+var.AddTeam7 = said("add team seven") or said("add group seven")
+var.AddTeam8 = said("add team eight") or said("add group eight")
+var.AddTeam9 = said("add team nine") or said("add group nine")
+var.AddTeam10 = said("add team ten") or said("add team zero") or said("add group ten") or said("add group zero")
+var.JoinTeam1 = said("Join team one") or said("Join group one") or said("join aircraft")
+var.JoinTeam2 = said("Join team two") or said("Join group two")
+var.JoinTeam3 = said("Join team three") or said("Join group three")
+var.JoinTeam4 = said("Join team four") or said("Join group four")
+var.JoinTeam5 = said("Join team five") or said("Join group five")
+var.JoinTeam6 = said("Join team six") or said("Join group six")
+var.JoinTeam7 = said("Join team seven") or said("Join group seven")
+var.JoinTeam8 = said("Join team eight") or said("Join group eight")
+var.JoinTeam9 = said("Join team nine") or said("Join group nine")
+var.JoinTeam10 = said("Join team ten") or said("Join team zero") or said("Join group ten") or said("Join group zero")
+
+if var.JoinTeam1 then
+  press(shift)
+  press(One)
+  wait 100ms
+  release(one)
+  release(shift)
+  wait 100ms
+  press(ctrl)
+  press(One)
+  wait 100ms
+  release(one)
+  release(ctrl)
+end if
+if var.JoinTeam2 then
+  press(shift)
+  press(Two)
+  wait 100ms
+  release(two)
+  release(shift)
+  wait 100ms
+  press(ctrl)
+  press(two)
+  wait 100ms
+  release(two)
+  release(ctrl)
+end if
+if var.JoinTeam3 then
+  press(shift)
+  press(three)
+  wait 100ms
+  release(three)
+  release(shift)
+  wait 100ms
+  press(ctrl)
+  press(three)
+  wait 100ms
+  release(three)
+  release(ctrl)
+end if
+if var.JoinTeam4 then
+  press(shift)
+  press(four)
+  wait 100ms
+  release(four)
+  release(shift)
+  wait 100ms
+  press(ctrl)
+  press(four)
+  wait 100ms
+  release(four)
+  release(ctrl)
+end if
+if var.JoinTeam5 then
+  press(shift)
+  press(five)
+  wait 100ms
+  release(five)
+  release(shift)
+  wait 100ms
+  press(ctrl)
+  press(five)
+  wait 100ms
+  release(five)
+  release(ctrl)
+end if
+if var.JoinTeam6 then
+  press(shift)
+  press(six)
+  wait 100ms
+  release(six)
+  release(shift)
+  wait 100ms
+  press(ctrl)
+  press(six)
+  wait 100ms
+  release(six)
+  release(ctrl)
+end if
+if var.JoinTeam7 then
+  press(shift)
+  press(seven)
+  wait 100ms
+  release(seven)
+  release(shift)
+  wait 100ms
+  press(ctrl)
+  press(seven)
+  wait 100ms
+  release(seven)
+  release(ctrl)
+end if
+if var.JoinTeam8 then
+  press(shift)
+  press(eight)
+  wait 100ms
+  release(eight)
+  release(shift)
+  wait 100ms
+  press(ctrl)
+  press(eight)
+  wait 100ms
+  release(eight)
+  release(ctrl)
+end if
+if var.JoinTeam9 then
+  press(shift)
+  press(nine)
+  wait 100ms
+  release(nine)
+  release(shift)
+  wait 100ms
+  press(ctrl)
+  press(nine)
+  wait 100ms
+  release(nine)
+  release(ctrl)
+end if
+if var.JoinTeam10 then
+  press(shift)
+  press(zero)
+  wait 100ms
+  release(zero)
+  release(shift)
+  wait 100ms
+  press(ctrl)
+  press(zero)
+  wait 100ms
+  release(zero)
+  release(ctrl)
+end if
+
+
+
+
+
+
+
+
+/**/
+Ctrl = var.MakeTeam1 or var.MakeTeam2 or var.MakeTeam3 or var.MakeTeam4 or var.MakeTeam5  or var.MakeTeam6 or var.MakeTeam7 or var.MakeTeam8 or var.MakeTeam9 or var.MakeTeam10
+Shift = var.AddTeam1 or var.AddTeam2 or var.AddTeam3 or var.AddTeam4 or var.AddTeam5  or var.AddTeam6 or var.AddTeam7 or var.AddTeam8 or var.AddTeam9 or var.AddTeam10
+Alt = var.ShowTeam1 or var.ShowTeam2 or var.ShowTeam3 or var.ShowTeam4 or var.ShowTeam5  or var.ShowTeam6 or var.ShowTeam7 or var.ShowTeam8 or var.ShowTeam9 or var.ShowTeam10
+One = var.Team1 or var.AddTeam1 or var.MakeTeam1 or var.ShowTeam1
+Two = var.Team2 or var.AddTeam2 or var.MakeTeam2 or var.ShowTeam2
+Three = var.Team3 or var.AddTeam3 or var.MakeTeam3 or var.ShowTeam3
+Four = var.Team4 or var.AddTeam4 or var.MakeTeam4 or var.ShowTeam4
+Five = var.Team5 or var.AddTeam5 or var.MakeTeam5 or var.ShowTeam5
+Six = var.Team6 or var.AddTeam6 or var.MakeTeam6 or var.ShowTeam6
+Seven = var.Team7 or var.AddTeam7 or var.MakeTeam7 or var.ShowTeam7
+Eight = var.Team8 or var.AddTeam8 or var.MakeTeam8 or var.ShowTeam8
+Nine = var.Team9 or var.AddTeam9 or var.MakeTeam9 or var.ShowTeam9
+Zero = var.Team10 or var.AddTeam10 or var.MakeTeam10 or var.ShowTeam10
+/**/
+
+if var.scatter then
+  speech = ""
+  press(x)
+  release(x)
+  speech = "Sorry Sir"
+  press(x)
+  release(x)
+  press(x)
+  release(x)
+  press(x)
+  release(x)
+  press(x)
+  release(x)
+  press(x)
+  release(x)
+  press(x)
+  release(x)
+  press(x)
+  release(x)
+end
+
+if var.stop then
+  speech = ""
+  press(s)
+  release(s)
+  if random(2) then
+    speech = "Yes Sir. Stopping."
+  else
+    speech = "Sorry sir."
+  end
+end
+
+if var.guard then
+  press(g)
+  release(g)
+end
+
+var.GoHome = said("go home") or said("return to base") or said("retreat")
+
+if var.GoHome then
+  speech = ""
+  speech = "Returning to base."
+  press(h)
+  release(h)
+  mouse.CursorPosX = 300
+  mouse.CursorPosY = 300
+  press(Alt)
+  wait 200ms
+  LMB = true
+  wait 200ms
+  LMB = false
+  wait 200ms
+  release(Alt)
+  press(F)
+  release(F)
+  press(F)
+  release(F)
+end
+
+var.Start = said("build a base")
+if var.Start then
+  speech = ""
+  speech = "Building a base."
+  press(h)
+  release(h)
+  wait 300ms
+  press(e)
+  release(e)
+  wait 200ms
+  press(h)
+  release(h)
+  mouse.CursorPosX = 318
+  mouse.CursorPosY = 305
+  press(Shift)
+  wait 200ms
+  LMB = true
+  wait 200ms
+  LMB = false
+  wait 200ms
+  release(Shift)
+  mouse.CursorPosX = 160
+  mouse.CursorPosY = 160
+  press(Alt)
+  wait 200ms
+  LMB = true
+  wait 200ms
+  LMB = false
+  wait 200ms
+  release(Alt)
+  wait 200ms
+  press(h)
+  release(h)
+  mouse.CursorPosX = 318
+  mouse.CursorPosY = 305
+  wait 200ms
+  LMB = true
+  wait 200ms
+  LMB = false
+  wait 200ms
+
+  press(d)
+  release(d)
+  wait 500ms
+  press(e)
+  release(e)
+
+end
+
+if mouse.MiddleButton then
+  speech = mouse.CursorPosX + " comma " + mouse.CursorPosY
+end
+
+if said("G.D.I.") or said("Global Defence Initiative") or said("jee-dee-eye") then
+  mouse.CursorPosX = 220
+  mouse.CursorPosY = 200
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+  mouse.CursorPosX = 127
+  mouse.CursorPosY = 223
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+
+if said("Nod") or said("Brotherhood of Nod") then
+  mouse.CursorPosX = 220
+  mouse.CursorPosY = 200
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+  mouse.CursorPosX = 127
+  mouse.CursorPosY = 242
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+
+if said("Gold") or said("yellow") then
+  mouse.CursorPosX = 220
+  mouse.CursorPosY = 249
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+  mouse.CursorPosX = 127
+  mouse.CursorPosY = 271
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+
+if said("Red") then
+  mouse.CursorPosX = 220
+  mouse.CursorPosY = 249
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+  mouse.CursorPosX = 127
+  mouse.CursorPosY = 293
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+
+if said("Blue") or said("dark blue") then
+  mouse.CursorPosX = 220
+  mouse.CursorPosY = 249
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+  mouse.CursorPosX = 127
+  mouse.CursorPosY = 312
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+
+if said("Green") or said("light green") then
+  mouse.CursorPosX = 220
+  mouse.CursorPosY = 249
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+  mouse.CursorPosX = 127
+  mouse.CursorPosY = 334
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+
+if said("Orange") then
+  mouse.CursorPosX = 220
+  mouse.CursorPosY = 249
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+  mouse.CursorPosX = 127
+  mouse.CursorPosY = 350
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+
+if said("sky blue") or said("light blue") or said("cyan") then
+  mouse.CursorPosX = 220
+  mouse.CursorPosY = 249
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+  mouse.CursorPosX = 127
+  mouse.CursorPosY = 372
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+
+if said("Purple") then
+  mouse.CursorPosX = 220
+  mouse.CursorPosY = 249
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+  mouse.CursorPosX = 127
+  mouse.CursorPosY = 392
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+
+if said("Pink") then
+  mouse.CursorPosX = 220
+  mouse.CursorPosY = 249
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+  mouse.CursorPosX = 127
+  mouse.CursorPosY = 412
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+
+
+
+if said("OK") or said("start game") or said("begin game") then
+  mouse.CursorPosX = 565
+  mouse.CursorPosY = 462
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+end
+
+if said("skirmish") then
+  mouse.CursorPosX = 395
+  mouse.CursorPosY = 410
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+end
+
+if said("exit") or said("quit") then
+  mouse.CursorPosX = 166
+  mouse.CursorPosY = 474
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+end
+
+if said("Cancel") then
+  mouse.CursorPosX = 649
+  mouse.CursorPosY = 462
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+end
+
+if said("Resume Mission") or said("resume") then
+  mouse.CursorPosX = 397
+  mouse.CursorPosY = 383
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+end
+
+if said("One Player") or said("One AI Player") or said("One Opponent") then
+  mouse.CursorPosX = 533
+  mouse.CursorPosY = 352
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+
+if said("Two Players") or said("Two AI Players") or said("Two Opponents") or said("a couple of players") or said("a couple of AI players") or said("a couple of opponents") then
+  mouse.CursorPosX = 547
+  mouse.CursorPosY = 352
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+
+if said("Three Players") or said("Three AI Players") or said("Three Opponents") then
+  mouse.CursorPosX = 561
+  mouse.CursorPosY = 352
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+
+if said("Four Players") or said("Four AI Players") or said("Four Opponents") then
+  mouse.CursorPosX = 577
+  mouse.CursorPosY = 352
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+
+if said("AI Level zero") or said("easy difficulty") then
+  mouse.CursorPosX = 532
+  mouse.CursorPosY = 306
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+
+if said("AI Level one") or said("medium difficulty") or said("normal difficulty") then
+  mouse.CursorPosX = 578
+  mouse.CursorPosY = 306
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+
+if said("AI Level two") or said("hard difficulty") then
+  mouse.CursorPosX = 622
+  mouse.CursorPosY = 306
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+
+
+if said("Abort Mission") or said("surrender") or said("I surrender") or said("give up") or said("I give up") then
+  press(Esc)
+  Release(Esc)
+  wait 100ms
+  mouse.CursorPosX = 407
+  mouse.CursorPosY = 354
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+end
+
+if said("explore") then
+  var.number = random(8)
+  if var.number = 0 then
+    var.ScrollingLeft = true
+  end
+  if var.number = 1 then
+    var.ScrollingRight = true
+  end
+  if var.number = 2 then
+    var.ScrollingDown = true
+  end
+  if var.number = 3 then
+    var.ScrollingUp = true
+  end
+  if var.number = 4 then
+    var.ScrollingUp = true
+    var.ScrollingLeft = true
+  end
+  if var.number = 5 then
+    var.ScrollingUp = true
+    var.ScrollingRightt = true
+  end
+  if var.number = 6 then
+    var.ScrollingDown = true
+    var.ScrollingLeft = true
+  end
+  if var.number = 7 then
+    var.ScrollingDown = true
+    var.ScrollingRight = true
+  end
+  wait 0.8 seconds
+  var.ScrollingLeft = false
+  var.ScrollingDown = false
+  var.ScrollingRight = false
+  var.ScrollingUp = false
+  wait 1.5 seconds
+  if var.number = 0 then
+    Mouse.CursorPosX = 20
+    Mouse.CursorPosY = 305
+  end
+  if var.number = 1 then
+    Mouse.CursorPosX = 600
+    Mouse.CursorPosY = 305
+  end
+  if var.number = 2 then
+    Mouse.CursorPosX = 300
+    Mouse.CursorPosY = 580
+  end
+  if var.number = 3 then
+    Mouse.CursorPosX = 300
+    Mouse.CursorPosY = 30
+  end
+  if var.number = 4 then
+    Mouse.CursorPosX = 20
+    Mouse.CursorPosY = 20
+  end
+  if var.number = 5 then
+    Mouse.CursorPosX = 600
+    Mouse.CursorPosY = 20
+  end
+  if var.number = 6 then
+    Mouse.CursorPosX = 20
+    Mouse.CursorPosY = 580
+  end
+  if var.number = 7 then
+    Mouse.CursorPosX = 600
+    Mouse.CursorPosY = 580
+  end
+    Wait(50ms)
+    LMB = true
+    wait(50ms)
+    LMB = false
+    press(f)
+    release(f)
+    press(f)
+    release(f)
+  end;
+end
+
+if said("build a soldier") or said("build an infantry") or said("build infantry") or said("build soldier") or said("build light infantry") or said("build a light infantry")
+... or said("train a soldier") or said("train an infantry") or said("train infantry") or said("train soldier") or said("train light infantry") or said("train a light infantry") then
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  wait 800ms
+  var.oldcursorx = mouse.CursorPosX
+  var.oldcursory = mouse.CursorPosY
+  mouse.CursorPosX = 770
+  mouse.CursorPosY = 200
+  wait 50ms
+  LMB = true
+  wait 50ms
+  LMB = false
+  wait 50ms
+  mouse.CursorPosX = var.oldcursorx
+  mouse.cursorPosy = var.oldcursory
+end
+
+if said("build a grenadier") or said("build a disc thrower") or said("build a grenade thrower") or said("build a grenade guy") or said("build disc thrower") or said("build grenade thrower") or said("build grenade guy") or said("build grenadier") then
+//... or said("train a grenadier") or said("train a disc thrower") or said("train a grenade thrower") or said("train a grenade guy") or said("train disc thrower") or said("train grenade thrower") or said("train grenade guy") or said("train grenadier") then
+//... or said("build a bazooka") or said("build a rocket infantry") or said("build a rocket launcher") or said("build a rocket guy") or said("build bazooka") or said("build rocket infantry") or said("build grenade guy") or said("build rocket guy")
+//... or said("train a bazooka") or said("train a rocket infantry") or said("train a rocket launcher") or said("train a rocket guy") or said("train bazooka") or said("train rocket infantry") or said("train grenade guy") or said("train rocket guy") then
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  wait 800ms
+  var.oldcursorx = mouse.CursorPosX
+  var.oldcursory = mouse.CursorPosY
+  mouse.CursorPosX = 770
+  mouse.CursorPosY = 250
+  wait 50ms
+  LMB = true
+  wait 50ms
+  LMB = false
+  wait 50ms
+  mouse.CursorPosX = var.oldcursorx
+  mouse.cursorPosy = var.oldcursory
+end
+
+if said("build a power station") or said("build a power plant") or said("build power") or said("build power station") or said("build power plant") then
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  wait 800ms
+  var.oldcursorx = mouse.CursorPosX
+  var.oldcursory = mouse.CursorPosY
+  mouse.CursorPosX = 687
+  mouse.CursorPosY = 200
+  wait 50ms
+  LMB = true
+  wait 50ms
+  LMB = false
+  wait 50ms
+  mouse.CursorPosX = var.oldcursorx
+  mouse.cursorPosy = var.oldcursory
+end
+
+if said("build a refinery") or said("build a tiberium refinery") or said("build a spice refinery") or said("build refinery") then
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  wait 800ms
+  var.oldcursorx = mouse.CursorPosX
+  var.oldcursory = mouse.CursorPosY
+  mouse.CursorPosX = 687
+  mouse.CursorPosY = 250
+  wait 50ms
+  LMB = true
+  wait 50ms
+  LMB = false
+  wait 50ms
+  mouse.CursorPosX = var.oldcursorx
+  mouse.cursorPosy = var.oldcursory
+end
+
+if said("build a barracks") or said("build a hand of nod") or said("build barracks") or said("build hand of nod") then
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  wait 800ms
+  var.oldcursorx = mouse.CursorPosX
+  var.oldcursory = mouse.CursorPosY
+  mouse.CursorPosX = 687
+  mouse.CursorPosY = 300
+  wait 50ms
+  LMB = true
+  wait 50ms
+  LMB = false
+  wait 50ms
+  mouse.CursorPosX = var.oldcursorx
+  mouse.cursorPosy = var.oldcursory
+end
+
+if said("build a power turbine") or said("build a turbine") or said("build turbine") then
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  press(Left)
+  release(Left)
+  wait 800ms
+  var.oldcursorx = mouse.CursorPosX
+  var.oldcursory = mouse.CursorPosY
+  mouse.CursorPosX = 687
+  mouse.CursorPosY = 350
+  wait 200ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 50ms
+  mouse.CursorPosX = var.oldcursorx
+  mouse.cursorPosy = var.oldcursory
+end
+
+if var.RepairThis then
+  press(f)
+  release(f)
+  press(f)
+  release(f)
+  press(r)
+  release(r)
+  wait 300ms
+  mouse.CursorPosX = 332
+  mouse.CursorPosY = 320
+  wait 200ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+  press(r)
+  release(r)
+end;
+if var.RepairConstructionYard then
+  press(h)
+  release(h)
+  press(r)
+  release(r)
+  wait 300ms
+  mouse.CursorPosX = 332
+  mouse.CursorPosY = 320
+  wait 200ms
+  LMB = true
+  wait 100ms
+  LMB = false
+  wait 100ms
+  press(r)
+  release(r)
+end;
+
+if said("I need a volunteer") then
+  press(n)
+  release(n)
+  var.number=random(12)
+  if var.number>0 then
+    press(n)
+    release(n)
+  end
+  if var.number>1 then
+    press(n)
+    release(n)
+  end
+  if var.number>2 then
+    press(n)
+    release(n)
+  end
+  if var.number>3 then
+    press(n)
+    release(n)
+  end
+  if var.number>4 then
+    press(n)
+    release(n)
+  end
+  if var.number>5 then
+    press(n)
+    release(n)
+  end
+  if var.number>6 then
+    press(n)
+    release(n)
+  end
+  if var.number>7 then
+    press(n)
+    release(n)
+  end
+  if var.number>8 then
+    press(n)
+    release(n)
+  end
+  if var.number>9 then
+    press(n)
+    release(n)
+  end
+  if var.number>10 then
+    press(n)
+    release(n)
+  end
+end
+
+if said("show unit") or said("show selected") or said("show selected unit") then
+  press(f)
+  release(f)
+  press(f)
+  release(f)
+end
+
+if said("death from above") or said("aircraft attack this") then
+  press one
+  wait 50ms
+  release one
+  wait 50ms
+  press ctrl
+  wait 50ms
+  LMB = true
+  wait 50ms
+  LMB = false
+  wait 50ms
+  release ctrl
+end
+
+if said("what can I say") then
+  speech = "You can deploy your construction yard by saying: build base. You can build simple structures by saying things like: build barracks. You can select units with commands like: next, previous, everyone, select this type, select nothing. You can give units commands like: Scatter, stop, explore, guard, repair this, deploy. You can look around with commands like: scroll west, scroll north, show my base, show me, show location one, follow. You can use menus by speaking them."
+end

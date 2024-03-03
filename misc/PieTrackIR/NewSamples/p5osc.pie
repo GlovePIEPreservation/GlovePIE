@@ -1,0 +1,36 @@
+// This script does the same thing as:
+// p5osc by Tim Kreger
+// p5osc by Jason Plumb
+// Which are two different programs with the same name and task
+
+// Currently, axis angle format isn't supported yet,
+// so /p5glove/rotation is set to no rotation
+
+// Also OSC bundles aren't supported yet, so OSC messages
+// are sent individually
+
+// set the following host and port numbers
+var.host = "localhost"
+var.RossPort = 7000
+var.TimPort = 47110
+var.JasonPort = 9999
+
+if p5.LedsVisible > 0 then
+  SendOsc(var.host, var.RossPort, "/p5glove_data", int(p5.A), int(p5.B), int(p5.C),
+... p5.thumb, p5.index, p5.middle, p5.ring, p5.Pinky,
+... int(p5.x), int(p5.y), int(p5.z));
+else
+  SendOsc(var.host, var.RossPort, "/p5glove_data", int(p5.A), int(p5.B), int(p5.C),
+... p5.thumb, p5.index, p5.middle, p5.ring, p5.Pinky);
+endif
+
+SendOsc(var.host, var.TimPort, "/p5glove_data", int(p5.A), int(p5.B), int(p5.C),
+... p5.thumb, p5.index, p5.middle, p5.ring, p5.Pinky,
+... int(p5.x), int(p5.y), int(p5.z));
+
+SendOsc(var.host, var.JasonPort, "/p5glove/buttons", float(p5.A), float(p5.B), float(p5.C))
+SendOsc(var.host, var.JasonPort, "/p5glove/fingers", float(p5.thumb), float(p5.index), float(p5.middle), float(p5.ring), float(p5.pinky))
+SendOsc(var.host, var.JasonPort, "/p5glove/position", float(p5.x), float(p5.y), float(p5.z))
+SendOsc(var.host, var.JasonPort, "/p5glove/rotation", float(1), float(0), float(0), float(0 radians))
+
+

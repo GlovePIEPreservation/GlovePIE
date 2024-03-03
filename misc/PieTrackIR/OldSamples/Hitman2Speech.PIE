@@ -1,0 +1,99 @@
+// Hitman 2 speech
+
+e = said("use") or said("take") or said("take binoculars") or said("take ammo") or said("pick up") or said("pick up binoculars") or said("pick up ammo")
+q = said("holster") or said("inventory")
+space = said("sneak")
+z = keepdown(said("lean left"),3 seconds)
+c = keepdown(said("lean right"),3 seconds)
+ctrl = keepdown(said("crouch"),5 seconds) or keepdown(said("duck"),1 second)
+G = said("drop item")
+CapsLock = said("run") or said("walk")
+F1 = said("camera")
+One = said("fists") or said("close combat")
+Two = said("gun") or said("guns") or said("pistol") or said("pistols") or said("ballers") or said("nine millimeter")
+three = said("submachine gun")
+Four = said("rifle")
+Five = said("binoculars")
+Six = said("goggles") or said("night vision goggles") or said("night vision")
+Seven = said("lockpick")
+R = said("reload")
+M = said("map")
+B = said("briefing")
+if said("open door") or said("close door") or said("action one") or said("drag body") or said("drop body") or said("stop dragging") or said("stop looking")
+  press(e)
+  release(e)
+end
+if said("look through keyhole") or said("action two") or said("pick lock")
+  press(e)
+  wait 100ms
+  press(down)
+  wait 100ms
+  release(down)
+  wait 100ms
+  release(e)
+end
+if said("action three")
+  press(e)
+  wait 100ms
+  press(down)
+  wait 100ms
+  release(down)
+  wait 100ms
+  press(down)
+  wait 100ms
+  release(down)
+  wait 100ms
+  release(e)
+end
+if said("action four")
+  press(e)
+  wait 100ms
+  press(down)
+  wait 100ms
+  release(down)
+  wait 100ms
+  press(down)
+  wait 100ms
+  release(down)
+  wait 100ms
+  press(down)
+  wait 100ms
+  release(down)
+  wait 100ms
+  release(e)
+end
+esc = said("menu") or said("spin on") or said("fast forward")
+if said("start crouching") then
+  press(Ctrl)
+end
+if said("stop crouching") then
+  release(Ctrl)
+end
+mouse.wheelUp = said("zoom in")
+mouse.wheelDown = said("zoom out")
+if said("next weapon") then
+  RMB = true
+  wait 100ms
+  mouse.WheelDown = true
+  wait 30ms
+  mouse.WheelDown = false
+  wait 100ms
+  RMB = false
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+if said("previous weapon") then
+  RMB = true
+  wait 100ms
+  mouse.WheelDown = true
+  wait 30ms
+  mouse.WheelDown = false
+  wait 100ms
+  RMB = false
+  wait 100ms
+  LMB = true
+  wait 100ms
+  LMB = false
+end

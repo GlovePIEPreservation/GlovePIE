@@ -1,0 +1,14 @@
+// The mouse on this computer is controlled from the client computer
+// Buttons are not implemented, since you can't see where you are clicking
+
+// The port is a random number between about 50000 and 65000
+// Just make sure it is set to the same number on the client
+osc.ListenPort = 58436
+osc.Listening = true
+
+// you can use whatever osc names you like here, (we chose netmouse.x)
+// just make sure they are the same on the client
+mouse.DirectInputX = osc.netmouse.x
+mouse.DirectInputY = osc.netmouse.y
+
+

@@ -1,0 +1,17 @@
+// MAME Generic controls
+
+left = p5.x < 200
+right = p5.x > 200
+up = (p5.z > -800) or (p5.y > 200)
+down = (p5.z < -1200) or (p5.y > 200)
+LeftAlt = p5.Middle > 32
+LeftControl = p5.Index > 32
+Space = p5.Ring > 32
+Z = p5.Pinky > 32
+LeftShift = p5.Thumb > 32
+One = p5.A
+Five = p5.B
+F2 = p5.C
+
+
+

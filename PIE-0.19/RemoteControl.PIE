@@ -1,0 +1,13 @@
+// Type your program here!
+One = Remote.One
+Two = Remote.Two
+Three = Remote.Three
+Four = Remote.Four
+Five = Remote.Five
+Six = Remote.Six
+Seven = Remote.Seven
+Eight = Remote.Eight
+Nine = Remote.Nine
+Zero = Remote.Zero
+debug = Remote.Select
+

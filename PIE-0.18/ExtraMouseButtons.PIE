@@ -1,0 +1,2 @@
+mouse.Button4 = p5.thumb > 30
+mouse.Button5 = p5.pinky > 30

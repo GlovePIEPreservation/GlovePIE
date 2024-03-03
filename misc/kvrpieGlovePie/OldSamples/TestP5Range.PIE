@@ -1,0 +1,34 @@
+// Type your program here!
+if p5.InRange then
+  var.sx = p5.x in cm
+  var.sy = p5.y in cm
+  var.sz = p5.z in cm
+end
+
+if p5.LedsVisible >= 3 then
+  var.oldx = p5.x in cm
+  var.oldy = p5.y in cm
+  var.oldz = p5.z in cm
+end
+
+//debug = p5.TrackedLed +', '+p5.Led7h+', '+p5.Led7v1+', '+p5.Led7v2
+debug = p5.TooFarLeft +', '+p5.TooFarRight
+//debug = var.oldx+'=>'+var.sx+'->'+(p5.x in cm)+', '+var.oldy+'=>'+var.sy+'->'+(p5.y in cm)+', '+var.oldz+'=>'+var.sz+'->'+(p5.z in cm)
+
+if released(p5.InRange) then
+  if p5.x<-40cm then
+    say("Too far left!")
+  else if p5.x>40cm then
+    say("Too far right!")
+  else if p5.y>40cm then
+    say("Too far up!")
+  else if p5.y<-20cm then
+    say("Too far down!")
+  else if p5.z>-5cm then
+    say("Too far forwards!")
+  else if p5.z < -90cm then
+    say("Too far back!")
+  else
+    say("Behind something")
+  end
+end
