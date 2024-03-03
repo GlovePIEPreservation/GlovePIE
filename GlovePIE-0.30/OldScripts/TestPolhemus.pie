@@ -1,0 +1,16 @@
+// Polhemus IsoTrak/Fastrak test...
+// May work on other trackers also.
+
+// When you click Run, does it display the right values in the box?
+// It should display true, followed by distance right, distance up, distance forward
+// angle right, angle up, roll right
+
+// Please let me know which directions the axes and angles are in.
+
+debug = polhemus.exists+" ("+polhemus.x+","+polhemus.y+","+polhemus.z+") yaw="+polhemus.yaw+", pitch="+polhemus.pitch+", roll="+polhemus.roll
+
+// Try changing all the polhemus.something to polhemus2.something
+// to test other tracked objects on that device.
+
+// Try changing polhemus.something to polhemus.com2.something
+// to test specific com ports

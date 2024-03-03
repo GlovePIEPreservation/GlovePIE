@@ -1,0 +1,86 @@
+//By Icehawk78
+//This is actually a modified version of a section from the
+//"WiiMouse IR" script that was included in v0.28 by vkapadia
+//which he was using to emulate KITT's grill. Since I've got
+//no clue who KITT is since I've never seen Knight Rider, I
+//changed the variable names to something a little more generic.
+//I then made three sections, which can be switched around however
+//you choose.
+
+//Currently, when no extension is plugged in, the LEDs flash as if it
+//were in discovery mode. When the Nunchuk is plugged in, the LEDs
+//bounce back and forth two at a time (try the script to see what I
+//mean). When the Classic Controller is plugged in, the LEDs bounce
+//back and forth one at a time (again, try it to see).
+
+//I primarily used this with my generic SNES Controller script in
+//order to make sure I could tell that the Wiimote and Script both
+//knew what was plugged in, and I've been including it in all of my
+//scripts now just because it's a good indicator to see that the
+//script is running (sometimes if I've been running GlovePIE for too
+//long, it seems to start acting weird and eventually it stops
+//interacting with the Wiimotes correctly).
+
+var.speed = 100 ms //delay speed for flashing LEDs. higher = slower 
+if Wiimote.HasNunchuk then 
+  if var.light = 0 then 
+    wiimote.Leds = 1 
+  endif 
+  if var.light = 1 then 
+    wiimote.Leds = 3 
+  endif 
+  if var.light = 2 then 
+    wiimote.Leds = 6 
+  endif 
+  if var.light = 3 then 
+    wiimote.Leds = 12 
+  endif 
+  if var.light = 4 then 
+    wiimote.Leds = 8 
+  endif 
+  if var.light = 5 then 
+    wiimote.Leds = 12 
+  endif 
+  if var.light = 6 then 
+    wiimote.Leds = 6 
+  endif 
+  if var.light = 7 then 
+    wiimote.Leds = 3 
+  endif 
+  wait var.speed 
+  var.light = (var.light + 1) % 8 
+ElseIf WiiMote.HasClassic Then 
+  if var.light = 0 then 
+    wiimote.Leds = 1 
+  endif 
+  if var.light = 1 then 
+    wiimote.Leds = 2 
+  endif 
+  if var.light = 2 then 
+    wiimote.Leds = 4 
+  endif 
+  if var.light = 3 then 
+    wiimote.Leds = 8 
+  endif 
+  if var.light = 4 then 
+    wiimote.Leds = 4 
+  endif 
+  if var.light = 5 then 
+    wiimote.Leds = 2 
+  endif 
+  if var.light = 6 then 
+    wiimote.Leds = 1 
+  endif 
+  wait var.speed 
+  var.light = (var.light + 1) % 7 
+Else 
+  if var.light = 0 then 
+    wiimote.Leds = 0 
+  endif 
+  if var.light = 1 then 
+    wiimote.Leds = 15 
+  endif 
+  wait var.speed 
+  var.light = (var.light + 1) % 2 
+endif 
+

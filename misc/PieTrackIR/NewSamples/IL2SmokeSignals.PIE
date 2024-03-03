@@ -1,0 +1,116 @@
+// IL-2 STURMOVIK
+// Lights and Smoke Signals
+// by tommygunner70 (T.C Helsingen) and Carl Kenner
+
+// NumPad 1 to NumPad 6 start a signal loop
+// NumPad 0 stops a signal loop
+
+
+//////////////////////////
+// Initialize
+////////////////////////
+if not var.Initialized then
+  var.SignalLoop = 0
+  var.SignalPos = 0
+  var.Lights = false
+  var.Smoke = false
+  var.Initialized = true
+end if
+
+////////////////////////////////
+// Keys to change signal loop
+//////////////////////////////
+if pressed(Numpad1) then
+  var.SignalLoop = 1
+  var.SignalPos = 1
+end if
+
+if pressed(NumPad2) then
+  var.SignalLoop = 2
+  var.SignalPos = 1
+end if
+
+if pressed(NumPad3) then
+  var.SignalLoop = 3
+  var.SignalPos = 1
+end if
+
+if pressed(NumPad0) then
+  var.Lights = false
+  var.Smoke = false
+  var.SignalLoop = 0
+  var.SignalPos = 0
+end if
+
+//////////////////////////
+// signal loop number 1
+////////////////////////
+if var.SignalLoop = 1 and var.SignalPos = 1 then
+  var.Smoke = true
+  var.Lights = false
+  wait 1 s
+  if var.SignalLoop = 1 and var.SignalPos = 1 then var.SignalPos = var.SignalPos + 1
+end if
+
+if var.SignalLoop = 1 and var.SignalPos = 2 then
+  var.Smoke = false
+  var.Lights = false
+  wait 1 s
+  if var.SignalLoop = 1 and var.SignalPos = 2 then var.SignalPos = 1
+end if
+
+//////////////////////////
+// signal loop number 2
+////////////////////////
+if var.SignalLoop = 2 and var.SignalPos = 1 then
+  var.Lights = true
+  var.Smoke = false
+  wait 1 s
+  if var.SignalLoop = 2 and var.SignalPos = 1 then var.SignalPos = var.SignalPos + 1
+end if
+
+if var.SignalLoop = 2 and var.SignalPos = 2 then
+  var.Lights = false
+  var.Smoke = false
+  wait 1 s
+  if var.SignalLoop = 2 and var.SignalPos = 2 then var.SignalPos = 1
+end if
+
+//////////////////////////
+// signal loop number 3
+////////////////////////
+if var.SignalLoop = 3 and var.SignalPos = 1 then
+  var.Smoke = true
+  var.Lights = false
+  wait 1 s
+  if var.SignalLoop = 3 and var.SignalPos = 1 then var.SignalPos = var.SignalPos + 1
+end if
+
+if var.SignalLoop = 3 and var.SignalPos = 2 then
+  var.Smoke = false
+  var.Lights = true
+  wait 1 s
+  if var.SignalLoop = 3 and var.SignalPos = 2 then var.SignalPos = 1
+end if
+
+
+//////////////////////////
+// Do the toggling
+////////////////////////
+
+var.ToggleLights = pressed(var.Lights) or released(var.Lights)
+var.ToggleSmoke = pressed(var.Smoke) or released(var.Smoke)
+
+if var.ToggleLights then
+  press key.L
+  wait 100 ms
+  release key.L
+end if
+
+if var.ToggleSmoke then
+  press key.T
+  wait 100 ms
+  release key.T
+end if
+
+

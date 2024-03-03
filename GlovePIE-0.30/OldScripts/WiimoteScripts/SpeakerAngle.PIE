@@ -1,0 +1,7 @@
+// Wiimote Speaker controlled by angles
+// GlovePIE 0.29
+
+Wiimote.Frequency = MapRange(Wiimote.SmoothPitch, -90,90, 0,1900)
+Wiimote.Volume = MapRange(Wiimote.SmoothRoll, -90,90, 0,100%)
+Wiimote.Mute = not Wiimote.A
+Wiimote.Rumble = Wiimote.B

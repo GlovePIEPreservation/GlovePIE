@@ -1,0 +1,11 @@
+pie.FrameRate = 60Hz
+
+var.sensitivity = 1200
+var.yaw = RemoveUnits(VR920.ContinuousYaw)/90*var.Sensitivity
+var.pitch = RemoveUnits(VR920.Pitch)/90*var.Sensitivity
+fakemouse.DirectInputX+=delta(var.yaw)
+fakemouse.DirectInputY-=delta(var.pitch)
+
+// you can change VR920.ContinuousYaw above to
+// Smooth(VR920.ContinuousYaw,10)
+// if you want smoothing. The 10 is amount of smoothing, 30 is max.

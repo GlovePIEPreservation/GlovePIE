@@ -1,0 +1,37 @@
+//Live for Speed with iCuiti VR920 HMD head tracking.
+
+// TrackIR support in Live for Speed requires the version X patch.
+// The patch is automatically downloaded when you start multiplayer.
+// You don't need to configure anything in the game once the patch
+// is installed.
+
+// this (naughty) game treats 90 degrees as a 180 degree turn
+// unlike other games like Evocron Alliance which do it properly
+pie.FrameRate = 120Hz
+
+if FakeTrackIR.profileID = 3A35H or FakeTrackIR.profileID = 3A38H then
+// Arvoch Conflict and Evochron Alliance
+  FakeTrackIR.yaw=0
+  FakeTrackIR.pitch=0
+//  FakeTrackIR.yaw = sixaxis.yaw*2
+//  FakeTrackIR.pitch = smooth(sixaxis.smoothpitch)*2
+  FakeTrackIR.roll = -smooth(sixaxis.smoothroll)*10
+else
+  FakeTrackIR.yaw = sixaxis.yaw
+  FakeTrackIR.pitch = smooth(sixaxis.smoothpitch)
+  FakeTrackIR.roll = -smooth(sixaxis.smoothroll)
+end if
+FakeTrackIR.x += deadzone(sixaxis.Joy1x,8%)*FrameTime
+FakeTrackIR.y += -deadzone(sixaxis.Joy1y,8%)*FrameTime
+FakeTrackIR.z += -sixaxis.DPady*FrameTime
+
+if starting then sixaxis.RawGyroZero = 268.6
+var.UsingTrackIR =  trackir.ProfileID=1BBDH
+debug = IntToHex(trackir.ProfileID,4)+', '+smooth(sixaxis.RawGyro,30)+','+ sixaxis.yaw+', '+faketrackir.active+', '+faketrackir.WindowHandle+', '+faketrackir.RequestFormat
+if sixaxis.triangle then sixaxis.yaw = 0
+if sixaxis.ps then sixaxis.RawGyroZero = smooth(sixaxis.rawGyro,30)
+ppjoy.Analog0 = sixaxis.Joy2x
+ppjoy.analog1 = sixaxis.Joy2y
+ppjoy.Digital0 = sixaxis.Cross
+ppjoy.digital1 = sixaxis.Circle
+

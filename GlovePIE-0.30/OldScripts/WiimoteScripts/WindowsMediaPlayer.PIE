@@ -1,0 +1,49 @@
+//Wiimote WMP Control 
+//Created By Xarath 
+//Windows Media Player must be the front window while using this! This 
+//is very basic and is meant for you coding-impared.  ;) 
+// 
+//Controls: 
+// Plus - Next Song 
+// Minus - Previous Song 
+// Home - Play/Pause 
+// Left - Volume down 
+// Right - Volume up 
+// Up - Speed Up 
+// Down - Slow down 
+// A - Normal Speed 
+// B - No use. 
+// 1 - Turns on rumble 
+// 2 - Turns off rumble 
+
+
+Control && F = Wiimote.Plus 
+Control && B = Wiimote.Minus 
+CTRL && P = Wiimote.Home 
+F9 = Wiimote.Left 
+F10 = Wiimote.Right 
+Control && Shift && N = Wiimote.A 
+Control && Shift && G = Wiimote.Up 
+Control && Shift && S = Wiimote.Down 
+
+If Wiimote.one then 
+
+  Wiimote.Led1 = true
+  Wiimote.Led2 = true
+  Wiimote.Led3 = true
+  Wiimote.Led4 = true
+
+  wiimote.Rumble = 1
+endif 
+//wait 50000 ms 
+//wiimote.Rumble = 0 
+If wiimote.two then 
+
+  Wiimote.Led1 = false
+  Wiimote.Led2 = false
+  Wiimote.Led3 = false
+  Wiimote.Led4 = false
+
+  wiimote.Rumble = 0
+endif 
+

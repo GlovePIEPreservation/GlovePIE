@@ -1,0 +1,234 @@
+// Jedi Knight 1
+// Realistic actions
+
+
+// Initialization
+if not var.initialized then
+  var.initialized = true
+  debug = ""
+//  midi.volume = 100%
+end if
+
+// FINGER GESTURES AND CHOOSING WEAPON
+
+var.FingerWalk = p5.FingersDown and (p5.index < 40 and p5.middle<40 and p5.ring>40 and p5.pinky>40)
+var.SaberGrip = (p5.index >40) and (p5.middle>40) and (p5.ring>40) and (p5.pinky>40)
+var.GunGrip = (p5.index < 30) and (p5.ring > 40) and (p5.pinky > 40)
+var.GrenadeGrip = (p5.index < 40 and p5.middle < 40 and p5.ring < 40 and p5.pinky < 40)
+var.EmptyHand = (not var.SaberGrip) and (not var.GunGrip)
+var.PointHand = (p5.index<20) and (p5.middle>40) and (p5.ring>40) and (p5.pinky>40)
+
+var.GunAngle = p5.FingersForward and p5.PalmLeft
+
+
+var.HoldingSaber = var.SaberGrip
+var.HoldingGun = var.GunGrip and var.GunAngle
+var.HoldingGrenade = var.GrenadeGrip and (p5.PalmUp or p5.PalmForward)
+var.HoldingNothing = (not var.HoldingGun) and (not var.HoldingSaber) and (not var.HoldingGrenade)
+
+
+if var.HoldingSaber then
+  var.DesiredWeapon = 0
+end
+if var.HoldingNothing then
+  var.DesiredWeapon = 1
+end;
+if var.HoldingGun then
+  var.DesiredWeapon = 2
+end
+if var.HoldingGrenade then
+  var.DesiredWeapon = 4
+end
+
+var.CanChangeWeapon = (Now - var.LastChangeWeaponTime) > 0.5 seconds
+
+// RELEASE CHANGE WEAPON
+if var.ReleaseWeapon >= 0 then
+  if var.ReleaseWeapon = 0 then
+    key.Zero = false
+  end
+  if var.ReleaseWeapon = 1 then
+    key.One = false
+  end
+  if var.ReleaseWeapon = 2 then
+    key.Two = false
+  end
+  if var.ReleaseWeapon = 3 then
+    key.Three = false
+  end
+  if var.ReleaseWeapon = 4 then
+    key.Four = false
+  end
+  if var.ReleaseWeapon = 5 then
+    key.Five = false
+  end
+  if var.ReleaseWeapon = 6 then
+    key.Six = false
+  end
+  if var.ReleaseWeapon = 7 then
+    key.Seven = false
+  end
+  if var.ReleaseWeapon = 8 then
+    key.Eight = false
+  end
+  if var.ReleaseWeapon = 9 then
+    key.Nine = false
+  end
+  var.ReleaseWeapon = -1
+end
+
+// PRESS CHANGE WEAPON
+if ((var.DesiredWeapon != var.CurrentWeapon or Random(50)=0) and var.CanChangeWeapon) then
+  var.CurrentWeapon = var.DesiredWeapon
+  var.ReleaseWeapon = var.DesiredWeapon
+  var.LastWeaponChangeTime = Now
+  if var.DesiredWeapon = 0 then
+    key.Zero = true
+  end
+  if var.DesiredWeapon = 1 then
+    key.One = true
+  end
+  if var.DesiredWeapon = 2 then
+    key.Two = true
+  end
+  if var.DesiredWeapon = 3 then
+    key.Three = true
+  end
+  if var.DesiredWeapon = 4 then
+    key.Four = true
+  end
+  if var.DesiredWeapon = 5 then
+    key.Five = true
+  end
+  if var.DesiredWeapon = 6 then
+    key.Six = true
+  end
+  if var.DesiredWeapon = 7 then
+    key.Seven = true
+  end
+  if var.DesiredWeapon = 8 then
+    key.Eight = true
+  end
+  if var.DesiredWeapon = 9 then
+    key.Nine = true
+  end
+end if
+
+
+
+// SWINGS
+
+Var.SwingLeft = p5.XVelocity < -5000
+Var.SwingRight = p5.XVelocity > 5000
+var.SwingUp = p5.YVelocity > 5000
+var.SwingDown = p5.YVelocity < -5000
+
+// Punching
+Var.Punch = p5.zv > 5000 and abs(p5.xv) < 3000 and abs(p5.yv) < 3000
+
+var.Poke = p5.zv > 2000 and var.PointHand
+
+// Holding hand above head
+Var.AboveHead = p5.y > 1000
+
+// HAND POSITION FOR MOVEMENT
+
+Var.GloveNoSwing = abs(p5.zv)<2000 and abs(p5.xv)<2000 and abs(p5.yv)<2000
+Var.GloveNormal = Var.GloveNoSwing and (not Var.AboveHead)
+
+Var.GloveForward = p5.z > -800 and Var.GloveNormal
+Var.GloveBackward = p5.z < -1200 and Var.GloveNormal
+Var.GloveFastForward = p5.z > -600 and Var.GloveNormal
+var.GloveFastBackward = p5.z < -1400 and var.GloveNormal
+var.GloveForceForward = p5.z > -300 and Var.GloveNormal
+Var.GloveLeft = p5.x < -300 and Var.GloveNormal
+Var.GloveRight = p5.x > 300 and Var.GloveNormal
+Var.GloveDown = p5.y < -400 and Var.GloveNormal and var.FingerWalk
+Var.GloveUp = p5.y > 400 and Var.GloveNormal and var.FingerWalk
+
+Var.Twirl = p5.RollVelocity > 10 and p5.roll>0 and Var.GloveNormal
+
+var.FaceLeft = p5.PalmRight and var.FingerWalk
+var.FaceRight = p5.PalmLeft and var.FingerWalk
+var.StepLeft = var.GloveLeft and var.FingerWalk
+var.StepRight = var.GloveRight and var.FingerWalk
+
+
+
+if var.CurrentWeapon>=2 then
+  Var.CoolCtrl = (p5.middle > 30 and p5.middle < 55)
+end
+
+if var.NumSwingLeft div 2 = 1 then var.CoolD = true
+if var.NumSwingLeft div 2 = 2 then var.CoolCtrl = true
+if var.NumSwingLeft div 2 = 3 then var.CoolCtrl = false
+if var.NumSwingLeft div 2 = 4 then var.CoolD = false
+if var.NumSwingLeft div 2 = 5 then var.NumSwingLeft = 0
+if var.NumSwingLeft > 0 then var.NumSwingLeft = var.NumSwingLeft + 1
+
+if var.NumSwingRight div 2 = 1 then var.CoolA = true
+if var.NumSwingRight div 2 = 2 then var.CoolCtrl = true
+if var.NumSwingRight div 2 = 3 then var.CoolCtrl = false
+if var.NumSwingRight div 2 = 4 then var.CoolA = false
+if var.NumSwingRight div 2 = 5 then var.NumSwingRight = 0
+if var.NumSwingRight > 0 then var.NumSwingRight = var.NumSwingRight + 1
+
+if var.NumSwingUp div 2 = 1 then var.CoolS = true
+if var.NumSwingUp div 2 = 2 then var.CoolCtrl = true
+if var.NumSwingUp div 2 = 3 then var.CoolCtrl = false
+if var.NumSwingUp div 2 = 4 then var.CoolS = false
+if var.NumSwingUp div 2 = 5 then var.NumSwingUp = 0
+if var.NumSwingUp > 0 then var.NumSwingUp = var.NumSwingUp + 1
+
+if var.NumSwingDown div 2 = 1 then var.CoolW = true
+if var.NumSwingDown div 2 = 2 then var.CoolCtrl = true
+if var.NumSwingDown div 2 = 3 then var.CoolCtrl = false
+if var.NumSwingDown div 2 = 4 then var.CoolW = false
+if var.NumSwingDown div 2 = 5 then var.NumSwingDown = 0
+if var.NumSwingDown > 0 then var.NumSwingDown = var.NumSwingDown + 1
+
+
+
+if var.CurrentWeapon=0 then
+  if (var.SwingLeft and var.NumSwingLeft=0) then var.NumSwingLeft = 1
+  if (var.SwingRight and var.NumSwingRight=0) then var.NumSwingRight = 1
+  if (var.SwingUp and var.NumSwingUp=0) then var.NumSwingUp = 1
+  if (var.SwingDown and var.NumSwingDown=0) then var.NumSwingDown = 1
+end
+
+if var.CurrentWeapon=1 then
+ var.CoolCtrl = (var.Punch and not var.Poke)
+end if
+
+if var.CurrentWeapon=4 then
+ var.CoolCtrl = (var.Punch and not var.Poke)
+end if
+
+//One = var.ToEmpty //(not KeepDown(var.ToGun,1)) and KeepDown(var.ToEmpty,1)
+//Two = var.ToGun //KeepDown(var.ToGun,1)
+//Zero = var.ToSaber //KeepDown(var.ToSaber,1)
+
+D = var.CoolD or var.StepLeft
+A = var.CoolA or var.StepRight
+
+F6 = var.GloveForceForward
+Shift = var.GloveFastForward or var.GloveFastBackward
+S = var.GloveBackward or var.CoolS
+W = var.GloveForward or var.CoolW
+
+C = var.GloveDown
+RMB = var.GloveUp
+
+CapsLock = var.GloveLeft or var.GloveRight or var.FaceLeft or var.FaceRight
+Left = (var.GloveLeft and not var.FingerWalk) or var.FaceLeft
+Right = (var.GloveRight and not var.FingerWalk) or var.FaceRight
+
+
+Ctrl = var.CoolCtrl
+
+Space = var.Poke
+
+Escape = p5.C
+
+//debug = p5.roll
+

@@ -1,0 +1,16 @@
+// Type your program here!
+
+var.s = ""
+if p5.SwitchedOff then var.s = "Off"
+if p5.TooFarLeft then var.s = "left"
+if p5.TooFarRight then var.s = "right"
+if p5.TooFarUp then var.s = "up"
+if p5.TooFarDown then var.s = "down"
+if p5.TooFarForward then var.s = "forward"
+if p5.TooFarBack then var.s = "back"
+if p5.BehindSomething then var.s = "behind something"
+if (var.s="") and (not p5.InRange) then var.s = "????"
+if (var.s="") and (p5.FingersUp) and (p5.PalmForward) then var.s = "stop sign"
+if (var.s="") and (p5.FingersBack) then var.s = "fingers back"
+
+debug = var.s//p5.SwitchedOff+':  ' +p5.TooFarLeft+',  '+p5.TooFarDown+', '+p5.TooFarUp+',  '+p5.TooFarRight+'   ,   '+p5.TooFarForward+', '+p5.TooFarBack

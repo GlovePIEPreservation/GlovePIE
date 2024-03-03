@@ -1,0 +1,23 @@
+// Requires Windows 2000 or above (Doesn't need XP)
+// Keyboard controlled cursor
+// Arrow keys move cursor 2, Right Alt and Right Ctrl are the buttons
+
+if not var.initialized then
+  var.c2x = Screen.Width / 2
+  var.c2y = Screen.Height / 2
+  Cursor2.PosX = var.c2x
+  Cursor2.PosY = var.c2y
+  Cursor2.Visible = true
+  var.initialized = true
+end if
+
+if Left then var.c2x = var.c2x - 4
+if Right then var.c2x = var.c2x + 4
+if Up then var.c2y = var.c2y - 4
+if Down then var.c2y = var.c2y + 4
+
+Cursor2.PosX = var.c2x
+Cursor2.PosY = var.c2y
+Cursor2.LeftButton = RightAlt
+Cursor2.RightButton = RightCtrl
+

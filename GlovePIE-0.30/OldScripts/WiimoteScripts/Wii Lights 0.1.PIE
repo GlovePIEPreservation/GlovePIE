@@ -1,0 +1,70 @@
+//Wii Lights 0.1
+//Created by Sam Tyson
+//www.wiiscript.co.nr
+//Only does simple LED Lights show but not full due to some
+//problems with coding.
+//17th December 2006
+
+var.xOffset = 0
+var.yOffset = -10
+var.zOffset = -10
+
+var.xRot = Wiimote.RawAccX + var.xOffset
+var.yRot = Wiimote.RawAccY + var.yOffset
+var.zRot = Wiimote.rawforceZ + var.zOffset
+
+
+if true then
+  wiimote.Leds = 1
+  wait 200ms
+  wiimote.Leds = 1+4
+  wait 75ms
+  wiimote.Leds = 2
+  wait 200ms
+  wiimote.Leds = 2+8
+  wait 75ms
+  wiimote.Leds = 4
+  wait 200ms
+  wiimote.Leds = 4+2
+  wait 75ms
+  wiimote.Leds = 8
+  wait 200ms
+  wiimote.Leds = 8+1
+  wait 75ms
+  wiimote.Leds = 7
+  wait 200ms
+  wiimote.Leds = 1+3
+  wait 60 ms
+  wiimote.Leds = 6
+  wait 124 ms
+  wiimote.Leds = 7+1
+  wait 44 ms
+  wiimote.Leds = 5
+  wait 120 ms
+  wiimote.Leds = 7+4
+  wait 50 ms
+  wiimote.Leds = 7
+  wait 123 ms
+  wiimote.Leds = 3+8
+  wait 67 ms
+  wiimote.Leds = 1
+  wait 200 ms
+  wiimote.Leds = 3+7
+  wait 75 ms
+  wiimote.Leds = 5
+  wait 200 ms
+  wiimote.Leds = 4+8
+  wait 60 ms
+  wiimote.Leds = 3
+  wait 180 ms
+  wiimote.Leds = 6+2
+  wait 60 ms
+  wiimote.Leds = 1+4
+  wait 60 ms
+  wiimote.Leds = 8
+  wait 190 ms
+  wiimote.Leds = 2=6
+  wait 60 ms
+end if
+
+

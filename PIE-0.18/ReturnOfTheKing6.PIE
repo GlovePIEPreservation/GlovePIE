@@ -1,0 +1,187 @@
+// Lord Of The Rings: Return of The King
+// Realistic actions
+
+// FINGER GESTURES
+
+Var.MagicGrip = (p5.index<20) and (p5.middle<20) and (p5.ring>40) and (p5.pinky>40)
+Var.Grab = (p5.index >40) and (p5.middle>40) and (p5.ring>40) and (p5.pinky>40)
+Var.FingerUp = (p5.index<20) and (p5.middle>40) and (p5.ring>40) and (p5.pinky>40)
+
+// Gandalf's shooting staff
+
+Var.AimingStaff = var.Grab and p5.yaw > 50 and abs(p5.xv)<2000 and abs(p5.yv)<2000
+Var.FiringStaff = var.AimingStaff and p5.zv > 4000
+
+
+// SWINGS
+
+// Horizontal swing
+Var.LightSwing = abs(p5.XVelocity) > 5000 and abs(p5.yVelocity) < 2000
+// Vertical swing
+Var.HeavySwing = p5.YVelocity < -5000  and  p5.roll >= 30
+// Punching
+Var.Punch = p5.zv > 5000 and abs(p5.xv) < 4000 and abs(p5.yv) < 4000 and not var.AimingStaff
+// Stabbing on the ground
+Var.FinishingMove = p5.yv < -4000 and p5.roll <= -20
+// Swinging in each direction
+Var.SwingLeft = p5.XVelocity < -3200
+Var.SwingRight = p5.XVelocity > 3200
+Var.SwingUp = p5.YVelocity > 3200
+Var.SwingDown = p5.YVelocity < -3200
+
+// Holding weapon above head for Devastating Attack
+Var.AboveHead = p5.y > 1000
+
+// A Button
+Var.FireWeapon = p5.A
+
+// HAND POSITION FOR MOVEMENT
+
+Var.GloveNoSwing = abs(p5.zv)<2000 and abs(p5.xv)<2000 and abs(p5.yv)<2000
+Var.GloveNormal = Var.GloveNoSwing and (not Var.AboveHead)
+
+Var.GloveForward = p5.z > -700 and Var.GloveNormal
+Var.GloveBackward = p5.z < -1300 and Var.GloveNormal
+Var.GloveLeft = p5.x < -300 and Var.GloveNormal
+Var.GloveRight = p5.x > 300 and Var.GloveNormal
+
+Var.Twirl = p5.RollVelocity > 10 and p5.roll>0 and Var.GloveNormal
+
+
+// Musical Bow and Arrow
+
+// Initialization
+if not var.initialized then
+  var.initialized = true
+  debug = ""
+  midi.volume = 100%
+end if
+
+// Test that you can actually hear anything by pressing Right Shift
+midi.c5 = RightShift
+
+// Bow grips
+var.ValidBowGrip = (30<=p5.index<=60) and (30<=p5.middle<=60) and (30<=p5.ring<=60)
+var.CanGrabBowString = (p5.index>=38) and (p5.middle>=38) and (p5.ring>=38)
+var.CanHoldBowString = (p5.index>=30) and (p5.middle>=30) and (p5.ring>=30)
+
+// Grabbing the bow string:
+
+//var.GrabbingBowString = pressed(var.CanGrabBowString and p5.z > -700)
+
+var.TryingToGrabBow = pressed(var.CanGrabBowString)
+
+var.GrabbingBow = False
+if ((not var.HoldingBowString) and (var.ValidBowGrip) and var.TryingToGrabBow and (p5.z > -700)) then
+  var.GrabbingBow = true
+  var.HoldingBowString = true
+  Debug = "Grabbing Bow String"
+end if
+
+// Pulling back the bow string
+var.DrawingBow = var.HoldingBowString and p5.zVelocity < -800
+if var.DrawingBow then
+  debug = "Drawing Bow"
+end if
+
+var.UndrawingBow = var.HoldingBowString and p5.zVelocity > 800
+
+var.BowDrawnBack = var.HoldingBowString and p5.z <= -1100
+if var.BowDrawnBack then
+  debug = "Bow Drawn"
+end if
+
+// Firing the bow
+var.FiringBow = var.BowDrawnBack and not var.CanHoldBowString
+
+if var.FiringBow then
+  var.HoldingBowString = false
+  var.WaitingBow = true
+  debug = "Firing Arrow"
+end if
+
+// Cancelling the bow
+var.CancellingBow = var.HoldingBowString and not var.ValidBowGrip
+
+if var.CancellingBow then
+  var.HoldingBowString = false
+  var.WaitingBow = false
+  debug = ""
+end if
+
+var.HoldingSword = ((p5.index>40 and p5.middle>40) or (p5.ring>40 and p5.pinky>40)) and not var.HoldingBowString and not var.AimingStaff
+
+if var.WaitingBow and var.HoldingSword then
+  var.WaitingBow = false
+end if
+
+var.UsingBow = var.HoldingBowString or var.WaitingBow
+
+
+
+//debug = var.GrabbingBow
+midi.c4 = var.GrabbingBow
+midi.c2 = var.DrawingBow
+midi.e2 = var.UndrawingBow
+midi.g5 = KeepDown(var.FiringBow,1)
+midi.a1 = KeepDown(var.CancellingBow,0.6)
+
+midi.channel2.instrument = 25
+midi.b5 = p5.roll < -20
+
+//LMB = var.FiringBow
+//Shift = var.HoldingBowString
+
+
+
+// Menu keys
+
+left = Var.SwingLeft
+right = Var.SwingRight
+up = Var.SwingUp
+down = Var.SwingDown
+Enter = Var.Grab
+Escape = p5.C
+
+// Movement keys
+
+if var.HoldingSword then
+  w = Var.GloveForward
+  s = Var.GloveBackward
+  a = Var.GloveLeft
+  d = Var.GloveRight
+end if
+
+if not var.HoldingSword then
+  w = false
+  s = false
+  a = false
+  d = false
+end if
+
+// Attacking/Blocking keys
+
+if var.HoldingSword then
+  //LMB = Var.LightSwing or Var.FireWeapon
+  RMB = Var.HeavySwing or Var.AboveHead
+  Ctrl = Var.Punch
+  Space = Var.FinishingMove
+  q = Var.FingerUp or Var.Twirl
+end if
+
+if not var.HoldingSword then
+  RMB = false
+  Ctrl = false
+  Space = false
+  q = false
+end if
+
+Shift = Var.UsingBow or Var.FiringStaff
+
+LMB = Var.FiringStaff or KeepDown(Var.FiringBow,0.1) or (var.HoldingSword and var.LightSwing)
+
+// Special Keys
+
+E = p5.B
+F5 = Var.MagicGrip
+

@@ -1,0 +1,13 @@
+// Play two notes at once based on the cursor position
+
+midi.FirstNote = mouse.x * 127
+midi.SecondNote = mouse.y * 127
+
+// note that notes are numbered from 0 to 127
+// with 0 being the low C note in octave 0
+// and 127 being the high G note in octave 10
+// each octave has 12 notes (octaves never have 8 notes)
+// C, C#, D, D#, E, F, F#, G, G#, A, A#, B
+// Middle C is note 60
+// set it to -1 to not play any note
+

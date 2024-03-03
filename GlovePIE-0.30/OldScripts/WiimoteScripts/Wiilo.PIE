@@ -1,0 +1,216 @@
+//Wiilo v0.1 
+//Made by Phant0m 
+//For more information and updates go to h t t p : / /p h a n t 0 m .b l o g . v u/ 
+//To auto calibrate just press Space bar or Button1 on your WiiMote 
+//When auto calibrating please put the wiimote flat and do not move it 
+
+//Show WiiMote forces 
+debug = "X="+var.xRot+" Y="+var.yRot+" Z="+var.zRot 
+
+
+var.x = Wiimote.RawForceX = 0 
+var.y = Wiimote.RawForceY = 0 
+var.z = Wiimote.RawForceZ = 0 
+
+var.xOffset = var.a 
+var.yOffset = var.b 
+var.zOffset = var.c 
+
+//Click Sound 
+Playsound("click.wav") = wiimote.A 
+
+// Wiimote calibration routine------------------------------------------------- 
+if wiimote.one = true or Space = true then 
+var.a = -var.xRot 
+var.b = -var.yRot 
+var.c = -var.zRot 
+
+wiimote.led1 = true 
+wiimote.led2 = true 
+wiimote.led3 = true 
+wiimote.led4 = true 
+wait 20 ms 
+wiimote.led1 =0 
+wiimote.led2 =0 // Leds Flashing to indicate CAL sucessfull 
+wiimote.led3 =0 
+wiimote.led4 =0 
+wait 20 ms 
+wiimote.led1 = true 
+wiimote.led2 = true 
+wiimote.led3 = true 
+wiimote.led4 = true 
+
+wait 200 ms // prevent to return this routine while pressing button1 
+
+
+end if 
+
+//wait 200 ms // prevent to return this routine while pressing button1 
+
+// End of wiimote calibration routine------------------------------------------ 
+
+
+var.xRot = Wiimote.RawForceX + var.xOffset 
+var.yRot = Wiimote.RawForceY + var.yOffset 
+var.zRot = Wiimote.RawForceZ + var.zOffset 
+
+
+//Controls 
+Mouse.RightButton = wiimote.B 
+Mouse.LeftButton = wiimote.A 
+Esc = wiimote.Home 
+
+
+if var.xRot > 4 
+wiimote.Led2 = true 
+else 
+wiimote.Led2 = false 
+end if 
+
+if var.xRot > 14 
+wiimote.Led1 = true 
+else 
+wiimote.Led1 = false 
+
+end if 
+
+if var.xRot > -4 
+wiimote.Led3 = false 
+else 
+wiimote.Led3 = true 
+
+end if 
+
+if var.xRot > -14 
+wiimote.Led4 = false 
+else 
+wiimote.Led4 = true 
+
+end if 
+
+
+//Controls 
+Mouse.RightButton = wiimote.B 
+Mouse.LeftButton = wiimote.A 
+Esc = wiimote.Home 
+
+if wiimote.Plus then 
+Mouse.WheelUp = true 
+wait 120 ms 
+Mouse.WheelUp = false 
+
+endif 
+if wiimote.Minus then 
+Mouse.WheelDown = true 
+wait 120 ms 
+Mouse.WheelDown = false 
+endif 
+if wiimote.Left then 
+Left = true 
+wait 250 ms 
+Left = false 
+endif 
+if wiimote.Right then 
+Right = true 
+wait 250 ms 
+Right = false 
+endif 
+if wiimote.Down then 
+Down = true 
+wait 250 ms 
+Down = false 
+endif 
+if wiimote.Up then 
+Up = true 
+wait 250 ms 
+Up = false 
+endif 
+
+
+//Mouse Movements 
+//precision 
+var.sense0 = 500 
+var.thresh0x = 5 
+var.thresh0y = 2 
+
+var.sense = 300 
+var.threshx = 10 
+var.threshy = 5 
+
+var.sense2 = 100 
+var.thresh2x = 15 
+var.thresh2y = 8 
+
+var.sense3 = 50 
+var.thresh3x = 20 
+var.thresh3y = 12 
+
+//first sensitivity setting 
+//xaxis 
+if var.xRot > var.thresh0x 
+mouse.x = mouse.x - 1/var.sense0 
+endif 
+if var.xRot < -var.thresh0x 
+mouse.x = mouse.x + 1/var.sense0 
+endif 
+
+//yaxis 
+if var.zRot > var.thresh0y 
+mouse.y = mouse.y - 1/var.sense0 
+endif 
+if var.zRot < -var.thresh0y 
+mouse.y = mouse.y + 1/var.sense0 
+endif 
+
+
+//second sensitivity setting 
+//xaxis 
+if var.xRot > var.threshx 
+mouse.x = mouse.x - 1/var.sense 
+endif 
+if var.xRot < -var.threshx 
+mouse.x = mouse.x + 1/var.sense 
+endif 
+
+//yaxis 
+if var.zRot > var.threshy 
+mouse.y = mouse.y - 1/var.sense 
+endif 
+if var.zRot < -var.threshy 
+mouse.y = mouse.y + 1/var.sense 
+endif 
+
+//third sensitivity setting 
+//xaxis 
+if var.xRot > var.thresh2x 
+mouse.x = mouse.x - 1/var.sense2 
+endif 
+if var.xRot < -var.thresh2x 
+mouse.x = mouse.x + 1/var.sense2 
+endif 
+
+//yaxis 
+if var.zRot > var.thresh2y 
+mouse.y = mouse.y - 1/var.sense2 
+endif 
+if var.zRot < -var.thresh2y 
+mouse.y = mouse.y + 1/var.sense2 
+endif 
+
+//fourth sensitivity setting 
+//xaxis 
+if var.xRot > var.thresh3x 
+mouse.x = mouse.x - 1/var.sense3 
+endif 
+if var.xRot < -var.thresh3x 
+mouse.x = mouse.x + 1/var.sense3 
+endif 
+
+//yaxis 
+if var.zRot > var.thresh3y 
+mouse.y = mouse.y - 1/var.sense3 
+endif 
+if var.zRot < -var.thresh3y 
+mouse.y = mouse.y + 1/var.sense3 
+endif 
+

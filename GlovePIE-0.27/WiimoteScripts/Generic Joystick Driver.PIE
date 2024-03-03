@@ -1,0 +1,24 @@
+//Generic Joystick Driver
+//by vkapadia
+//vkapadia@vkapadia.com
+//
+//In PPJoy, set a Virtual Joystick to have at least 2 axes and 11 buttons.
+//Number the axes Analog0 and Analog1 and the buttons Digital0 through Digital10
+//
+//In your game go into the control setup and map the keys to whatever you'd like.
+
+PPJoy.Digital0 = wiimote.Up
+PPJoy.Digital1 = wiimote.Down
+PPJoy.Digital2 = wiimote.Left
+PPJoy.Digital3 = wiimote.Right
+PPJoy.Digital4 = Wiimote.A
+PPJoy.Digital5 = Wiimote.B
+PPJoy.Digital6 = Wiimote.Minus
+PPJoy.Digital7 = Wiimote.Plus
+PPJoy.Digital8 = Wiimote.Home
+PPJoy.Digital9 = wiimote.One
+PPJoy.Digital10 = wiimote.Two
+
+PPJoy.Analog0 = -(wiimote.RawForceX + 6) / 20
+PPJoy.Analog1 = (wiimote.RawForceZ - 3) / 15
+

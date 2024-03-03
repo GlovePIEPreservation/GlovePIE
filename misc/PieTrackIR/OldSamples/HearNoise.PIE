@@ -1,0 +1,19 @@
+// Type your program here!
+if mic.TooLoud then
+  say("There's no need to shout! I'm not deaf!");
+end;
+if mic.TooQuiet then
+  say("Talk up. I can't hear you.");
+end
+if mic.HeardNoise then
+  say("Bang, Crash, thump!");
+end;
+debug = mic.TooLoud
+if said("Hello") then
+  say("Hi");
+end
+if said("Goodbye") then
+  say("bye");
+end;
+
+

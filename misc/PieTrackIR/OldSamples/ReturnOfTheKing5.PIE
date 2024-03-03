@@ -1,0 +1,90 @@
+// Lord Of The Rings: Return of The King
+// Realistic actions
+
+// SWINGS
+
+// Horizontal swing
+Var.LightSwing = abs(p5.XVelocity) > 5000
+// Vertical swing
+Var.HeavySwing = abs(p5.YVelocity) > 5000  and  p5.roll >= 0
+// Punching
+Var.Punch = p5.zv > 5000 and abs(p5.xv) < 4000 and abs(p5.yv) < 4000
+// Stabbing on the ground
+Var.FinishingMove = p5.yv < -4000 and p5.roll <= -20
+// Swinging in each direction
+Var.SwingLeft = p5.XVelocity < -3200
+Var.SwingRight = p5.XVelocity > 3200
+Var.SwingUp = p5.YVelocity > 3200
+Var.SwingDown = p5.YVelocity < -3200
+
+// Holding weapon above head for Devastating Attack
+Var.AboveHead = p5.y > 1000
+
+// BOW AND ARROW
+
+// Gripping the bow string
+Var.BowGrip = p5.index>30 and p5.middle>30 and p5.ring>30
+// Your bow string hand is not swinging vertically
+Var.BowStationary = abs(p5.yv)<2000
+// Bow string hand is at bow height
+Var.BowHeight = p5.y>200 and not Var.AboveHead
+// Bow in position
+Var.BowInPosition = p5.z < -1400 and Var.BowHeight
+// Firing a bow
+Var.FireBow = var.BowInPosition and var.BowGrip and var.BowStationary
+// Aiming the bow
+Var.AimBowForward = Var.FireBow and -30<p5.pitch<0
+Var.AimBowLeft = Var.FireBow and -100<p5.pitch<-45
+Var.AimBowRight = Var.FireBow and 20<p5.pitch<100
+
+// A Button or firing the bow
+Var.FireWeapon = p5.A or Var.FireBow
+
+
+// FINGER GESTURES
+
+Var.MagicGrip = (p5.index<20) and (p5.middle<20) and (p5.ring>40) and (p5.pinky>40)
+Var.Grab = (p5.index >40) and (p5.middle>40) and (p5.ring>40) and (p5.pinky>40)
+Var.FingerUp = (p5.index<20) and (p5.middle>40) and (p5.ring>40) and (p5.pinky>40)
+
+// HAND POSITION FOR MOVEMENT
+
+Var.GloveNoSwing = abs(p5.zv)<2000 and abs(p5.xv)<2000 and abs(p5.yv)<2000
+Var.GloveNormal = Var.GloveNoSwing and (not Var.FireBow) and (not Var.AboveHead)
+
+Var.GloveForward = p5.z > -700 and Var.GloveNormal
+Var.GloveBackward = p5.z < -1300 and Var.GloveNormal
+Var.GloveLeft = p5.x < -300 and Var.GloveNormal
+Var.GloveRight = p5.x > 300 and Var.GloveNormal
+
+
+// Menu keys
+
+left = Var.SwingLeft
+right = Var.SwingRight
+up = Var.SwingUp
+down = Var.SwingDown
+Enter = Var.Grab
+Escape = p5.C
+
+// Movement keys
+
+w = Var.GloveForward or Var.AimBowForward
+s = Var.GloveBackward
+a = Var.GloveLeft or Var.AimBowLeft
+d = Var.GloveRight or Var.AimBowRight
+
+// Attacking/Blocking keys
+
+LMB = Var.LightSwing or Var.FireWeapon
+RMB = Var.HeavySwing or Var.AboveHead
+Ctrl = Var.Punch
+Space = Var.FinishingMove
+q = Var.FingerUp
+Shift = Var.FireWeapon
+
+// Special Keys
+
+E = p5.B
+F5 = Var.MagicGrip
+

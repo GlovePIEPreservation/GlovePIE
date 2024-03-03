@@ -1,0 +1,9 @@
+//By GizmoTheGreen
+//Browse the Pr0nz!
+//Hide the Pr0nz! 
+
+LeftWindows && M = Wiimote2.A / Wiimote2.B / Wiimote1.A / Wiimote1.B 
+
+Down = Wiimote2.Down / Wiimote1.Down 
+Up = Wiimote2.Up / Wiimote1.Up 
+

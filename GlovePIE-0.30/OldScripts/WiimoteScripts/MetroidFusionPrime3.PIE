@@ -1,0 +1,99 @@
+/*  Metroid Fusion... but with Metroid Prime 3 controls!
+    By Carl Kenner
+
+    Your GBA Emulator must use the default VBA config:
+      DPAD = arrow keys, Start = Enter, Select = BACKSPACE!
+      A = Z, B = X,   L = A, R = S
+
+    Controls are the same as either version of Metroid Prime 3:
+      Nunchuk joystick = walk / run
+      Nunchuk Z / Wiimote B = Jump (depends on version) or menu select
+      Wiimote A = fire
+      Wiimote aim up and down = aim up and down
+        (aiming straight down only works when jumping)
+      Nunchuk C = Morph Ball toggle
+      Wiimote D-Pad Down = Fire Missile (or Super Bomb in MorphBall)
+      Charge A then Wiimote D-Pad Down = Super Missile (N/A)
+      Wiimote D-Pad Left/Right = X-Ray Visor (not present in Fusion)
+      Wiimote D-Pad Up = X-Ray Visor (N/A) or return to Combat Visor
+      Cast Nunchuk Forwards = Grapple Beam (not present in Fusion)
+      Pull Nunchuk back = stop Grapple Beam (not present in Fusion)
+    And these extra ones
+      Home = Toggle map / equipment editor
+      + = Swap between map and equipment editor
+      - = Sleep (from map)
+      Z+B (held down) = Space Jump (this is kind of cheating)
+
+    Note: Be careful to only change to and from morph-ball by using C
+    otherwise it will try to use super-bombs or missiles at the wrong
+    times. If you end up with incorrect behaviour, try pressing the C
+    button a couple of times.
+
+    There is no Grapple Beam or X-Ray Visor available on the space
+    station. There are no seperate super missiles, just an upgrade
+    to regular missiles.
+*/
+pie.frameRate = 100
+Z = Wiimote.nunchuk.ZButton or Wiimote.B // For different versions!
+Left = Wiimote.Nunchuk.JoyX < -0.2
+Right = Wiimote.Nunchuk.JoyX > 0.2
+A = (Wiimote.Pitch > 22.5  and Wiimote.Pitch <= 67.5) or (Wiimote.Pitch < -22.5 and Wiimote.Pitch>=-60) or Wiimote.Minus
+Up = (Wiimote.Nunchuk.JoyY < -0.2 or Wiimote.Pitch > 67.5) and (not var.MorphBall)
+Down = Wiimote.Nunchuk.JoyY > 0.2 or Wiimote.Pitch < -60
+X = Wiimote.A
+Backspace = Wiimote.Two
+Enter = Wiimote.Home
+S = Wiimote.Plus
+
+Wiimote.Rumble = (HeldDown(Wiimote.A, 1 second) but not HeldDown(Wiimote.A, 3 seconds)) or Wiimote.Down
+
+// aim diagonally down
+if pressed(Wiimote.Pitch < -22.5 and Wiimote.Pitch>=-60) then
+  wait 50 ms
+  press(Down)
+  wait 50 ms
+  release(Down)
+end if
+
+// Morph Ball
+if pressed(Wiimote.Nunchuk.CButton) and var.MorphBall then
+  press(Up)
+  wait 50ms
+  release(Up)
+  wait 50ms
+  press(Up)
+  wait 50ms
+  release(Up)
+  var.MorphBall = false
+else if pressed(Wiimote.Nunchuk.CButton) and (not var.MorphBall) then
+  press(Down)
+  wait 50ms
+  release(Down)
+  wait 5ms
+  press(Down)
+  wait 50ms
+  release(Down)
+  var.MorphBall = true
+end if
+
+// Missile / Super Bomb
+if pressed(Wiimote.Down) then
+  release(X)
+  press(S)
+  wait 50ms
+  press(X)
+  wait 50ms
+  release(X)
+  wait 50ms
+  release(S)
+end if
+
+// Space Jump - kind of cheating
+if Wiimote.Nunchuk.ZButton and Wiimote.B then
+  press(Z)
+  wait 80 ms
+  release(Z)
+  wait 230 ms
+end if
+
+

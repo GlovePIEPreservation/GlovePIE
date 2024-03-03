@@ -1,0 +1,183 @@
+//Counter Strike: Source WiiMouse v1.0 
+//Written and arranged by deceased 
+//Uses WiiMouse IR by vkapadia 
+
+//IMPORTANT >> Press ~ (tilde) to go into the console when you're in game. 
+//Type in "sensitivity 0.1" This will allow you to actually aim. 
+
+var.rumble = true //"true" means that the Wiimote will rumble when 
+                  // you fire for realism. "false" turns it off. 
+                  // clicking your mouse left will make rumbles!!! 
+
+//WSAD is the D pad where up = W, down = S, left = A, and right = D 
+W = wiimote.Up 
+S = wiimote.Down 
+A = wiimote.Left 
+D = wiimote.Right 
+
+//B to shoot 
+Mouse.LeftButton = wiimote.B 
+
+if Mouse.LeftButton then 
+   wiimote.Rumble = true 
+   wait 10 ms 
+   wiimote.Rumble = false 
+endif 
+
+// to use secondary actions (zooming, auto/semi, silencing, etc) 
+// press A 
+Mouse.RightButton = wiimote.A 
+
+//press minus to reload 
+R = wiimote.Minus 
+
+//press Home to "use" (E) 
+E = wiimote.Home 
+
+// plus to cycle through weapons 
+Mouse.WheelUp = wiimote.Plus 
+
+//1 toggles crouching ; 2 toogles walking 
+//1 and 2 together makes you run again 
+//Led1 comes on when you're crouching; Led2 when you're walking 
+if wiimote.One and not wiimote.Two then 
+   Ctrl = true 
+   Shift = false 
+   var.crouch = false 
+   wiimote.Led1 = true 
+   wiimote.Led2 = false 
+endif 
+
+if wiimote.Two and not wiimote.One then 
+   Shift = true 
+   Ctrl = false 
+   wiimote.Led1 = false 
+   wiimote.Led2 = true 
+endif 
+
+if wiimote.One and wiimote.Two then 
+   Ctrl = false 
+   Shift = false 
+   wiimote.Led1 = false 
+   wiimote.Led2 = false 
+endif 
+
+//jump by flicking the wiimote up 
+if var.accy >= 30 then 
+   Space = true 
+else 
+   Space = false 
+endif 
+
+// ALL WORK BELOW HERE WAS NOT DONE BY ME (deceased)------------------------ 
+
+//Mouse Control Script using IR 
+//by vkapadia with much assistance from inio 
+//vkapadia@vkapadia.com 
+// 
+//Calibration: 
+//To calibrate, run this program and put the Wiimote on a flat surface face-up. 
+//Then read the values in the debug line (next to the run button). 
+//Change these values until the debug line reads approx. all zeros. 
+var.xtrim = 4 
+var.ytrim = -30 
+var.ztrim = 6 
+
+var.accx = wiimote.RawForceX + var.xtrim 
+var.accy = wiimote.RawForceY + var.ytrim 
+var.accz = wiimote.RawForceZ + var.ztrim 
+
+if wiimote.dot1vis and wiimote.dot2vis then 
+
+  if var.accy > -7 then 
+    var.orientation = 0 
+  elseif var.accy > -45 then 
+    if var.accx < 0 then 
+      var.orientation = 3 
+    else 
+      var.orientation = 1 
+    endif 
+  else 
+    var.orientation = 2 
+  endif 
+
+  if var.leftpoint = 0 then 
+    if var.orientation = 0 then 
+      if wiimote.dot1x < wiimote.dot2x then 
+        var.leftpoint = 1 
+      else 
+        var.leftpoint = 2 
+      endif 
+    endif 
+    if var.orientation = 1 then 
+      if wiimote.dot1y > wiimote.dot2y then 
+        var.leftpoint = 1 
+      else 
+        var.leftpoint = 2 
+      endif 
+    endif 
+    if var.orientation = 2 then 
+      if wiimote.dot1x > wiimote.dot2x then 
+        var.leftpoint = 1 
+      else 
+        var.leftpoint = 2 
+      endif 
+    endif 
+    if var.orientation = 3 then 
+      if wiimote.dot1y < wiimote.dot2y then 
+        var.leftpoint = 1 
+      else 
+        var.leftpoint = 2 
+      endif 
+    endif 
+  endif 
+
+  if var.leftpoint = 1 then 
+    var.fix1x = wiimote.dot1x 
+    var.fix1y = wiimote.dot1y 
+    var.fix2x = wiimote.dot2x 
+    var.fix2y = wiimote.dot2y 
+  else 
+    var.fix1x = wiimote.dot2x 
+    var.fix1y = wiimote.dot2y 
+    var.fix2x = wiimote.dot1x 
+    var.fix2y = wiimote.dot1y 
+  endif 
+
+  var.dx = var.fix2x - var.fix1x 
+  var.dy = var.fix2y - var.fix1y 
+  var.cx = (var.fix1x+var.fix2x)/1024.0 - 1 
+  var.cy = (var.fix1y+var.fix2y)/1024.0 - .75 
+
+  var.d = sqrt(var.dx*var.dx+var.dy*var.dy) 
+
+  var.dx = var.dx / var.d 
+  var.dy = var.dy / var.d 
+
+  var.ox = -var.dy*var.cy-var.dx*var.cx; 
+  var.oy = -var.dx*var.cy+var.dy*var.cx; 
+
+  var.ax = (var.ox * screen.desktopwidth) + (screen.desktopwidth / 2) 
+  var.ay = (-var.oy * screen.desktopwidth) + (screen.desktopheight / 2) 
+
+  var.dx = var.ax - mouse.cursorposx 
+  var.dy = var.ay - mouse.cursorposy 
+
+  var.d = sqrt((var.dx*var.dx)+(var.dy*var.dy)) 
+
+  var.a = 180 / (200 + var.d * var.d * var.d * .001) 
+
+  var.finalx = mouse.cursorposx * var.a + var.ax * (1 - var.a) 
+  var.finaly = mouse.cursorposy * var.a + var.ay * (1 - var.a) 
+
+
+  mouse.cursorposx = var.finalx 
+  mouse.cursorposy = var.finaly 
+
+else 
+
+  var.leftpoint = 0 
+
+endif 
+
+debug = var.accx + " " + var.accy + " " + var.accz

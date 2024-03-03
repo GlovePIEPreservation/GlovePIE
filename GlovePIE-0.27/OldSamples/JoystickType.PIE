@@ -1,0 +1,3 @@
+// Type your program here!
+debug = joy.DeviceType + " " + joy.DeviceSubType + " " + joy.HID
+

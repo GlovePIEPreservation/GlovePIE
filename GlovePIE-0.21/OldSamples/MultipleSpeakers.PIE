@@ -1,0 +1,26 @@
+// Type your program here!
+if pressed(shift) then
+  speech.sam.text = ""
+  speech.sam.text = "Hello Millie"
+end
+if pressed(control) then
+  speech.millie.text = ""
+  speech.millie.text = "Hello Sam"
+end
+if pressed(alt) then
+  speech.mary.text = ""
+  speech.mary.text = "Hello everyone"
+end
+if pressed(space) then
+  speech.mike.text = ""
+  speech.mike.text = "Hello everyone"
+end
+if pressed(z) then
+  speech.michael.text = ""
+  speech.michael.text = "Hello everyone"
+end
+if pressed(x) then
+  speech.michelle.text = ""
+  speech.michelle.text = "Hello everyone"
+end
+

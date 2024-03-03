@@ -1,0 +1,12 @@
+// Type your program here!
+midi.volume = 100%
+midi.c4 = key.RightShift
+
+if key.RightControl then
+  debug = "Hello"
+  wait 4 seconds
+  debug = "World"
+  wait 4 seconds
+  debug = ""
+end
+

@@ -1,0 +1,31 @@
+// Requires Windows 2000 or above! (Don't need XP)
+
+// This program shows six fake cursors (as well as the real one)
+// They are all moved with the normal system mouse
+
+// Note that we use RemoveUnits otherwise you will have to
+// move the mouse the same physical distance as the cursor on screen.
+// With RemoveUnits it doesn't convert between Mickeys and Pixels
+
+// The cursors don't click yet, since we didn't assign the buttons
+// or scroll wheels or anything like that.
+
+cursor1.visible = true
+cursor2.visible = true
+cursor3.visible = true
+cursor4.visible = true
+cursor5.visible = true
+cursor6.visible = true
+cursor1.CursorPosX = RemoveUnits(mouse.DinputX) + 600
+cursor1.CursorPosY = RemoveUnits(mouse.DinputY) + 300
+cursor2.CursorPosX = RemoveUnits(mouse.DinputX) + 300
+cursor2.CursorPosY = RemoveUnits(mouse.DinputY) + 300
+cursor3.CursorPosX = RemoveUnits(mouse.DinputX) + 600
+cursor3.CursorPosY = RemoveUnits(mouse.DinputY) + 600
+cursor4.CursorPosX = RemoveUnits(mouse.DinputX) + 300
+cursor4.CursorPosY = RemoveUnits(mouse.DinputY) + 600
+cursor5.CursorPosX = RemoveUnits(mouse.DinputX)
+cursor5.CursorPosY = RemoveUnits(mouse.DinputY) + 600
+cursor6.CursorPosX = RemoveUnits(mouse.DinputX)
+cursor6.CursorPosY = RemoveUnits(mouse.DinputY) + 300
+

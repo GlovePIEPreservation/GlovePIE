@@ -1,0 +1,111 @@
+//The Legend of Zelda NES with flashing LEDS script by Sam Tyson.
+//Version 0.2
+//You may edit and re-distribute.
+
+//Buttons
+//D Pad Up - Move Up
+//D Pad Down - Move Down
+//D pad Left - Move Left
+//D Pad Right - Move Right
+//A - Start
+//1 - Sword
+//2 - Sword
+
+
+//Whats new in 0.2?
+//-----------------
+//- Rumble feature for 1 & 2 Buttons
+//- Press Home to stop script and press Home twice to close GlovePie
+
+//You get the flashing LEDs whilst you play it make it look nice!
+//This only works on Nestopia (included) but if you edit the code you can get it to work with the others.
+//This is only version 0.2 and Im working on some new scripts that will all be avalible for download
+//on my website:
+//www.wiiscript.co.nr
+
+// Zelda NES with flashing LEDS version 0.2
+// Go to www.wiiscript.co.nr and click on Scripts
+// check for updates often as im doing a lot of new scripts
+// By Sam Tyson
+
+if Wiimote.Home 
+if doubleclicked(Wiimote.Home) 
+ExitPie 
+else 
+wait 200 ms 
+ExitProgram 
+endif 
+endif 
+
+if true then
+  wiimote.Leds = 1
+  wait 200ms
+  wiimote.Leds = 1+2
+  wait 75ms
+  wiimote.Leds = 2
+  wait 200ms
+  wiimote.Leds = 2+4
+  wait 75ms
+  wiimote.Leds = 4
+  wait 200ms
+  wiimote.Leds = 4+8
+  wait 75ms
+  wiimote.Leds = 8
+  wait 200ms
+  wiimote.Leds = 8+1
+  wait 75ms
+end if
+
+if wiimote.Up then 
+  Key.left = true
+  wait 60 ms
+  Key.left = false
+endif 
+if wiimote.Down then 
+  Key.right = true
+  wait 60 ms
+  Key.right = false
+endif 
+if wiimote.Left then 
+  Key.down = true
+  wait 60 ms
+  Key.down = false
+endif 
+if wiimote.Right then 
+  Key.up = true
+  wait 60 ms
+  Key.up = false
+endif 
+if wiimote.one 
+  key.l = true
+  wait 60 ms
+     wiimote.Rumble = 9
+   wait 1 ms
+   wiimote.Rumble = 0
+   wait var.time ms
+  key.l = false
+ENDIF 
+if wiimote.Two 
+  key.l = true
+  wait 60 ms
+     wiimote.Rumble = 9
+   wait 1 ms
+   wiimote.Rumble = 0
+   wait var.time ms
+  key.l = false
+endif 
+if wiimote.Plus 
+  key.enter = true
+  wait 60 ms
+  key.enter = false
+endif 
+if wiimote.Minus 
+  key.ctrl = true
+  wait 60 ms
+  key.ctrl = false
+endif
+if wiimote.A
+  key.Enter = true
+  wait 60 ms
+  key.Enter = false
+endif

@@ -1,0 +1,290 @@
+/* Doom 3 with real walking, turning, jumping, crouching,
+   aiming, firing, reloading, punching, and viewing PDA
+
+   This may also work for other First Person Shooters
+   Check the keyboard keys at the end of the script to make sure
+   they match your game.
+
+   Please listen to the spoken instructions.
+   If you don't have speech then just read them below.
+   Carl Kenner, 23-July-2005
+*/
+
+// Instructions
+if var.help then
+  say("You can walk around by walking on the spot. Just let your hand swing naturally by your side.")
+  wait 8 seconds
+  say("You can jump or crouch by jumping or crouching while your hand is by your side.")
+  wait 8 seconds
+  say("You can turn by swinging your hand around in front of you or behind you.")
+  wait 8 seconds
+  say("You can aim your weapon by holding your hand up in front of you, with your fingers forwards and your thumb up.")
+  wait 8 seconds
+  say("When your weapon is raised you can fire by bending your pointer finger.")
+  wait 8 seconds
+  say("You can walk while your weapon is raised by bending your ring finger and optionally your little finger.")
+  wait 8 seconds
+  say("You can side-step left or right while your weapon is raised by rolling your hand to the left or right.")
+  wait 8 seconds
+  say("You can zoom in while your weapon is raised by pushing it forwards.")
+  wait 8 seconds
+  say("If you move from your original spot you need to record your measurements again.")
+  wait 8 seconds
+  say("That's all. Have fun!")
+  var.help = false
+end
+
+// Initialization
+if not var.initialised then
+  var.SideX = 0 cm
+  var.SideY = -12 cm
+  var.SideZ = -60 cm
+  var.Initialised = true
+  var.ShowingPDA = false
+  say("With your glove on, please stand back from the receptor with your hand hanging by your side. Then either press space, middle mouse button or the C button, or bend your middle two fingers while you outer two fingers are straight to record your measurements.")
+end
+var.OffAtStart = p5.x=0 and p5.y=0 and p5.z=0 and not p5.InRange
+
+// Check for calibration key/gesture or help key
+if pressed(mouse.MiddleButton) or pressed(p5.xlnnl) or pressed(space) or pressed(p5.C) or pressed(var.FingerWiggle)// or said("calibrate",1) or said("ready to go",1) then
+  var.SideX = p5.x in  cm
+  var.SideY = p5.y in  cm
+  var.SideZ = p5.z in  cm
+  say("Ok. You are ready to go! Press H for help.")
+  var.CenterView = true
+  wait 25 ms
+  var.CenterView = false
+  //var.help = true
+end
+var.help = H
+
+// Hand position and speed
+if p5.InRange then
+  var.SX = (p5.x in  cm) - var.SideX
+  var.SY = (p5.y in  cm) - var.SideY
+  var.SZ = (p5.z in  cm) - var.SideZ
+  var.WZ = (p5.z in  cm) - var.WeaponZ
+end
+var.HandMoving = smooth(p5.speed) > 0.3 mps
+var.HandRaised = var.SY > 27
+var.HandHighEnough = var.SY > 32
+
+// Hand gestures
+var.Fist = p5.xnnnn
+var.Punching = var.Fist and var.HandUp and (smooth(p5.ZVelocity) > 1000)
+
+// This is based on P5Motion in the Essential Reality SDK
+// It produces smooth mouse motion (when your gun is raised)
+var.FilterX = RemoveUnits(Smooth(p5.X in p5units)/2)
+var.FilterY = RemoveUnits(Smooth(p5.Y in p5units)/2)
+var.FilterZ = RemoveUnits(Smooth(p5.Z in p5units)/2)
+var.XMickey = var.FilterX - var.LastXpos
+var.YMickey = var.FilterY - var.LastYpos
+var.ZMickey = var.FilterZ - var.LastZpos
+var.COEFF1 = 0//0.0042
+var.COEFF2 = 1.2403
+var.XMickey = var.COEFF1*var.XMickey^3 + var.COEFF2*var.XMickey;
+var.YMickey = var.COEFF1*var.YMickey^3 + var.COEFF2*var.YMickey;
+var.ZMickey = var.COEFF1*var.ZMickey^3 + var.COEFF2*var.ZMickey;
+var.XMickey = var.XMickey*2
+var.YMickey = -var.YMickey*2
+var.ZMickey = var.ZMickey*2
+// Only update if our gun is raised
+var.Aiming = var.HandUp and var.HandRaised and (var.HandHighEnough or (not var.HandMoving)) and (not var.Punching)
+if var.Aiming and abs(smooth(p5.RollVelocity))<6 then
+  mouse.DirectInputX = mouse.DirectInputX + int(var.XMickey/*50/30*/)
+  mouse.DirectInputY = mouse.DirectInputY + int(var.YMickey/*50/30*/)
+end
+var.LastXpos = var.FilterX;
+var.LastYpos = var.FilterY;
+var.LastZpos = var.FilterZ;
+
+// More hand gestures
+var.GunStepLeft = var.Aiming and p5.ThumbLeft but not var.Fist
+var.GunStepRight = var.Aiming and p5.ThumbRight but not var.Fist
+var.Reload = P5.A
+var.Fire = var.Punching or (p5.Index > 40 and var.HandUp but not var.Fist)
+var.GunWalk = p5.ring > 45 but not p5.xlnnl and not var.Fist
+var.PDA = ((p5.FingersUp and p5.PalmBack) or (p5.FingersLeft and (p5.PalmBack or p5.PalmUp))) and var.HandRaised and p5.FingersAngleFromForward > 90 and not var.Fist
+var.FingerWiggle = p5.xrlll,p5.xlrll,p5.xllrl,p5.xlllr
+
+// Raising and lowering your weapon
+var.JustRaisedHand = false
+var.JustLoweredHand = false
+if neither var.HandUp nor var.HandDown then
+  var.HandUp = var.HandRaised
+  var.HandDown = not var.HandUp
+end
+if var.HandWasRaised but not var.HandRaised then
+  var.JustLoweredHand = true
+  var.HandDown = true
+  var.HandUp = false
+  var.HandWasRaised = false
+  mouse.DirectInputX = var.OldDIX
+  mouse.DirectInputY = var.OldDIY
+end
+if not var.HandMoving then
+  if var.HandRaised but not var.HandWasRaised then
+    var.JustRaisedHand = true
+    var.HandUp = true
+    var.HandDown = false
+  end if
+  var.OldDIX = mouse.DirectInputX
+  var.OldDIY = mouse.DirectInputY
+  var.HandWasRaised = var.HandRaised
+end
+
+// Center view when gun raised or lowered
+if var.JustRaisedHand or var.JustLoweredHand then
+  var.WeaponZ = p5.Z in cm
+  var.CenterView = true
+  wait 25 ms
+  var.CenterView = false
+  wait 100 ms
+  var.WeaponZ = p5.Z in cm
+  var.CenterView = true
+  wait 25 ms
+  var.CenterView = false
+  //wait 100 ms
+  //var.CenterView = true
+  //wait 25 ms
+  //var.CenterView = false
+  var.WeaponZ = p5.Z in cm
+end
+
+var.HandBySide = var.HandDown and p5.FingersDown and (p5.PalmLeft or p5.PalmForward)
+var.Crouch = var.SY < -8
+var.Prone = var.SY < -25
+var.Jump = (var.SY > 15) and (p5.FingersDown) and (p5.ThumbForward) and (var.SZ < 20)
+var.Left = p5.FingersDown and (p5.ThumbLeft or p5.ThumbLeftForward) and smooth(p5.xv < -800) and var.SZ > 0 and var.handdown
+var.Right = p5.FingersDown and (p5.ThumbRight or p5.ThumbRightForward) and smooth(p5.xv < -800) and var.SZ < 0 and var.handdown
+var.Walk = var.Jump or (KeepDown(var.HandBySide,0.5) and KeepDown(abs(p5.zv)>1000, 0.5) and not KeepDown(var.Left,0.5))
+var.Walking = var.GunWalk or (smooth(var.Walk) and (not keepdown(var.TurningLeft, 3 s)) and (var.Jump or (not var.HandUp)))
+var.SideStepLeft = (var.HandBySide and var.SX < -15 cm) or var.GunStepLeft
+var.SideStepRight = (var.HandBySide and var.SX > 15 cm) or var.GunStepRight
+var.StepBack = var.HandBySide and var.SZ < -15 cm
+var.SideStepFast = var.HandBySide and abs(var.SX) > 20 cm
+var.StepBackFast = var.HandBySide and (Var.SZ) < -20 cm
+var.HandInFront = var.SZ > 16 and var.SY < 25 and var.SX < -15 //and (p5.FingersDown or p5.FingersLeft)
+//var.HandBehind = ((var.SZ < -10 and var.SY < 15) or (KeepDown(var.SZ <-7, 5) and KeepDown(var.SY<15, 5) and not p5.InRange)) and not KeepDown(var.Walk, 0.5)
+var.HandBehind = p5.BehindSomething or p5.UntrackableAngle or (var.SZ < -10 and var.SY < 15 and var.SX < 5 and not KeepDown(var.Walk, 1 s))
+var.TurningLeft = ((var.HandInFront or var.Left) and p5.InRange) but not (keepdown(smooth(p5.XVelocity) > 1200, 0.8 s))
+var.TurningRight = (var.HandBehind or var.Right) and not var.OffAtStart
+
+// Speak confirmation
+var.JustRaisedHand => say("weapon up")
+var.JustLoweredHand => say("weapon down")
+if pressed(var.Crouch) then
+  speech.sam.text = ""
+  speech.sam.text = "crouching"
+end
+if released(var.Crouch) then
+  speech.sam.text = ""
+  speech.sam.text = "standing"
+end
+if pressed(var.Jump) then
+  var.JumpHeight = 15
+  speech.sam.text = ""
+  speech.sam.text = "jumping"
+end
+if var.Jump then
+  if var.SY > var.JumpHeight then var.JumpHeight = var.SY
+end
+if released(var.Jump) then
+  speech.mike.text = "You jumped "+(Round(var.JumpHeight) cm)
+end
+if pressed(var.TurningLeft) then
+  speech.sam.text = ""
+  speech.sam.text = "turning left"
+end
+if pressed(var.TurningRight) then
+  speech.sam.text = ""
+  speech.sam.text = "turning right"
+end
+if pressed(var.Walking) then
+  speech.sam.text = ""
+  speech.sam.text = "walking"
+end
+if pressed(var.PDA and not var.ShowingPDA) then
+   say ""
+   say "PDA on"
+end if
+
+
+// Other stuff
+if pressed(var.Fist) then
+  var.Fists = true
+  wait 100 ms
+  var.Fists = false
+end if
+if released(var.Fist) then
+  var.Pistol = true
+  wait 100 ms
+  var.Pistol = false
+end
+if pressed(var.CenterView) then
+  mouse.cursorPosX = (screen.left + screen.right)/2
+  mouse.cursorPosY = (screen.top + screen.bottom)/2
+end if
+
+// Keep track of PDA Status (slightly buggy)
+if pressed(keepdown(Tab,1 s)) then
+  wait 800 ms
+  toggle(var.ShowingPDA)
+end if
+pressed(Esc) => release(var.ShowingPDA)
+
+// PDA controls
+if var.JustLoweredHand and var.ShowingPDA then
+  press Escape
+  wait 50 ms
+  release Escape
+end
+
+// Keyboard keys for weapons
+Escape = P5.B
+Tab = var.PDA but not var.ShowingPDA
+One = var.Fists
+Two = var.Pistol
+Three = var.Shotgun
+Four = var.MachineGun
+Five = var.ChainGun
+Six = var.Grenades
+Seven = var.PlasmaGun
+Eight = var.Rockets
+Nine = var.SoulCube
+Zero = var.ChainSaw
+F = var.Flashlight
+
+// Keyboard keys
+Key.End = var.CenterView
+Key.R = var.Reload
+Mouse.LeftButton = var.Fire
+key.Z = var.Aiming and var.WZ > 10
+
+// Keyboard keys for walking
+key.W = var.Walking
+key.A = var.SideStepLeft
+key.D = var.SideStepRight
+key.S = var.StepBack
+mouse.RightButton = var.Jump
+key.C = var.Crouch
+if var.TurningLeft then
+  mouse.DirectInputX = mouse.DirectInputX - 6
+end if
+if var.TurningRight then
+  mouse.DirectInputX = mouse.DirectInputX + 6
+end if
+
+// Debug information
+var.s = ""
+if var.TurningLeft then var.s = var.s + "<- "
+if var.Walking then var.s = var.s + "^ "
+if var.TurningRight then var.s = var.s + "-> "
+if var.Jump then var.s = var.s + "jump "
+if var.Crouch then var.s = var.s + "crouch "
+if p5.InRange then
+  debug = var.s + var.SX+', '+var.SY+', '+var.SZ
+else
+  debug = var.s+' Out of range '+ var.SX+', '+var.SY+', '+var.SZ
+end

@@ -1,0 +1,59 @@
+// Type your program here!
+var.Fists = said('fists') or said('hands')
+var.Pistol = said('pistol')
+var.Shotgun = said('shotgun')
+var.MachineGun= said('machine gun')
+var.ChainGun=said('chain gun')
+var.Grenades=said('grenades') or said('grenade launcher')
+var.Plasmagun=said('plasma gun') or said('plasma rifle')
+var.Rockets=said('rockets') or said('rocket launcher')
+var.BFG = said('B.F.G.') or said('B.F.G. nine thousand')
+var.Chainsaw = said('chainsaw')
+var.SoulCube = said('soul cube')
+var.PDA = said('P.D.A.')
+var.Flashlight = said('torch') or said('flashlight')
+var.Reload = said('reload')
+var.NextWeapon = said('next weapon')
+var.PrevWeapon = said('previous weapon') or said('last weapon')
+
+
+Tab = var.PDA
+One = var.Fists
+Two = var.Pistol
+Three = var.Shotgun
+Four = var.MachineGun
+Five = var.ChainGun
+Six = var.Grenades
+Seven = var.PlasmaGun
+Eight = var.Rockets
+Nine = var.SoulCube
+Zero = var.ChainSaw
+F = var.Flashlight
+R = var.Reload
+Escape = said('menu') or said('escape')
+Enter = said('enter')
+Console = said('console')
+LeftBracket = var.PrevWeapon
+RightBracket = var.NextWeapon
+LMB = said('fire')
+F5 = said('quick save')
+F9 = said('quick load')
+F12 = said('screnshot')
+T = said('chat') or said('talk')
+Y = said('team chat')
+F6 = said('toggle team')
+F7 = said('spectate')
+F3 = said('ready')
+F1 = said('yes')
+F2 = said('no')
+Backspace = said('drop weapon')
+if said('what time is it') then begin
+  var.Hour = Floor(Time() in hours);
+  var.Minutes = ((Time() in hours) - (var.Hour hours)) in minutes
+  if var.Hour > 12 then var.Hour = var.Hour - 12
+  speech = var.Hour + " " + floor(var.Minutes)
+end
+
+
+
+

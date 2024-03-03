@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+America's Army: Operations Basic Comms Profile for Shoot 1.6
+by KOP_blujay (if you want to contact me, please do so through the America's Army forums; 
+               try a private message)
+October 21, 2002
+
+NOTE:
+This profile requires the following key binds in Settings->Player Controls->Communication Controls:
+
+G: Radio
+H: Hand Signals
+Y: Squad Radio
+U: Shout
+I: Whisper
+L: Global
+
+If you already have commands bound to those keys and don't want to change them, you will need to 
+edit this file to make it work.  In the "<sequence keys" areas, replace the first letter with the
+key you use for that comms command.  For example, if you use the P key for radio commands, replace:
+
+     <sequence keys="g7" />
+
+with:
+
+     <sequence keys="p7" />
+
+You'll also need to replace the G in the:
+
+     <sequence keys="g``" delay="20" />
+
+command with P (or whatever key you are using).
+
+Feel free to edit this file and redistribute it, just please give credit where due.
+
+Hooah!
+-->
+
+<shoot-config>
+	<command-list key-delay="0">
+		
+		<!-- Audible Radio Commands -->
+			
+			<command name="Radio: Area secure" phrase="Area secure">
+				<sequence keys="g7" />
+			</command>
+			<command name="Radio: Check your flanks!" phrase="Check your flanks">
+				<sequence keys="g009" />
+			</command>
+			<command name="Radio: Cover me!" phrase="Cover me">
+				<sequence keys="g3" />
+			</command>
+			<command name="Radio: Down" phrase="Down">
+				<sequence keys="g02" />
+			</command>
+			<command name="Radio: East" phrase="East">
+				<sequence keys="g07" />
+			</command>
+			<command name="Radio: Enemy down" phrase="Enemy down">
+				<sequence keys="g6" />
+			</command>
+			<command name="Radio: Enemy spotted" phrase="Enemy spotted">
+				<sequence keys="g4" />
+			</command>
+			<command name="Radio: Flash 'em!" phrase="Flash em">
+				<sequence keys="g004" />
+			</command>
+			<command name="Radio: Frag 'em!" phrase="Frag em">
+				<sequence keys="g002" />
+			</command>
+			<command name="Radio: Get the door" phrase="Get the door">
+				<sequence keys="g008" />
+			</command>
+			<command name="Radio: Grenade!" phrase="Grenade">
+				<sequence keys="g005" />
+			</command>
+			<command name="Radio: Hooah!" phrase="Hooah">
+				<sequence keys="g09" />
+			</command>
+			<command name="Radio: I'm hit!" phrase="I'm hit">
+				<sequence keys="g007" />
+			</command>
+			<command name="Radio: Left" phrase="Left">
+				<sequence keys="g03" />
+			</command>
+			<command name="Radio: Move out!" phrase="Move out">
+				<sequence keys="g1" />
+			</command>
+			<command name="Radio: Negative!" phrase="Negative">
+				<sequence keys="g9" />
+			</command>
+			<command name="Radio: North" phrase="North">
+				<sequence keys="g05" />
+			</command>
+			<command name="Radio: Ready!" phrase="Ready">
+				<sequence keys="g006" />
+			</command>
+			<command name="Radio: Right" phrase="Right">
+				<sequence keys="g04" />
+			</command>
+			<command name="Radio: Roger" phrase="Roger">
+				<sequence keys="g8" />
+			</command>
+			<command name="Radio: Smoke 'em!" phrase="Smoke em">
+				<sequence keys="g003" />
+			</command>
+			<command name="Radio: Sniper!" phrase="Sniper">
+				<sequence keys="g001" />
+			</command>
+			<command name="Radio: South" phrase="South">
+				<sequence keys="g06" />
+			</command>
+			<command name="Radio: Stop!" phrase="Stop">
+				<sequence keys="g2" />
+			</command>
+			<command name="Radio: Take cover!" phrase="Take cover">
+				<sequence keys="g5" />
+			</command>
+			<command name="Radio: Up" phrase="Up">
+				<sequence keys="g01" />
+			</command>
+			<command name="Radio: West" phrase="West">
+				<sequence keys="g08" />
+			</command>
+
+		<!-- Audible Shout Commands -->
+			
+			<command name="Shout: Area secure" phrase="Shout Area secure">
+				<sequence keys="u7" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Check your flanks!" phrase="Shout Check your flanks">
+				<sequence keys="u009" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Cover me!" phrase="Shout Cover me">
+				<sequence keys="u3" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Down" phrase="Shout Down">
+				<sequence keys="u02" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: East" phrase="Shout East">
+				<sequence keys="u07" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Enemy down" phrase="Shout Enemy down">
+				<sequence keys="u06" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Enemy spotted" phrase="Shout Enemy spotted">
+				<sequence keys="u4" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Flash 'em!" phrase="Shout Flash em">
+				<sequence keys="u004" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Frag 'em!" phrase="Shout Frag em">
+				<sequence keys="u002" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Get the door" phrase="Shout Get the door">
+				<sequence keys="u008" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Grenade!" phrase="Shout Grenade">
+				<sequence keys="u005" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Hooah!" phrase="Shout Hooah">
+				<sequence keys="u09" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: I'm hit!" phrase="Shout I'm hit">
+				<sequence keys="u007" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Left" phrase="Shout Left">
+				<sequence keys="u03" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Move out!" phrase="Shout Move out">
+				<sequence keys="u1" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Negative!" phrase="Shout Negative">
+				<sequence keys="u9" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: North" phrase="Shout North">
+				<sequence keys="u05" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Ready!" phrase="Shout Ready">
+				<sequence keys="u006" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Right" phrase="Shout Right">
+				<sequence keys="u04" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Roger" phrase="Shout Roger">
+				<sequence keys="u8" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Smoke 'em!" phrase="Shout Smoke em">
+				<sequence keys="u003" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Sniper!" phrase="Shout Sniper">
+				<sequence keys="u001" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: South" phrase="Shout South">
+				<sequence keys="u06" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Stop!" phrase="Shout Stop">
+				<sequence keys="u2" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Take cover!" phrase="Shout Take cover">
+				<sequence keys="u5" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: Up" phrase="Shout Up">
+				<sequence keys="u01" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Shout: West" phrase="Shout West">
+				<sequence keys="u08" />
+				<sequence keys="g``" delay="20" />
+			</command>
+
+		<!-- Audible Whisper Commands -->
+			
+			<command name="Whisper: Area secure" phrase="Whisper Area secure">
+				<sequence keys="i7" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Check your flanks!" phrase="Whisper Check your flanks">
+				<sequence keys="i009" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Cover me!" phrase="Whisper Cover me">
+				<sequence keys="i3" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Down" phrase="Whisper Down">
+				<sequence keys="i02" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: East" phrase="Whisper East">
+				<sequence keys="i07" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Enemy down" phrase="Whisper Enemy down">
+				<sequence keys="i06" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Enemy spotted" phrase="Whisper Enemy spotted">
+				<sequence keys="i4" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Flash 'em!" phrase="Whisper Flash em">
+				<sequence keys="i004" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Frag 'em!" phrase="Whisper Frag em">
+				<sequence keys="i002" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Get the door" phrase="Whisper Get the door">
+				<sequence keys="i008" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Grenade!" phrase="Whisper Grenade">
+				<sequence keys="i005" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Hooah!" phrase="Whisper Hooah">
+				<sequence keys="i09" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: I'm hit!" phrase="Whisper I'm hit">
+				<sequence keys="i007" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Left" phrase="Whisper Left">
+				<sequence keys="i03" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Move out!" phrase="Whisper Move out">
+				<sequence keys="i1" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Negative!" phrase="Whisper Negative">
+				<sequence keys="i9" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: North" phrase="Whisper North">
+				<sequence keys="i05" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Ready!" phrase="Whisper Ready">
+				<sequence keys="i006" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Right" phrase="Whisper Right">
+				<sequence keys="i04" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Roger" phrase="Whisper Roger">
+				<sequence keys="i8" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Smoke 'em!" phrase="Whisper Smoke em">
+				<sequence keys="i003" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Sniper!" phrase="Whisper Sniper">
+				<sequence keys="i001" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: South" phrase="Whisper South">
+				<sequence keys="i06" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Stop!" phrase="Whisper Stop">
+				<sequence keys="i2" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Take cover!" phrase="Whisper Take cover">
+				<sequence keys="i5" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: Up" phrase="Whisper Up">
+				<sequence keys="i01" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Whisper: West" phrase="Whisper West">
+				<sequence keys="i08" />
+				<sequence keys="g``" delay="20" />
+			</command>
+
+		<!-- Audible Squad Commands -->
+
+			<command name="Squad: Cease fire, cease fire!" phrase="Cease fire cease fire">
+				<sequence keys="y5" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Squad: Fall back, fall back!" phrase="Fall back fall back">
+				<sequence keys="y3" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Squad: Form up!" phrase="Form up">
+				<sequence keys="y1" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Squad: Good job, soldier!" phrase="Good job soldier">
+				<sequence keys="y08" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Squad: Grandma was slow, but she was old" phrase="Grandma was slow but she was old">
+				<sequence keys="y06" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Squad: Great job, team!!" phrase="Great job team">
+				<sequence keys="y09" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Squad: Hit the dirt!" phrase="Hit the dirt">
+				<sequence keys="y04" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Squad: Hold this position" phrase="Hold this position">
+				<sequence keys="y6" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Squad: Open fire!" phrase="Open fire">
+				<sequence keys="y4" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Squad: Operate as a unit!" phrase="Operate as a unit!">
+				<sequence keys="y9" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Squad: Report in" phrase="Report in">
+				<sequence keys="y7" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Squad: Silence, silence!" phrase="Silence silence">
+				<sequence keys="y8" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Squad: Spread out!" phrase="Spread out">
+				<sequence keys="y2" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Squad: Stay down!" phrase="Stay down">
+				<sequence keys="y05" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Squad: That don't make no sense at all" phrase="That don't make no sense at all">
+				<sequence keys="y07" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Squad: That may be your way, but it's not the army way" phrase="That may be your way, but it's not the army way">
+				<sequence keys="y02" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Squad: There's no I in team" phrase="There's no I in team">
+				<sequence keys="y01" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Squad: What are you doing soldier" phrase="What are you doing soldier">
+				<sequence keys="y03" />
+				<sequence keys="g``" delay="20" />
+			</command>
+		
+		<!-- Hand Signals (say "wave" and the command) -->
+
+			<command name="Wave: Affirmative" phrase="Wave affirmative">
+				<sequence keys="h8" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Wave: Double time" phrase="Wave double time">
+				<sequence keys="h6" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Wave: Get down" phrase="Wave get down">
+				<sequence keys="h3" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Wave: Look this way" phrase="Wave look this way">
+				<sequence keys="h4" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Wave: Move out" phrase="Wave move out">
+				<sequence keys="h1" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Wave: Negative" phrase="Wave negative">
+				<sequence keys="h9" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Wave: Ready" phrase="Wave ready">
+				<sequence keys="h5" />
+				<sequence keys="g``" delay="20" />
+			</command>
+			<command name="Wave: Stop" phrase="Wave stop">
+				<sequence keys="h2" />
+				<sequence keys="g``" delay="20" />
+			</command>
+
+		<!-- Misc Commands -->
+			<command name="Misc: Global Comms Mode On" phrase="Global on">
+				<key type="l" />
+			</command>
+			<command name="Misc: Global Comms Mode Off" phrase="Global off">
+				<sequence keys="g``" delay="20" />
+			</command>
+
+
+	</command-list>
+
+	<push-to-talk initial-state="off">
+		<toggle>
+    			<key type="Tab"/>
+		</toggle>
+	</push-to-talk> 
+
+	<sounds>
+ 		<!-- sound type="recognized" source="recognized.wav" volume="100" pan="0"/ -->
+ 		<sound type="not-recognized" source="notrecognized.wav" volume="100" pan="0"/>
+  		<sound type="speech-enabled" source="speechenabled.wav" volume="100" pan="0"/>
+  		<sound type="speech-disabled" source="speechdisabled.wav" volume="100" pan="0"/>
+	</sounds>
+
+
+</shoot-config>

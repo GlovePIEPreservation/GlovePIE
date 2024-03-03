@@ -1,0 +1,222 @@
+// Adventure in Serenia: The Wizard and the Princess
+// Also known as Kings Quest 0, by Sierra
+
+pie.SeqDuration = 50 ms
+pie.SeqGap = 50 ms
+
+// Keys
+ScrollLock = said("scroll") or said("next page")
+F1 = said("show text") or said("show graphics")
+F2 = said("change palette",5)
+F3 = said("repeat",5)
+said("yes",5) or said("yes please",5) => ScrollLock,Y,Enter
+said("no",5) or said("no thank you",5) => ScrollLock,N,Enter
+
+// Inventory
+said("inventory",5) => ScrollLock,F1,I,N,V,E,N,T,O,R,Y,Enter,wait(10 seconds),F1
+
+// Load and save
+said("load game",5) or said("restore game",5) => ScrollLock,R,E,S,T,O,R,E,Space,G,A,M,E,Enter
+said("save game",5) => ScrollLock,S,A,V,E,Space,G,A,M,E,Enter
+said("A",5) => A
+said("bee",5) => B
+said("see",5) => C
+said("D",5) => D
+said("E",5) => E
+said("F",5) => F
+said("gee",5) => G
+said("H",5) => H
+said("eye",5) => I
+said("jay",5) => J
+said("K",5) => K
+said("L",5) => L
+said("M",5) => M
+said("N",5) => N
+said("Oh",5) => O,Enter
+said("pee",5) => P
+said("queue",5) => Q
+said("are",5) => R
+said("S",5) => S
+said("tea",5) => T
+said("you",5) => U
+said("V",5) => V
+said("W",5) => W
+said("X",5) or said("cancel") => X
+said("why",5) => Y
+said("zed",5) or said("zee",5) => Z
+said("space",5) => Space
+
+
+// Looking
+said("look",5) or said("look around",5) => ScrollLock,L,O,O,K,Enter
+said("look away",5) or said("stop looking",5) => ScrollLock,L,O,O,K,Space,R,O,O,M,Enter
+said("look at the chasm",5) or said("look at chasm",5) => ScrollLock,L,O,O,K,Space,C,H,A,S,M,Enter
+said("look at the rock",5) or said("look under the rock",5) or said("look behind the rock",5) => ScrollLock,L,O,O,K,Space,R,O,C,K,Enter
+said("look at the snake",5) => ScrollLock,L,O,O,K,Space,S,N,A,K,E,Enter
+said("look at the locket",5) or said("read the locket",5) => ScrollLock,L,O,O,K,Space,L,O,C,K,E,T,Enter
+said("look inside the locket",5) => ScrollLock,O,P,E,N,Space,L,O,C,K,E,T,Enter,ScrollLock,L,O,O,K,Space,L,O,C,K,E,T,Enter
+said("look at the note",5) or said("read the note",5) => ScrollLock,L,O,O,K,Space,N,O,T,E,Enter
+said("look at the cactus",5) or said("look at cactus",5) => ScrollLock,L,O,O,K,Space,C,A,C,T,U,S,Enter
+said("look at the cracker",5) or said("look at cracker",5) => ScrollLock,L,O,O,K,Space,C,R,A,C,K,E,R,Enter
+said("look at the scorpion",5) or said("look at scorpion",5) => Say("You see nothing special"),ScrollLock,L,O,O,K,Space,S,C,O,R,P,I,O,N,Enter
+said("look at the village",5) or said("look at village",5) => ScrollLock,L,O,O,K,Space,V,I,L,L,A,G,E,Enter
+said("look at the buildings",5) or said("look at building",5) or said("look at the house",5) or said("look at the cottage",5) => ScrollLock,L,O,O,K,Space,B,U,I,L,D,I,N,G,Enter
+said("look at the snake",5) or said("look at snake",5) => ScrollLock,L,O,O,K,Space,S,N,A,K,E,Enter
+said("look in the hole",5) or said("look in hole",5) or said("look at hole") => ScrollLock,L,O,O,K,Space,H,O,L,E,Enter
+said("look at the gnome",5) or said("look at gnome",5) or said("look at the dwarf") or said("look dwarf") => ScrollLock,L,O,O,K,Space,G,N,O,M,E,Enter
+said("look at the throne",5) or said("look at throne",5) => ScrollLock,L,O,O,K,Space,T,H,R,O,N,E,Enter
+said("look at the cabinet",5) or said("look at cabinet",5) => ScrollLock,L,O,O,K,Space,C,A,B,I,N,E,T,Enter
+said("look at the shoes",5) or said("look at shoes",5) => ScrollLock,L,O,O,K,Space,S,H,O,E,S,Enter
+said("look at the tree",5) or said("look at tree",5) => ScrollLock,L,O,O,K,Space,T,R,E,E,Enter
+said("look at the table",5) or said("look at table",5) => ScrollLock,L,O,O,K,Space,T,A,B,L,E,Enter
+said("look at the apple",5) or said("look at apple",5) => ScrollLock,L,O,O,K,Space,A,P,P,L,E,Enter
+said("look at the boat",5) or said("look at boat",5) => ScrollLock,L,O,O,K,Space,B,O,A,T,Enter
+said("look at the sea",5) or said("look at sea",5) or said("look at the ocean",5) or said("look at ocean",5) => ScrollLock,L,O,O,K,Space,S,E,A,Enter
+said("look at the parrot",5) => ScrollLock,L,O,O,K,Space,P,A,R,R,O,T,Enter
+said("look at the bird",5) => ScrollLock,L,O,O,K,Space,B,I,R,D,Enter
+said("look at the cave",5) => ScrollLock,L,O,O,K,Space,C,A,V,E,Enter
+said("look in the chest",5) => ScrollLock,L,O,O,K,Space,C,H,E,S,T,Enter
+said("look at the wares",5) => ScrollLock,L,O,O,K,Space,W,A,R,E,S,Enter
+said("look at the horn",5) => ScrollLock,L,O,O,K,Space,H,O,R,N,Enter
+said("look at the pan",5) => ScrollLock,L,O,O,K,Space,P,A,N,Enter
+said("look at the boots",5) => ScrollLock,L,O,O,K,Space,B,O,O,T,S,Enter
+said("look at the dagger",5) => ScrollLock,L,O,O,K,Space,D,A,G,G,E,R,Enter
+said("look at the wine",5) => ScrollLock,L,O,O,K,Space,J,U,G,Enter
+said("look at the castle",5) => Say("I wonder if it is the Wizard's castle?"),ScrollLock,L,O,O,K,Space,C,A,S,T,L,E,Enter
+said("look at the flag",5) => ScrollLock,L,O,O,K,Space,F,L,A,G,Enter
+said("look in the closet",5) => ScrollLock,L,O,O,K,Space,C,L,O,S,E,T,Enter
+said("look at the shoes",5) => ScrollLock,L,O,O,K,Space,S,H,O,E,S,Enter
+
+// Navigation
+said("swim",5) or said("go swimming",5) => ScrollLock,S,W,I,M,Enter
+said("go north",5) or said("north",5) => ScrollLock,N,Enter
+said("go south",5) or said("south",5) => ScrollLock,S,Enter
+said("go west",5) or said("west",5) => ScrollLock,W,Enter
+said("go east",5) or said("east",5) => ScrollLock,E,Enter
+said("go up",5) or said("up",5) or said("climb tree",5) or said("climb the tree",5) or said("climb up",5) => ScrollLock,U,P,Enter
+said("go down",5) or said("down",5) or said("climb down",5) => ScrollLock,D,O,W,N,Enter
+said("enter",5) or said("go in",5) or said("walk",5) or said("cross",5) or said("follow",5) => ScrollLock,E,N,T,E,R,Enter
+said("enter house",5) or said("go in house",5) or said("enter the house",5) or said("go in the house",5) => ScrollLock,E,N,T,E,R,Space,H,O,U,S,E,Enter
+said("enter crevice",5) or said("go in crevice",5) or said("enter the crevice",5) or said("go in crevice",5) or said("go in the house",5) => ScrollLock,E,N,T,E,R,Space,C,R,E,V,I,C,E,Enter
+said("get out",5) or said("exit",5) => ScrollLock,E,X,I,T,Enter
+said("get out of the boat",5) or said("exit the boat",5) => ScrollLock,E,X,I,T,Space,B,O,A,T,Enter
+said("unlock the door",5) or said("unlock door") => ScrollLock,U,N,L,O,C,K,Space,D,O,O,R,Enter
+said("open the door",5) or said("open door",5) => ScrollLock,O,P,E,N,Space,D,O,O,R,Enter
+said("enter the door",5) or said("enter door",5) or said("go through the door") or said("go through door") => ScrollLock,G,O,Space,D,O,O,R,Enter
+said("enter the hole",5) or said("enter hole",5) or said("go through the hole") or said("go through hole") => ScrollLock,G,O,Space,H,O,L,E,Enter
+said("enter the cave",5) or said("enter cave",5) or said("go in cave") or said("go in the cave") => ScrollLock,G,O,Space,C,A,V,E,Enter
+said("enter the boat",5) or said("enter boat",5) or said("get in the boat") or said("get in boat") => ScrollLock,G,O,Space,B,O,A,T,Enter
+said("follow the rainbow",5) or said("follow rainbow") => ScrollLock,F,O,L,L,O,W,Space,R,A,I,N,B,O,W,Enter
+said("look at the window",5) or said("look at window",5) or said("look out window",5) => ScrollLock,L,O,O,K,Space,W,I,N,D,O,W,Enter
+
+// Get
+said("get everything",5) or said("get all",5) or said("get stuff",5) => ScrollLock,G,E,T,Space,A,L,L,Enter
+
+said("get the snake",5) or said("get snake",5) => Say("I wouldn't try it if I were you."),ScrollLock,G,E,T,Space,S,N,A,K,E,Enter
+said("get the scorpion",5) or said("get scorpion",5) => Say("Are you crazy??"),ScrollLock,G,E,T,Space,S,C,O,R,P,I,O,N,Enter
+said("get the bird",5) or said("get bird",5) => ScrollLock,G,E,T,Space,B,I,R,D,Enter
+said("get the parrot",5) or said("get parrot",5) => ScrollLock,G,E,T,Space,P,A,R,R,O,T,Enter
+said("get the frog",5) or said("get frog",5) or said("get the toad",5) or said("get toad",5) => ScrollLock,G,E,T,Space,F,R,O,G,Enter
+said("get the boar",5) or said("get boar",5) or said("get the pig",5) or said("get pig",5) => ScrollLock,G,E,T,Space,P,I,G,Enter
+said("get the lion",5) or said("get lion",5) => Say("I wouldn't try it if I were you."),ScrollLock,G,E,T,Space,L,I,O,N,Enter
+
+said("get the apple",5) or said("get apple",5) => ScrollLock,G,E,T,Space,A,P,P,L,E,Enter
+said("get the bread",5) or said("get bread",5) => ScrollLock,G,E,T,Space,B,R,E,A,D,Enter
+said("get the cracker",5) or said("get cracker",5) => ScrollLock,G,E,T,Space,C,R,A,C,K,E,R,Enter
+said("get the water",5) or said("get water",5) => ScrollLock,G,E,T,Space,W,A,T,E,R,Enter
+said("get the flask",5) or said("get flask",5) => ScrollLock,G,E,T,Space,F,L,A,S,K,Enter
+said("get the vial",5) or said("get vial",5) => ScrollLock,G,E,T,Space,V,I,A,L,Enter
+said("get the jug",5) or said("get jug",5) or said("get the wine",5) or said("get wine",5) => ScrollLock,G,E,T,Space,J,U,G,Enter
+
+said("get rock",5) or said("get the rock",5) or said("get stone") or said("get boulder") => ScrollLock,G,E,T,Space,R,O,C,K,Enter
+said("get stick",5) or said("get branch",5) or said("get the stick") => ScrollLock,G,E,T,Space,S,T,I,C,K,Enter
+said("get the note",5) or said("get note",5) => ScrollLock,G,E,T,Space,N,O,T,E,Enter
+said("get the locket",5) or said("get locket",5) or said("get necklace") or said("get the necklace") => ScrollLock,G,E,T,Space,L,O,C,K,E,T,Enter
+said("get the cactus",5) or said("get cactus",5) => Say("please leave the cactus alone"),ScrollLock,G,E,T,Space,C,A,C,T,U,S,Enter
+said("get the knife",5) or said("get knife",5) or said("get the pocket knife") or said("get pocket knife") => ScrollLock,G,E,T,Space,K,N,I,F,E,Enter
+said("get the boat",5) or said("get boat",5) => ScrollLock,G,E,T,Space,B,O,A,T,Enter
+said("get the blanket",5) or said("get blanket",5) => ScrollLock,G,E,T,Space,B,L,A,N,K,E,T,Enter
+said("get the rope",5) or said("get rope",5) => ScrollLock,G,E,T,Space,R,O,P,E,Enter
+said("get the oars",5) or said("get oars",5) or said("get the paddles") or said("get paddles") => ScrollLock,G,E,T,Space,O,A,R,S,Enter
+said("get the chest",5) or said("get chest",5) or said("get the treasure") or said("get treasure") => ScrollLock,G,E,T,Space,C,H,E,S,T,Enter
+said("get the anchor",5) or said("get anchor",5) => ScrollLock,G,E,T,Space,A,N,C,H,O,R,Enter
+said("get the harp",5) or said("get harp",5) => ScrollLock,G,E,T,Space,H,A,R,P,Enter
+said("get the ring",5) or said("get ring",5) => ScrollLock,G,E,T,Space,R,I,N,G,Enter
+said("get the bucket",5) or said("get bucket",5) or said("get pail",5) or said("get the pail",5) => ScrollLock,G,E,T,Space,B,U,C,K,E,T,Enter
+said("get the gold",5) or said("get gold",5) or said("get coin",5) or said("get the coin",5) => ScrollLock,G,E,T,Space,G,O,L,D,Enter
+said("get the shovel",5) or said("get shovel",5) or said("get spade") or said("get the spade") => ScrollLock,G,E,T,Space,S,H,O,V,E,L,Enter
+said("get the shoes",5) or said("get shoes",5) => ScrollLock,G,E,T,Space,S,H,O,E,S,Enter
+said("get the dagger",5) or said("get dagger",5) => ScrollLock,G,E,T,Space,D,A,G,G,E,R,Enter
+said("get the horn",5) or said("get horn",5) or said("get the trumpet",5) or said("get trumpet",5) => ScrollLock,G,E,T,Space,H,O,R,N,Enter
+said("get the pan",5) or said("get pan",5) or said("get the pot",5) or said("get pot",5) => ScrollLock,G,E,T,Space,P,A,N,Enter
+said("get the flag",5) or said("get flag",5) => ScrollLock,G,E,T,Space,F,L,A,G,Enter
+said("get the key",5) or said("get key",5) => ScrollLock,G,E,T,Space,K,E,Y,Enter
+said("get the chair",5) or said("get chair",5) => ScrollLock,G,E,T,Space,C,H,A,I,R,Enter
+said("get the magic",5) or said("get magic",5) => ScrollLock,G,E,T,Space,M,A,G,I,C,Enter
+said("get the lock",5) or said("get lock",5) => ScrollLock,G,E,T,Space,L,O,C,K,Enter
+said("get the boots",5) or said("get boots",5) => ScrollLock,G,E,T,Space,B,O,O,T,S,Enter
+said("fill the flask",5) or said("fill flask",5) => ScrollLock,F,I,L,L,Space,F,L,A,S,K,Enter
+
+// Drop
+said("drop everything") or said("drop all") => ScrollLock,D,R,O,P,Space,A,L,L,Enter
+said("drop note") or said("drop the note") => ScrollLock,D,R,O,P,Space,N,O,T,E,Enter
+said("drop cracker") or said("drop the cracker") => ScrollLock,D,R,O,P,Space,C,R,A,C,K,E,R,Enter
+said("drop rock") or said("drop the rock") => ScrollLock,D,R,O,P,Space,R,O,C,K,Enter
+
+// Throw
+said("throw the rock",5) or said("throw the rock at the snake") or said("throw rock") or said("throw rock at snake") or said("throw stone") or said("throw stone at snake") => ScrollLock,T,H,R,O,W,Space,R,O,C,K,Enter
+said("throw the stick",5) or said("throw the stick at the snake") => ScrollLock,T,H,R,O,W,Space,S,T,I,C,K,Enter
+said("help the snake",5) or said("help snake",5) or said("save the snake",5) or said("save snake",5) => ScrollLock,S,A,V,E,Space,S,N,A,K,E,Enter
+said("poly want a cracker") or said("give the cracker",5) or said("give cracker",5) or said("give the cracker to the parrot") => ScrollLock,G,I,V,E,Space,C,R,A,C,K,E,R,Enter
+said("throw the bread",5) or said("give the bread to the lion",5) or said("throw the bread to the lion",5) or said("give bread to lion") => ScrollLock,G,I,V,E,Space,B,R,E,A,D,Enter
+said("throw the apple",5) or said("give the apple to the boar",5) or said("throw the apple to the boar",5) or said("give apple to boar") => ScrollLock,G,I,V,E,Space,A,P,P,L,E,Enter
+said("throw the rope",5) or said("throw rope",5) => ScrollLock,T,H,R,O,W,Space,R,O,P,E,Enter
+
+// Spells
+said("hocus") or said("say hocus") => ScrollLock,H,O,C,U,S,Enter
+said("pocus") => ScrollLock,P,O,C,U,S,Enter
+said("lucy") or said("say lucy") => ScrollLock,L,U,C,Y,Enter
+said("hiss") or said("say hiss") => ScrollLock,H,I,S,S,Enter
+said("woosh") or said("say woosh") => ScrollLock,W,H,O,O,S,H,Enter
+said("abracadabra") or said("say abracadabra") => ScrollLock,A,B,R,A,C,A,D,A,B,R,A,Enter
+
+// Eat or Drink
+said("drink vial") or said("drink the potion") or said("drink the vial") => ScrollLock,D,R,I,N,K,Space,V,I,A,L,Enter
+said("drink the water") or said("drink water") or said("drink from flask") => ScrollLock,D,R,I,N,K,Space,W,A,T,E,R,Enter
+said("drink the wine") or said("drink wine") or said("drink from jug") => ScrollLock,D,R,I,N,K,Space,W,I,N,E,Enter
+said("eat the bread") or said("eat bread") => ScrollLock,E,A,T,Space,B,R,E,A,D,Enter
+said("eat the apple") or said("eat apple") => ScrollLock,E,A,T,Space,A,P,P,L,E,Enter
+said("eat the cracker") or said("eat cracker") => ScrollLock,E,A,T,Space,C,R,A,C,K,E,R,Enter
+
+// Other actions
+said("kill the scorpion",5) or said("kill scorpion",5) => Say("A scorpion behind the rock has stung you. You are dead. Would you like to play again?"),ScrollLock,K,I,L,L,Space,S,C,O,R,P,I,O,N,Enter
+said("dig a hole") or said("dig") => ScrollLock,D,I,G,Enter
+said("fix boat") or said("fix the boat") or said("repair the boat") or said("repair boat") or said("plug the hole") => ScrollLock,F,I,X,Space,B,O,A,T,Enter
+said("with the blanket") or said("use the blanket") or said("use blanket") => ScrollLock,U,S,E,Space,B,L,A,N,K,E,T,Enter
+said("play harp") => ScrollLock,P,L,A,Y,Space,H,A,R,P,Enter
+said("play horn") or said("blow horn") => ScrollLock,B,L,O,W,Space,H,O,R,N,Enter
+said("with the knife") or said("use the knife") or said("with the pocket knife") or said("use pocket knife") => ScrollLock,W,I,T,H,Space,K,N,I,F,E,Enter
+said("pick lock") or said("pick the lock") => ScrollLock,P,I,C,K,Space,L,O,C,K,Enter
+said("open the closet") or said("open the cupboard") or said("open closet") or said("open cupboard") => ScrollLock,O,P,E,N,Space,C,L,O,S,E,T,Enter
+said("pick the lock with the knife") => ScrollLock,P,I,C,K,Space,L,O,C,K,Enter,ScrollLock,W,I,T,H,Space,K,N,I,F,E,Enter
+said("wear the ring",5) or said("wear ring",5) or said("put the ring on") or said("put on the ring") or said("put on ring") or said("put ring on") => ScrollLock,W,E,A,R,Space,R,I,N,G,Enter
+said("wear the shoes",5) or said("wear shoes",5) or said("put the shoes on") or said("put on the shoes") or said("put on shoes") or said("put shoes on") => ScrollLock,W,E,A,R,Space,S,H,O,E,S,Enter
+said("rub the ring",5) or said("rub ring",5) => ScrollLock,R,U,B,Space,R,I,N,G,Enter
+said("kiss the frog",5) or said("kiss frog",5) => ScrollLock,K,I,S,S,Space,F,R,O,G,Enter
+said("talk",5) or said("start talking",5) => ScrollLock,T,A,L,K,Enter
+said("talk to the parrot",5) or said("talk to parrot",5) => ScrollLock,T,A,L,K,Space,P,A,R,R,O,T,Enter
+said("talk to the woman",5) or said("talk to woman",5) => ScrollLock,T,A,L,K,Space,W,O,M,A,N,Enter
+said("talk to the man",5) or said("talk to man",5) or said("talk to the peddlar",5) or said("talk to peddlar",5) => ScrollLock,T,A,L,K,Space,M,A,N,Enter
+said("talk to the giant",5) or said("talk to giant",5) => ScrollLock,T,A,L,K,Space,G,I,A,N,T,Enter
+said("lift rock",5) => ScrollLock,L,I,F,T,Space,R,O,C,K,Enter
+said("tie the anchor to the rope",5) or said("tie anchor to rope",5) or said("tie the rope to the anchor",5) or said("tie rope to anchor",5) => ScrollLock,T,I,E,Space,R,O,P,E,Enter,ScrollLock,U,S,E,Space,A,N,C,H,O,R,Enter
+said("open the chest",5) or said("open chest",5) => ScrollLock,O,P,E,N,Space,C,H,E,S,T,Enter
+
+said("buy the boots",5) => ScrollLock,B,U,Y,Space,B,O,O,T,S,Enter
+said("buy the horn",5) => ScrollLock,B,U,Y,Space,H,O,R,N,Enter
+said("buy the pan",5) => ScrollLock,B,U,Y,Space,P,A,N,Enter
+said("buy the dagger",5) => ScrollLock,B,U,Y,Space,D,A,G,G,E,R,Enter
+said("buy the wine",5) => ScrollLock,B,U,Y,Space,W,I,N,E,Enter
+
+if microphone.PartialPhrase<>'' then debug = microphone.PartialPhrase
+

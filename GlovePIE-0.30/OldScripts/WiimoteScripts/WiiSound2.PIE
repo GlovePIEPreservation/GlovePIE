@@ -1,0 +1,47 @@
+// Carl's modified Wii Sound Script
+// No external programs required 
+// You must create sound files "B.wav", etc.
+// based on Wii Sound!
+// www.n-unity.de 
+// based on 
+// Bob's Wii Drums! 
+// www.bobsomers.com 
+
+var.xOffset = 8 
+var.yOffset = -37 
+var.zOffset = 12 
+
+var.xRot = Wiimote.RawForceX + var.xOffset 
+var.yRot = Wiimote.RawForceY + var.yOffset 
+var.zRot = Wiimote.RawForceZ + var.zOffset 
+
+// Debug 
+debug = "X=" + var.xRot + "   Y=" + var.yRot + "   Z=" + var.zRot 
+
+// Downward drum beat triggered 
+if var.yRot > 30 then 
+   var.B = Wiimote.B and not (Wiimote.A or Wiimote.Minus or Wiimote.Home or Wiimote.Plus) 
+   var.S = Wiimote.A and not (Wiimote.B or Wiimote.Minus or Wiimote.Home or Wiimote.Plus) 
+   var.C = Wiimote.A and Wiimote.B and not (Wiimote.Minus or Wiimote.Home or Wiimote.Plus) 
+   var.T = Wiimote.Minus and not (Wiimote.A or Wiimote.B or Wiimote.Home or Wiimote.Plus) 
+   var.M = Wiimote.Home and not (Wiimote.A or Wiimote.B or Wiimote.Minus or Wiimote.Plus) 
+   var.L = Wiimote.Plus and not (Wiimote.A or Wiimote.B or Wiimote.Minus or Wiimote.Home) 
+   var.H = not(Wiimote.A or Wiimote.B or Wiimote.Minus or Wiimote.Home or Wiimote.Plus) 
+else 
+    var.B = false 
+    var.S = false 
+    var.H = false 
+    var.C = false 
+    var.T = false 
+    var.M = false 
+    var.L = false 
+endif 
+
+PlaySound("B.wav") = var.B 
+PlaySound("S.wav") = var.S 
+PlaySound("H.wav") = var.H 
+PlaySound("C.wav") = var.C 
+PlaySound("T.wav") = var.T 
+PlaySound("M.wav") = var.M 
+PlaySound("L.wav") = var.L 
+

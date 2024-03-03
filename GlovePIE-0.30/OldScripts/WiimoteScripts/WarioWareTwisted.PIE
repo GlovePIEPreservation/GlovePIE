@@ -1,0 +1,16 @@
+// don't need to filter out accelerations
+var.pitch = asin(wiimote.gz/|wiimote.g|)
+var.speed = abs(delta(var.pitch)*40)
+var.fast = Smooth(var.speed)>170
+var.far = abs(var.Pitch)>20 degrees
+
+Z = Wiimote.Two
+X = Wiimote.One or var.fast or var.far
+A = Wiimote.Up
+S = Wiimote.Down
+Enter = Wiimote.A or Wiimote.Plus
+Backspace = Wiimote.Minus
+Left = var.pitch < -10 degrees
+Right = var.Pitch > 10 degrees
+Up = Wiimote.Roll > -60 degrees
+Down = Wiimote.Roll < -120 degrees

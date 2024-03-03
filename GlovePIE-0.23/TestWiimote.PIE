@@ -1,0 +1,21 @@
+// Show wiimote forces
+debug = Wiimote.RawForceX+', '+Wiimote.RawForceY+', '+Wiimote.RawForceZ
+
+// Set keys to wiimote buttons
+Up = Wiimote.Up
+Down = Wiimote.Down
+Left = Wiimote.Left
+Right = Wiimote.Right
+A = Wiimote.A
+B = Wiimote.B
+One = Wiimote.One
+Two = Wiimote.Two
+Home = Wiimote.Home
+Minus = Wiimote.Minus
+Equals = Wiimote.Plus
+
+// Rumble when shift is pressed
+Wiimote.Rumble = Shift
+
+// Set the middle two LEDs to ON
+Wiimote.Leds = 2+4

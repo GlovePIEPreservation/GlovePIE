@@ -1,0 +1,30 @@
+// Display values next to the Run button
+debug = VR920.yaw+', '+VR920.Pitch+', '+VR920.roll
+
+// Emulate the mouse based on yaw and pitch
+// Change the 400 values to change sensitivity, measured in mickeys
+// it's not limited to 90 degrees, this just means 90 degrees corresponds to 400
+// mickeys. it implies 180 degrees corresponds to 800 mickeys
+FakeMouse.DirectInputX += delta(MapRange(VR920.yaw, -90 degrees, 90 degrees, -400, 400))
+FakeMouse.DirectInputY += delta(MapRange(VR920.pitch, -90 degrees, 90 degrees, 400, -400))
+
+// Emulate the keyboard arrow keys based on roll
+// just for an example
+key.Left = VR920.roll < -20 degrees
+key.Right = VR920.roll > 20 degrees
+
+// Emulate number keys based on commands spoken into the microphone
+// if you have Vista you don't need to download anything, but may want to
+// set it up in the Speech control panel.
+// Otherwise check if you have a speech recognition control panel, if you
+// don't then download and install it here:
+//   http://www.chant.net/downloads/sapi51.exe
+// Please wear the HMD visor with microphone while doing the training.
+
+// uncomment the next three lines:
+//key.one = said('pistol')
+//key.two = said('shotgun')
+//key.three = said('rocket launcher')
+
+
+

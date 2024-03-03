@@ -1,0 +1,42 @@
+P5midi Project File
+written by N. Fournel
+version: 1
+revision: 1
+
+
+[MIDI settings]
+MIDI out port = 1
+MIDI out channel = 0
+
+[Finger bending]
+Thumb controller = 20
+Thumb min value = 0
+Thumb max value = 127
+Index controller = 21
+Index min value = 0
+Index max value = 127
+Middle controller = 22
+Middle min value = 0
+Middle max value = 127
+Ring controller = 23
+Ring min value = 0
+Ring max value = 127
+Pinky controller = 24
+Pinky min value = 0
+Pinky max value = 127
+
+[Hand position]
+X controller = 10
+X min value = 0
+X max value = 127
+Y controller = 1
+Y min value = 0
+Y max value = 127
+Z controller = 128
+Z min value = 0
+Z max value = 127
+
+[Glove buttons]
+Button A = 0
+Button B = 1
+Button C = 2

@@ -1,0 +1,70 @@
+/*  Super Mario 64... but with Super Mario Galaxy controls!
+    By Carl Kenner
+
+    Your Emulator must use the following config:
+      GameDevice = PPJoy Virtual Joystick 1
+      Analog Stick = joystick directions, Range 100%
+      C-Buttons = arrow keys
+      A = A, B = B, S = +
+      L = 2 (unused), R = C, Z = Z
+      Digital = unused
+
+    In a game level (not the castle) you need to press +, then choose
+    to set Camera Angle With R, then choose Lakitu <-> Stop. Then the
+    C button will work correctly.
+
+    Controls are the same as Super Mario Galaxy:
+      Nunchuk joystick = walk / run
+      Nunchuk Z = crouch
+      Wiimote A = jump
+      Wiimote B = grab things (no pointer function though, sorry)
+      Shake Wiimote or Nunchuk = Spin Attack!
+      + = Start
+      Home = Exit level
+      Wiimote D-Pad = Change camera angle
+      Nunchuk C = center camera
+
+    The moves work like in most 3D Mario games...
+
+    I will make GALAXY scripts for the other Mario games later.
+*/
+
+Wiimote.Leds = 1
+PPJoy.Analog0 = Wiimote.Nunchuk.JoyX
+PPJoy.Analog1 = Wiimote.Nunchuk.JoyY
+Up = Wiimote.Up
+Down = Wiimote.Down
+Left = Wiimote.Left
+Right = Wiimote.Right
+A = Wiimote.A
+B = Wiimote.B
+C = Wiimote.Nunchuk.CButton
+Z = Wiimote.Nunchuk.ZButton
+Minus = Wiimote.Minus
+NumPadPlus = Wiimote.Plus or Wiimote.Home
+One = Wiimote.One
+Two = Wiimote.Two
+
+var.a1 = sqrt(sqr(Wiimote.gx)+sqr(wiimote.gy)+sqr(Wiimote.gz))
+var.a2 = sqrt(sqr(Wiimote.Nunchuk.gx)+sqr(Wiimote.Nunchuk.gy)+sqr(Wiimote.Nunchuk.gz))
+
+var.shake = keepdown(abs(var.a1-1)> 0.5, 300ms) or keepdown(abs(var.a2-1)> 0.5, 300ms)
+
+var.SpinAttack = var.Shake
+
+if var.SpinAttack then
+  press B
+  wait 50 ms
+  release B
+  wait 50 ms
+  press B
+  wait 50 ms
+  release B
+  wait 50 ms
+  press B
+  wait 50 ms
+  release B
+  wait 50 ms
+end if
+
+

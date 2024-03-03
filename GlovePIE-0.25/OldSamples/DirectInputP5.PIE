@@ -1,0 +1,39 @@
+// DirectInput P5 0.03
+// This PIE code does the same thing as the original DirectInput emulator
+
+var.y = -p5.y
+var.z = -p5.z - 1000
+
+ppjoy.analog0 = p5.x / 400
+ppjoy.analog1 = var.z / 400
+ppjoy.analog2 = var.y / 400
+
+ppjoy.analog3 = p5.yaw / 90
+ppjoy.analog4 = p5.pitch / 90
+ppjoy.analog5 = p5.roll / 90
+
+var.thumb = p5.thumb/63
+var.index = p5.index/63
+var.middle = p5.middle/63
+var.ring = p5.ring/63
+var.pinky = p5.pinky/63
+
+// The range for analogs is -1 to +1
+// but our finger bends are currently 0 to 1
+ppjoy.analog6 = var.thumb*2 - 1
+ppjoy.analog7 = var.index*2 - 1
+ppjoy.analog8 = var.middle*2 - 1
+ppjoy.analog9 = var.ring*2 - 1
+ppjoy.analog10 = var.pinky*2 - 1
+
+ppjoy.digital0 = var.thumb > 50%
+ppjoy.digital1 = var.index > 50%
+ppjoy.digital2 = var.middle > 50%
+ppjoy.digital3 = var.ring > 50%
+ppjoy.digital4 = var.pinky > 50%
+
+ppjoy.digital5 = p5.ButtonA
+ppjoy.digital6 = p5.ButtonB
+ppjoy.digital7 = p5.ButtonC
+ppjoy.digital8 = p5.ButtonD
+

@@ -1,0 +1,250 @@
+/*
+# Visualboy Advance Controller Setup 1.4 
+# Copyright 2006 - Cobalt 
+# ---------------------------------- 
+# Simple Visualboy Advance Control Scheme 
+# Works with and without a nunchuck 
+# ---------------------------------- 
+# Control Setup (for your Emulator) 
+# ////////////////////////////////// 
+# Up - Up Arrow 
+# Down - Down Arrow 
+# Left - Left Arrow 
+# Right - Right Arrow 
+# Button A - X 
+# Button B - Z 
+# Button L - A 
+# Button R - S 
+# Select - Backspace 
+# Start - Enter 
+# ---------------------------------- 
+# Control Setup (with Nunchuck) 
+# ////////////////////////////////// 
+# Dpad - Up,Left,Right,Down 
+# Button L - Nunchuck Z 
+# Button R - Wiimote Plus 
+# Button B - Nunchuck C 
+# Button A - Wiimote A 
+# Start - Wiimote Home 
+# Select - Wiimote One 
+# ---------------------------------- 
+# Control Setup (without Nunchuck) 
+# ////////////////////////////////// 
+# note: Dpad on left, facing towards you. 
+# Dpad - (up = wiimote right, left = wiimote down, right = wiimote up, down = wiimote left) 
+# Button A - Wiimote Two 
+# Button B - Wiimote One 
+# Button L - Wiimote Plus  (T) 
+# Button R - Wiimote Minus (T) 
+# Start - Wiimote A 
+# Select - Wiimote B 
+# ---------------------------------- 
+# Special Keys 
+# ///////////////////////////////// 
+# Pause = Wiimote Down (with Nunchuck), Wiimote - Flick Downward 
+# Save State = Wiimote B + Wiimote Home 
+# Battery Life = Wiimote Plus + Wiimote Minus 
+# ---------------------------------- 
+# TILT/MOTION sensor 
+# (wiimote without nunchuck) 
+# With the wiimote facing you, and the dpad on your left arm. 
+# Up = Tilt Forward (away from you) 
+# Down = Tild Back (towards you) 
+# Right, Left = Tilt Right, Left 
+# Note: Uncomment Line 122-145 for this feature. Rough Tilt Sensing, ill fix it later. 
+*/ 
+
+/* Pause Upon Flick Reflex */ 
+// Variables 
+var.yDown = Wiimote.gy 
+var.xSide = Wiimote.gx * 10 
+var.zDiag = Wiimote.gz * 10 
+
+if var.yDown < -20 or var.zDiag < -20 or var.xSide < -20  or wiimote.RelAccY < -20 
+   Keyboard.Ctrl + Keyboard.P = true 
+   wait 400 ms 
+   Keyboard.Ctrl + Keyboard.P = false 
+endif 
+/* End Pause - Reflex */ 
+
+
+/* Nunchuck Controls */ 
+if wiimote.HasNunchuk 
+
+// Nunchuck Directional  - (c) CarlKenner 
+Up = Wiimote.Nunchuk.JoyY < -20% 
+Down = Wiimote.Nunchuk.JoyY > 20% 
+Left = Wiimote.Nunchuk.JoyX < -20% 
+Right = Wiimote.Nunchuk.JoyX > 20% 
+
+// A and B buttons 
+Z = wiimote.Nunchuk.CButton 
+X = wiimote.A 
+
+// R and L buttons 
+S = wiimote.Plus 
+A = wiimote1.Nunchuk.ZButton 
+
+// Start / Select 
+Enter = wiimote.Home 
+Backspace = wiimote.One 
+
+// Pause 
+Keyboard.Ctrl + Keyboard.P = wiimote.Down 
+
+/* End Nunchuck Controls, Begin W/out Nunchucks */ 
+elseif (!(wiimote.HasNunchuk)) 
+
+// Check Orientation 
+if (wiimote.gx <= -1.00) or 0.00 > wiimote.gx > -0.80 
+
+// Directional Pad - Orientation (Right) 
+keyboard.Left = wiimote.Down 
+keyboard.Up = wiimote.Left 
+keyboard.Down = wiimote.Right 
+keyboard.Right = wiimote.Up 
+
+else 
+
+// Directional Pad - Orientation (Left) 
+keyboard.Left = wiimote.Up 
+keyboard.Up = wiimote.Right 
+keyboard.Down = wiimote.Left 
+keyboard.Right = wiimote.Down 
+
+endif 
+
+// Enter and Select Buttons 
+Enter = wiimote.A 
+Backspace = wiimote.B 
+
+// A and B buttons 
+Z = wiimote.One 
+X = wiimote.Two 
+
+// R and L buttons 
+A = wiimote.Plus 
+S = wiimote.Minus 
+
+endif 
+/* end w/out Nunchuck controls */ 
+
+
+/* Motion/Tilt Sensor */ 
+/* Works With Most GBC games with tilt requirement 
+if wiimote.gz <= -0.45 
+press(keyboard.NUMPAD4) 
+wait 80 ms 
+release(keyboard.NUMPAD4) 
+//say("Tilt Left") 
+endif 
+if wiimote.gz >= 0.45 
+press(keyboard.NUMPAD6) 
+wait 80 ms 
+release(keyboard.NUMPAD6) 
+//say("Tilt Right") 
+endif 
+if wiimote.gy <= -0.7 
+press(keyboard.NUMPAD2) 
+wait 80 ms 
+release(keyboard.NUMPAD2) 
+//say("Tilt Down") 
+endif 
+if wiimote.gy >= 0.9 
+press(keyboard.NUMPAD8) 
+wait 80 ms 
+release(keyboard.NUMPAD8) 
+//say("Tilt Up") 
+endif 
+*/ 
+
+/* Universal Controls */ 
+// Save Game to State 1 
+keyboard.shift & keyboard.F1 = wiimote.Home and wiimote.B 
+
+// Light up LED lights 
+if wiimote.Home and wiimote.B 
+wiimote.Led1 = true 
+wait 100 ms 
+wiimote.Led1 = false 
+wiimote.Led2 = true 
+wait 100 ms 
+wiimote.Led2 = false 
+wiimote.led3 = true 
+wait 100 ms 
+wiimote.Led3 = false 
+wiimote.led4 = true 
+wait 100 ms 
+wiimote.led4 = false 
+wiimote.Rumble = 1 
+wait 250 ms 
+wiimote.Rumble = 0 
+wait 100 ms 
+wiimote.Rumble = 1 
+wait 250 ms 
+wiimote.Rumble = 0 
+endif 
+
+// Battery Meter -(c) J.Coulston 
+//A full battery gives 0xC0 (192) 
+var.Batt = wiimote.Battery / 48 
+
+if true then 
+wait 5 seconds 
+//it sends an instruction that tells the Wiimote to actually 
+//send the report. 
+Wiimote.Report15 = 0x80 | Int(wiimote.Rumble) 
+end if 
+
+
+// Pause if battery is dying 
+var.Totalb = 100*48*var.Batt/192 
+if var.Totalb < 10 
+say ("Low Power! Please change batteries.") 
+Keyboard.Ctrl+Keyboard.P = true 
+wait 5 seconds 
+Keyboard.Ctrl+Keyboard.P = false 
+debug = "Low Power, Please change batteries." 
+endif 
+
+//Blink rate 
+if wiimote.Plus & wiimote.Minus 
+var.Blink = 500ms 
+
+debug = "Battery level: " + var.Totalb + "%" 
+
+if 0<=var.Batt<=0.25 then 
+Wiimote.Leds = 1 
+wait var.Blink 
+Wiimote.Leds = 0 
+wait var.Blink 
+elseif 0.25 < var.Batt<=1 then 
+Wiimote.Leds = 1 
+elseif 1 < var.Batt<=1.25 then 
+Wiimote.Leds = 3 
+wait var.Blink 
+Wiimote.Leds = 1 
+wait var.Blink 
+elseif 1.25 < var.Batt<=2 then 
+Wiimote.Leds = 3 
+elseif 2 < var.Batt<=2.25 then 
+Wiimote.Leds = 7 
+wait var.Blink 
+Wiimote.Leds = 3 
+wait var.Blink 
+elseif 2.25 < var.Batt<=3 then 
+Wiimote.Leds = 7 
+elseif 3 < var.Batt<=3.25 then 
+Wiimote.Leds = 15 
+wait var.Blink 
+Wiimote.Leds = 7 
+wait var.Blink 
+elseif 3.25 < var.Batt<=4 then 
+Wiimote.Leds = 15 
+else 
+Wiimote.Leds = 0 
+endif 
+wait 20 ms 
+Wiimote.Leds = 0 
+endif 
+

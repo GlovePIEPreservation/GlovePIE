@@ -1,0 +1,43 @@
+// Type your program here!
+var.newz = -((glove2.led4z in cm) + 3)
+var.newx = ((glove2.led4x in cm) +10.4)
+var.newy = ((glove2.led4y in cm) +15.95)+(5.7/60)*var.newz-3.3
+
+var.
+
+var.newy = glove2.led4v1
+var.newz = glove2.led4v2
+var.newx = glove2.led4h
+
+var.x = (var.newx + var.oldx + var.olderx + var.oldestx + var.oldest2x + var.oldest3x + var.oldest4x + var.oldest5x + var.oldest6x + var.oldest7x)/10
+var.y = (var.newy + var.oldy + var.oldery + var.oldesty + var.oldest2y + var.oldest3y + var.oldest4y + var.oldest5y + var.oldest6y + var.oldest7y)/10
+var.z = (var.newz + var.oldz + var.olderz + var.oldestz + var.oldest2z + var.oldest3z + var.oldest4z + var.oldest5z + var.oldest6z + var.oldest7z)/10
+var.oldest7x = var.oldest6x
+var.oldest7y = var.oldest6y
+var.oldest7z = var.oldest6z
+var.oldest6x = var.oldest5x
+var.oldest6y = var.oldest5y
+var.oldest6z = var.oldest5z
+var.oldest5x = var.oldest4x
+var.oldest5y = var.oldest4y
+var.oldest5z = var.oldest4z
+var.oldest4x = var.oldest3x
+var.oldest4y = var.oldest3y
+var.oldest4z = var.oldest3z
+var.oldest3x = var.oldest2x
+var.oldest3y = var.oldest2y
+var.oldest3z = var.oldest2z
+var.oldest2x = var.oldestx
+var.oldest2y = var.oldesty
+var.oldest2z = var.oldestz
+var.oldestx = var.olderx
+var.oldesty = var.oldery
+var.oldestz = var.olderz
+var.olderx = var.oldx
+var.oldery = var.oldy
+var.olderz = var.oldz
+var.oldx = var.newx
+var.oldy = var.newy
+var.oldz = var.newz
+debug = Round(var.x,-1) + ',      ' + Round(var.y,-1) + ',      ' + Round(var.z,-1)
+

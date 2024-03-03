@@ -1,0 +1,213 @@
+//Mouse Control Script
+//by vkapadia
+//vkapadia@vkapadia.com
+//
+//Calibration:
+//Change these values until the debug line says all zeros when the wiimote is at rest.
+var.trimx = 6
+var.trimy = -31
+var.trimz = 6
+//
+//Controls:
+//Tilt Wiimote Up and Down = Move Mouse Up and Down
+//Rotate Wiimote Left and Right = Move Mouse Left and Right
+//D-Pad = Arrow Keys
+//B-Button = Left Click
+//Home = Middle Click
+//A-Button = Right Click
+//Plus and Minus = Control Volume
+//One = Play/Pause (I have Win+C set to do that in Winamp.)
+//Two = Next Song (I have Win+N set to do that in Winamp.) 
+//
+//If the pointer hits the edge of the screen, the Wiimote will rumble a bit.
+//
+//The LEDs attempt to emulate KITT's grill from Knight Rider
+
+//Set the D-Pad to function as the Arrow Keys
+if wiimote.Up
+Up = true
+Wait 200 ms
+Up = false
+endif
+if wiimote.Down
+Down = true
+Wait 200 ms
+Down = false
+endif
+if wiimote.Left
+Left = true
+Wait 200 ms
+Left = false
+endif
+if wiimote.Right
+Right = true
+Wait 200 ms
+Right = false
+endif
+
+//Mouse Buttons
+Mouse.RightButton = Wiimote.A
+Mouse.LeftButton = Wiimote.B
+Mouse.MiddleButton = Wiimote.Home
+
+//Plus and Minus handle Volume
+if wiimote.plus then
+   volumeup = true
+   wait 60 ms
+   volumeup = false
+endif
+if wiimote.minus then
+   volumedown = true
+   wait 60 ms
+   volumedown = false
+endif
+
+//Winamp Hotkeys (Win+C = Play/Pause; Win+N = Next Song)
+Windows+C = wiimote.One
+Windows+N = wiimote.Two
+
+//TODO: not satisfied with wiimote.One
+//TODO: not satisfied with wiimote.Two
+//TODO: not satisfied with wiimote.Plus
+//TODO: not satisfied with wiimote.Minus
+//TODO: not satisfied with wiimote.Home
+
+//LEDs look somewhat like KITT's grill from Knight Rider
+if 0 = 0 then
+if var.kitt = 0 then
+wiimote.Leds = 1
+//wait 200 ms
+endif
+if var.kitt = 1 then
+wiimote.Leds = 3
+endif
+if var.kitt = 2 then
+wiimote.Leds = 6
+endif
+if var.kitt = 3 then
+wiimote.Leds = 12
+endif
+if var.kitt = 4 then
+wiimote.Leds = 8
+//wait 200 ms
+endif
+if var.kitt = 5 then
+wiimote.Leds = 12
+endif
+if var.kitt = 6 then
+wiimote.Leds = 6
+endif
+if var.kitt = 7 then
+wiimote.Leds = 3
+endif
+wait 100 ms
+var.kitt = (var.kitt + 1) % 8
+endif
+
+//If the mouse reaches the end, rumble for 200 milliseconds
+if mouse.x = 0 or mouse.x = 1 or mouse.y = 0 or mouse.y = 1 then
+if var.rmbl = false
+wiimote.Rumble = 1
+wait 200 ms
+wiimote.Rumble = 0
+endif
+var.rmbl = true
+else
+var.rmbl = false
+endif
+
+//****Everything past here deals with mouse movement*****
+
+// set these to the offsets when the wiimote is at rest
+// will be different for each wiimote most likely
+var.x = Wiimote.RawForceX + var.trimx //trim to 0
+var.y = Wiimote.RawForceY + var.trimy // trim to 0
+var.z = Wiimote.RawForceZ + var.trimz //trim to 0
+
+//precision
+var.sense0 = 500
+var.thresh0x = 5
+var.thresh0y = 2
+
+var.sense = 300
+var.threshx = 10
+var.threshy = 5
+
+var.sense2 = 100
+var.thresh2x = 15
+var.thresh2y = 8
+
+var.sense3 = 50
+var.thresh3x = 20
+var.thresh3y = 12
+
+//first sensitivity setting
+//xaxis
+if var.x > var.thresh0x
+mouse.x = mouse.x - 1/var.sense0
+endif
+if var.x < -var.thresh0x
+mouse.x = mouse.x + 1/var.sense0
+endif
+
+//yaxis
+if var.z > var.thresh0y
+mouse.y = mouse.y - 1/var.sense0
+endif
+if var.z < -var.thresh0y
+mouse.y = mouse.y + 1/var.sense0
+endif
+
+
+//second sensitivity setting
+//xaxis
+if var.x > var.threshx
+mouse.x = mouse.x - 1/var.sense
+endif
+if var.x < -var.threshx
+mouse.x = mouse.x + 1/var.sense
+endif
+
+//yaxis
+if var.z > var.threshy
+mouse.y = mouse.y - 1/var.sense
+endif
+if var.z < -var.threshy
+mouse.y = mouse.y + 1/var.sense
+endif
+
+//third sensitivity setting
+//xaxis
+if var.x > var.thresh2x
+mouse.x = mouse.x - 1/var.sense2
+endif
+if var.x < -var.thresh2x
+mouse.x = mouse.x + 1/var.sense2
+endif
+
+//yaxis
+if var.z > var.thresh2y
+mouse.y = mouse.y - 1/var.sense2
+endif
+if var.z < -var.thresh2y
+mouse.y = mouse.y + 1/var.sense2
+endif
+
+//fourth sensitivity setting
+//xaxis
+if var.x > var.thresh3x
+mouse.x = mouse.x - 1/var.sense3
+endif
+if var.x < -var.thresh3x
+mouse.x = mouse.x + 1/var.sense3
+endif
+
+//yaxis
+if var.z > var.thresh3y
+mouse.y = mouse.y - 1/var.sense3
+endif
+if var.z < -var.thresh3y
+mouse.y = mouse.y + 1/var.sense3
+endif
+
+debug = var.x + " " + var.y + " " + var.z

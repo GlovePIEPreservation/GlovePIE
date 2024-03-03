@@ -1,0 +1,35 @@
+//Winamp controller for Wii Remote 
+//Version 2.0 
+//Made by Isindil 
+//Note: You must enable Global Hotkeys in Winamp Preferences to use this script 
+//Note: The Winamp controls for Wiimote.One and Two must be manually added 
+
+// Controls: 
+// A-button: Play 
+// B-button: Pause 
+// D-pad up: Previous track 
+// D-pad down: Next track 
+// D-pad right: Forward 5 seconds 
+// D-pad left: Rewind 5 seconds 
+// Home: Stop 
+// Plus: Volume up 
+// Minus: Volume down 
+// One-button: Stop with fadeout 
+// Two-button: Remove duplicates 
+
+
+Key.Ctrl+Key.Alt+Key.Ins = Wiimote.A 
+Key.Ctrl+Key.Alt+Key.Home = Wiimote.B 
+Key.Ctrl+Key.Alt+Key.Pgup = Wiimote.Up 
+Key.Ctrl+Key.Alt+Key.Pgdn = Wiimote.Down 
+Key.Ctrl+Key.Alt+Key.Right = Wiimote.Right 
+Key.Ctrl+Key.Alt+Key.Left = Wiimote.Left 
+Key.Ctrl+Key.Alt+Key.End = Wiimote.Home 
+If Wiimote.Plus == TRUE 
+   Key.Ctrl+Key.Alt+Key.Up = Wiimote.Plus 
+Endif 
+If Wiimote.Minus == TRUE 
+   Key.Ctrl+Key.Alt+Key.Down = Wiimote.Minus 
+Endif 
+Key.Ctrl+Key.Shift+Key.Alt+Key.V = Wiimote.One 
+Key.Ctrl+Key.Shift+Key.Alt+Key.Del = Wiimote.Two

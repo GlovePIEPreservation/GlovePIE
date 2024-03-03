@@ -1,0 +1,16 @@
+// Wiimote
+obj.pitch = wiimote.Pitch
+obj.roll = wiimote.Roll
+obj.size = [3.6, 2, 14.6] cm
+obj.pos = wiimote.position
+
+// Sensor Bar
+obj2.colour = 0xFF0000
+obj2.CubeSize = 1 cm
+obj2.x = -Wiimote.SensorBarSeparation/2
+obj3.colour = 0xFF0000
+obj3.CubeSize = 1cm
+obj3.x = Wiimote.SensorBarSeparation/2
+
+cam.z = -2m
+debug = wiimote.cxx+', '+wiimote.cxy

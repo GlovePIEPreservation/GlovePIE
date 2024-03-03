@@ -1,0 +1,52 @@
+var.SideX = 0cm
+var.SideY = -7cm
+var.SideZ = -60cm
+
+var.SX = (p5.x in cm) - var.SideX
+var.SY = (p5.y in cm) - var.SideY
+var.SZ = (p5.z in cm) - var.SideZ
+
+var.HandBySide = var.SY < 15  and p5.FingersDown and (p5.PalmLeft or p5.PalmForward)
+var.Crouch = var.SY < -6
+var.Prone = (p5.y in cm) < var.SideY - 25
+var.Jump = (p5.y in cm) > var.SideY + 19cm and p5.FingersDown and (p5.PalmLeft or p5.PalmForward)
+var.Left = p5.FingersDown and p5.ThumbLeft and p5.xv < -1000
+var.Right = p5.FingersDown and p5.ThumbRight and p5.xv < -1000
+var.Walk = var.Jump or (KeepDown(var.HandBySide,0.5) and KeepDown(abs(p5.zv)>1000, 0.5) and not KeepDown(var.Left,0.5))
+var.SideStepLeft = var.HandBySide and ((p5.x in cm)-var.SideX) < -15cm
+var.SideStepRight = var.HandBySide and ((p5.x in cm)-var.SideX) > 15cm
+var.StepBack = var.HandBySide and ((p5.z in cm)-var.SideZ)< -15cm
+var.SideStepFast = var.HandBySide and abs((p5.x in cm)-var.SideX) > 20cm
+var.StepBackFast = var.HandBySide and ((p5.x in cm)-var.SideZ) < -20cm
+var.HandInFront = var.SZ > 20 and var.SY < 15 and var.SX < -15 and p5.FingersDown
+var.HandBehind = ((var.SZ < -10 and var.SY < 15) or (KeepDown(var.SZ <-7, 5) and KeepDown(var.SY<15, 5) and not p5.InRange)) and not KeepDown(var.Walk, 0.5)
+
+debug = var.HandInFront+', '+var.HandBehind+', '+((p5.x in cm) - var.SideX) + ', ' + ((p5.y in cm) - var.SideY) + ', ' + ((p5.z in cm) - var.SideZ) + ', ' + (var.HandBySide<>0)
+//debug = 'Crouch: '+var.Crouch+'   Jump: '+var.Jump+'  Side: '+var.HandBySide + '  Walk: '+var.Walk
+
+key.CapsLock = not (var.SideStepFast or var.StepBackFast)
+key.W = var.Walk
+key.A = var.SideStepLeft
+key.D = var.SideStepRight
+key.S = var.StepBack
+key.Space = var.Jump
+key.C = var.Crouch
+if var.HandInFront then
+  mouse.DirectInputX = mouse.DirectInputX - 8
+end if
+if var.HandBehind then
+  mouse.DirectInputX = mouse.DirectInputX + 8
+end if
+
+/*if pressed(var.Prone) then
+  press key.X
+  wait 0.05 seconds
+  release key.X
+end if
+if released(var.Prone) then
+  press key.X
+  wait 0.05 seconds
+  release key.X
+end if
+//key.S = var.Left
+*/

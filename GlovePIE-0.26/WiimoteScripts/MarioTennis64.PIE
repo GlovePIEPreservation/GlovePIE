@@ -1,0 +1,31 @@
+// Mario Tennis 64
+// By Or3L
+
+Up = Wiimote.Up 
+Down = Wiimote.Down 
+Left = Wiimote.Left 
+Right = Wiimote.Right 
+A = Wiimote.A 
+B = Wiimote.B 
+One = Wiimote.One 
+Two = Wiimote.Two 
+Home = Wiimote.Home 
+Minus = Wiimote.Minus 
+Equals = Wiimote.Plus 
+
+if Wiimote.A then 
+  Wiimote.Rumble = true
+else 
+  Wiimote.Rumble = false
+end if 
+
+if Wiimote.RawForceY > 50 then 
+  var.RotationY = Wiimote.RawForceY
+  B = true
+  Wiimote.Rumble = true
+  Wiimote.Led1 = true
+else 
+  B = false
+  Wiimote.Led1 = false
+  Wiimote.Rumble = false
+end if

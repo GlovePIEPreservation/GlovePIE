@@ -1,0 +1,32 @@
+cursor1.visible = true
+
+if wiimote1.dot1vis then
+if abs(wiimote1.dot1x - var.ox1) > 1 then
+Mouse.CursorPosX = ((1024-wiimote1.dot1x) * Screen.Width / 1024) * 1.1 - 50
+var.ox1 = wiimote1.dot1x
+endif
+if abs(wiimote1.dot1y - var.oy1) > 1 then
+Mouse.CursorPosY = ((wiimote1.dot1y) * Screen.Height / 768) * 1.1 - 40
+var.oy1 = wiimote1.dot1y
+endif
+endif
+
+if wiimote2.dot1vis then
+if abs(wiimote2.dot1x - var.ox2) > 1 then
+Cursor1.CursorPosX = ((1024-wiimote2.dot1x) * Screen.Width / 1024) * 1.1 - 50
+var.ox2 = wiimote2.dot1x
+endif
+if abs(wiimote2.dot1y - var.oy2) > 1 then
+Cursor1.CursorPosY = ((wiimote2.dot1y) * Screen.Height / 768) * 1.1 - 40
+var.oy2 = wiimote2.dot1y
+endif
+endif
+
+Mouse.LeftButton = Wiimote1.B
+Mouse.RightButton = Wiimote1.A
+Mouse.MiddleButton = Wiimote1.Home
+
+Cursor1.LeftButton = Wiimote2.B
+Cursor1.RightButton = Wiimote2.A
+Cursor1.MiddleButton = Wiimote2.Home
+

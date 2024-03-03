@@ -1,0 +1,13 @@
+//Wiibrator 
+//By deceased 
+
+// Does not control mouse so feel free to surf ^^ 
+
+// D pad up turns it on 
+// D pad down turns it off 
+if wiimote.Up 
+  wiimote.Rumble = 1 
+endif 
+if wiimote.Down 
+  wiimote.Rumble = 0 
+endif

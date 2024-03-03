@@ -1,0 +1,55 @@
+(0, 06-Oct-2006 21:56:33) Initializing PieLog
+(0, 06-Oct-2006 21:56:33) Initializing filemode variable
+(0, 06-Oct-2006 21:56:33) Initializing PiePie
+(0, 06-Oct-2006 21:56:33) Initializing PieVariables
+(0, 06-Oct-2006 21:56:33) Initializing PieExpression
+(0, 06-Oct-2006 21:56:33) Initializing PieSpeech
+(0, 06-Oct-2006 21:56:33) Initializing PieKeyboard
+(0, 06-Oct-2006 21:56:33) Initializing PieInput
+(0, 06-Oct-2006 21:56:33) Initializing PieOSC
+(0, 06-Oct-2006 21:56:33) Initializing PieFunction
+(0, 06-Oct-2006 21:56:33) Initializing PieStatement
+(0, 06-Oct-2006 21:56:34) Initializing PieP5
+(0, 06-Oct-2006 21:56:34) Initializing PieCursorUnit
+(0, 06-Oct-2006 21:56:34) Initializing PieMouse
+(0, 06-Oct-2006 21:56:34) Initializing PiePPJoy
+(0, 06-Oct-2006 21:56:34) Initializing PieMidi
+(0, 06-Oct-2006 21:56:34) Initializing PieRemote
+(0, 06-Oct-2006 21:56:34) Initializing Pie Speech Recognition
+(0, 06-Oct-2006 21:56:34) Initializing PieScreen
+(0, 06-Oct-2006 21:56:34) GetMonitorEDID
+(0, 06-Oct-2006 21:56:34) Initializing PieWIndow
+(0, 06-Oct-2006 21:56:34) Initializing PieCursors
+(0, 06-Oct-2006 21:56:34) Initializing PieJoystick
+(0, 06-Oct-2006 21:56:34) Starting main
+(0, 06-Oct-2006 21:56:34) Application object initialized
+(0, 06-Oct-2006 21:56:34) Creating main window
+(0, 06-Oct-2006 21:56:34) EditorForm.Create
+(0, 06-Oct-2006 21:56:34) Checking command line parameters:
+(0, 06-Oct-2006 21:56:34) Assigning exception handler
+(0, 06-Oct-2006 21:56:34) Creating debug remote control window
+(0, 06-Oct-2006 21:56:34) Running application
+(0, 06-Oct-2006 21:56:54) File>Open
+(0, 06-Oct-2006 21:57:05) FormCloseQuery
+(0, 06-Oct-2006 21:57:05) Compile>Stop
+(0, 06-Oct-2006 21:57:05) Application finished
+(0, 06-Oct-2006 21:57:05) Destroying EditorForm
+(0, 06-Oct-2006 21:57:05) Finalizing PieJoystick
+(0, 06-Oct-2006 21:57:05) Finalizing PieCursors
+(0, 06-Oct-2006 21:57:05) Finalizing PieWindow
+(0, 06-Oct-2006 21:57:05) Finalizing PieScreen
+(0, 06-Oct-2006 21:57:05) Finalizing Pie Speech Recognition
+(0, 06-Oct-2006 21:57:05) Finalizing PieRemote
+(0, 06-Oct-2006 21:57:05) Finalizing PieMidi
+(0, 06-Oct-2006 21:57:05) Finalizing PiePPJoy
+(0, 06-Oct-2006 21:57:05) Finalizing PieMouse
+(0, 06-Oct-2006 21:57:05) Finalizing PieP5
+(0, 06-Oct-2006 21:57:05) Finalizing PieStatement
+(0, 06-Oct-2006 21:57:05) Finalizing PieFunction
+(0, 06-Oct-2006 21:57:05) Finalizing PieOSC
+(0, 06-Oct-2006 21:57:05) Finalizing PieKeyboard
+(0, 06-Oct-2006 21:57:05) Finalizing PieSpeech
+(0, 06-Oct-2006 21:57:05) Finalizing PieVariables
+(0, 06-Oct-2006 21:57:05) Finalizing PiePie
+(0, 06-Oct-2006 21:57:05) Finalizing PieLog
+(0, 06-Oct-2006 21:57:05) Closing log file

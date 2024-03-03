@@ -1,0 +1,163 @@
+///////////////////////////////////////
+//
+// Title: Lander Configuration
+//
+// Author: Kevin Gillette (Kage / ExtemoralGenome / XTG)
+//
+// Contributors: None
+//
+// Version: 1.00.03
+//
+///////////////////////////////////////
+
+///////////////////////////////////////
+//
+// Notes:
+//
+// X-Axis = Roll
+// Y-Axis = Pitch
+// Z-Axis = Yaw
+//
+// Thumb - Pinky are mapped to buttons 0 - 4, respectively
+// Middle + Ring = button 5
+// Ring + Pinky = button 6
+//
+// Recoomended mapping for Lander:
+//
+// Roll          = X-Axis
+// Pitch         = Y-Axis
+// Yaw           = Z-Axis
+//
+// Thrust        = button 0 (Thumb)
+// Fire          = button 1 (Index)
+// Switch Weapon = button 2 (Middle)
+// Look up       = button 3 (Ring)
+// Look down     = button 4 (Pinky)
+// Tractor       = button 5 (Middle + Ring)
+// Recover       = button 6 (Ring + Pinky)
+//
+// Additional Functions:
+//
+// Rapid Fire: push button A on the P5 Glove to toggle rapid fire on/off
+//       when on, hold down index finger to continuously shoot
+//
+// Auditory Alignment Assist: push button B on the P5 Glove to toggle AAA on/off
+//       when on, beeping will occur at regular intervals.  the beeping will increase
+//       in pitch proportional to your glove's alignment to 0º roll, 0º pitch, and 0º
+//       yaw.  since the beeping you should hear uses midi, there may or may not be
+//       a conflict between your primary sound driver, while in game, and the midi
+//       driver, but it should work fine.  Press button C on the P5 Glove to change
+//       the frequency of the beeps
+//
+//
+// If you find any bugs, please report them to extemporalgenome@yahoo.com
+//
+///////////////////////////////////////
+
+var.thumb = p5.thumb/63
+var.index = p5.index/63
+var.middle = p5.middle/63
+var.ring = p5.ring/63
+var.pinky = p5.pinky/63
+
+if p5.ButtonA and not var.lastStateA then
+   var.lastStateA = true
+   var.rapidFire = not var.rapidFire
+   var.fire = true
+end if
+
+if var.lastStateA and not p5.ButtonA then
+   var.lastStateA = false
+end if
+
+if p5.ButtonB and not var.lastStateB then
+   var.lastStateB = true
+   var.playSounds = not var.playSounds
+end if
+
+if var.lastStateB and not p5.ButtonB then
+   var.lastStateB = false
+end if
+
+if var.rapidfire then
+   var.fire = not var.fire
+end if
+
+if var.frequency > 32 or var.frequency == false then
+   var.frequency = 4
+end if
+
+if p5.ButtonC and not var.lastStateC then
+   var.lastStateC = true
+   var.frequency = var.frequency * 2
+end if
+
+if var.lastStateC and not p5.ButtonC then
+   var.lastStateC = false
+end if
+
+var.roll = p5.roll / 90
+var.pitch = p5.pitch / 90
+var.yaw = p5.yaw / 90
+
+if var.playSounds then
+   midi.volume = 100%
+
+   var.medRoll = var.roll < 60% and var.roll > -60%
+   var.medPitch = var.pitch < 60% and var.pitch > -60%
+   var.medYaw = var.yaw < 60% and var.yaw > -60%
+
+   var.lowRoll = var.roll < 30% and var.roll > -30%
+   var.lowPitch = var.pitch < 30% and var.pitch > -30%
+   var.lowYaw = var.yaw < 30% and var.yaw > -30%
+
+   var.noRoll = var.roll < 15% and var.roll > -15%
+   var.noPitch = var.pitch < 15% and var.pitch > -15%
+   var.noYaw = var.yaw < 15% and var.yaw > -15%
+
+   if var.counter == false or var.counter >= var.frequency then
+      var.counter = 0
+   end if
+
+   var.counter = var.counter + 1
+
+   if var.medRoll and var.medPitch and var.medYaw then
+      var.medAll = true
+   end if
+
+   if var.lowRoll and var.lowPitch and var.lowYaw then
+      var.lowAll = true
+   end if
+
+   if var.noRoll and var.noPitch and var.noYaw then
+      var.noAll = true
+   end if
+
+   midi.b3 = var.counter == 1 and var.medAll and (not var.lowAll) and (not var.noAll)
+   midi.b6 = var.counter == 1 and var.lowAll and (not var.noAll)
+   midi.b9 = var.counter == 1 and var.noAll
+
+   var.medAll = false
+   var.lowAll = false
+   var.noAll = false
+end if
+
+ppjoy.analog0 = var.roll
+ppjoy.analog1 = var.pitch
+ppjoy.analog2 = var.yaw
+
+ppjoy.digital0 = var.thumb > 20%
+ppjoy.digital1 = var.index > 20% and var.fire
+ppjoy.digital2 = var.middle > 50% and (not var.ring > 20%)
+ppjoy.digital3 = var.ring > 50% and (not var.middle > 20%) and (not var.pinky > 20%)
+ppjoy.digital4 = var.pinky > 50% and (not var.ring > 20%)
+ppjoy.digital5 = var.middle > 20% and var.ring > 20% and (not var.pinky > 20%)
+ppjoy.digital6 = var.ring > 20% and var.pinky > 20% and (not var.middle > 20%)
+/*ppjoy.digital7 = p5.ButtonA
+ppjoy.digital8 = p5.ButtonB
+ppjoy.digital9 = p5.ButtonC
+ppjoy.digital10 = p5.ButtonD*/
+
+/*ppjoy.analog0 = p5.roll / 90
+ppjoy.analog1 = p5.pitch / 90
+ppjoy.analog2 = p5.yaw / 90*/

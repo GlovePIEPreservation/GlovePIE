@@ -1,0 +1,51 @@
+// Mario Tennis 64 2 player using player1 wiimote, 2player nunchuk 
+// By Kunal Khiyani (based on ORAL Script) 
+// Set ur emulator to these values 
+// Controller one 
+// left,right,up,down = left,right,up,down 
+// N64 A = key.x 
+// n64 b = key.c 
+// n64 start = enter 
+// Controller 2 
+// wasd = nunchuk joystiq 
+// n64 a = key.z 
+// swing the nunchuk/wiimote for n64 A 
+// press wiimote.plus for start 
+A = (-1.2 < wiimote.Nunchuk.JoyX < -0.5) 
+D = (0.5 < wiimote.Nunchuk.JoyX < 1.2) 
+W = (-1.2 < wiimote.Nunchuk.JoyY < -0.5) 
+S = (0.5 < wiimote.Nunchuk.JoyY < 1.2) 
+Up = Wiimote.Up 
+Down = Wiimote.Down 
+Left = Wiimote.Left 
+Right = Wiimote.Right 
+X = Wiimote.A 
+C = Wiimote.B 
+One = Wiimote.One 
+Two = Wiimote.Two 
+Home = Wiimote.Home 
+Minus = Wiimote.Minus 
+key.enter = Wiimote.Plus 
+
+if Wiimote.A then 
+  Wiimote.Rumble = true 
+else 
+  Wiimote.Rumble = false 
+end if 
+
+if Wiimote.gy > 1.67 then 
+  var.RotationY = Wiimote.RawForceY 
+  X = true 
+  Wiimote.Rumble = true 
+  Wiimote.Led1 = true 
+else 
+  X = false 
+  Wiimote.Led1 = false 
+  Wiimote.Rumble = false 
+end if 
+if Wiimote.Nunchuk.gy > 1.67 then 
+  var.RotationY = Wiimote.Nunchuk.RawForceY 
+  Z = true 
+else 
+  Z = false 
+end if

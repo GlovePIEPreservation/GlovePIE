@@ -1,0 +1,14 @@
+// Type your program here!
+if said("Hello World") then
+  say("Hello Carl Andrew");
+end if
+
+if mic.CompletePhrase<>'' then
+  debug = mic.CompletePhrase
+end
+
+if pressed(shift) then
+  mic.CompletePhrase = "Hello World";
+end
+
+

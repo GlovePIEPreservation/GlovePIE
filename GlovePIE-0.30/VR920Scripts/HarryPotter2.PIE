@@ -1,0 +1,72 @@
+// jDoom: Doom/Doom 2 port
+// for VR920 + Wiimote + Nunchuk
+
+PIE.FrameRate = 100Hz
+
+var.sensitivity = 1500
+
+var.y = VR920.ContinuousYaw
+
+// mouse
+//if wiimote.PointerVisible then
+//  mouse.x = wiimote.PointerX
+//  mouse.y = wiimote.PointerY
+//else
+  FakeMouse.DirectInputX += delta(MapRange(var.y, -90 degrees, 90 degrees, -var.sensitivity, var.sensitivity))
+  FakeMouse.DirectInputY += delta(MapRange(VR920.pitch, -90 degrees, 90 degrees, var.sensitivity, -var.sensitivity))
+//end if
+
+if said("look up") then FakeMouse.DirectInputY -= var.sensitivity/4
+if said("look down") then FakeMouse.DirectInputY += var.sensitivity/4
+
+if var.spell then
+  //FakeMouse.DirectInputX+=sqr(any.Joy1x)*sign(any.Joy1x)*900 mickeys per second
+  //FakeMouse.DirectInputY+=sqr(any.Joy1y)*sign(any.Joy1y)*900 mickeys per second
+  FakeMouse.DirectInputY+=delta(MapRange(Nunchuk.SmoothPitch, -90 degrees, 90 degrees, var.sensitivity, -var.sensitivity))
+end if
+
+// Movement
+A = any.joy1x < -30%
+D = any.joy1x > 30%
+W = any.joy1y < -30%
+S = any.joy1y > 30%
+Up = any.DPadUp
+Down = any.DPadDown
+Left = any.DPadLeft
+Right = any.DPadRight
+shift = any.Joy1Run
+
+ctrl = any.RightThumbButton1
+LMB = any.RightTrigger
+
+var.WavingWand = smooth(|wiimote.RelAcc|,30) > 5
+var.MagicWord = said("alohamora") or said("flipendo") or said("lumos") or said("rictusempra")
+... or said("depulso") or said("wingardium leviosa") or said("accio") or said("nox")
+
+if pressed(var.WavingWand) then
+  LMB = true
+  var.Spell = true
+end if
+
+if released(var.WavingWand) then
+  LMB = false
+  var.Spell = false
+end if
+
+if var.MagicWord then
+  LMB = false
+  var.Spell = false
+end if
+
+//Space = keepdown(said("use"),100ms) or keepdown(said("activate"),100ms)
+esc = keepdown(said("pause game") or said("escape") or said("mischief managed"),100ms) or keepdown(said("computer freeze program"),100ms)
+//Enter = keepdown(said("OK") or said("Enter") or said("Continue"),100ms)
+tab = any.Select or keepdown(said("I solemnly swear that I am up to no good"),100ms)
+
+Esc = any.Home
+
+//space = any.RightThumbButton1
+//enter = any.RightThumbButton1
+
+if starting then wiimote.leds = random(16)
+

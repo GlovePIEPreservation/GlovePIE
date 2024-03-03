@@ -1,0 +1,69 @@
+//Super Smash Bros Controls v0.4 with actual moving, nunchuk, and more 
+//Written by Kunal Khiyani 
+//Set your emulator to these values: 
+//Analog Stick = Up, Down, Left, and Right Arrow Keys 
+//Start = S 
+//Z-Button = z 
+//R-Button = d 
+//A-Button = x 
+//B-Button = c 
+//L-Button = a 
+//C-Up = I 
+//C-Down = k 
+//C-Left = j 
+//C-Right = l 
+//Controls are as follows: 
+//A-Button = Z 
+//Minus = Left (L) 
+//C and shake the nunchuk = Right (R) 
+//Home = C-Up 
+//One = C-Left 
+//Two = C-Right 
+//Shake the nunchuk and nunchuk Z = n64 B-Button 
+//A and B = Start 
+//A= Z button 
+// up and B = wiimote up 
+// wiimote b and move the wiimote to the right is right and n64 A 
+// wiimote B and move the wiimote to the left is left and n64 A 
+// wiimote b and move the wiimote up is up and N64 A 
+// wiimote b and move the wiimote down is down and n64 A 
+// nunchuk Z and move the nunchuk up is n64 up B 
+// nunchuk Z and move the nunchuk down is n64 down B 
+// nunchuk Z and move the nunchuk left is n64 left B 
+// nunchuk Z and move the nunchuk right is n64 right B 
+// nunchuk C and move the nunchuk is n64 R 
+// hope u like it 
+
+left = (-1.2 < wiimote.Nunchuk.JoyX < -0.5) 
+right = (0.5 < wiimote.Nunchuk.JoyX < 1.2) 
+up = (-1.2 < wiimote.Nunchuk.JoyY < -0.5) 
+down = (0.5 < wiimote.Nunchuk.JoyY < 1.2) 
+
+S = wiimote.A and wiimote.B 
+X = wiimote.A 
+D = wiimote.Plus 
+A = wiimote.minus 
+Z and left = Wiimote.Left 
+Z and right = Wiimote.Right 
+k = Wiimote.Down 
+up and c and wiimote.rumble = wiimote.up 
+var.BUP = wiimote.Nunchuk.RawforceZ + 5 > 8 and wiimote.Nunchuk.ZButton 
+up and C = var.BUP 
+Var.BDOWN = wiimote.Nunchuk.RawforceZ + 5 < -8 and wiimote.Nunchuk.ZButton 
+C and down = Var.BDOWN 
+Var.BRIGHT = wiimote.Nunchuk.RawforceX + 7 < -10 and wiimote.Nunchuk.ZButton 
+C and right = Var.Bright 
+Var.BLEFT = wiimote.Nunchuk.RawForceX + 7 > 10 and wiimote.Nunchuk.Zbutton 
+C and left = Var.BLEFT 
+down and c = wiimote.down 
+var.left = wiimote.RawForceX + 7 > 10 and wiimote.B 
+X and left and wiimote.rumble = var.left 
+var.right = wiimote.RawforceX + 7 < -10 and wiimote.B 
+X and right and wiimote.rumble = var.right 
+var.up = wiimote.RawForceZ + 5 > 8 and wiimote.B 
+X and up and wiimote.rumble = var.up 
+var.down = wiimote.RawforceZ + 5 < -8 and wiimote.B 
+X and down and wiimote.rumble = var.down 
+Var.D = wiimote.Nunchuk.CButton 
+D = Var.D
+

@@ -1,0 +1,8 @@
+// Requires Windows XP
+
+// Read multiple mice.
+// Shows in the debug window the status of the left button of
+// mouse 1 and mouse 2, seperately.
+// For some reason you may have to click them once before they work
+
+debug = mouse1.LeftButton + ', ' + mouse2.LeftButton

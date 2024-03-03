@@ -1,0 +1,7 @@
+// Type your program here!
+var.s = "1234567890"
+var.s[4:3] = "Hello World"
+var.v = [1,5,9]
+var.v[2] = 6.4
+debug = Uppercase(var.s) + ', ' + var.v
+

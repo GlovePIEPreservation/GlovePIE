@@ -1,0 +1,16 @@
+// Requires Windows XP
+
+// Only keyboard 2 will type in Greek
+// Keyboard 1 will type like normal
+// Currently only does Alpha, Beta, Gamma, Delta, Epsilon and Zeta
+// This is a demo for sending unicode characters,
+// and for reading multiple keyboards
+
+key.BackSpace = key2.A or key2.B or key2.G or key2.D or key2.D or key2.E or key2.Z
+key.Unicode03B1 = key2.A
+key.Unicode03B2 = key2.B
+key.Unicode03B3 = key2.G
+key.Unicode03B4 = key2.D
+key.Unicode03B5 = key2.E
+key.Unicode03B6 = key2.Z
+

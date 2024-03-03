@@ -1,0 +1,243 @@
+This list includes the following sections:
+
+Keyboard
+Wiimote
+Joystick
+Mouse
+Other stuff
+
+Keyboard
+========
+
+It now supports vectors, so you can set multiple keys at once:
+
+WASD = Wiimote.DPad
+ArrowKeys = Classic.Joy1
+NumPad = Classic.Joy2
+
+The vectors are the same as for joysticks. They look like [x, y] where x is a number between -1 and 1 (with 1 meaning right and -1 meaning left), and y has the same range (with 1 meaning down and -1 meaning up). You can set it to non-whole numbers, but it will only press the key when it is at least 0.5.
+
+
+The keyboard also now supports key repeat, just like a real keyboard. Previously holding down a key didn't work in Windows applications the way people expected. Now it works. Although you can disable this if you want. To disable it, set:
+
+Keyboard.RepeatFakeKeys = False
+
+Normally a keyboard will only repeat the most recent key that you pressed. GlovePIE will simulate that same behaviour by default. If you hate that feature, and wish you could move diagonally in Notepad by holding two keys at once, you can disable it like this:
+
+Keyboard.RepeatMultipleFakeKeys = False
+
+By default GlovePIE will use the same key repeat rate as your real keyboard. But you can tell GlovePIE to repeat keys at a different rate if you prefer:
+
+Keyboard.RepeatRate = 10 Hz
+
+It is measured in Hz (Hz just means times per second).
+
+Like a real keyboard, keys don't start repeating until after a delay. After the delay it will start repeating. You can set the delay like this:
+
+Keyboard.RepeatDelay = 0.4 seconds
+
+A very cool feature is that you can now swallow keys. When you swallow keys, other programs will not be able to read them. Only GlovePIE will be able to read them.
+
+For example:
+
+A = swallow(Left)
+D = swallow(Right)
+
+This means that when you press the Left arrow key the game won't receive the left arrow key, but it will receive the A key. If you didn't use swallow, the game would receive both the real key (Left) and the fake key (A).
+
+If you have multiple keyboards, you can only swallow the key on all keyboards, not on specific keyboards. If you swallow a key on all keyboards, it is impossible for GlovePIE to tell which keyboard it came from.
+
+If you have an acer laptop, you can now use the Euro and Dollar keys (near the arrow keys). But they only work if you exit or disable the Launch Manager program.
+
+eg.
+
+ppjoy.digital0 = Euro
+ppjoy.digital1 = Dollar
+
+Emulating these new keys will not type a euro or dollar sign, although some games may allow them to be used as game keys. To type a dollar sign, use Unicode0024. To type a Euro sign, use Unicode20AC. This is not a new feature.
+
+Unicode0024 = Wiimote.A
+Unicode20AC = Wiimote.B
+
+Wiimote
+=======
+
+The Wiimote calibration is now changed. You need to go into wiimote calibration again, and set your sensor bar separation (how far apart the two dots are). You should also normally tell it to use the built in calibration.
+
+Forget all that Wiimote.IRdot1x stuff and complicated IR scripts. Instead use the new:
+
+Wiimote.PointerX
+Wiimote.PointerY
+
+These provide an excellent, smooth, pointer position, even when you rotate the wiimote.
+They are between 0 and 1, just like mouse.x and mouse.y. Sometimes they will be outside the 0 to 1 range, because for example if you roll the wiimote 90 degrees the vertical range is increased by a third, or if you have two sensor bar dots the horizontal range is increased. And it is scaled a bit. So the true range is larger than 0 to 1, but you should use 0 to 1 as the area it can point to reliably.
+
+You can also use Wiimote.PointerOnScreen which will be true when the Wiimote is pointed at the screen (between 0 and 1) and false when it is not.
+And you can use the Wiimote.PointerVisible which will be true when the Wiimote can see a sensor bar dot, even if it is pointed slightly outside the screen area and not between 0 and 1.
+
+If you want it as a 2D vector, you can use Wiimote.PointerXY.
+
+If you want to use fake cursors to represent the Wiimote Pointer, then there are lots of new fake cursor features you can use. You can now set the fake cursor roll, to make the cursors rotate like they do on a Wii. You can also change the fake cursor colour, or caption. And you can load custom cursor images, or use a built in hand cursor.
+
+If you want to know the physical location of the Wiimote in 3D space, you can use the following:
+
+Wiimote.X
+Wiimote.Y
+Wiimote.Z
+
+These are measured in metres, relative to the sensor bar. X is to the right, Y is up, and Z is forwards (towards the sensor bar). So Z will always be negative.
+
+This requires a sensor bar (with two dots to get it to work properly) and you must set the sensor bar seperation to the correct value. These values can only be updated when the Wiimote is pointing at the sensor bar.
+
+The Y and Z values will always be accurate no matter what angle the Wiimote is at, but the X value will only be accurate when the yaw is zero (when it is moved but not turned left and right). So if you want to track the position of the wiimote up near the ceiling, the wiimote will need to be angled down towards the sensor bar so it can detect where it is. But when you move the wiimote sideways you can't turn the wiimote towards the sensor bar, or you will get a totally wrong answer. This is because the Wiimote has no way of measuring yaw, and therefor can't compensate for it.
+
+There are some new Wiimote vectors. For example Wiimote.DPad will give the DPad value as [x, y] like for a joystick (between -1 and 1). Note that it is a digital DPad, not an analog one.
+
+The Wiimote is no longer included in GlovePIE's list of joysticks as a blank joystick with no buttons or axes.
+
+In addition to Nunchuks and Classic controllers, there is a new Wiimote expansion... the WiiGuitar. The WiiGuitar is the guitar controller that comes with GuitarHero 3 for the Wii. You can detect which (if any) of the three controllers is plugged in by looking at:
+
+Wiimote.HasGuitar
+Wiimote.HasNunchuk
+Wiimote.HasClassic
+
+GlovePIE can now tell the difference between a Guitar and a Classic controller. If you plug a Guitar in, HasClassic will now be false. And HasGuitar will be false if you plug in a classic controller. But for backward compatability, Wiimote.Classic.* will still work for the WiiGuitar controller the same as they did in version 0.29.
+
+In addition there is Wiimote.Expansion, which will be a number:
+0: No expansion
+1: Unidentified expansion, or not plugged in properly
+2: Nunchuk
+3: Classic controller, WiiGuitar or anything compatable with a classic controller (anything that can be used to navigate the Wii Home menu has this value).
+4:
+5:
+6: Balance Board 
+
+Other values are possible if someone creates a new expansion.
+
+To tell the difference between classic controllers and others, there is also a new Wiimote.Expansion2:
+2: Really a nunchuk
+3: Really a classic controller
+4: Really a balance board
+5: Really a guitar controller
+
+I am changing the recommended way to access the classic controller and nunchuk. Instead of typing Wiimote.Classic.* or Wiimote.Nunchuk.* you should just type Classic.* and Nunchuk.*. This is actually an old feature, but it was undocumented and not recommended. Now it is the recommended way to do it. For the WiiGuitar, it is slightly different. You need to use WiiGuitar.* or Wiimote.Guitar.* or Wiimote.WiiGuitar.*.
+
+WiiBalanceBoard
+===============
+See documentation.rtf
+
+WiiGuitar
+=========
+
+The WiiGuitar comes with Guitar Hero 3. It has 5 coloured fret buttons, which are either true or false. It has a strum switch which can be strummed upwards, or strummed downwards. You can hold down the strum switch in either position, or you can strum it so that it is only held for a short time. The strum switch is not analog. There is a Plus and a Minus button on the Guitar. There is a whammy bar (a lever) which is analog. It will be between 0 and 1, although it's range is actually much less than that, and varies between guitars. It also has a joystick.
+
+In addition, you can still use the buttons on the front of the Wiimote, which will be embedded in the guitar face. And you can use the accelerometers in the Wiimote to find the angle or motion of the Guitar. And you can play notes through the Wiimote speaker, and you can flash the lights on the Wiimote. I don't know whether you can feel the Wiimote vibrate or not. The IR will no longer work when the guitar is plugged in, and neither will the B button.
+
+The WiiGuitar values will only be true if a Guitar is plugged in. If a Classic controller or Nunchuk is plugged in, the values will always be false.
+
+You can use the following WiiGuitar fields:
+
+Fret1, Fret2, Fret3, Fret4, Fret5: The five fret buttons counting from the end. These are either true or false. You can also use the names of the colours instead.
+Plus, Minus: The + and - buttons on the guitar. They are true or false.
+JoyX, JoyY: The joystick. It is between -1 and 1, like any joystick in GlovePIE.
+Joy: The joystick as a 2D vector [x,y].
+StrumUp: True when the strum switch is held in the up position.
+StrumDown: True when the strum switch is held in the down position.
+WhammyBar: A value between 0 and 1.
+Exists: The same as Wiimote.HasGuitar. True if the guitar is attached, false if it isn't.
+
+Joystick
+========
+
+The Wiimote is no longer included in GlovePIE's list of joysticks.
+
+PPJoy now allows 40 digital outputs (0 to 39) instead of 32. This is necessary to create a virtual joystick with the maximum number of buttons PPJoy supports (32) plus the maximum number of digital hat switches that PPJoy supports (2 hats with 4 digitals each).
+
+New Joystick.AnyButton. This will be true when any button on the joystick is pressed, and false otherwise.
+
+Joystick.Pos2D and Joystick.Pos2D2 vectors have been added.
+Pos2D is the position of the first (or only) stick as [x, y] between -1 and 1. Pos2D2 is the position of the second (or right) stick as [x, y] between -1 and 1.
+
+For example:
+WASD = Joystick.Pos2D
+ArrowKeys = Joystick.Pos2D2
+
+
+Mouse
+=====
+
+DirectInputX, DirectInputY, DirectInputZ, and DirectInputH now have 3 kinds:
+
+Mouse.DirectInputX
+FakeMouse.DirectInputX
+RealMouse.DirectInputX
+
+When you read mouse.DirectInputX it is a total of all the fake mouse motions plus all the real mouse motions. When you read RealMouse.DirectInputX it is the total of all the real mouse motions, without any of the fake ones. FakeMouse.DirectInputX is the total fake mouse motions, and doesn't include the real ones.
+You can also set Mouse.DirectInputX or FakeMouse.DirectInputX. For example:
+
+Mouse.DirectInputX = MapRange(Wiimote.Roll,-90,90,-800,800)
+
+The above will set the mouse to a position based on the Wiimote's roll. You will not be able to move it by moving, the real mouse.
+
+FakeMouse.DirectInputX = MapRange(Wiimote.Roll,-90,90,-800,800)
+
+The above will move the mouse relative to the real mouse position. The real mouse can also control it.
+
+But if you use += or add to the DirectInputX value each time instead of setting it to an absolute value, then it makes no difference which one you use.
+
+In addition to the actual cursor, GlovePIE supports multiple fake cursors. Fake cursors now have many new abilities, and they also work better on Vista.
+
+Fake cursors now default to being visible, if you mention them in a script. You can still set visible to false if you need to.
+
+Fake cursors can rotate like on a Wii:
+
+Cursor1.roll = Wiimote.Roll
+Cursor1.x = Wiimote.PointerX
+Cursor1.y = Wiimote.PointerY
+
+Fake cursors can change colour:
+
+Cursor1.colour = [1, 0.5, 0]  // red, green, blue
+
+Cursor1.colour = 0xFF8000 // the same as above
+
+Setting colour will only change the coloured parts of the image. The white and black parts of the cursor will stay the same.
+
+You can also change the colour of the white that is in the image by setting Cursor1.WhiteColour. This doesn't just affect the white and grey parts of the image. It also affects the white that is mixed into other colours to make them paler. So for example you could make the white make colours redder instead of paler.
+
+You can also set the caption. By default the caption is the fake cursor's number. But you can set it to anything you want:
+
+Cursor1.caption = "the fake is a lie"
+
+If you want the cursor to look like a Wii hand cursor, set Cursor1.PermanentCursor = -2
+
+You can also change the cursor image to a cursor loaded from a file:
+
+Cursor1.image = "c:\data\mycursor.cur"
+
+If you use an animated cursor, it will not be animated.
+
+Other Stuff
+===========
+See documentation.rtf
+* SIXAXIS support (USB only, everything working except bluetooth)
+* Novint Falcon support
+* VR920 Virtual Reality HMD support
+* XBox 360 controller support (untested)
+* Touchpad support
+* 3DConnexion SpaceBall support
+* TrackIR emulation
+* Improved TrackIR support (untested)
+* PS3 BD Remote support
+* GlovePIE Can display 3D graphics for visualisation
+* "Any" object, for any kind of wiimote/gamepad/sixaxis to seem the samne. eg. Any.Joy1x, Any.RightTrigger, etc.
+* Translation support, edit the INI files to add your language
+* Vista support (mostly)
+* Smooth function doesn't crash so much
+* Code completion doesn't pop up when empty (eg var.)
+* "/tray" command line option to minimize to system tray
+* Units of weight and force added, unit multiplication fixed
+* Matrix array elements now work
+* Midi pitch wheel bug fixed
+* Starting() function instead of "if not var.initialised"
+* Other things that I forgot

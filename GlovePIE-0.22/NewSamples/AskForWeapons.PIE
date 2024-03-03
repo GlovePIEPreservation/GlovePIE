@@ -1,0 +1,20 @@
+// Use spoken requests to ask for weapons.
+// Like "can I please have a rocket launcher"
+// You can't just say "rocket launcher" like with the Said("") function.
+// Only some forms of requests are currently implemented
+// You can also test that it is hearing you, by saying "test"
+
+Key.F = AskedFor("torch") or AskedFor("flashlight")
+Key.One = AskedFor("fist")
+Key.Two = AskedFor("pistol")
+Key.Three = AskedFor("shotgun")
+Key.Four = AskedFor("machine gun")
+Key.Five = AskedFor("chain gun")
+Key.Six = AskedFor("grenade")
+Key.Seven = AskedFor("plasma gun")
+Key.Eight = AskedFor("rocket launcher")
+Key.Nine = AskedFor("BFG", 4) or AskedFor("Big Fucking Gun", 4) or AskedFor("BFG 9000", 4)
+Key.Zero = AskedFor("chainsaw")
+Key.Q = AskedFor("soul cube")
+
+Key.T = said("test")

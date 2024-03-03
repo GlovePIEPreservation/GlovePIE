@@ -1,0 +1,33 @@
+// Said, confidence level 1
+
+// Confidence level 1 will use the first guess it makes
+// after it has only heard enough of the phrase to guess what you said.
+// It will accept any legitimate guess, even a really bad one.
+
+// If it later changes its mind and works out you said something else,
+// it will later recognise the correct phrase also.
+
+// Unlike confidence level 0, if what you say definately doesn't match
+// the start of any phrase then it will reject it.
+
+// But if it sort-of sounds like enough of the start of one of the
+// phrases to guess what you said, then it will always accept it.
+
+// This is much faster than waiting to process the entire phrase.
+
+// If the phrase is two or more words long, it will wait for
+// the second word, if you only say one word it will reject it.
+
+// try saying the phrases below,
+// Then try "compatriot", "hello", "hello friend",
+// and "green house effect"
+// notice how it will reject "hello" by itself, but accept any two
+// word phrase begining with "hello".
+// Then try "Jello Mold".
+// Then try "gremputer" and see if you can get it to recognise both
+// "green" and then "computer" when it changes its mind. Say the "e"
+// like the short neutral "er" sound.
+
+if said("computer", 1) then say("computer")
+if said("hello world", 1) then say("hello world")
+if said("green", 1) then say("green")

@@ -1,0 +1,74 @@
+// Hello world!
+// Slowly types "Hello World" when you tap Left Control
+
+if LeftCtrl
+  wait 1 second
+
+  press shift
+  wait 100 ms
+  press h
+  wait 100 ms
+  release h
+  wait 100 ms
+  release shift
+  wait 100 ms
+
+  press e
+  wait 100 ms
+  release e
+  wait 100 ms
+
+  press l
+  wait 100 ms
+  release l
+  wait 100 ms
+
+  press l
+  wait 100 ms
+  release l
+  wait 100 ms
+
+  press o
+  wait 100 ms
+  release o
+  wait 100 ms
+
+  press space
+  wait 100 ms
+  release space
+  wait 100 ms
+
+  press shift
+  wait 100 ms
+  press w
+  wait 100 ms
+  release w
+  wait 100 ms
+  release shift
+  wait 100 ms
+
+  press o
+  wait 100 ms
+  release o
+  wait 100 ms
+
+  press r
+  wait 100 ms
+  release r
+  wait 100 ms
+
+  press l
+  wait 100 ms
+  release l
+  wait 100 ms
+
+  press d
+  wait 100 ms
+  release d
+  wait 100 ms
+
+  press space
+  wait 100 ms
+  release space
+  wait 100 ms
+endif

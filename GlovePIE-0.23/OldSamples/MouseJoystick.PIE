@@ -1,0 +1,9 @@
+// Control the joystick with the mouse!
+ppjoy.analog0 = MapRange(mouse.cursorposx, 0,1023, -1,1)
+ppjoy.analog1 = MapRange(mouse.cursorposy, 0,767, -1,1)
+ppjoy.digital0 = mouse.LeftButton
+ppjoy.digital1 = mouse.RightButton
+ppjoy.digital2 = mouse.MiddleButton
+ppjoy.digital3 = mouse.XButton1
+ppjoy.digital4 = mouse.XButton2
+

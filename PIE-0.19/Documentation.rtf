@@ -1,0 +1,287 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fswiss\fcharset0 Arial;}{\f1\fmodern\fprq1\fcharset0 Courier New;}{\f2\fswiss\fprq2\fcharset0 Arial;}}
+{\*\generator Msftedit 5.41.15.1507;}\viewkind4\uc1\pard\f0\fs20 PIE Documentation\par
+\par
+\b Comments\b0\par
+\par
+Comments are text which does nothing. They only help the human who is trying to read your script (usually you).\par
+The computer ignores them.\par
+\par
+Comments can have the following syntax:\par
+\par
+\b\f1 //\b0  \i This is a comment\i0\par
+\par
+\b /*\b0  \i This is a multi-line comment\par
+   It goes over multiple lines\par
+   like this\i0   \b */\b0\par
+\f0\par
+\b Assignment statements\b0\par
+\par
+The most common kind of statement in PIE is the assignment statement. \par
+\par
+It has one of the following forward syntaxes:\par
+\par
+\i\f1 LValue \i0  \b =\b0   \i expression \i0 [ \b ; \b0 ]\i\par
+\par
+LValue \b\i0 :=\b0\i  expression \i0 [ \b ; \b0 ]\i\par
+\i0\f0\par
+or the following backwards syntax:\par
+\par
+\i\f1 expression\i0  \b => \b0\i LValue \i0 [ \b ; \b0 ]\par
+\f0\par
+\par
+These statements all set the LValue to the value of the expression.\par
+If it is inside an IF statement then it will always set the value.\par
+If it is not inside an IF statement then it will ONLY set the LValue when the expression changes.\par
+This means you can set a variable, such as a key, several times:\par
+\par
+Ctrl = var.a\par
+Ctrl = var.b\par
+\par
+Which has a similar effect to:  Ctrl = var.a or var.b\par
+\par
+\b\f2 IF statements\par
+\b0\f0\par
+Sometimes you will want to only do a set of commands when some condition is true.\par
+\par
+You can do that with IF statements.\par
+\par
+If statements can have one of the following syntaxes:\par
+\par
+\b\f1 if\b0  \i condition\i0  \b then\b0  \i statement\i0  [ \b ; \b0 ]\par
+\par
+\b if\b0  \b ( \b0\i condition \b\i0 )\b0  [\b then\b0 ]\b  \b0\i statement \i0 [ \b ; \b0 ]\par
+\par
+\b if\b0  \i condition\i0  [\b then\b0 ] [\b begin\b0 ] [\b  \{ \b0 ]\b\par
+\b0   \i statement \i0 [ \b ; \b0 ]\i\par
+  statement \i0 [ \b ; \b0 ]\i\par
+  ...\i0\par
+[\b  \} \b0 ] [\b end \b0 [\b if\b0 ]] [ \b ; \b0 ]\par
+\f0\par
+\b\f1 if\b0  \i condition\i0  [\b then\b0 ] [\b begin\b0 ] [\b  \{ \b0 ]\b\par
+\b0   \i statement \i0 [ \b ; \b0 ]\i\par
+  statement \i0 [ \b ; \b0 ]\i\par
+  ...\i0\par
+[\b  \} \b0 ] [\b end\b0 ] \b else\b0  [\b begin\b0 ] [ \b\{\b0  ]\par
+  \i statement \i0 [ \b ; \b0 ]\i\par
+  statement \i0 [ \b ; \b0 ]\i\par
+  ...\i0\par
+[\b  \} \b0 ] [\b end \b0 [\b if\b0 ]] [ \b ; \b0 ]\par
+\f0\par
+\par
+\b\f1 if\b0  \i condition\i0  [\b then\b0 ] [\b begin\b0 ] [\b  \{ \b0 ]\b\par
+\b0   \i statement \i0 [ \b ; \b0 ]\i\par
+  statement \i0 [ \b ; \b0 ]\i\par
+  ...\i0\par
+[\b  \} \b0 ] [\b end\b0 ] (\b else\b0  \b if\b0 |\b elseif\b0 ) \i condition2\i0  [\b then\b0 ] [\b begin\b0 ] [ \b\{\b0  ]\par
+  \i statement \i0 [ \b ; \b0 ]\i\par
+  statement \i0 [ \b ; \b0 ]\i\par
+  ...\i0\par
+[\b  \} \b0 ] [\b end\b0 ] (\b else\b0  \b if\b0 |\b elseif\b0 ) \i condition3\i0  [\b then\b0 ] [\b begin\b0 ] [ \b\{\b0  ]\par
+  \i statement \i0 [ \b ; \b0 ]\i\par
+  statement \i0 [ \b ; \b0 ]\i\par
+  ...\i0\par
+[\b  \} \b0 ] [\b end\b0 ] \b else\b0  [\b begin\b0 ] [ \b\{\b0  ]\par
+  \i statement \i0 [ \b ; \b0 ]\i\par
+  statement \i0 [ \b ; \b0 ]\i\par
+  ...\i0\par
+[\b  \} \b0 ] [\b end \b0 [\b if\b0 ]] [ \b ; \b0 ]\par
+\f0\par
+\f1\par
+\f0\par
+\b WHILE loops\par
+\b0\par
+While loops are NOT very useful in PIE because PIE is not a linear language.\par
+A PIE script continuously loops through the entire script, even while IF statements are running in the background.\par
+If you think you need a while loop then you are probably looking at the problem the wrong way.\par
+\par
+Nevertheless, PIE does support while loops in the unlikely event that you do need them.\par
+\par
+The entire while loop will be executed in one go. You can't use it to wait for some condition triggered elsewhere (yet). \par
+\par
+The syntax is one of the following:\par
+\par
+\b\f1 while\b0  \i condition\i0  \b do\b0  \i statement \i0 [ \b ; \b0 ]\par
+\par
+\b while\b0  \b ( \b0\i condition \b\i0 )\b0  [\b do\b0 ]\b  \b0\i statement \i0 [ \b ; \b0 ]\par
+\par
+\b while\b0  \i condition\i0  [\b do\b0 ] [\b begin\b0 ] [\b  \{ \b0 ]\b\par
+\b0   \i statement \i0 [ \b ; \b0 ]\i\par
+  statement \i0 [ \b ; \b0 ]\i\par
+  ...\i0\par
+[\b  \} \b0 ] [\b end \b0 [\b while\b0 ]] [ \b ; \b0 ]\par
+\f0\par
+If you make a mistake and create an infinite loop, then it will give up after a fifth of a second and speak "infinite loop".\par
+\par
+\par
+\par
+\b FOR loops\par
+\b0\par
+For loops aren't as useful in PIE as they are in other languages, because PIE is not a linear language.\par
+A PIE script continuously loops through the entire script, even while IF statements are running in the background.\par
+If you think you need a for loop then you may be looking at the problem the wrong way.\par
+\par
+The entire for loop will be executed in one go. You can't use it to wait for some condition triggered elsewhere (yet). \par
+\par
+The syntax is one of the following:\par
+\par
+\b\f1 for\b0  \i variable\i0  (\b =\b0 |\b :=\b0 ) \i InitialValue \i0 (\b to\b0 |\b downto\b0 ) \i FinalValue\i0  [\b step \b0\i amount\i0 ] \b do\b0  \i statement \i0 [ \b ; \b0 ]\par
+\par
+\b for\b0  \i variable\i0  (\b =\b0 |\b :=\b0 ) \i InitialValue \i0 (\b to\b0 |\b downto\b0 ) \i FinalValue\i0  [\b step \b0\i amount\i0 ] [\b do\b0 ] [\b begin\b0 ] [\b  \{\b0  ]\par
+  \i statement \i0 [ \b ; \b0 ]\i\par
+  statement \i0 [ \b ; \b0 ]\i\par
+  ...\i0\par
+[\b  \} \b0 ] [\b end \b0 [\b for\b0 ]]\par
+\par
+\b for\b0  \b ( \b0\i initialization \b\i0 ; \b0\i condition\b\i0  ;\i  \b0 increment \b\i0 )\b0  [\b do\b0 ]\b  \b0\i statement \i0 [ \b ; \b0 ]\par
+\par
+\b for\b0  \b ( \b0\i initialization \b\i0 ; \b0\i condition\b\i0  ;\i  \b0 increment \b\i0 )\b0  [\b do\b0 ] [\b begin\b0 ] [\b  \{\b0  ]\par
+  \i statement \i0 [ \b ; \b0 ]\i\par
+  statement \i0 [ \b ; \b0 ]\i\par
+  ...\i0\par
+[\b  \} \b0 ] [\b end \b0 [\b for\b0 ]]\par
+\par
+\f0 If you make a mistake and create an infinite loop, then it will give up after a fifth of a second and speak "infinite loop".\par
+\par
+\b Wait command\par
+\b0\par
+Wait commands are for use in macros. Everything inside an IF statement is considered a macro.\par
+A wait command will pause only the macro it is inside of, while the rest of the script will keep going in the background.\par
+If you have nested if statements inside each other, then it will only pause the innermost if statement.\par
+\par
+The syntax is either:\par
+\par
+\b wait\b0  \i duration \i0\f1 [ \b ; \b0 ]\f0\par
+\par
+\b wait( \b0\i duration \b\i0 ) \b0\f1 [ \b ; \b0 ]\f0\par
+\par
+You should normally specify the units for the duration. Valid units are: milliseconds (ms), seconds (s), minutes, hours, days.\par
+\par
+eg.  \par
+wait 100 ms\par
+wait 1 second\par
+wait(500 milliseconds);\par
+\par
+\par
+\par
+\b Trigonometry Functions\par
+\par
+\b0 All angles are measured in degrees by default.\par
+The following trigonometry functions are implemented:\par
+\par
+Standard trig functions: sin, cos, tan, sec, cosec, cotan\par
+Hyperbolic trig functions: SinH, CosH, TanH, SecH, CosecH, CotH\par
+\par
+Inverse trig functions: aSin, aCos, aTan, aSec, aCosec, aCotan\par
+Inverse Hyperbolic trig functions: aSinH, aCosH, aTanH, aSecH, aCosecH, aCotanH\par
+\par
+2D inverse tan function: atan2\par
+\par
+\b Rounding Functions\b0\par
+\par
+These functions preserve the units of their parameters.\par
+\par
+ceil: Rounds towards infinity\par
+floor: Rounds towards negative infinity\par
+trunc, int: Rounds towards zero\par
+round: Rounds towards nearest integer.  .5 rounds to nearest even number (Bankers' Rounding)\par
+\par
+frac: Returns signed fractional component. eg  Frac(-1.32) = -0.32\par
+\par
+RoundTo(x, digits): If digits is negative, rounds to that many decimal places using Banker's Rounding\par
+If digits is positive, rounds to that power of ten using Banker's Rounding.\par
+\par
+SimpleRoundTo(x [, digits]): Same as RoundTo except 0.5 always rounds up. Unfortunately -1.5 rounds up to 1.\par
+digits defaults to -2 (meaning 2 decimal places).\par
+\par
+\b Sign Functions\b0\par
+\par
+Sign: returns the sign of a number. 1 if it is positive, 0 if it is zero, -1 if it is negative\par
+Abs: returns the modulus or absolute value. Removes the sign of a number. Preserves units.\par
+\par
+\b Exponential and Square Root Functions\par
+\par
+\b0 Raising things to the power of something:\par
+\b\par
+\b0 sqr(x): caculates x^2\b\par
+\b0 sqrt(x): calculates the square root of x.   x^(1/2)\par
+power(x,y): calculates x^y\par
+intPower(x,y): calculates x^y where x and y are integers (the result is not an integer if y is negative)\par
+exp(x): calculates e^x.  e is 2.71828. The derivative of e^x is e^x.\par
+Ldexp(s,p): calculates s * (2^p)\par
+\par
+Poly(x, a0, [a1, [a2, [a3, [a4, [a5, [a6]]]]]]): returns a0 + a1*x + a2*(x^2) + a3*(x^3) + a4*(x^4) + ...\par
+\par
+\par
+Logarithms (undoing raising something to some power):\par
+\par
+Log10(x): returns the number you have to raise 10 to the power of, in order to get x.  eg. Log10(1000) = 3\par
+Log2(x): returns the number you have to raise 2 to the power of, in order to get x.  eg. Log2(256) = 8\par
+LogN(N, x): returns the number you have to raise N to the power of, in order to get x.  eg. LogN(10, 1000) = 3\par
+Ln(x): returns the number you have to raise e (2.71828) to the power of, in order to get x\par
+LnXP1(x): the same as above, but for x+1 instead of x\par
+\par
+\b Comparison functions\b0\par
+\par
+IsZero(x): returns true if x is zero\par
+IsInfinite(x): returns true if x is infinite\par
+IsNaN(x): returns true if x is not a number\par
+\par
+SameValue(a, b [, epsilon]): returns true if a and b are the same, or differ by no more than epsilon\par
+InSet(x,a,b,c,d,e,f,g,...): returns true if x matches one of the values following it.\par
+\par
+max(a,b): returns the maximum of two values. Preserves units.\par
+min(a,b): returns the minimum of two values. Preserves units.\par
+\par
+\b Range functions\b0\par
+\par
+EnsureRange(x, a, b): Returns the closest value to x which is within the range [a, b]. Preserves units.\par
+InRange(x, a, b): Returns true if x is within the range [a, b].\par
+\par
+MapRange(x, a, b, c, d): Returns value x converted from the range [a, b] to the range [c, d].  Values outside the original range will map to the appropriate values outside the new range.\par
+\par
+EnsureMapRange(x, a, b, c, d): The same as MapRange except values outside the range are mapped to the closest values inside the range.\par
+\par
+\b Random functions\b0\par
+\par
+Random: Returns a random fractional number between 0 and 1.\par
+Random(n): Returns a random whole number between 0 and n-1.\par
+RandomRange(a,b): Returns a random whole number between a and b.\par
+RandG(mean, StandDev): Returns a random number from gaussian distribution around mean. Preserves units.\par
+\par
+\b Ordinal functions\b0\par
+\par
+odd(n): Returns true if n is odd\par
+pred(n): Returns n-1\par
+succ(n): Returns n+1\par
+\par
+\b Date/Time functions\b0\par
+\par
+Now: Current time and date (in days since December 30, 1899)\par
+Time: Current time (in fractions of a day)\par
+Date: Current date (in days since December 30, 1899)\par
+\par
+Tomorrow: Tomorrow's date (in days since December 30, 1899)\par
+Yesterday: Yesterday's date (in days since December 30, 1899)\par
+\par
+CurrentYear: Current year of the Gregorian calendar (in years).\par
+\par
+DateOf(x): Returns the date part of the date and time in x (in days since December 30, 1899)\par
+TimeOf(x): Returns the time part of the date and time in x (in fractions of a day)\par
+\par
+\par
+Dayofthemonth(x), dayoftheweek(x), dayoftheyear(x), dayofweek(x), \par
+Daysbetween(x, y),\par
+Daysinamonth(x, y), daysinayear(x), daysinmonth(x), daysinyear(x), DaySpan(x, y),\par
+HourOfTheDay(x), HourOfTheMonth(x), HourOfTheWeek(x), HourOfTheYear(x),\par
+HoursBetween(x, y), HourSpan(x, y),\par
+IncDay(x, [y])\par
+\par
+\par
+\par
+\par
+removeunits = 94;\par
+//inset = 95;  // declared above\par
+maprange = 96;\par
+\par
+}
+ 

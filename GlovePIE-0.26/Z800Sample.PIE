@@ -1,0 +1,27 @@
+// move mouse
+mouse.DirectInputX = MapRange(Z800.Yaw, -180 degrees,180 degrees, -1000 mickeys,1000 mickeys)
+mouse.DirectInputY = MapRange(Z800.Pitch, -60 degrees,60 degrees, 400 mickeys, -400 mickeys)
+
+// strafe
+A = Z800.Roll < -45 degrees
+D = Z800.Roll > 45 degrees
+
+// crouch
+press(C) = Z800.VelocityY < -1 metre per second
+release(C) = Z800.VelocityY > 1 metre per second
+
+// voice commands to change weapon
+One = said("pistol")
+Two = said("shotgun")
+Three = said("rocket launcher")
+
+// point with the P5 to walk (script will still work if you don't have a P5)
+// (five letters represent five fingers, l means straight, n means bent, x don't care)
+
+W = p5.xlnnn
+
+// Change Z800 settings
+Inc(Z800.LeftRedGain, 10) = Ctrl+R
+Z800.RestoreGainOffsetFactorySettings = Ctrl+F
+Z800.CycleBrightnessLevel = said("cycle brightness level")
+

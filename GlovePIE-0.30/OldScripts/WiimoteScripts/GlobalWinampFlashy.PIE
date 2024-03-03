@@ -1,0 +1,233 @@
+// Global Winamp control with extra flashy bits!! 
+// by Wizlon, roughly adapted from the WinampUltraII Turbo script by STKD 
+
+/* 
+Controls set to Wiimote buttons 
+----------------- 
+Stop/Play = A 
+Play/Pause = B 
+Next Track = 1 
+Prev Track = 2 
+Vol up = + 
+Vol down = - 
+Mute = Home 
+Skip forward = dpad Right 
+Skip backwards = dpad Left 
+ctrl + alt + X  = dpad Up 
+ctrl + alt + Y  = dpad Down 
+
+//create your own global shortcut in the format "ctrl + alt + X" 
+//and "ctrl + alt + Y" in winamp to use dpad Up and Down.    */ 
+
+// do you want the LED's telling you stuff? true or false 
+var.LEDsOn = true 
+
+//------ beginning of control code -------// 
+
+ctrl && alt && home = Wiimote.B              // play/pause 
+ctrl && alt && pgdn = Wiimote.One            //Next track       ("1" button on Wiimote) 
+ctrl && alt && pgup = Wiimote.Two            //Previous track       ("2" button on Wiimote) 
+Key.Mute = Wiimote.Home                      //mutes speakers 
+
+if Wiimote.A then                            //B toggles stop and pause 
+     if var.ps = 0 then 
+     ctrl and alt and end = true             //stop 
+     ctrl and alt and end = false 
+     var.ps = 1 
+     wait 500ms 
+     else if var.ps = 1 then 
+     ctrl and alt and insert = true          //play 
+     ctrl and alt and end = false 
+     var.ps = 0 
+     end if 
+     wait 500ms 
+end if 
+
+if Wiimote.Plus then                         //volume up 
+   ctrl && alt && Up = true 
+   ctrl && alt && Up = false 
+end if 
+
+if Wiimote.Minus then                        //volume down 
+   ctrl && alt && Down = true 
+   ctrl && alt && Down = false 
+end if 
+
+if Wiimote.left then                         //Jump back 5+ seconds 
+   ctrl && alt && Left = true 
+   ctrl && alt && Left = false 
+   wait 100ms 
+end if 
+
+if Wiimote.right then                        //Jump forward 5+ seconds 
+   ctrl && alt && Right = true 
+   ctrl && alt && Right = false 
+   wait 100ms 
+end if 
+
+if Wiimote.up then 
+   ctrl && alt && x = true 
+   ctrl && alt && x = false 
+   wait 200ms 
+end if 
+
+if Wiimote.down then 
+   ctrl && alt && y = true 
+   ctrl && alt && y = false 
+   wait 200ms 
+end if 
+
+
+//------ beginning of LED code -------// 
+
+if  var.LEDsOn = true then 
+
+  If Wiimote.one then 
+     Wiimote.Led1 = true 
+     wait 100ms 
+     Wiimote.Led1 = false 
+     Wiimote.Led2 = true 
+     wait 100ms 
+     Wiimote.Led2 = false 
+     Wiimote.Led3 = true 
+     wait 100ms 
+     Wiimote.Led3 = false 
+     Wiimote.Led4 = true 
+     wait 100ms 
+     Wiimote.Led4 = false 
+  endif 
+
+    If Wiimote.two then 
+     Wiimote.Led4 = true 
+     wait 100ms 
+     Wiimote.Led4 = false 
+     Wiimote.Led3 = true 
+     wait 100ms 
+     Wiimote.Led3 = false 
+     Wiimote.Led2 = true 
+     wait 100ms 
+     Wiimote.Led2 = false 
+     Wiimote.Led1 = true 
+     wait 100ms 
+     Wiimote.Led1 = false 
+  endif 
+
+  If Wiimote.right then 
+     Wiimote.Led1 = true 
+     wait 20ms 
+     Wiimote.Led1 = false 
+     Wiimote.Led2 = true 
+     wait 20ms 
+     Wiimote.Led2 = false 
+     Wiimote.Led3 = true 
+     wait 20ms 
+     Wiimote.Led3 = false 
+     Wiimote.Led4 = true 
+     wait 20ms 
+     Wiimote.Led4 = false 
+     wait 150ms 
+  endif 
+
+  If Wiimote.left then 
+     Wiimote.Led4 = true 
+     wait 20ms 
+     Wiimote.Led4 = false 
+     Wiimote.Led3 = true 
+     wait 20ms 
+     Wiimote.Led3 = false 
+     Wiimote.Led2 = true 
+     wait 20ms 
+     Wiimote.Led2 = false 
+     Wiimote.Led1 = true 
+     wait 20ms 
+     Wiimote.Led1 = false 
+     wait 150ms 
+  endif 
+
+  If Wiimote.A then 
+     Wiimote.Led3 = true 
+     Wiimote.Led2 = true 
+     wait 800ms 
+     Wiimote.Led2 = false 
+     Wiimote.Led3 = false 
+  endif 
+
+  if Wiimote.B then 
+         Wiimote.Led1 = true 
+         Wiimote.Led4 = true 
+         wait 200ms 
+         Wiimote.Led1 = false 
+         Wiimote.Led4 = false 
+         Wiimote.Led2 = true 
+         Wiimote.Led3 = true 
+         wait 200ms 
+         Wiimote.Led2 = false 
+         Wiimote.Led3 = false 
+         Wiimote.Led1 = true 
+         Wiimote.Led4 = true 
+         wait 200ms 
+         Wiimote.Led1 = false 
+         Wiimote.Led4 = false 
+  endif 
+
+  if Wiimote.home then 
+     Wiimote.Led1 = true 
+     Wiimote.Led2 = true 
+     Wiimote.Led3 = true 
+     Wiimote.Led4 = true 
+     wait 20ms 
+     Wiimote.Led1 = false 
+     Wiimote.Led2 = false 
+     Wiimote.Led3 = false 
+     Wiimote.Led4 = false 
+     wait 20ms 
+         Wiimote.Led1 = true 
+     Wiimote.Led2 = true 
+     Wiimote.Led3 = true 
+     Wiimote.Led4 = true 
+     wait 20ms 
+     Wiimote.Led1 = false 
+     Wiimote.Led2 = false 
+     Wiimote.Led3 = false 
+     Wiimote.Led4 = false 
+
+  endif 
+
+  if Wiimote.Plus then 
+           Wiimote.Led1 = true 
+           wait 50ms 
+           Wiimote.Led2 = true 
+           wait 50ms 
+           Wiimote.Led3 = true 
+           wait 50ms 
+           Wiimote.Led4 = true 
+           wait 50ms 
+           Wiimote.Led1 = false 
+           wait 50ms 
+           Wiimote.Led2 = false 
+           wait 50ms 
+           Wiimote.Led3 = false 
+           wait 50ms 
+           Wiimote.Led4 = false 
+           wait 100ms 
+  endif 
+
+  if Wiimote.Minus then 
+           Wiimote.Led4 = true 
+           wait 50ms 
+           Wiimote.Led3 = true 
+           wait 50ms 
+           Wiimote.Led2 = true 
+           wait 50ms 
+           Wiimote.Led1 = true 
+           wait 50ms 
+           Wiimote.Led4 = false 
+           wait 50ms 
+           Wiimote.Led3 = false 
+           wait 50ms 
+           Wiimote.Led2 = false 
+           wait 50ms 
+           Wiimote.Led1 = false 
+           wait 100ms 
+  endif 
+end if

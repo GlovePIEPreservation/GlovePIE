@@ -1,0 +1,12 @@
+wiimote.Leds = 0
+Up = wiimote.Right
+Down = wiimote.Left
+Left = wiimote.Up
+Right = wiimote.Down
+RightShift = wiimote.Minus
+Enter = wiimote.Plus
+M = wiimote.One
+Comma = wiimote.Two
+K = wiimote.B
+L = wiimote.A
+

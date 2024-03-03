@@ -1,0 +1,11 @@
+// Simple mouse emulation
+
+mouse.cursorposx = p5.x + 512
+mouse.cursorposy = -p5.y + 768/2
+
+mouse.LeftButton = p5.index > 32
+mouse.MiddleButton = p5.middle > 32
+mouse.RightButton = p5.ring > 32
+mouse.XButton1 = p5.thumb > 32
+mouse.XButton2 = p5.pinky > 32
+

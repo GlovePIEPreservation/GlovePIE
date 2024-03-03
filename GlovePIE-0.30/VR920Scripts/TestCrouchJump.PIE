@@ -1,0 +1,111 @@
+// YOU MUST USE CP-Settings > VR920 Accelerometer Calibration BEFORE RUNNING!
+
+// VR920 secret feature 1
+// Detects crouching and jumping
+// Sometimes it gets it wrong
+// Don't rotate your head while you crouch or jump,
+//   otherwise it will not be detected
+// Crouches need to be quick, or they will be detected as jumps
+// Jumps mustn't start by crouching
+
+pie.FrameRate = 60Hz
+var.gs = |[vr920.gx,vr920.gy,vr920.gz]|
+var.moving = smooth(abs(var.gs-1),2)>0.04
+var.MoveUp = false
+var.MoveDown = false
+var.Crouching = false
+var.Standing = false
+var.Jumping = false
+if (abs(smooth(vr920.RelAccY,16))>2.3) and var.moving but not var.samemove then
+  var.updown = true
+  if var.dir = 0 then
+    var.dir = sign(smooth(vr920.relaccy))
+  end if
+end if
+if released(var.moving) then
+  var.deltapitch = vr920.StrictPitch-var.oldpitch
+  if var.updown then
+    if abs(var.deltapitch) < 15 degrees then
+      if var.dir = 1 then
+        var.MoveUp = true
+      end if
+      if var.dir = -1 then
+        var.MoveDown = true
+      end if
+      var.samemove = true
+      beep
+    else
+      BeepAsterisk
+    end if
+  end if
+  var.updown = false
+  var.dir = 0
+end if
+
+if (not var.moving) and (var.samemove) then
+  wait 800ms
+  var.samemove=false
+end if
+
+if not var.moving then
+  var.oldpitch = vr920.strictpitch
+end if
+if var.MoveDown then
+  say "Crouching"
+  if not var.Crouched then var.Crouching = true
+  var.Crouched = true
+end if
+if var.MoveUp then
+  if var.Crouched then
+    say "Standing"
+    var.Standing = true
+    var.Crouched = false
+  else
+    say "Jumping"
+    var.Jumping = true
+  end if
+end if
+
+if starting then
+  cam.Stereoscopic = true
+  cam.x = 0
+  cam.y = 1.6m
+  cam.z = 0
+  cam.vFov = 50 degrees
+  obj1.pos = [random*10-5,random*5,random*10-5]
+  obj2.pos = [random*10-5,random*5,random*10-5]
+  obj3.pos = [random*10-5,random*5,random*10-5]
+  obj4.pos = [random*10-5,random*5,random*10-5]
+  obj5.pos = [random*10-5,random*5,random*10-5]
+  obj6.pos = [random*10-5,random*5,random*10-5]
+  obj7.pos = [random*10-5,random*5,random*10-5]
+  obj8.pos = [random*10-5,random*5,random*10-5]
+  obj9.pos = [random*10-5,random*5,random*10-5]
+  obj10.pos = [random*10-5,random*5,random*10-5]
+  obj11.pos = [random*10-5,random*5,random*10-5]
+  obj12.pos = [random*10-5,random*5,random*10-5]
+  obj13.pos = [random*10-5,random*5,random*10-5]
+  obj14.pos = [random*10-5,random*5,random*10-5]
+  obj15.pos = [random*10-5,random*5,random*10-5]
+  obj1.colour = [random,random,random]
+  obj2.colour = [random,random,random]
+  obj3.colour = [random,random,random]
+  obj4.colour = [random,random,random]
+  obj5.colour = [random,random,random]
+  obj6.colour = [random,random,random]
+  obj7.colour = [random,random,random]
+  obj8.colour = [random,random,random]
+  obj9.colour = [random,random,random]
+  obj10.colour = [random,random,random]
+  obj11.colour = [random,random,random]
+  obj12.colour = [random,random,random]
+  obj13.colour = [random,random,random]
+  obj14.colour = [random,random,random]
+  obj15.colour = [random,random,random]
+end if
+cam.yaw = vr920.Yaw
+if not var.moving then cam.roll = vr920.Roll
+cam.pitch = vr920.Pitch
+if var.crouched then cam.y = 0.8m else cam.y = 1.6m
+
+

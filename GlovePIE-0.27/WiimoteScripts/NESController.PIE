@@ -1,0 +1,44 @@
+// NES Controller (for virtualnes, etc)
+// posted by llamawoot
+
+if wiimote.Up then 
+  Key.left = true
+  wait 60 ms
+  Key.left = false
+endif 
+if wiimote.Down then 
+  Key.right = true
+  wait 60 ms
+  Key.right = false
+endif 
+if wiimote.Left then 
+  Key.down = true
+  wait 60 ms
+  Key.down = false
+endif 
+if wiimote.Right then 
+  Key.up = true
+  wait 60 ms
+  Key.up = false
+endif 
+if wiimote.one 
+  key.Z = true
+  wait 60 ms
+  key.Z = false
+ENDIF 
+if wiimote.Two 
+  key.x = true
+  wait 60 ms
+  key.x = false
+endif 
+if wiimote.Plus 
+  key.enter = true
+  wait 60 ms
+  key.enter = false
+endif 
+if wiimote.Minus 
+  key.Ctrl = true
+  wait 60 ms
+  key.ctrl= false
+endif 
+

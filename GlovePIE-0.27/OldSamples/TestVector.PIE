@@ -1,0 +1,6 @@
+// Type your program here!
+var.v = [1cm,2m,3inches]
+[var.x, var.y, var.z] = var.v
+debug = var.x +', '+var.y+', '+var.z
+
+

@@ -1,0 +1,49 @@
+(0, 02-Jul-2005 17:25:46) Initializing PieLog
+(0, 02-Jul-2005 17:25:46) Initializing filemode variable
+(0, 02-Jul-2005 17:25:46) Initializing PieSpeech
+(0, 02-Jul-2005 17:25:46) Initializing PieFunction
+(0, 02-Jul-2005 17:25:46) Initializing PieVariables
+(0, 02-Jul-2005 17:25:46) Initializing PieStatement
+(0, 02-Jul-2005 17:25:46) Initializing PieExpression
+(0, 02-Jul-2005 17:25:46) Initializing PiePie
+(0, 02-Jul-2005 17:25:46) Initializing PieInput
+(0, 02-Jul-2005 17:25:46) Initializing PieWIndow
+(0, 02-Jul-2005 17:25:46) Initializing PieMouse
+(0, 02-Jul-2005 17:25:46) Initializing PieScreen
+(0, 02-Jul-2005 17:25:46) GetMonitorEDID
+(0, 02-Jul-2005 17:25:46) Initializing Pie Speech Recognition
+(0, 02-Jul-2005 17:25:46) Initializing PieRemote
+(0, 02-Jul-2005 17:25:46) Initializing PieMidi
+(0, 02-Jul-2005 17:25:46) Initializing PiePPJoy
+(0, 02-Jul-2005 17:25:46) Initializing PieJoystick
+(0, 02-Jul-2005 17:25:46) Initializing PieKeyboard
+(0, 02-Jul-2005 17:25:47) Initializing PieP5
+(0, 02-Jul-2005 17:25:47) Starting main
+(0, 02-Jul-2005 17:25:47) Application object initialized
+(0, 02-Jul-2005 17:25:47) Creating main window
+(0, 02-Jul-2005 17:25:47) EditorForm.Create
+(0, 02-Jul-2005 17:25:47) Checking command line parameters:
+(0, 02-Jul-2005 17:25:47) Assigning exception handler
+(0, 02-Jul-2005 17:25:47) Creating debug remote control window
+(0, 02-Jul-2005 17:25:47) Running application
+(0, 02-Jul-2005 17:27:30) FormCloseQuery
+(0, 02-Jul-2005 17:27:30) Compile>Stop
+(0, 02-Jul-2005 17:27:30) Application finished
+(0, 02-Jul-2005 17:27:30) Destroying EditorForm
+(0, 02-Jul-2005 17:27:30) Finalizing PieP5
+(0, 02-Jul-2005 17:27:30) Finalizing PieKeyboard
+(0, 02-Jul-2005 17:27:30) Finalizing PieJoystick
+(0, 02-Jul-2005 17:27:30) Finalizing PiePPJoy
+(0, 02-Jul-2005 17:27:30) Finalizing PieMidi
+(0, 02-Jul-2005 17:27:30) Finalizing PieRemote
+(0, 02-Jul-2005 17:27:30) Finalizing Pie Speech Recognition
+(0, 02-Jul-2005 17:27:30) Finalizing PieScreen
+(0, 02-Jul-2005 17:27:30) Finalizing PieMouse
+(0, 02-Jul-2005 17:27:30) Finalizing PieWindow
+(0, 02-Jul-2005 17:27:30) Finalizing PiePie
+(0, 02-Jul-2005 17:27:30) Finalizing PieStatement
+(0, 02-Jul-2005 17:27:30) Finalizing PieVariables
+(0, 02-Jul-2005 17:27:30) Finalizing PieFunction
+(0, 02-Jul-2005 17:27:30) Finalizing PieSpeech
+(0, 02-Jul-2005 17:27:30) Finalizing PieLog
+(0, 02-Jul-2005 17:27:30) Closing log file

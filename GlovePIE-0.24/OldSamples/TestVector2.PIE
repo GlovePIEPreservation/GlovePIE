@@ -1,0 +1,8 @@
+// Type your program here!
+var.P = [3,-5,2] cm
+var.Q = [-2,4,4] cm
+var.S = [3,-3,-4] cm
+
+var.R = var.P + var.Q + var.S
+debug = length(var.R) + ' '+UnitVector(var.R)
+

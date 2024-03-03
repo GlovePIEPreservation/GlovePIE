@@ -1,0 +1,9 @@
+// A couple of gestures for speaking
+
+// come on
+numpad1 = (140 <= p5.roll <= 210) and (-45 <= p5.yaw <= 45) and (p5.pitch < -40) and (p5.zvelocity < -200)
+
+// This is for you
+numpad2 = (p5.zvelocity>200) and ((140 <= p5.roll <= 220) or (-140 >= p5.roll >= -220)) and (-45 <= p5.yaw <= 45) and (-30 < p5.pitch < 30)
+
+

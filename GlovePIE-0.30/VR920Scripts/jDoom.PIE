@@ -1,0 +1,57 @@
+// jDoom: Doom/Doom 2 port
+// for VR920 + Wiimote + Nunchuk
+
+PIE.FrameRate = 120Hz
+
+var.sensitivity = 760
+
+var.y = VR920.ContinuousYaw
+
+// mouse
+//if wiimote.PointerVisible then
+//  mouse.x = wiimote.PointerX
+//  mouse.y = wiimote.PointerY
+//else
+  FakeMouse.DirectInputX += delta(MapRange(var.y, -90 degrees, 90 degrees, -var.sensitivity, var.sensitivity))
+  FakeMouse.DirectInputY += delta(MapRange(VR920.pitch, -90 degrees, 90 degrees, var.sensitivity, -var.sensitivity))
+//end if
+
+if abs(vr920.pitch+9) >= 30 then var.middle = false
+if abs(vr920.pitch+9) <= 1.5 then var.middle = true
+key.End = wiimote.1//keepdown(pressed(var.middle),50ms)
+
+
+if said("look up") then FakeMouse.DirectInputY -= var.sensitivity/4
+if said("look down") then FakeMouse.DirectInputY += var.sensitivity/4
+
+// Movement
+comma = any.left
+dot = any.right
+up = any.up
+down = any.down
+var.moving = (any.Left or any.Right or any.Up or any.down)
+shift = any.Joy1Run
+
+//Space = keepdown(said("use"),100ms) or keepdown(said("activate"),100ms)
+esc = keepdown(said("pause game") or said("escape"),100ms) or keepdown(said("computer freeze program"),100ms)
+//Enter = keepdown(said("OK") or said("Enter") or said("Continue"),100ms)
+tab = any.Select
+
+Esc = any.Home
+ctrl = any.RightTrigger
+space = any.RightThumbButton1
+enter = any.RightThumbButton1
+
+one = keepdown(said("fists") or said("chainsaw"),100ms)
+two = keepdown(said("pistol"),100ms)
+three = keepdown(said("shotgun"),100ms)
+four = keepdown(said("chaingun"),100ms)
+five = keepdown(said("rocket launcher"),100ms)
+six = keepdown(said("plasma rifle"),100ms)
+seven = keepdown(said("BFG") or said("BFG 9000"),100ms)
+wiimote.leds = 1
+
+var.push = (AngleBetween(Smooth(Wiimote.RelAcc),[0,0,1])<45 deg) and Smooth(|Wiimote.RelAcc|) > 5
+var.LeftPunch = (AngleBetween(Smooth(Nunchuk.RelAcc),[0,0,1])<45 deg) and Smooth(|Nunchuk.RelAcc|) > 8
+Space = keepdown(var.Push,100ms)
+ctrl = keepdown(var.LeftPunch,100ms)

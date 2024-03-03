@@ -1,0 +1,27 @@
+// Musical Fingers! (similar fingering to a recorder)
+midi.volume = 100%
+
+midi.c6 = p5.thumb >= 32
+midi.b5 = p5.index >= 32
+midi.a5 = p5.middle >= 32
+midi.g5 = p5.ring >= 32
+midi.f5 = p5.pinky >= 32
+
+if not p5.A then var.ADown = false
+if p5.A and not var.ADown then
+  var.ADown = true
+  var.instrument = var.instrument + 1
+  if var.instrument > 127 then var.instrument = 0
+end if
+
+if not p5.B then var.BDown = false
+if p5.B and not var.BDown then
+  var.BDown = true
+  var.instrument = var.instrument - 1
+  if var.instrument < 0 then var.instrument = 127
+end if
+
+midi.instrument = var.instrument
+debug = "Instrument " + var.instrument
+
+

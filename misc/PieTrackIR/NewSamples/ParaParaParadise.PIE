@@ -1,0 +1,104 @@
+// ParaParaParadise - StepMania 4 script!
+// This uses the default StepMania 4 key setup
+
+// If you have two gloves, wear one on each hand.
+// The receptor towers can either be side-by-side,
+// or on each side of the screen, or wherever you want (facing forward)
+
+// To calibrate at any time, hold your hand out in front of you,
+// at the minimum distance you want to trigger a button press,
+// then press the A button on either glove.
+// See PIE's debug box to make sure all 5 locations work.
+// Press the B button on either glove to do ALT+TAB
+
+// START = make a fist
+// BACK = fingers pointing to ceiling and palm facing you
+// Menu Up = hand up high
+// Menu Down = hand down low
+// Menu Left = hand to the left (quickly or it will repeat)
+// Menu Right = hand to the right (quickly or it will repeat)
+// Calibrate hand forward position = Button A
+// ALT-TAB = Button B
+// Stop Script = Button C
+
+Glove1.C => StopScript
+Glove2.C => StopScript
+
+p5.FilterFrames = 2   // not much averaging
+p5.FilterDistance = 0 // no deadband
+p5.minn = 60 // have to bend fingers a lot to make a fist
+
+var.x = (glove1.x in cm) - var.CenterX
+var.y = (glove1.y in cm) - var.CenterY
+var.z = (glove1.z in cm) - var.CenterZ
+var.x2 = (glove2.x in cm) - var.CenterX2
+var.y2 = (glove2.y in cm) - var.CenterY2
+var.z2 = (glove2.z in cm) - var.CenterZ2
+
+if not Glove2.exists then var.z2 = -30 cm
+
+if pressed(glove1.A) then
+  var.centerX = glove1.x in cm
+  var.centerY = glove1.y in cm
+  var.centerZ = glove1.z in cm
+  var.centerX2 = glove2.x in cm
+  var.centerY2 = glove2.y in cm
+  var.centerZ2 = (glove2.z in cm) + 6 cm
+endif
+
+if pressed(glove2.A) then
+  var.centerX = glove1.x in cm
+  var.centerY = glove1.y in cm
+  var.centerZ = (glove1.z in cm) + 6 cm
+  var.centerX2 = glove2.x in cm
+  var.centerY2 = glove2.y in cm
+  var.centerZ2 = glove2.z in cm
+endif
+
+var.North = ((var.z >= 0 cm) and (-25 cm < var.x < 25 cm)) or ((var.z2 >= 0 cm) and (-25 cm < var.x2 < 25 cm))
+var.NorthEast = (var.z >= -15 cm and var.x >= 25 cm) or (var.z2 >= -15 cm and var.x2 >= 25 cm)
+var.NorthWest = (var.z >= -15 cm and var.x <= -25 cm) or (var.z2 >= -15 cm and var.x2 <= -25 cm)
+var.East = (var.x >= 40 cm and var.z < -15 cm) or (var.x2 >= 40 cm and var.z2 < -15 cm)
+var.West = (var.x <= -40 cm and var.z < -15 cm) or (var.x2 <= -40 cm and var.z2 < -15 cm)
+
+if var.Up then
+  var.Up = (var.y >= 20 cm) or (var.y2 >= 20 cm)
+else
+  var.Up = (var.y >= 27 cm) or (var.y2 >= 27 cm)
+endif
+
+if var.Down then
+  var.Down = (var.y <= -20 cm) or (var.y2 <= -20 cm)
+else
+  var.Down = (var.y <= -27 cm) or (var.y2 <= -27 cm)
+endif
+
+if var.Start1 then
+  var.Start1 = glove1.xnnnx or glove1.xrrrx
+else
+  var.Start1 = glove1.xnnnn
+endif
+
+if var.Start2 then
+  var.Start2 = (glove2.xnnnx or glove2.xrrrx)
+else
+  var.Start2 = glove2.xrrrx
+endif
+
+debug = var.West + "   " + var.NorthWest + "   " + var.North + "   " + var.NorthEast + "   " + var.East
+
+z = var.West
+x = var.NorthWest
+c = var.North
+v = var.NorthEast
+b = var.East
+
+Up = pressed(var.Up)
+Down = pressed(var.Down)
+Enter = pressed(var.Start1) or pressed(var.Start2)
+Escape = (glove1.FingersUpStrict and glove1.PalmBack) or (glove2.FingersUpStrict and glove2.PalmBack)
+
+Alt = KeepDown(glove1.B or glove2.B, 4 seconds)
+Tab = glove1.B or glove2.B
+
+

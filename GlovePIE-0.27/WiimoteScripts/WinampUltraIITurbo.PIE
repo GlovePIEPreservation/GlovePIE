@@ -1,0 +1,20 @@
+// Reasonably intuitive script for controlling Winamp...
+// by STKD
+
+//Winamp Wiimote Test aka Wiinamp Control Ultra II Turbo Edition 
+
+//Controls set to Wiimote buttons 
+
+Ctrl+z = Wiimote.Up        //Start of playlist       (D-pad up) 
+Ctrl+b = Wiimote.Down      //End of playlist       (D-pad down) 
+Left = Wiimote.Left        //Back 5 seconds       (D-pad left) 
+Right = Wiimote.Right      //Jump 5 seconds       (D-pad right) 
+x = Wiimote.A              //Play          (Main "A" button on Wiimote) 
+Shift+v = Wiimote.B        //Stop          (Song fades out,"B" button on Wiimote) 
+b = Wiimote.One            //Next track       ("1" button on Wiimote) 
+z = Wiimote.Two            //Previous track       ("2" button on Wiimote) 
+v = Wiimote.Home           //Stop          (Stop, "Home" button on Wiimote) 
+Down = Wiimote.Minus       //Volume Down       ("-" button on Wiimote) 
+Up = Wiimote.Plus          //Volume Up          ("+" button on Wiimote) 
+
+//No power in the 'Verse can stop me

@@ -1,0 +1,17 @@
+// Only mouse1 will control the system mouse!
+mouse.Swallow = true
+mouse.DirectInputX = mouse.DirectInputX + var.MouseDeltaX
+mouse.DirectInputY = mouse.DirectInputY + var.MouseDeltaY
+
+var.MouseDeltaX = mouse1.DirectInputX - var.MouseOldX
+var.MouseDeltaY = mouse1.DirectInputY - var.MouseOldY
+
+var.MouseOldX = mouse1.DirectInputX
+var.MouseOldY = mouse1.DirectInputY
+
+mouse.LeftButton = mouse1.LeftButton
+mouse.RightButton = mouse1.RightButton
+mouse.MiddleButton = mouse1.MiddleButton
+mouse.XButton1 = mouse1.XButton1
+mouse.XButton2 = mouse1.XButton2
+

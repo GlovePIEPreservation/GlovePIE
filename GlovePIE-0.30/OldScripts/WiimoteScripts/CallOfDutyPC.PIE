@@ -1,0 +1,136 @@
+/* Code for playing Call of Duty PC with the Wii-Remote and Nunchuk 
+   Control Arrangement done by Arianol, version 1.5.3 */ 
+
+/* This PIE requires that you have either one or two IR points to aim the 
+   Wiimote at. A lit teacandle sitting in a small glass works nicely as a 
+   single point and reduces fire hazard.  The Wii Sensor Bar is best for the 
+   two-point setting. At any time you can point the Wiimote away from the sensor 
+   and Press 1 to revert back to natural mouse movement. Please set the value 
+   of the following variable to your number of infrared points (1 or 2). */ 
+   var.irAmount = 2          // 1 OR 2 
+/* When configuring xNunchuk please hold the nunchuk flat in your hand and do 
+   not move it. You want to look at the debug output at the top of this 
+   window, and modify the value of xNunchuk until the debug value equals zero. 
+   The debug value will be very jumpy so just get as close as you can. */ 
+   var.xNunchuk = 0 
+/* Set these numbers so that the cursor reaches the edges 
+   of your screen. (Defaults are both 1.1) */ 
+   var.xStretch = 1.1 
+   var.yStretch = 1.1 
+
+/* The following variables are all a matter of personal preference. */ 
+   var.speed = 1/7     // Master Sensitivity (Default 1/7) 
+    var.zoom = 1/3     // Speed When Aiming Down Sight (Default 1/3) 
+var.deadzone = 250     // Less Sensitive Area Around Cursor (Default 250px) 
+
+// Remote Controls 
+            alt = Wiimote.Up         // Change Rate-Of Fire 
+          shift = Wiimote.Down       // Melee 
+  mouse.WheelUp = Wiimote.Left       // Last Weapon 
+mouse.WheelDown = Wiimote.Right      // Next Weapon 
+
+ mouse.LeftButton = Wiimote.B        // Primary Fire 
+mouse.RightButton = Wiimote.A        /* Secondary Fire -> Change RightMouseButton 
+                                        to Aim Down Sight instead of Toggle For 
+                                        a more CoD3-like experience */ 
+
+     f = Wiimote.Minus               // Use 
+     r = Wiimote.Minus               // Reload 
+   Tab = Wiimote.Home                // View Score 
+Escape = Wiimote.Plus                // Menu 
+
+Windows + M = Wiimote.Two            // Windows Key + M - Minimize 
+
+If Pressed(Shift) Then               // Rumbles wiimote when shift is pressed 
+   Wiimote.Rumble = True 
+   wait 100 ms 
+   Wiimote.Rumble = False 
+EndIf 
+
+// Nunchuck Controls 
+   C = Wiimote.Nunchuk.ZButton       // Crouch 
+If C = True Then 
+   wait 400 ms 
+   If C = True Then 
+      Press Control                  //Prone 
+      Release Control 
+   EndIf 
+EndIf 
+Space = Wiimote.Nunchuk.CButton      // Jump 
+
+q = Wiimote.Nunchuk.Roll + var.xNunchuk < -55      // Lean Left 
+e = Wiimote.Nunchuk.Roll + var.xNunchuk > 60       // Lean Right 
+
+// Control Stick Movement 
+w = Wiimote.Nunchuk.JoyY < -0.4 
+a = Wiimote.Nunchuk.JoyX < -0.4 
+s = Wiimote.Nunchuk.JoyY > 0.4 
+d = Wiimote.Nunchuk.JoyX > 0.4 
+
+// LED Lights 
+Wiimote.Led4 = four 
+Wiimote.Led3 = three 
+Wiimote.Led2 = two 
+Wiimote.Led1 = one 
+
+/* Code for Pointing Mechanism 
+   --------------------------- 
+              Do Not Modify */ 
+
+// If Using A Two-Dot Sensor, Find Midpoint 
+If var.irAmount = 2 Then 
+   var.xPos = (Wiimote.dot1x + Wiimote.dot2x) / 2 
+   var.yPos = (Wiimote.dot1y + Wiimote.dot2y) / 2 
+Else 
+   var.xPos = Wiimote.dot1x 
+   var.yPos = Wiimote.dot1y 
+EndIf 
+
+// If At Least One Dot Is Visible, Move Cursor 
+If Wiimote.dot1vis Then 
+   // Locate Infrared Focal Point 
+   var.xPoint = (1-(round(var.xPos) / 1024)) * Screen.Width 
+   var.yPoint = ((round(var.yPos) / 768)) * Screen.Height 
+   // Create Virtual Grid System And Draw Point Coordinates 
+   var.xGrid = var.xPoint - (Screen.Width / 2) 
+   var.yGrid = var.yPoint - (Screen.Height / 2) 
+   // Find Cursor on Grid 
+   var.xCursor = Mouse.CursorPosX - (Screen.Width / 2) 
+   var.yCursor = Mouse.CursorPosY - (Screen.Height / 2) 
+   // Calculate Distance To Move 
+   var.xDist = (var.xGrid - var.xCursor) 
+   var.yDist = (var.yGrid - var.yCursor) 
+   // Calculate Speed Multipliers Based On DeadZone Parameters 
+   If abs(var.xDist / var.deadzone) > 1 Then var.xMult = 1 Else var.xMult = abs(var.xDist / var.deadzone) 
+   If abs(var.yDist / var.deadzone) > 1 Then var.yMult = 1 Else var.yMult = abs(var.yDist / var.deadzone) 
+   // Calculate Motion Speed & Add In Scope Multiplier If Needed 
+   If Wiimote.A = True Then 
+   var.xMotion = var.xDist * var.xMult * var.Speed * var.Zoom 
+   var.yMotion = var.yDist * var.yMult * var.Speed * var.Zoom 
+   Else 
+   var.xMotion = var.xDist * var.xMult * var.Speed 
+   var.yMotion = var.yDist * var.yMult * var.Speed 
+   EndIf 
+   // Calculate New Cursor Position 
+   If abs(var.xDist) > 0 Then var.xCursor = (var.xCursor + var.xMotion) * var.xStretch 
+   If abs(var.yDist) > 0 Then var.yCursor = (var.yCursor + var.yMotion) * var.yStretch 
+   // Move Cursor 
+   Mouse.CursorPosX = var.xCursor + (Screen.Width / 2) 
+   Mouse.CursorPosY = var.yCursor + (Screen.Height / 2) 
+   // Backup Last Motions 
+   var.xLast = var.xMotion 
+   var.yLast = var.yMotion 
+   // Reload (If Minus Fails) 
+   r = Wiimote.One 
+ElseIf Pressed(Wiimote.One) Then 
+   // Terminate Motion - Safeguard 
+   var.xLast = 0 
+   var.yLast = 0 
+Else 
+   // Move Using Last Known Value 
+   If var.xMult = 1 Then Mouse.CursorPosX = Mouse.CursorPosX + var.xLast 
+   If var.yMult = 1 Then Mouse.CursorPosY = Mouse.CursorPosY + var.yLast 
+EndIf 
+
+// Debug 
+debug = 'Debug:  xNunchuk: ' + (Wiimote.Nunchuk.Roll + var.xNunchuk) + '  SpeedY: ' + var.speedY + '  SpeedX: ' + var.speedX
