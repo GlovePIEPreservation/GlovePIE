@@ -1,0 +1,51 @@
+//Written by Kunal Khiyani 
+// 
+// 
+//Set your emulator to these values: 
+//Analog Stick = Up, Down, Left, and Right Arrow Keys 
+//Start = S 
+//Z-Button = z 
+//R-Button = d 
+//A-Button = x 
+//B-Button = c 
+//L-Button = a 
+//C-Up = I 
+//C-Down = k 
+//C-Left = j 
+//C-Right = l 
+//Controls are as follows: 
+//A-Button = A-Button 
+//Minus = Left (L) 
+//Plus = Right (R) 
+//Home = C-Up 
+//One = C-Left 
+//Two = C-Right 
+//Shake Wiimote = B-Button 
+//A and B = Start 
+//B= Z button 
+// up and B = wiimote up 
+// wiimote.left is n64 a button + left 
+// wiimote.right is n64 a button + right 
+// wiimote.up is n64 b button + n64 up 
+// note: i didnt use the c-pad because you can just jump with 
+// nunchuck up, so i used the wiimote d-pad 
+
+Right = 1 > Wiimote1.Nunchuk.JoyX > 0.5 
+Left = -1 < Wiimote1.Nunchuk.JoyX < -0.5 
+down = 1 > Wiimote1.Nunchuk.JoyY > 0.5 
+up = -1 < Wiimote1.Nunchuk.JoyY < -0.5 
+
+S = wiimote.A and wiimote.B 
+Z = wiimote.B 
+D = wiimote.Plus 
+A = wiimote.minus 
+A = wiimote.A 
+i = Wiimote.Up 
+j = Wiimote.Left 
+l = Wiimote.Right 
+k = Wiimote.Down 
+x = Wiimote.A 
+up and c = wiimote.up 
+left and x = wiimote.Left 
+right and x = wiimote.Right 
+c and wiimote.Rumble = (wiimote.RawForceX >= 15)

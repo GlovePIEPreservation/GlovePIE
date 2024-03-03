@@ -1,0 +1,72 @@
+var.Roll = asin(p5.BackOfHandDir[1])
+var.RollRight = (var.roll > 50 degrees) and (p5.z <-25cm)
+var.RollLeft = (var.roll < -30 degrees) and (p5.z <-25cm)
+var.PitchUp = p5.FingersUp
+var.PitchDown = p5.FingersDown
+
+debug = var.Roll+','+var.RollLeft+', '+var.RollRight
+
+//NumPadMinus = p5.y > 20cm
+//NumPadPlus = p5.y < 0cm
+//Ctrl+Down = p5.y > 35cm
+//Ctrl+Up = p5.y < -15cm
+
+var.FarOut = p5.z < -60cm
+var.FarIn = p5.z > -20cm
+var.Out = p5.z < -50cm
+var.In = p5.z > -30cm
+var.Up = p5.y > 20cm
+var.Down = p5.y < 0cm
+var.Left = p5.x < -10cm
+var.Right = p5.x > 10cm
+
+// In/Out keys don't work at the same time as arrow keys
+if var.RollLeft or var.RollRight or var.PitchUp or var.PitchDown then
+  var.OutKey = false
+  var.InKey = false
+  var.LeftKey = false
+  var.RightKey = false
+  var.UpKey = false
+  var.DownKey = false
+  var.FarInKey = false
+  var.FarOutKey = false
+else if (var.Out or var.In) and (var.Up or var.Down or var.Left or var.Right) then
+  var.ZoomPart = ((pie.Frame div 10) mod 2)=0
+  var.OutKey = var.Out and var.ZoomPart
+  var.InKey = var.In and var.ZoomPart
+  var.UpKey = var.Up and (not var.ZoomPart)
+  var.DownKey = var.Down and (not var.ZoomPart)
+  var.LeftKey = var.Left and (not var.ZoomPart)
+  var.RightKey = var.Right and (not var.ZoomPart)
+  var.FarInKey = false
+  var.FarOutKey = false
+else
+  var.OutKey = var.Out and (not var.FarOut)
+  var.InKey = var.In and (not var.FarIn)
+  var.FarOutKey = var.FarOut
+  var.FarInKey = var.FarIn
+  var.UpKey = var.Up
+  var.DownKey = var.Down
+  var.LeftKey = var.Left
+  var.RightKey = var.Right
+end if
+
+Up = var.UpKey
+Down = var.DownKey
+Left = var.LeftKey
+Right = var.RightKey
+NumPadMinus = var.OutKey
+NumPadPlus = var.InKey
+Ctrl+Down = var.FarOutKey
+Ctrl+Up = var.FarInKey
+Shift+Left = var.RollLeft
+Shift+Right = var.RollRight
+Shift+Up = var.PitchUp
+Shift+Down = var.PitchDown
+//Up = p5.z > -20cm
+//Down = p5.z < -30cm
+
+
+
+
+

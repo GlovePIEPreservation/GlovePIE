@@ -1,0 +1,320 @@
+TrackIR instructions for GlovePIE
+
+*NOTE* You may want to test what values TrackIR returns, and
+whether it works at all, before you use the tutorial in the GUI
+section. Once you have registered the OptiTrack.DLL file, try
+loading and running the "TestTrackIR.PIE" script.
+
+Vector Clip
+===========
+GlovePIE currently assumes you have a 6DOF vector clip. If you
+haven't bought one, you may be able to make one yourself. You
+will need 3 reflective dots arranged in a triangle, with two
+at the bottom and one at the top. The top dot is #0, the left
+dot is #1 and the right dot is #2. At the top of your script,
+set TrackIR.dist01, TrackIR.dist02 and TrackIR.dist12 to the
+correct distance between those two dot numbers. It is in mm 
+by default, but GlovePIE lets you use units like this:
+
+TrackIR.dist01 = 1.63 inches
+
+You will also need to set a 4th value, which is called distol
+(that is a letter o and letter L). It is the distance from the
+top dot down at right angles to the line between the bottom two
+dots.
+
+GlovePIE uses these four values by default, so you may want to
+build your vector clip to match these:
+120.00 mm, 120.00 mm, 70.00 mm, 114.80 mm
+
+Drivers
+=======
+
+TrackIR drivers should already be installed. I don't know if
+OptiTrack.dll is installed with the TrackIR software or not, so
+you may need to register it manually.
+
+Then OptiTrack.dll needs to be placed in your Windows System 
+directory. On Windows 2000/XP that may be c:\windows\system32.
+
+Then OptiTrack.dll needs to be registered. Drag and drop it
+onto regsvr32.exe.
+
+You do not need to (and probably shouldn't) run the TrackIR
+software while using the TrackIR in GlovePIE. So you should
+probably close it down before starting GlovePIE.
+
+GlovePIE
+========
+GlovePIE is normally used to emulate input with other input.
+You can specify how by using the GUI, or with scripts. Either
+way, GlovePIE stores it internally as a script.
+
+Basically it repeats your script 40 times per second. Which is
+roughly the rate a P5 Glove provides data. This is less often
+than a TrackIR updates, so if you want to catch every frame
+(and don't care about CPU usage), you can set Pie.FrameRate to
+something else. eg.
+
+pie.FrameRate = 60 Hz
+
+But that isn't necessary for most things.
+
+GUI
+===
+Clicking on the GUI tab accesses the GUI. It will ask you if
+you want to detect the output to emulate automatically or set
+it manually. Automatically is easier, but only works for mouse,
+keyboard or joystick emulation.
+
+Lets say we want to make a profile for the old 2D platform game
+Commander Keen in Goodbye Galaxy. Holding the up arrow makes
+Keen look up. Holding the down arrow makes keen look down and
+also duck. Holding Control makes him jump. Tapping left makes
+him face to the left and tapping right makes him face to the
+right (hold it down to make him walk/run in that direction).
+
+This game is small and shareware, so you can download it if 
+you want to test it. The sound won't work right in windows, 
+but that doesn't matter.
+
+Lets start with looking up. Click the "Detect Output to 
+Emulate" button and press the up arrow key. It should create a
+list box and drop down boxes with that key highlighted. It also
+creates buttons for setting the input. If it didn't select up,
+try again, or select it manually.
+
+TrackIR input detection isn't supported yet, it only detects
+key, joystick, mouse, and P5 Glove inputs. So click "Edit
+Manually..." on the right hand side.
+
+In the "Input Device" box, choose "TrackIR" (near the bottom). 
+If you have more than one TrackIR or compatible device plugged 
+in, choose which one to use in the "Number" box, otherwise 
+leave the number box blank. The first TrackIR is number 1, then
+number 2 is the second, etc. The default for blank is number 1.
+
+In the "part of device" box, choose "pitch". Pitch is the angle
+up and down your head is rotating.
+
+We need to specify what pitch should be to trigger the up key.
+So click the "More..." button. The "More..." button does two
+things: it creates extra boxes for making comparisons or doing
+maths or putting the output through a function; and it adds
+extra obscure items to the "part of device" box. Pressing the
+button again (which now says "Less...") will put it back to
+normal. But we need the extra boxes.
+
+In the "Maths" box, we need to choose either > for greater 
+than, or < for less than. Since I don't know what direction
+pitch is measured in, I can't tell you which.
+
+In the "Right hand side of maths expression" box we need to
+type how much the pitch has to be to trigger the up arrow. I
+don't know what the units are, or whether it should be positive
+or negative. If you know, please tell me. Whatever you type
+here, the up key will be held down as long as it is true.
+
+Click the "Apply" button.
+
+Now save your script as "KeenTrackIR.pie" or something like 
+that. You can test it out by clicking the run button and 
+playing Commander Keen. He should be able to look up now. Go
+back to GlovePIE and press "Stop", or hold Shift+P+I+E to stop
+it in an emergency.
+
+You should now go back to the GUI tab and repeat the steps
+above, but this time for looking down with the down arrow. If
+you can't find pitch in the drop down box, try pressing the
+"Less..." button to get rid of the other junk, then press it
+again once you have selected Pitch, to display the extra boxes.
+
+Don't forget to click Apply after you have set it.
+
+Once he can look up and down, we need to make him jump when his
+head moves up higher than normal. This is vertical movement,
+not rotation.
+
+Click "Detect Output to Emulate" and press Control. Manually
+edit, then choose "TrackIR" in Input Device. This time we want
+"y" instead of "pitch". In the maths box choose > or < (I don't
+know which), and type the number in the right hand side box.
+I have no idea what the units are, or whether up is positive or
+negative, or what height 0 is (probably level with camera).
+
+Then click "Apply".
+
+To make him face left and right without walking left and right,
+we do the same thing, but this time add the "Pressed" function.
+
+You can work out how to make it hold down the left key for a
+given value of "yaw" (horizontal rotation). So start doing
+that. Again I don't know the units, > or <, positive or
+negative, etc. Before (after will work too) you click "Apply",
+choose "Pressed" in the "Function" box. This will make it only
+hold down the left arrow for a single frame when the comparison
+first becomes true. That is a very short tap, and will make
+Keen face that way without walking that way. Click "Apply".
+
+Note that tapping a key for a single GlovePIE frame will work 
+in some games with a lower frame rate than GlovePIE, but not
+others. It depends how the game reads the keyboard. If the game
+reads the keyboard once per frame, and the frames are less
+often than GlovePIE frames, the game may not register the key
+press. So don't worry if it doesn't work for you.
+
+Repeat what you did for the left arrow with the right arrow.
+
+Now Keen can look up and down, jump, and face left and right,
+just by using his (or rather your) head.
+
+You can save and test your finished script. You can also click
+on the first tab (the name of your script) to see what your
+script looks like outside the GUI.
+
+Script Editing
+==============
+
+The script editor is more powerful than the GUI. It can set
+some things you can't set in the GUI, and it can use more
+complicated expressions, and also IF THEN macros.
+
+If you have tried making a script in the GUI, and then looking
+at the GUI tab, you will see what scripts look like. Scripts
+usually just look like:
+
+OutputDevice.Part = InputDevice.Part
+
+or
+
+OutputDevice.Part = InputDevice.Part > 100
+
+For keyboard keys you can leave out the OutputDevice part, and
+"keyboard" will be assumed.
+
+Anything after // is a comment which is ignored.
+
+For debugging your script it is useful to add a line like this:
+
+debug = TrackIR.pitch
+
+That will display the value of pitch in a box which will appear
+next to the Run/Stop button.
+
+You can display multiple values at once like this:
+
+debug = TrackIR.x +", "+TrackIR.y+", "+ trackir.z
+
+Test all the x, y, z, yaw, pitch and roll values.
+
+With scripts, you can also turn the lights on and off, set or
+read the vector clip dimensions, count how many dots the camera
+can see, read the camera information, get the coordinates of
+the individual dots in the vector clip, tell whether the 
+TrackIR is connected and whether the drivers are installed
+correctly, and get the SwitchState.
+
+I have no idea what the switch state is.
+
+The dots on the vector clip are currently called LEDs for 
+consistency with the P5 Glove fields. But I may change that to
+something more accurate.
+
+RevisionName doesn't work yet, because the constants aren't
+included properly in the type library (or delphi can't read
+them). Please let me know what the different Revision numbers
+mean.
+
+You can get a list of what TrackIR values you can read or set
+by using the code-completion feature. Just type:
+
+trackir.
+
+and it will display a drop down box (use Ctrl+Space if it isn't
+automatic).
+
+Advanced TrackIR scripts
+========================
+
+Let's say we want to add features to our Commander Keen script
+so he can look at his computer wrist watch. He wears his watch
+on his left hand, so he should look down and left to see it. In
+the game you activate the computer wrist by pressing Escape.
+Returning to the game requires more effort.
+
+Escape = Pressed(TrackIR.yaw < -10 and TrackIR.pitch < -10)
+
+That should tap the escape key when you first look down and
+to the left. The problem is it will also press down and left
+at the same time because of the other lines in our script.
+
+They will need to be changed like this:
+
+Left = Pressed(TrackIR.yaw < -10) and TrackIR.pitch > -5
+Down = TrackIR.pitch < -10 and TrackIR.yaw > -5
+
+That way if you look too far down it won't look left, and if
+you look too far left it won't look down.
+
+Again the numbers and directions above could be completely
+wrong, since I don't know the units, direction, or origin.
+
+Another problem is that the Pressed function is only true for
+a single frame, and the game may miss it. You can keep the key
+down for longer than it is normally true for, by using the
+KeepDown function...
+
+Left = KeepDown(Pressed(TrackIR.yaw < 10), 100ms) and TrackIR.pitch > -5
+Escape = KeepDown(Pressed(TrackIR.yaw < -10 and TrackIR.pitch < -10), 100ms)
+
+You can change the 100ms to any duration you want the key to be
+tapped for.
+
+You should be able to work out how to make him bring out his 
+pogo stick when he looks down and to the right, or whatever
+other features you want to add.
+
+Emulating a Joystick
+====================
+
+To emulate a joystick, you need to download and install PPJoy.
+Then you need to set up a virtual joystick, preferably number
+1, with the number of axes, buttons and hats you want (I
+recommend the maximum for each).
+
+Then you can either use the GUI to set a joystick axis to a
+range of TrackIR values or you can use a script like this:
+
+ppjoy.analog0 = MapRange(TrackIR.yaw, -20,20, -1,1)
+
+In the GUI, remember to check the "Convert from source range"
+box, and fill in the minimum and maximum values. -20, and 20
+would be the same as the script above. You can invert the axis
+by putting 20 in the min box and -20 in the max box.
+
+Combining with other features
+=============================
+
+You can use TrackIR in combination with other features, eg.
+speech recognition.
+
+Try adding something like this to your script:
+
+F1 = said("help")
+
+You may need to train the speech recognition in the speech
+control panel. See readme.txt for how to download SAPI if you
+don't have it.
+
+Summary
+=======
+I don't have a TrackIR, so let me know what works and what
+doesn't. Also it would be really nice to know what the units,
+directions, and origins are for the different values. And which
+of the 6 different kinds of Euler angles it is, so I can make
+it into a rotation matrix and get useful information out of it.
+
+Also feature requests and other feedback would be good.
+
+Oh, and tell me what sorts of values you found comfortable in
+your commander keen script.

@@ -1,0 +1,43 @@
+// Trampoline game + Wiimote :)
+// by Walaber (www.walaber.com)
+
+//Hello all, this is my first post here. I am the author of several
+//freeware PC games, the most recent of which is called
+//"Walaber's Trampoline". The game is a "trampoline action simulation".
+//anyway, I hooked up my Wii remote yesterday with GlovePIE, and wrote
+//a simple script to control the game with the remote. The results were
+//pretty good!
+
+// YouTube video:  http://www.youtube.com/watch?v=1L0hpMLxetA
+
+var.calibX = -10
+var.calibY = 37
+var.calibZ = -13
+
+var.FinalForceX = wiimote.RawForceX - var.calibX
+var.FinalForceY = wiimote.RawForceY - var.calibY
+var.FinalForceZ = wiimote.RawForceZ - var.calibZ
+
+
+debug = 'X:' + var.FinalForceX + ' Y:' + var.FinalForceY + ' Z:' + var.FinalForceZ
+
+
+if (abs(var.FinalForceY) > 30)
+   space = true
+else
+    space = false
+endif
+
+if ((var.FinalForceX > 20) && (abs(var.FinalForceY) < 15))
+   Up = true
+else
+    Up = false
+endif
+
+Left = wiimote.Up
+Right = wiimote.Down
+s = wiimote.A
+d = wiimote.One
+f = wiimote.Two
+c = wiimote.Home
+r = wiimote.B

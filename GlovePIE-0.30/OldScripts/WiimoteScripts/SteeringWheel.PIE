@@ -1,0 +1,78 @@
+/* ------------< Pvt. John Doe's Steering Wheel Script >------------ 
+  | This is my script for car racing games.  It has smooth steering,| 
+  | so you can tilt the controller a little bit or a lot to steer   | 
+  | accordingly.  Hold the Wii remote with the buttons facing up,   | 
+  | as if you were playing Excite Truck.  Steering is mapped to the | 
+  | X axis.  The Wii remote's buttons are mapped from button 1 to   | 
+  | button 11.  Set them up however you like in the game.  The Y    | 
+  | axis is mapped to the tilt of the controller forward and back.  | 
+  | This could come in handy for flight sims or shifting.           | 
+   ----------------------------------------------------------------- 
+
+  !!!! Follow Steps 1 - 3 to get your remote working properly !!!! 
+       Be sure you have PPJoy installed before continuing. 
+
+   ------------(Step 1 - Set up PPJoy Virtual Joystick)------------ 
+  |   1. In GlovePIE, go to CP-Settings > PPJoy.                   | 
+  |   2. Click on Add, then select "Constoller 1".                 | 
+  |   3. Select "PPJoy Virtual Joystick 1" and click Mapping.      | 
+  |   4. Choose "Set a custom mapping..." and click Next.          | 
+  |   5. Select 2 Axes and 11 Buttons, then click Next.            | 
+  |   6. Click Next again.                                         | 
+  |   7. Set Button1 to "Digital 0", Button2 to "Digital 1", etc., | 
+  |      then click next.                                          | 
+  |   8. Click finish.                                             | 
+   ---------------------------------------------------------------- 
+
+   ------------(Step 2 - Fill in the following values)------------- 
+   Run this script and user the info that is displayed in the debug 
+   area of GlovePIE. */ 
+
+var.zmin = -45 // 1. Stand remote on IR end. Put the number next to RawZ here. 
+var.zmax = 13 // 2. Stand remote on expansion port. Put the number next to RawZ here. 
+
+var.xmin = -43 // 3. Lay remote on right side. Put the number next to RawX here. 
+var.xmax = 15 // 4. Lay remote on left side.   Put the number next to RawX here. 
+
+/*  ---------------------(Step 3 - Center Axes) ----------------------- 
+   |   1. In GlovePIE, go to CP-Settings > Joystick.                   | 
+   |   2. Select "PPJoy Virtual Joystick 1" and click Properties.      | 
+   |   3. Lay your remote on a flat surface with the buttons facing up.| 
+   |   4. Change the following values to center the axes.           | 
+    ------------------------------------------------------------------- */ 
+
+var.zoffset = -3 // This is shown as the X axis. 
+var.xoffset = -2 // This is shown as the Y axis. 
+
+/* Now you're done.  All that is left is to configure your game 
+   to your liking.  Have fun! 
+
+   Note: This script was originally designed for Need For Speed. 
+         Menus in NFS can be navigated by tilting the controller 
+         forward & back ( for up & down) and left & right. */ 
+
+
+var.z = Wiimote.RawForceZ 
+var.x = Wiimote.RawForceX 
+
+Wiimote.Leds = 1 + 8 /* No fancy LED animations here. :) */ 
+
+var.z = var.z + var.zoffset 
+var.x = var.x + var.xoffset 
+
+ppjoy.analog0 = MapRange(var.z, var.zmin, var.zmax, -1, 1) 
+ppjoy.analog1 = MapRange(var.x, var.xmin, var.xmax, -1, 1) 
+
+ppjoy.digital1 = Wiimote.A 
+ppjoy.digital2 = Wiimote.B 
+ppjoy.digital3 = Wiimote.Home 
+ppjoy.digital4 = Wiimote.Plus 
+ppjoy.digital5 = Wiimote.Minus 
+ppjoy.digital6 = Wiimote.Up 
+ppjoy.digital7 = Wiimote.Down 
+ppjoy.digital8 = Wiimote.Left 
+ppjoy.digital9 = Wiimote.Right 
+ppjoy.digital10 = Wiimote.One 
+ppjoy.digital11 = Wiimote.Two 
+
+debug = 'RawX: ' + Wiimote.RawForceX + ' RawZ: ' + Wiimote.RawForceZ 

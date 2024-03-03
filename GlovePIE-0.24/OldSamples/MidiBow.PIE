@@ -1,0 +1,69 @@
+// Musical Bow and Arrow
+
+// Initialization
+if not var.initialized then
+  var.initialized = true
+  debug = ""
+  midi.volume = 100%
+end if
+
+// Test that you can actually hear anything by pressing Right Shift
+midi.c5 = RightShift
+
+// Bow grips
+var.ValidBowGrip = (30<=p5.index<=60) and (30<=p5.middle<=60) and (30<=p5.ring<=60)
+var.CanGrabBowString = (p5.index>=38) and (p5.middle>=38) and (p5.ring>=38)
+var.CanHoldBowString = (p5.index>=30) and (p5.middle>=30) and (p5.ring>=30)
+
+// Grabbing the bow string:
+
+//var.GrabbingBowString = pressed(var.CanGrabBowString and p5.z > -700)
+
+var.TryingToGrabBow = pressed(var.CanGrabBowString)
+
+var.GrabbingBow = False
+if ((not var.HoldingBowString) and (var.ValidBowGrip) and var.TryingToGrabBow and (p5.z > -700)) then
+  var.GrabbingBow = true
+  var.HoldingBowString = true
+  Debug = "Grabbing Bow String"
+end if
+
+// Pulling back the bow string
+var.DrawingBow = var.HoldingBowString and p5.zVelocity < -800
+if var.DrawingBow then
+  debug = "Drawing Bow"
+end if
+
+var.UndrawingBow = var.HoldingBowString and p5.zVelocity > 800
+
+var.BowDrawnBack = var.HoldingBowString and p5.z <= -1100
+if var.BowDrawnBack then
+  debug = "Bow Drawn"
+end if
+
+// Firing the bow
+var.FiringBow = var.BowDrawnBack and not var.CanHoldBowString
+
+if var.FiringBow then
+  var.HoldingBowString = false
+  debug = "Firing Arrow"
+end if
+
+// Cancelling the bow
+var.CancellingBow = var.HoldingBowString and not var.ValidBowGrip
+
+if var.CancellingBow then
+  var.HoldingBowString = false
+  debug = ""
+end if
+
+//debug = var.GrabbingBow
+midi.c4 = var.GrabbingBow
+midi.c2 = var.DrawingBow
+midi.e2 = var.UndrawingBow
+midi.g5 = KeepDown(var.FiringBow,1)
+midi.a1 = KeepDown(var.CancellingBow,0.6)
+
+//LMB = var.FiringBow
+//Shift = var.HoldingBowString
+

@@ -1,0 +1,100 @@
+// Heres Mine For Need For Speed. Kinda Hack Way to make it work. 
+// Ps Hold Controller sideway just like Excite Truck and
+// NFS Carbon for wii    -- bmxr
+
+//NEED FOR SPEED MOST WANTED 
+/* NOTE for this code to work right with the wiimote please 
+   read the following                                      */ 
+
+// When configuring the offsets please put the wiimote flat and do not move it. 
+// These are offsets change them so that your debug output reads 0,28,0 
+// The debug output is at the top of this window. 
+// Ex if you get -7,33,-6 then change the offsets to 7,-5,6 
+
+var.xOffset = 4 
+var.yOffset = -2 
+var.zOffset = 6 
+
+// 1st player led on so you know it's running 
+Wiimote.leds = 1 
+
+
+// Change this if you would like your mouse to go faster 
+var.speed = 1 
+
+// change these to a higher number if your hands are not steady or lower if they are 
+var.zCutoff1 = 4 
+var.zCutoff2 = 8 
+var.zCutoff3 = 15 
+
+
+var.xRot = Wiimote.RawForceX + var.xOffset 
+var.yRot = Wiimote.RawForceY + var.yOffset 
+var.zRot = Wiimote.RawForceZ + var.zOffset 
+
+debug = 'X:' + var.xRot + ', ' + 'Y:' + var.yRot + ', ' + 'Z:' + var.zRot 
+
+// Car Movement 
+if var.zRot > var.zCutoff3 then 
+  key.right = true
+  key.left = true
+  key.left = false
+  wait 20ms
+  key.right = false
+else if var.zRot < -var.zCutoff3 then 
+  key.left = true
+  key.right = true
+  key.right = false
+  wait 20ms
+  key.left = false
+else if var.zRot > var.zCutoff2 then 
+  key.right = true
+  key.left = true
+  key.left = false
+  wait 12ms
+  key.right = false
+else if var.zRot < -var.zCutoff2 then
+  key.left = true
+  key.right = true
+  key.right = false
+  wait 12ms
+  key.left = false
+else if var.zRot > var.zCutoff1 then 
+  key.right = true
+  key.left = true
+  key.left = false
+  wait 2ms
+  key.right = false
+else if var.zRot < -var.zCutoff1 then 
+  key.left = true
+  key.right = true
+  key.right = false
+  wait 2ms
+  key.left = false
+else 
+  key.left = True
+  key.right = True
+  key.left = false
+  key.right = false
+endif 
+
+l= Wiimote.Up                             //look behind 
+key.FakeRightCtrl = Wiimote.Down          //speedbreaker 
+key.space = Wiimote.Left                  //HandBrake 
+key.alt = Wiimote.Right                   //nitrous 
+
+key.down = Wiimote.One                   // Press 1 = accel 
+key.up = Wiimote.Two                      // Press 2  = brake/reverse 
+
+key.enter = Wiimote.B                     //enter 
+t = Wiimote.A                             //song change 
+
+c = Wiimote.Plus                          //change view 
+r = Wiimote.Minus                          //reset car 
+
+key.Escape = Wiimote.Home                  //escape 
+
+
+// Useless but fun 
+Wiimote.Rumble = Shift 
+

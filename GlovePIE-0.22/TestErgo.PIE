@@ -1,0 +1,11 @@
+// Type your program here, or click the GUI tab to autogenerate it!
+midi.C0 = (rower.StrokeState = 0)
+midi.C1 = (rower.StrokeState = 1)
+midi.C2 = (rower.StrokeState = 2)
+midi.C3 = (rower.StrokeState = 3)
+midi.C4 = (rower.StrokeState = 4)
+var.p = (rower.pace/2) seconds
+var.s = Int((var.p div 1 minute) in minutes) + ", "+Int((var.p mod 1 minute) in seconds)
+debug = var.s
+speech = var.s
+

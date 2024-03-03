@@ -1,0 +1,21 @@
+// Battlefield 2142 Test Script made for Virginie Ragot
+//Made by www.wiiscript.co.nr
+//This script uses the Nintendo Wii Remote
+//This script does not yet use IR Sensor Bar
+//It uses the D pad for movemnt
+
+ctrl + left = wiimote.minus
+W = wiimote.Plus
+space = wiimote.Home
+enter = wiimote.one
+G = wiimote.Two
+
+
+Mouse.RightButton = Wiimote.A
+
+Mouse.LeftButton = Wiimote.B
+
+A = wiimote.Up
+S = wiimote.Down
+Q = wiimote.Left
+D = wiimote.Right

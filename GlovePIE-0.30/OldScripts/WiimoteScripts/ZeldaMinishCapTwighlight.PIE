@@ -1,0 +1,173 @@
+// Zelda: Minish Cap, with Twilight Princess controls!
+// Version 1.0 - Select changed to default key: backspace not tab
+// Z-Targetting implemented, select menus with Z button
+// By Carl Kenner
+
+//Set your emulator to these values (VBA defaults):
+//D-Pad = Up, Down, Left, Right
+//Start = Enter, Select = BACKSPACE!
+//A-Button = Z, B-Button = X
+//L-Button = A, R-Button = S
+
+// Note, I haven't played Twilight Princess. And I haven't got very
+// far in Minish Cap. So this is just an early version.
+
+// Note: You can roll the nunchuk to the right to use your shield
+// Like in my Ocarina Of Time script
+
+// analog = movement
+Up = Wiimote.Nunchuk.JoyY < -20%
+Down = Wiimote.Nunchuk.JoyY > 20%
+Left = Wiimote.Nunchuk.JoyX < -20%
+Right = Wiimote.Nunchuk.JoyX > 20%
+
+// A = Talk / open doors / interact
+S = Wiimote.A
+
+// Roll nunchuk right to use your shield
+// Z = Z-Target
+var.Shield = (Wiimote.Nunchuk.Roll > 60 degrees) or Wiimote.Nunchuk.ZButton
+Z = var.Shield
+
+// B = trigger
+X = Wiimote.B
+
+// swing wiimote = sword
+if |wiimote.RelAcc| >= 15 and (not var.swinging) then
+  var.swinging = true
+  press(X)
+  wait 100 ms
+  release(X)
+  wait 100 ms
+  var.swinging = false
+end if
+
+// shake Nunchuk sideways = spin attack
+if abs(wiimote.Nunchuk.RelAccX) >= 15 and (not var.swinging) and (not var.Shield) then
+  var.swinging = true
+  press(X)
+  wait 1 second
+  release(X)
+  wait 100 ms
+  var.swinging = false
+end if
+
+// Home = Start (please don't use it to activate subscreens)
+Enter = Wiimote.Home
+
+// 2 = toggle on screen map (N/A)
+
+// up = talk with midna, er. I mean Ezlo
+Backspace = Wiimote.Up
+
+// left, right, down = items (left will always be Kinstones in this)
+Z = Wiimote.Right
+X = Wiimote.Down
+A = Wiimote.Left // Kinstone Fusion!
+
+// + / - = item screen / status menu (maybe in other order)
+if pressed(Wiimote.Minus) and var.page=0 then
+  press(Enter)
+  wait 100ms
+  release(Enter)
+  wait 100ms
+  var.page = 2
+  Say("Select Item")
+else if pressed(Wiimote.Minus) and var.page=1 then
+  press(S)
+  wait 100ms
+  release(S)
+  wait 100ms
+  var.page = 2
+  Say("Select Item")
+else if pressed(Wiimote.Minus) and var.page=2 then
+  press(Enter)
+  wait 100ms
+  release(Enter)
+  wait 100ms
+  var.page = 0
+else if pressed(Wiimote.Minus) and var.page=3 then
+  press(A)
+  wait 100ms
+  release(A)
+  wait 100ms
+  var.page = 2
+  Say("Select Item")
+end if
+
+if pressed(Wiimote.Plus) and var.page=0 then
+  press(Enter)
+  wait 100ms
+  release(Enter)
+  wait 500ms
+  press(S)
+  wait 100ms
+  release(S)
+  wait 100ms
+  var.page = 3
+  Say("Quest Status")
+else if pressed(Wiimote.Plus) and var.page=1 then
+  press(A)
+  wait 100ms
+  release(A)
+  wait 100ms
+  var.page = 3
+  Say("Quest Status")
+else if pressed(Wiimote.Plus) and var.page=2 then
+  press(S)
+  wait 100ms
+  release(S)
+  wait 100ms
+  var.page = 3
+  Say("Quest Status")
+else if pressed(Wiimote.Plus) and var.page=3 then
+  press(A)
+  wait 100ms
+  release(A)
+  wait 500ms
+  press(Enter)
+  wait 100ms
+  release(Enter)
+  wait 100ms
+  var.page = 0
+end if
+
+// 1 = reveals Map
+if pressed(Wiimote.One) and var.page=0 then
+  press(Enter)
+  wait 100ms
+  release(Enter)
+  wait 500ms
+  press(A)
+  wait 100ms
+  release(A)
+  wait 100ms
+  var.page = 1
+  Say("Map")
+else if pressed(Wiimote.One) and var.page=1 then
+  press(S)
+  wait 100ms
+  release(S)
+  wait 500ms
+  press(Enter)
+  wait 100ms
+  release(Enter)
+  wait 100ms
+  var.page = 0
+else if pressed(Wiimote.One) and var.page=2 then
+  press(A)
+  wait 100ms
+  release(A)
+  wait 100ms
+  var.page = 1
+  Say("Map")
+else if pressed(Wiimote.One) and var.page=3 then
+  press(S)
+  wait 100ms
+  release(S)
+  wait 100ms
+  var.page = 1
+  Say("Map")
+end if
+
+Wiimote.Leds = 1

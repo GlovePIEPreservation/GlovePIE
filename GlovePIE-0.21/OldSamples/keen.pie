@@ -1,0 +1,21 @@
+// Look up, or walk through doors
+Up = (p5.y > 300 and abs(p5.yv)<1000)  or   p5.z > -700
+  
+// Look down (also drop down when combined with jump)
+Down = (p5.y < -300 and abs(p5.yv)<2000) or p5.yv<-3000
+
+// Move left or right
+Left = (p5.x < -100 and p5.xv<1000) or p5.xv <-2000
+Right = (p5.x > 100 and p5.xv>-1000) or p5.xv > 2000
+
+// Jump
+Ctrl = abs(p5.yv) > 3000
+
+// Shoot
+Space = p5.index > 41
+
+// Pogo
+Alt = p5.middle > 41
+
+// Escape
+Escape = p5.C

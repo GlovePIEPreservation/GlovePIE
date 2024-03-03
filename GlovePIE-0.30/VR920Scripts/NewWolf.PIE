@@ -1,0 +1,37 @@
+// NewWolf, Wolfenstein 3D port
+// for VR920 + Wiimote + Nunchuk
+
+PIE.FrameRate = 120Hz
+
+var.sensitivity = 800
+
+var.y = smooth(VR920.ContinuousYaw,2)
+
+// mouse
+//if wiimote.PointerVisible then
+//  mouse.x = wiimote.PointerX
+//  mouse.y = wiimote.PointerY
+//else
+  FakeMouse.DirectInputX += delta(MapRange(var.y, -90 degrees, 90 degrees, -var.sensitivity, var.sensitivity))
+//  FakeMouse.DirectInputY += delta(MapRange(VR920.pitch, -90 degrees, 90 degrees, var.sensitivity, -var.sensitivity))
+//end if
+
+if said("look up") then FakeMouse.DirectInputY -= var.sensitivity/4
+if said("look down") then FakeMouse.DirectInputY += var.sensitivity/4
+
+// Movement
+left = any.Left
+right = any.right
+up = any.up
+down = any.down
+var.moving = (any.Left or any.Right or any.Up or any.down)
+alt = var.moving but (not any.Joy1Run)
+
+Space = keepdown(said("use"),100ms) or keepdown(said("activate"),100ms)
+esc = keepdown(said("pause game") or said("escape"),100ms) or keepdown(said("computer freeze program") or said("menu"),100ms)
+Enter = keepdown(said("OK") or said("Enter") or said("Continue"),100ms)
+
+Esc = any.Home
+
+
+

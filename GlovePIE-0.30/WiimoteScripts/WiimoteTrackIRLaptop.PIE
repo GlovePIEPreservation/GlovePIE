@@ -1,0 +1,30 @@
+// Attach the Wiimote to your laptop (facing forward)
+// Use this to play TrackIR Enhanced games with a Wiimote.
+// The Wiimote only supports Pitch and Roll
+
+// Here is a list of free game demos you can download:
+// http://www.naturalpoint.com/trackir/04-community/community-free-game-demos-and-utilities.html
+// or the complete list of TrackIR games is here:
+// http://www.naturalpoint.com/trackir/03-enhanced-games/enhanced-games-all.html
+
+PIE.FrameRate = 60Hz
+var.Pitch = Smooth(Wiimote.SmoothPitch,30)
+var.Roll = Smooth(Wiimote.SmoothRoll,30)
+
+if FakeTrackIR.ProfileID=332DH then
+  FakeTrackIR.pitch = var.Pitch+20 degrees
+  FakeTrackIR.roll = -var.Roll
+else if FakeTrackIR.ProfileID=3A35H or FakeTrackIR.ProfileID=3A38H then
+// Arvoch Conflict and Evochron Alliance use a different range
+  FakeTrackIR.pitch = var.Pitch*2
+  FakeTrackIR.roll = -var.Roll*10
+else
+  FakeTrackIR.pitch = var.Pitch
+  FakeTrackIR.roll = -var.Roll
+end if
+
+// status display
+debug = 'Game='+IntToHex(FakeTrackIR.ProfileId)+'H'+', '+Wiimote.Pitch
+Wiimote.Led1 = FakeTrackIR.ProfileID<>0
+Wiimote.Led4 = FakeTrackIR.active
+

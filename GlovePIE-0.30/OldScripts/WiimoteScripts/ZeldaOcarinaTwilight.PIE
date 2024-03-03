@@ -1,0 +1,214 @@
+// Zelda: Ocarina of Time, with Twilight Princess controls!
+// Version 1 - Now with Wiimote sword swings and Nunchuk spin attack
+// By Carl Kenner
+
+//Set your emulator to these values: 
+//Analog Stick = PPJoy Virtual Joystick
+//A-Button = X, B-Button = C, Start = S
+//L-Button = A, R-Button = D, Z-Button = Z
+//C-Left = j, C-Up = I
+//C-Right = l, C-Down = k
+
+// Note, I haven't played Twilight Princess. And I haven't got very
+// far in Ocarina of Time. So this is just an early version.
+
+// Note: Roll the nunchuk to the right to use your shield
+
+// analog = movement
+if not var.swinging then
+  ppjoy.analog0 = Wiimote.Nunchuk.JoyX
+  ppjoy.analog1 = Wiimote.Nunchuk.JoyY
+end if
+
+// A = Talk / open doors / interact
+X = Wiimote.A
+
+// Roll nunchuk right to use your shield
+var.Shield = Wiimote.Nunchuk.Roll > 60 degrees
+D = var.Shield
+
+// B = trigger
+// swing wiimote = sword
+C = Wiimote.B
+
+if abs(wiimote.RelAccX) >= 15 and (not var.swinging) and (not var.Shield) then
+  var.swinging = true
+  release(Z)
+  wait 100 ms
+  press(C)
+  wait 100 ms
+  release(C)
+  wait 100 ms
+  var.swinging = false
+end if
+
+if abs(wiimote.RelAccY) >= 15 and (not var.swinging) and (not var.Shield) then
+  var.swinging = true
+  press(Z)
+  wait 100 ms
+  press(C)
+  wait 100 ms
+  release(C)
+  wait 100 ms
+  release(Z)
+  wait 100 ms
+  var.swinging = false
+end if
+
+if abs(wiimote.RelAccZ) >= 15 and (not var.swinging) and (not var.Shield) then
+  var.swinging = true
+  press(Z)
+  wait 100 ms
+  ppjoy.analog1 = -1
+  wait 100 ms
+  press(C)
+  wait 100 ms
+  release(C)
+  wait 100 ms
+  release(Z)
+  wait 100 ms
+  ppjoy.analog1 = 0
+  wait 100 ms
+  var.swinging = false
+end if
+
+if abs(wiimote.RelAccZ) >= 15 and (not var.swinging) and (var.Shield) then
+  var.swinging = true
+  press(C)
+  wait 100 ms
+  release(C)
+  wait 100 ms
+  var.swinging = false
+end if
+
+if abs(wiimote.Nunchuk.RelAccX) >= 15 and (not var.swinging) and (not var.Shield) then
+  var.swinging = true
+  press(C)
+  wait 1 second
+  release(C)
+  wait 100 ms
+  var.swinging = false
+end if
+
+if abs(wiimote.RelAccY) >= 15 and (not var.swinging) and var.Shield and Wiimote.Nunchuk.ZButton then
+  var.swinging = true
+  release(D)
+  wait 100 ms
+  press(C)
+  wait 100 ms
+  release(C)
+  wait 100 ms
+  press(D)
+  wait 100 ms
+  var.swinging = false
+end if
+
+
+
+// 1 = reveals Map
+S = Wiimote.One or Wiimote.Home
+
+// 2 = toggle on screen map
+A = Wiimote.Two
+
+// up = talk with midna, er. I mean Naki
+// C = first person
+I = Wiimote.Up or Wiimote.Nunchuk.CButton
+
+// left, right, down = items
+j = Wiimote.Left 
+l = Wiimote.Right 
+k = Wiimote.Down 
+
+
+// Z = Z-Target
+z = Wiimote.Nunchuk.ZButton
+
+// + / - = item screen / status menu (maybe in other order)
+if pressed(Wiimote.Minus) and var.Page=0 then
+  press(S)
+  wait 100ms
+  release(S)
+  wait 2 seconds
+  press Z
+  wait 100ms
+  release Z
+  var.Page=1
+  Say("Select Item")
+else if pressed(Wiimote.Minus) and var.Page=1 then
+  press(D)
+  wait 100ms
+  release(D)
+  wait 1 second
+  press(S)
+  wait 100ms
+  release(S)
+  var.Page=0
+else if pressed(Wiimote.Minus) and var.Page=2 then
+  press(Z)
+  wait 100ms
+  release(Z)
+  var.Page=1
+  Say("Select Item")
+else if pressed(Wiimote.Minus) and var.Page=3 then
+  press(Z)
+  wait 100ms
+  release(Z)
+  wait 1 second
+  press(Z)
+  wait 100ms
+  release(Z)
+  var.Page=1
+  Say("Select Item")
+else if pressed(Wiimote.Minus) and var.Page=4 then
+  press(D)
+  wait 100ms
+  release(D)
+  var.Page=1
+  Say("Select Item")
+end if
+if pressed(Wiimote.Plus) and var.Page=0 then
+  press(S)
+  wait 100ms
+  release(S)
+  wait 2 seconds
+  press D
+  wait 100ms
+  release D
+  var.Page=3
+  Say("Quest Status")
+else if pressed(Wiimote.Plus) and var.Page=1 then
+  press(D)
+  wait 100ms
+  release(D)
+  wait 1 second
+  press(D)
+  wait 100ms
+  release(D)
+  var.Page=3
+  Say("Quest Status")
+else if pressed(Wiimote.Minus) and var.Page=2 then
+  press(D)
+  wait 100ms
+  release(D)
+  var.Page=3
+  Say("Quest Status")
+else if pressed(Wiimote.Plus) and var.Page=3 then
+  press(Z)
+  wait 100ms
+  release(Z)
+  wait 1 second
+  press(S)
+  wait 100ms
+  release(S)
+  var.Page=0
+else if pressed(Wiimote.Plus) and var.Page=4 then
+  press(Z)
+  wait 100ms
+  release(Z)
+  var.Page=3
+  Say("Quest Status")
+end if
+
+
+

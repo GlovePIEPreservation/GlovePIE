@@ -1,0 +1,69 @@
+// Code for playing FPS Games 
+// Posted by Kasten
+
+/* NOTE for this code to work right with the wiimote please
+   read the following                                      */ 
+
+// When configuring the offsets please put the wiimote flat and do not move it. 
+// These are offsets change them so that your debug output reads 0,28,0 
+// The debug output is at the top of this window. 
+// Ex if you get -7,33,-6 then change the offsets to 7,-5,6 
+var.xOffset = 0 
+var.yOffset = 0 
+var.zOffset = 0 
+
+
+// Change this if you would like your mouse to go faster 
+var.speed = 1 
+
+// change these to a higher number if your hands are not steady or lower if they are 
+var.xCutoff = 4 
+var.zCutoff = 4 
+
+
+var.xRot = Wiimote.RawForceX + var.xOffset 
+var.yRot = Wiimote.RawForceY + var.yOffset 
+var.zRot = Wiimote.RawForceZ + var.zOffset 
+
+debug = 'X:' + var.xRot + ', ' + 'Y:' + var.yRot + ', ' + 'Z:' + var.zRot 
+
+// This is the code that moves your mouse 
+if var.xRot > var.xCutoff then mouse.x = mouse.x - .001 * var.speed * (var.xRot - var.xCutoff) 
+if var.xRot < -var.xCutoff then mouse.x = mouse.x - .001 * var.speed * (var.xRot + var.xCutoff) 
+if var.zRot > var.zCutoff then mouse.y = mouse.y - .001 * var.speed * (var.zRot - var.zCutoff) 
+if var.zRot < -var.zCutoff then mouse.y = mouse.y - .001 * var.speed * (var.zRot + var.zCutoff) 
+
+/* The following is for turning wii button presses into keyboard presses and mouse clicks */ 
+// WASD for fsp games 
+w = Wiimote.Up 
+s = Wiimote.Down 
+a = Wiimote.Left 
+d = Wiimote.Right 
+
+// Press 1 on the wiimote to press e on the keyboard 
+e = Wiimote.One 
+// Press 2 on the wiimote to press control on the keyboard 
+control = Wiimote.Two 
+
+// B for left click and A for right click 
+mouse.LeftButton = Wiimote.B 
+mouse.RightButton = Wiimote.A 
+
+// Plus and Minus on the wiimote to use the scroll wheel 
+// get for scrolling though weapens in fsp games 
+mouse.WheelUp = Wiimote.Plus 
+mouse.WheelDown = Wiimote.Minus 
+
+
+// Rumbles wiimote when shift is pressed on your keyboard 
+Wiimote.Rumble = Shift 
+
+// Have some fun and press 1, 2, 3, and/of 4 to little up the lights on the wiimote 
+Wiimote.Led1 = four 
+Wiimote.Led2 = three 
+Wiimote.Led3 = two 
+Wiimote.Led4 = one 
+
+// If you move your controler up and down quickly then it will press space 
+// Great for jumping on games 
+if var.yRot >= 100 then space = true else space = false 

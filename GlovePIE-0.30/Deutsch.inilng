@@ -1,0 +1,330 @@
+
+[Language]
+Name = Deutsch
+EnglishName = German
+Translators = Carl Kenner
+Decimal = ,
+OpenQuote = „
+CloseQuote = “
+InitialQuestionMark = 0
+
+[Menu]
+File = Datei
+New = Neu
+Open = Öffnen
+Recent = Erneut Öffnen
+Save = Speichern
+Save As = Speichern unter
+Extract Miis = Speichern Mii
+Exit = Beenden
+
+Edit = Bearbeiten
+Undo = Rückgängig
+Redo = Wiederherstellen
+Cut = Ausschneiden
+Copy = Kopieren
+Paste = Einfügen
+Delete = Löschung
+Select All = Alles Markieren
+
+Search = Suchen
+Find = Suchen
+Replace = Ersetzen
+
+View = Ansicht
+Script = Scripte
+MIDI GUI = 
+Variables = Variablen
+
+Run = Starten
+Check for errors = Auf Störungen überprüfen
+Stop = 
+
+; Control Panel Settings
+CP-Settings = Systemsteuerung
+Turn P5 Mouse Mode Off = P5 Maus abstellen
+Wiimote Calibration = Wiimote Kalibrierung
+Bluetooth = 
+Control Panel = Systemsteuerung
+P5 = 
+PPJoy = 
+Joystick = 
+Mouse = Maus
+Keyboard = Tastatur
+MIDI = 
+Speech = SAPI
+
+Language = Sprache
+
+TroubleShooter = 
+Bluetooth Fix = 
+No Auto-Bluetooth Connect = 
+Disable Code Completion = 
+Enable COM2 PCTV Remote = 
+Fake Windows 98 = 
+Show Speech Recognition Progress = 
+View Compiled Code = 
+Contrasting colours = 
+Remote Test = 
+Disable Mouse Read = 
+Disable Joystick Read = 
+Disable Keyboard Read = 
+Disable PPJoy Update = 
+
+Help = Hilfe
+Getting Started = Anfangen
+Preliminary Documentation = Einleitende Unterlagen
+Detailed ramblings (read me!) = LIESMICH.TXT
+Yahoo Group = 
+Website = GlovePIE im WWW
+About = Über
+
+Window Mode = Fenster Modus
+Scripts = Datein
+Open (and run) = Öffnen (und starten)
+
+GlovePIE - Programmable Input Emulator 0.3 = 
+. = 
+Untitled = 
+
+GUI = 
+Output Device: = Ausgang:
+Channel: = 
+Category: = Kategorie
+Line: = Linie:
+max: = 
+min: = 
+Format = 
+0..1 = 
+0..100% = 
+0..127 = 
+1..128 = 
+0..16383 = 
+-8192..8191 = 
+-1..1 = 
+-64..63 = 
+Other = 
+-127..0 = 
+-63..64 = 
+Limit output to the range = Begrenzung gab zur Strecke aus
+Input Source = Eingang Quelle
+Maths: = Mathe:
+Right Hand Side of maths expression: = rechte Seite des Matheausdruckes:
+Input Device: = Eingabegerät:
+Number: = Zahl:
+Part of device,  or a numeric value, or expression: = 
+Function: = Funktion:
+Parameter: = 
+Convert from source range: = Bekehrter von der Quellstrecke:
+More = Mehr
+Less = Weniger
+Detect Output to Emulate = Ausgang ermitteln
+Detect Input = Eingang ermitteln
+Choose Manually = Manuell wählen
+Edit Manually = Manuell redigieren
+Apply = Zutreffen
+
+
+[Tooltip]
+MIDI Graphical User Interface = 
+Choose a MIDI output device = 
+* means it has values set already = 
+-v- means drop down to see more = 
+(To set what the default device is, = 
+set OutDevice under Default, Default, Other Controls) = 
+Choose a MIDI channel = 
+(To set what the default channel is, = 
+set DefaultChannel under Default, Default, Other Controls) = 
+What kind of controls, notes or velocities do you want to set? = 
+Controls 0..31 can be used as one 14 bit control, = 
+or seperate coarse and fine 7 bit controls. = 
+Controls 64..127 have only one 7 bit value. = 
+Middle C is in Octave 5. = 
+The line number in your script = 
+that corresponds to this value. = 
+The maximum MIDI value you want to output = 
+(Use the format chosen above) = 
+The minimum MIDI value you want to output = 
+set DeviceOut under Default Midi, Default Channel, Other Controls) = 
+Choose the MIDI value you want to set or change = 
+* means it has a value set already = 
+Save this value to your script = 
+Remove this value from your script = 
+What format is the expression below using? = 
+You can choose any format you want, = 
+it will be converted to the proper MIDI values. = 
+Tick this to limit the range of this control = 
+to a subset of the format chosen above = 
+The input source value you want mapped to the minimum output = 
+eg. use 0 for P5 finger bend values, like P5.Thumb = 
+The input source value you want mapped to the maximum output = 
+eg. use 63 for P5 finger bend values, like P5.Thumb = 
+If you want to use maths on the value = 
+then choose an operator here, = 
+and the right hand side value in the next box = 
+If you chose a maths operator in the previous box = 
+then type the right hand side value in this box = 
+Input Device = 
+(Or leave this blank to type your = 
+own expression in the third box) = 
+Device number, or blank for default = 
+Only MIDI supports a device 0 (mapper) = 
+Leave this blank, = 
+or choose a function = 
+Function Parameter = 
+Tick this box to convert from the source input range = 
+to the format or limits chosen above. = 
+What units do you want the input source measured in? = 
+Input device number, or blank for default = 
+Use 1 for the first glove, 2 for the second glove, etc. = 
+Click here then press a key, mouse button, or joystick button or axis you want to emulate. = 
+Click here then press an axis or a key, joystick button, mouse button, or P5 button to set the input to that. = 
+Cursor line and column, whether the file needs saving, and Insert key state. = 
+Stop your program to fix errors. = 
+Click one of these errors to go to that line. = 
+Then when you have fixed the errors choose "Run" again. = 
+Toggles between running and stopping your script = 
+Speech Control Panel = 
+To System Tray = 
+
+
+[Message]
+
+[Keyword]
+True = wahr
+False = falsch
+of = des
+and = und
+or = oder
+not = nicht
+but = aber
+either = entweder
+neither = weder
+nor = noch
+do = tun
+to = bis
+to = zu
+to = zum
+is = ist
+isn't = ist nicht
+If = Wenn
+then = dann
+Else = Sonst
+Elseif = Sonst wenn
+End if = Enden Wenn
+While = Während
+Begin = Beginnen
+Begin = Beginn
+End = Enden
+End = Ende
+For = Für
+Repeat = Wiederholen
+Until = Bis
+in = in
+per = pro
+div = div
+mod = mod
+Nil = Nil
+NULL = NULL
+
+[Identifier]
+Smooth = glatt
+Pressed = betätigte
+Released =
+Clicked = klickte
+DoubleClicked = DoppeltKlickte
+SingleClicked = EinzelnKlickte
+HeldDown = HieltNieder
+KeepDown = UntenHalten
+Wait = Warten
+Press = Betätigen
+Say = SagenAufEnglisch
+said = SagteAufEnglsch
+
+Mouse = Maus
+Mouses = Maus
+Mice = Maus
+Keyboard = Tastatur
+Key = Tastatur
+Button = Taste
+LeftButton = linkeTaste
+MiddleButton = mittlereTaste
+RightButton = rechteTaste
+XButton = XTaste
+CButton = CTaste
+ZButton = ZTaste
+
+visible = sichtbar
+exists = besteht
+present = besteht
+count = Zahl
+
+WheelUp = RadOben
+WheelDown = RadUnten
+WheelLeft = RadLinks
+WheelRight = RadRechts
+WheelScrollLines = RadRolleLinien
+PermanentCursor = dauerhafteCursor
+
+up = oben
+down = unten
+left = links
+right = rechts
+
+volume = Volumen
+frequency = Frequenz
+rumble = vibriert
+Battery = Batterie
+HasNunchuk = NunchukHat
+HasClassic = ClassicHat
+
+one = eins
+two = zwei
+three = drei
+four = vier
+five = fünf
+six = sechs
+seven = sieben
+eight = acht
+nine = neun
+ten = zehn
+
+Ctrl = Strg
+Control = Steuerung
+LCtrl = LStrg
+LeftCtrl = linkeStrg
+LeftControl = linkeSteuerung
+LControl = LSteuerung
+RCtrl = RStrg
+RightCtrl = rechteStrg
+RightControl = rechteSteuerung
+RControl = RSteuerung
+LeftShift = LinkeShift
+RightShift = RechteShift
+
+Ins = Einfg
+Insert = Einfügen
+Del = Entf
+Delete = Entfernen
+PageUp = BildAuf
+PageDown = BildAb
+Home = Home
+Home = Pos1
+End = Ende
+Minus = Minus
+Minus = ß
+LeftBracket = LeftBracket
+LeftBracket = Ü
+Semicolon = Semicolon
+Semicolon = Ö
+Apostrophe = Apostrophe
+Apostrophe = Ä
+Backspace = Rückschritt
+
+Roll = Rollen
+Pitch = Nicken
+Yaw = Gieren
+Acceleration = Beschleunigung
+Velocity = Geschwindigkeit
+
+Channel = Kanal

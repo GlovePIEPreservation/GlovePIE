@@ -1,0 +1,28 @@
+// VR920 Default TrackIR script
+// Use this to play TrackIR Enhanced games with a Vuzix VR920.
+// Here is a list of free game demos you can download:
+// http://www.naturalpoint.com/trackir/04-community/community-free-game-demos-and-utilities.html
+// or the complete list of TrackIR games is here:
+// http://www.naturalpoint.com/trackir/03-enhanced-games/enhanced-games-all.html
+
+PIE.FrameRate = 120Hz
+if FakeTrackIR.ProfileID=332DH then
+  FakeTrackIR.yaw = (vr920.Yaw - var.offset)
+  FakeTrackIR.pitch = vr920.Pitch+20 degrees
+  FakeTrackIR.roll = -vr920.Roll
+else if FakeTrackIR.ProfileID=3A35H or FakeTrackIR.ProfileID=3A38H then
+// Arvoch Conflict and Evochron Alliance use a different range
+  FakeTrackIR.yaw = (vr920.Yaw - var.offset)*2
+  FakeTrackIR.pitch = vr920.Pitch*2
+  FakeTrackIR.roll = -vr920.Roll*10
+else
+  FakeTrackIR.yaw = (vr920.Yaw - var.offset)
+  FakeTrackIR.pitch = vr920.Pitch
+  FakeTrackIR.roll = -vr920.Roll
+end if
+
+// Uncomment the next line to enable voice command:
+//if said('recenter') then var.offset = vr920.yaw
+
+// status display
+debug = 'HMD='+VR920.Exists+', Game='+IntToHex(FakeTrackIR.ProfileId)+'H, TrackIR='+FakeTrackIR.active

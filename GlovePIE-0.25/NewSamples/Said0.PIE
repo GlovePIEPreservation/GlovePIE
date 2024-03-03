@@ -1,0 +1,18 @@
+// Confidence level 0 ALWAYS recognises one of the options
+// no matter what you say or how you say it.
+// So if you say "computer" it will pick the colour that sounds
+// most like it. Which could be anything.
+
+// Actually there is one exception, it will still fail to recognise
+// two word phrases if you only say the first word.
+
+// Try saying these colours. It should recognise them correctly
+// 100% of the time.
+// Then try saying things that sound similar, like "stew", "flew", etc.
+// Then try saying things completely different, like "orange" or "hello"
+// Whatever you say it will pick the closest colour,
+// (as long as it recognised that you started speaking).
+
+said("blue", 0) => say("blue")
+said("red", 0) => say("red")
+said("green", 0) => say("green")

@@ -1,0 +1,189 @@
+//WiiMouse Version 0.1
+//www.wiiscript.co.nr
+//Based upon Unplayable BF2 Control Script by Duke4ever
+
+//WiiMouse 0.1
+//Created by WiiScript.co.nr
+
+//Ive came up with a mouse script that works really well! I hope you enjoy my script and if you have
+//any ideas or problems please email me at sbraidley@yahoo.co.uk
+
+//Instructions:
+//A = Right Click
+//B = Left Click
+//Plus = Enter
+//Home = Stop Script / Pressed twice close GlovePie
+//Minus = Backspace
+//1 = My Computer
+//2 = Internet
+
+//Please visit the website to check for updates
+//www.wiiscript.co.nr
+
+if Wiimote.home
+if doubleclicked(Wiimote.home)
+ExitPie 
+else 
+wait 200 ms 
+ExitProgram 
+endif 
+endif 
+var.trimx = 6
+var.trimy = -31
+var.trimz = 6
+
+
+Up = wiimote.Up
+Down = wiimote.Down
+Left = wiimote.Left
+Right = wiimote.Right
+
+
+Mouse.RightButton = Wiimote.A
+
+Mouse.LeftButton = Wiimote.B
+
+
+
+
+Key.enter = wiimote.plus
+
+Key.mycomputer = wiimote.One
+
+Key.internet = wiimote.Two
+
+Key.backspace = wiimote.minus
+
+
+
+if 0 = 0 then
+if var.kitt = 0 then
+wiimote.Leds = 1
+
+endif
+if var.kitt = 1 then
+wiimote.Leds = 3
+endif
+if var.kitt = 2 then
+wiimote.Leds = 6
+endif
+if var.kitt = 3 then
+wiimote.Leds = 12
+endif
+if var.kitt = 4 then
+wiimote.Leds = 8
+//wait 200 ms
+endif
+if var.kitt = 5 then
+wiimote.Leds = 12
+endif
+if var.kitt = 6 then
+wiimote.Leds = 6
+endif
+if var.kitt = 7 then
+wiimote.Leds = 3
+endif
+wait 100 ms
+var.kitt = (var.kitt + 1) % 8
+endif
+
+
+if Wiimote.B then
+if var.rmbl = false
+wiimote.Rumble = 1
+wait 50 ms
+wiimote.Rumble = 0
+endif
+var.rmbl = true
+else
+var.rmbl = false
+endif
+
+
+var.x = Wiimote.RawForceX + var.trimx
+var.y = Wiimote.RawForceY + var.trimy
+var.z = Wiimote.RawForceZ + var.trimz
+
+
+var.sense0 = 1000
+var.thresh0x = 2
+var.thresh0y = 1
+
+var.sense = 300
+var.threshx = 10
+var.threshy = 5
+
+var.sense2 = 100
+var.thresh2x = 15
+var.thresh2y = 8
+
+var.sense3 = 50
+var.thresh3x = 20
+var.thresh3y = 12
+
+
+if var.x > var.thresh0x
+mouse.x = mouse.x - 1/var.sense0
+endif
+if var.x < -var.thresh0x
+mouse.x = mouse.x + 1/var.sense0
+endif
+
+
+if var.z > var.thresh0y
+mouse.y = mouse.y - 1/var.sense0
+endif
+if var.z < -var.thresh0y
+mouse.y = mouse.y + 1/var.sense0
+endif
+
+
+
+if var.x > var.threshx
+mouse.x = mouse.x - 1/var.sense
+endif
+if var.x < -var.threshx
+mouse.x = mouse.x + 1/var.sense
+endif
+
+
+if var.z > var.threshy
+mouse.y = mouse.y - 1/var.sense
+endif
+if var.z < -var.threshy
+mouse.y = mouse.y + 1/var.sense
+endif
+
+
+if var.x > var.thresh2x
+mouse.x = mouse.x - 1/var.sense2
+endif
+if var.x < -var.thresh2x
+mouse.x = mouse.x + 1/var.sense2
+endif
+
+//yaxis
+if var.z > var.thresh2y
+mouse.y = mouse.y - 1/var.sense2
+endif
+if var.z < -var.thresh2y
+mouse.y = mouse.y + 1/var.sense2
+endif
+
+
+if var.x > var.thresh3x
+mouse.x = mouse.x - 1/var.sense3
+endif
+if var.x < -var.thresh3x
+mouse.x = mouse.x + 1/var.sense3
+endif
+
+
+if var.z > var.thresh3y
+mouse.y = mouse.y - 1/var.sense3
+endif
+if var.z < -var.thresh3y
+mouse.y = mouse.y + 1/var.sense3
+endif
+
+debug = var.x + " " + var.y + " " + var.z

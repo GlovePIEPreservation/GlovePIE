@@ -1,0 +1,106 @@
+// You need a P5 Glove holding a vibrating gamepad.
+// This script uses joystick 1, but you can change it at the bottom.
+
+// This is the first game I have seen that has NO GRAPHICS, NO SOUND,
+// and NO normal input device. You can play this game blindfolded
+// with your ears blocked. It uses only the sense of touch.
+
+// There is a row of 3 magical spheres hovering 50cm in front of the
+// red LED.
+// They is 20 cm wide. Your hand will shake when it is inside a sphere.
+// You can grab a sphere and move it around. You can feel when you
+// are holding it. The sphere will hover wherever you release it.
+// One sphere is empty, one is partly full, and one is quite full.
+// Shake the spheres to feel the difference.
+// If you lose a sphere, press the A B or C button to teleport that
+// sphere into your hand.
+
+if not var.Initialized then
+  var.Ball1Pos = [0 cm, 0 cm, -50 cm]
+  var.Ball0Pos = [-40 cm, 0 cm, -50 cm]
+  var.Ball2Pos = [40 cm, 0 cm, -50 cm]
+  var.Ball1Radius = 10 cm
+  var.Ball0Radius = 10 cm
+  var.Ball2Radius = 10 cm
+  var.HoldingSphere1 = false
+  var.HoldingSphere0 = false
+  var.HoldingSphere2 = false
+  var.HoldingSphere = false
+  var.Sphere0Full = 0
+  var.Sphere1Full = 1
+  var.Sphere2Full = 2
+  var.Initialized = true
+endif
+
+var.Distance0 = (p5.Pos - var.Ball0Pos) in cm
+var.Distance1 = (p5.Pos - var.Ball1Pos) in cm
+var.Distance2 = (p5.Pos - var.Ball2Pos) in cm
+var.DistanceInsideSphere0 = (var.Ball0Radius - |var.Distance0|) / var.Ball0Radius
+var.DistanceInsideSphere1 = (var.Ball1Radius - |var.Distance1|) / var.Ball1Radius
+var.DistanceInsideSphere2 = (var.Ball2Radius - |var.Distance2|) / var.Ball2Radius
+var.IsInsideSphere0 = var.DistanceInsideSphere0 >= 0
+var.IsInsideSphere1 = var.DistanceInsideSphere1 >= 0
+var.IsInsideSphere2 = var.DistanceInsideSphere2 >= 0
+if Var.DistanceInsideSphere0 < 0 then var.DistanceInsideSphere0 = 0
+if Var.DistanceInsideSphere1 < 0 then var.DistanceInsideSphere1 = 0
+if Var.DistanceInsideSphere2 < 0 then var.DistanceInsideSphere2 = 0
+
+if var.IsInsideSphere0 and p5.xnnnx but not var.HoldingSphere then
+  var.HoldingSphere0 = true
+  var.HoldingSphere = true
+endif
+if var.IsInsideSphere1 and p5.xnnnx but not var.HoldingSphere then
+  var.HoldingSphere1 = true
+  var.HoldingSphere = true
+endif
+if var.IsInsideSphere2 and p5.xnnnx but not var.HoldingSphere then
+  var.HoldingSphere2 = true
+  var.HoldingSphere = true
+endif
+
+if var.HoldingSphere0 but not p5.xnnnx then
+  var.HoldingSphere0 = false
+endif
+if var.HoldingSphere1 but not p5.xnnnx then
+  var.HoldingSphere1 = false
+endif
+if var.HoldingSphere2 but not p5.xnnnx then
+  var.HoldingSphere2 = false
+endif
+
+if pressed(p5.A) then var.Ball0Pos = p5.Pos
+if pressed(p5.B) then var.Ball1Pos = p5.Pos
+if pressed(p5.C) then var.Ball2Pos = p5.Pos
+
+var.HoldingSphere = var.HoldingSphere0 or var.HoldingSphere1 or var.HoldingSphere2
+
+if var.HoldingSphere then
+  var.SolidRumble = 0
+  var.GripRumble = 50%
+  var.Acc = |(p5.Acceleration in metres per second per second)|
+  var.Acc = RemoveUnits(var.Acc + smooth(var.Acc,3)) / 100
+  if var.Acc < 0.05 then var.Acc = 0
+  if var.HoldingSphere0 then
+    var.ShakeRumble = var.Acc * var.Sphere0Full
+    var.Ball0Pos = p5.Pos in cm
+    var.SolidRumble = var.DistanceInsideSphere1 + var.DistanceInsideSphere2
+  endif
+  if var.HoldingSphere1 then
+    var.ShakeRumble = var.Acc * var.Sphere1Full
+    var.Ball1Pos = p5.Pos in cm
+    var.SolidRumble = var.DistanceInsideSphere0 + var.DistanceInsideSphere2
+  endif
+  if var.HoldingSphere2 then
+    var.ShakeRumble = var.Acc * var.Sphere2Full
+    var.Ball2Pos = p5.Pos in cm
+    var.SolidRumble = var.DistanceInsideSphere0 + var.DistanceInsideSphere1
+  endif
+else
+  var.SolidRumble = var.DistanceInsideSphere0 + var.DistanceInsideSphere1 + var.DistanceInsideSphere2
+  var.GripRumble = 0
+  var.ShakeRumble = 0
+endif
+
+joy1.Vibration1 = var.SolidRumble + var.ShakeRumble
+joy1.Vibration2 = var.GripRumble
+

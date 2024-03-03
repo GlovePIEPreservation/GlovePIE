@@ -1,0 +1,32 @@
+Del = vr920.roll < -20
+Ins = vr920.roll > 20
+
+var.d = 3 degrees // degrees needed to scroll 1 block
+var.yaw += delta(vr920.ContinuousYaw)
+if var.yaw > var.d then
+  Right = true
+  wait 50 ms
+  Right = false
+  var.yaw-=var.d
+end if
+if var.yaw < -var.d then
+  left = true
+  wait 50 ms
+  left = false
+  var.yaw+=var.d
+end if
+var.pitch += delta(vr920.Pitch)
+if var.pitch > var.d then
+  Up = true
+  wait 50 ms
+  Up = false
+  var.pitch-=var.d
+end if
+if var.pitch < -var.d then
+  down = true
+  wait 50 ms
+  down = false
+  var.pitch+=var.d
+end if
+
+

@@ -1,0 +1,15 @@
+if helddown(abs(Wiimote.RelAccX)<0.05, 100ms) then
+  var.vx = 0 m per s
+else
+  var.vx = var.vx + (Wiimote.RelAccX / Pie.FrameRate)
+end if
+
+var.x = var.x + (var.vx / Pie.FrameRate)
+
+if pressed(Wiimote.A) then
+  var.x = 0
+end if
+
+//debug = var.vx in cm per second
+debug = var.x
+

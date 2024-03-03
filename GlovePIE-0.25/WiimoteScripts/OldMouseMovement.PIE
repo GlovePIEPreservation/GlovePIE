@@ -1,0 +1,152 @@
+//Mouse Movement
+//Provided by Blackfrog/Octovir:
+
+// Show wiimote forces 
+debug = "X="+Wiimote.RawForceX+' Y='+Wiimote.RawForceY+' Z='+Wiimote.RawForceZ 
+
+if wiimote.Up then 
+  Mouse.WheelUp = true
+  wait 120 ms
+  Mouse.WheelUp = false
+endif 
+if wiimote.Down then 
+  Mouse.WheelDown = true
+  wait 120 ms
+  Mouse.WheelDown = false
+endif 
+if wiimote.Left then 
+  Mouse.WheelLeft = true
+  wait 120 ms
+  Mouse.WheelLeft = false
+endif 
+if wiimote.Right then 
+  Mouse.WheelRight = true
+  wait 120 ms
+  Mouse.WheelRight = false
+endif 
+
+Mouse.RightButton = Wiimote.A 
+Mouse.LeftButton = Wiimote.B 
+
+Mouse.MiddleButton = Wiimote.Home 
+if Wiimote.Plus then 
+  if var.osk= false then
+  Execute("osk")
+  var.osk = true
+  wait 300 ms
+  endif
+endif 
+if Wiimote.Minus then
+  if var.osk = true then
+    ExitProgram
+    wait 300 ms
+    var.osk= false
+  endif
+endif 
+
+if wiimote.one then 
+  wiimote.leds = wiimote.leds + 1
+  if(wiimote.Leds>15)
+    wiimote.Leds=15
+  endif
+  wait 120 ms
+endif 
+if wiimote.two then 
+  wiimote.leds = wiimote.leds - 1
+  if(wiimote.Leds<0)
+    wiimote.leds = 0
+  endif
+  wait 120 ms
+endif 
+
+// set these to the offsets when the wiimote is at rest 
+// will be different for each wiimote most likely 
+var.x = Wiimote.RawForceX +12 //trim to 0 
+var.y = Wiimote.RawForceY -37 // trim to 0 
+var.z = Wiimote.RawForceZ +12 //trim to 0 
+
+//precision 
+var.sense0 = 500 
+var.thresh0x = 5 
+var.thresh0y = 2 
+
+var.sense = 300 
+var.threshx = 10 
+var.threshy = 5 
+
+var.sense2 = 100 
+var.thresh2x = 15 
+var.thresh2y = 8 
+
+var.sense3 = 50 
+var.thresh3x = 20 
+var.thresh3y = 12 
+
+//first sensitivity setting 
+//xaxis 
+if var.x > var.thresh0x 
+  mouse.x = mouse.x - 1/var.sense0
+endif 
+if var.x < -var.thresh0x 
+  mouse.x = mouse.x + 1/var.sense0
+endif 
+
+//yaxis 
+if var.z > var.thresh0y 
+  mouse.y = mouse.y - 1/var.sense0
+endif 
+if var.z < -var.thresh0y 
+  mouse.y = mouse.y + 1/var.sense0
+endif 
+
+
+//second sensitivity setting 
+//xaxis 
+if var.x > var.threshx 
+  mouse.x = mouse.x - 1/var.sense
+endif 
+if var.x < -var.threshx
+  mouse.x = mouse.x + 1/var.sense
+endif 
+
+//yaxis 
+if var.z > var.threshy 
+  mouse.y = mouse.y - 1/var.sense
+endif 
+if var.z < -var.threshy 
+  mouse.y = mouse.y + 1/var.sense
+endif 
+
+//third sensitivity setting 
+//xaxis 
+if var.x > var.thresh2x 
+  mouse.x = mouse.x - 1/var.sense2
+endif 
+if var.x < -var.thresh2x 
+  mouse.x = mouse.x + 1/var.sense2
+endif
+
+//yaxis 
+if var.z > var.thresh2y 
+  mouse.y = mouse.y - 1/var.sense2
+endif 
+if var.z < -var.thresh2y 
+  mouse.y = mouse.y + 1/var.sense2
+endif 
+
+//fourth sensitivity setting 
+//xaxis 
+if var.x > var.thresh3x 
+  mouse.x = mouse.x - 1/var.sense3
+endif 
+if var.x < -var.thresh3x 
+  mouse.x = mouse.x + 1/var.sense3
+endif 
+
+//yaxis 
+if var.z > var.thresh3y 
+  mouse.y = mouse.y - 1/var.sense3
+endif 
+if var.z < -var.thresh3y 
+  mouse.y = mouse.y + 1/var.sense3
+endif 

@@ -1,0 +1,18 @@
+// http://www.chrisduffer.co.uk/
+// I thought it would be cool to be able to use the wii remote
+// to control goggles so I knocked together a really simple
+// glovepie script to do it. It replicates the pitch and roll
+// of the remote to control the plane, + and - control speed
+// and B fires.
+
+var.threshRoll = 10 in degrees
+var.threshPitch = 20 in degrees
+
+Key.Right = Wiimote1.Roll > var.threshRoll
+Key.Left = Wiimote1.Roll < (-var.threshRoll)
+Key.Down = Wiimote1.Pitch > var.threshPitch
+Key.Up = Wiimote1.Pitch < (-var.threshPitch)
+Space = Wiimote.B
+z = Wiimote.Minus
+a = Wiimote.Plus
+

@@ -1,0 +1,205 @@
+//Button Assignments by tjfear 
+//Mouse Movement by vkapadia 
+//Nunchuk Movement by deceased 
+// 
+// 
+//Counter-Strike/Half-Life 2 Script - No Sensor Bar Required 
+//                                    Uses Nunchuk 
+// 
+//Key Assignments 
+/* 
+Z = Walk 
+C = Croutch 
+Z + C = Quit 
+Home = Buy Menu 
+Minus = Reload 
+Pus = Alt-Fire 
+One = Last Weapon Used 
+Two = Drop Current Weapon 
+One + Two = Flashlight 
+B = Shoot 
+A = Use 
+B + A = Jump 
+DPad Down = Weapon Scroll Down 
+DPad Up = Weapon Scroll Up 
+DPad Left = Speak //NOTE: MiddleMouse is not the default speak button 
+DPad Right = Team Chat (Nothing Else to Put) 
+*/ 
+// 
+//Assignments on Keyboard 
+Keyboard.B = Wiimote.Home 
+Keyboard.R = Wiimote.Minus 
+Keyboard.T = Wiimote.Right 
+if Wiimote.Nunchuk.ZButton and not Wiimote.Nunchuk.CButton then 
+   Keyboard.Shift = true 
+   Keyboard.Ctrl = false 
+   Keyboard.Escape = false 
+endif 
+if Wiimote.Nunchuk.CButton and not Wiimote.Nunchuk.ZButton then 
+   Keyboard.Shift = false 
+   Keyboard.Ctrl = true 
+   Keyboard.Escape = false 
+endif 
+if Wiimote.Nunchuk.ZButton and Wiimote.Nunchuk.CButton then 
+   Keyboard.Shift = false 
+   Keyboard.Ctrl = false 
+   Keyboard.Escape = true 
+endif 
+if Wiimote.One and not Wiimote.Two then 
+   Keyboard.Q = true 
+   Keyboard.G = false 
+   Keyboard.F = false 
+endif 
+if Wiimote.Two and not Wiimote.One then 
+   Keyboard.Q = false 
+   Keyboard.G = true 
+   Keyboard.F = false 
+endif 
+if Wiimote.One and Wiimote.Two then 
+   Keyboard.Q = false 
+   Keyboard.G = false 
+   Keyboard.F = true 
+endif 
+if Wiimote.B and not Wiimote.A then 
+   Mouse.LeftButton = true 
+   Keyboard.E = false 
+   Keyboard.Space = false 
+   wait 1 ms 
+   Mouse.LeftButton = false 
+   Wiimote.Rumble = true 
+   wait 10 ms 
+   Wiimote.Rumble = false 
+endif 
+if Wiimote.A and not Wiimote.B then 
+   Mouse.LeftButton = false 
+   Keyboard.E = true 
+   Keyboard.Space = false 
+endif 
+if Wiimote.A and Wiimote.B then 
+   Mouse.LeftButton = false 
+   Keyboard.E = false 
+   Keyboard.Space = true 
+endif 
+
+//Assignments on Mouse 
+Mouse.RightButton = Wiimote.Plus 
+Mouse.WheelDown = Wiimote.Down 
+Mouse.WheelUp = Wiimote.Up 
+Mouse.MiddleButton = Wiimote.Left 
+
+// 
+//Everything Passed Here Deals With Movement 
+//========================================== 
+//Nunchuck 
+if Wiimote.nunchuk.joyy > .2 
+   Keyboard.S = 1 
+else if Wiimote.nunchuk.joyy < -.2 
+     Keyboard.W = 1 
+else 
+     Keyboard.S = 0 
+     Keyboard.W = 0 
+endif 
+if wiimote.nunchuk.joyx > .2 
+   Keyboard.D = 1 
+else if wiimote.nunchuk.joyx < -.2 
+     Keyboard.A = 1 
+else 
+     Keyboard.D = 0 
+     Keyboard.A = 0 
+endif 
+
+//Wiimote 
+//Trim to Zero 
+var.trimx = 7 
+var.trimy = -30 
+var.trimz = 11 
+
+var.x = Wiimote.RawForceX + var.trimx 
+var.y = Wiimote.RawForceY + var.trimy 
+var.z = Wiimote.RawForceZ + var.trimz 
+
+//Precision 
+var.sense0 = 500 
+var.thresh0x = 5 
+var.thresh0y = 2 
+
+var.sense = 300 
+var.threshx = 10 
+var.threshy = 5 
+
+var.sense2 = 100 
+var.thresh2x = 15 
+var.thresh2y = 8 
+
+var.sense3 = 50 
+var.thresh3x = 20 
+var.thresh3y = 12 
+
+//First Sensitivity Setting 
+//X-axis 
+if var.x > var.thresh0x 
+   mouse.x = mouse.x - 1/var.sense0 
+endif 
+if var.x < -var.thresh0x 
+   mouse.x = mouse.x + 1/var.sense0 
+endif 
+//Y-axis 
+if var.z > var.thresh0y 
+mouse.y = mouse.y - 1/var.sense0 
+endif 
+if var.z < -var.thresh0y 
+   mouse.y = mouse.y + 1/var.sense0 
+endif 
+
+
+//Second Sensitivity Setting 
+//X-axis 
+if var.x > var.threshx 
+   mouse.x = mouse.x - 1/var.sense 
+endif 
+if var.x < -var.threshx 
+   mouse.x = mouse.x + 1/var.sense 
+endif 
+//Y-axis 
+if var.z > var.threshy 
+   mouse.y = mouse.y - 1/var.sense 
+endif 
+if var.z < -var.threshy 
+   mouse.y = mouse.y + 1/var.sense 
+endif 
+
+//Third Sensitivity Setting 
+//X-axis 
+if var.x > var.thresh2x 
+   mouse.x = mouse.x - 1/var.sense2 
+endif 
+if var.x < -var.thresh2x 
+   mouse.x = mouse.x + 1/var.sense2 
+endif 
+//Y-axis 
+if var.z > var.thresh2y 
+   mouse.y = mouse.y - 1/var.sense2 
+endif 
+if var.z < -var.thresh2y 
+   mouse..y = mouse.y + 1/var.sense2 
+endif 
+
+//Fourth Sensitivity Setting 
+//X-axis 
+if var.x > var.thresh3x 
+   mouse.x = mouse.x - 1/var.sense3 
+endif 
+if var.x < -var.thresh3x 
+   mouse.x = mouse.x + 1/var.sense3 
+endif 
+//Y-axis 
+if var.z > var.thresh3y 
+   mouse.y = mouse.y - 1/var.sense3 
+endif 
+if var.z < -var.thresh3y 
+   mouse.y = mouse.y + 1/var.sense3 
+endif 
+
+//Debug 
+debug = var.x + " " + var.y + " " + var.z 
+

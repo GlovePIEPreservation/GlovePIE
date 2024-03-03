@@ -1,0 +1,11 @@
+pie.FrameRate = 60Hz
+if vr920.Exists then
+  screen.ScrollX = Smooth(MapRange(vr920.yaw,-25.6 degrees,25.6 degrees,-screen.Width,Screen.Width),5,5)
+  screen.ScrollY = Smooth(MapRange(vr920.pitch,19.2 degrees,-19.2 degrees,-screen.Height,Screen.Height),5,5)
+else
+  if up then screen.scrolly -= 10
+  if down then screen.scrolly += 10
+  if left then screen.scrollx -= 10
+  if right then screen.scrollx += 10
+end if
+

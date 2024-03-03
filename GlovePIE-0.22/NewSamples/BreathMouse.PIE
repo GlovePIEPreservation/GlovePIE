@@ -1,0 +1,4 @@
+// Breath mouse
+// Blow into the microphone to press the left mouse button
+
+Mouse.LeftButton = microphone.AudioLevel > 30%

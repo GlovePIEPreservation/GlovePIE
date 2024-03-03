@@ -1,0 +1,5 @@
+// Type your program here!
+Midi.Vibraslap = p5.yvelocity < -2000
+Midi.LowFloorTom = p5.yvelocity > 2000
+Midi.HandClap = p5.xvelocity < -2000
+

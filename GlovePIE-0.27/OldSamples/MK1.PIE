@@ -1,0 +1,497 @@
+// Mortal Kombat 1 DOS (you can use VDMSound or DosBox to run in XP)
+// Fancy keyboard controls
+// Player 1 keyboard controls should be set at the default
+// U = HighPunch N = LowPunch
+// I = HighKick M = LowKick
+// J = Block
+// Z = left, C = right, S = up, X = down
+
+// This adds the following abilities:
+//  Numeric keypad keys control all possible kicks and punches
+//  Space = shoot
+
+var.HighPunch = NumPad7
+var.MidPunch = NumPad4
+var.BallPunch = NumPad1
+var.Uppercut = NumLock
+var.GreenBolt = NumPad5
+var.ShadowKick = Multiply
+var.HighKick = NumPad9
+var.MidKick = NumPad6
+var.CrouchKick = NumPad3
+var.Sweep = Decimal
+var.Roundhouse = NumPadPlus
+var.Shoot = Space
+var.Lightning = Q
+var.Slide = NumPad0
+
+if S and C then var.FacingLeft = true
+if S and Z then var.FacingLeft = false
+
+var.FacingRight = not var.FacingLeft
+
+if pressed(var.FacingLeft) then
+  say "Facing Left"
+end
+if released(var.FacingLeft) and not var.CharSelect then
+  say "Facing Right"
+end;
+
+if pressed(F1) then
+  var.CharSelect = true
+  var.CharSelectTime = Now
+  var.Char = 2
+  var.FacingLeft = false
+end
+
+if var.CharSelect then
+  if pressed(Z) and (var.Char <> 5) then
+    var.Char--
+  end
+  if var.Char<1 then var.Char = 4
+  if pressed(C) then
+     var.Char++
+     if var.Char = 5 then var.Char = 1
+  end
+  if var.Char > 7 then var.Char = 7
+  if pressed(S) and (var.Char = 5) then var.Char = 2
+  if pressed(S) and (var.Char = 7) then var.Char = 3
+  if pressed(X) and (var.Char = 2) then var.Char = 5
+  if pressed(X) and (var.Char = 3) then var.Char = 7
+  if pressed(N) or pressed(M) or pressed(J) or Pressed(U) or Pressed(I) then
+    var.CharSelect = false
+  end
+  if Now-var.CharSelectTime > 26 seconds then
+    var.CharSelect = false
+    press(N)
+    wait 50ms
+    release(N)
+  end
+  if var.CharSelect = false then Speech = ""
+  if var.Char = 0 then speech= "Nobody"
+  if var.Char = 1 then speech= "Johnny Cage"
+  if var.Char = 2 then speech= "Kay-no"
+  if var.Char = 3 then speech= "Sub-Zero"
+  if var.Char = 4 then speech= "Sonya"
+  if var.Char = 5 then speech= "Rayden"
+  if var.Char = 6 then speech= "Loo Kang"
+  if var.Char = 7 then speech= "Scorpion"
+end
+
+  if pressed(ctrl) then
+    speech = ""
+    if var.Char = 0 then say "Nobody"
+    if var.Char = 1 then say "Johnny Cage"
+    if var.Char = 2 then say "Kay-no"
+    if var.Char = 3 then say "Sub-Zero"
+    if var.Char = 4 then say "Sonya"
+    if var.Char = 5 then say "Rayden"
+    if var.Char = 6 then say "Loo Kang"
+    if var.Char = 7 then say "Scorpion"
+  end
+
+
+if pressed(var.Lightning) or (pressed(var.Shoot) and var.Char=5)  then
+  if var.FacingRight then
+    press X
+    press C
+    press N
+    wait 50ms
+    release N
+    release C
+    release X
+  else
+    press X
+    press Z
+    press N
+    wait 50ms
+    release N
+    release Z
+    release X
+  end
+end
+
+if pressed(var.Shoot) and var.Char=0 then
+  // Kano L/R and JK L
+  press J
+  wait 50ms
+  press C
+  wait 50ms
+  release C
+  wait 50ms
+  press Z
+  press X
+  wait 50ms
+  release X
+  release Z
+  wait 50ms
+  press C
+  wait 50ms
+  release C
+  wait 50ms
+  release J
+  wait 50ms
+  press N
+  wait 50ms
+  release N
+end
+
+if pressed(var.Shoot) and var.Char=1 then
+  // Johnny Cage shooting right
+  if var.FacingRight then
+    press Z
+    wait 50ms
+    release Z
+    wait 50ms
+    press C
+    wait 50ms
+    release C
+    wait 50ms
+    press N
+    wait 50ms
+    release N
+  else
+  // Johnny Cage shooting left
+    press C
+    wait 50ms
+    release C
+    wait 50ms
+    press Z
+    wait 50ms
+    release Z
+    wait 50ms
+    press N
+    wait 50ms
+    release N
+  end
+end
+
+if pressed(var.Shoot) and var.Char=2 then
+  // Kano shooting right/left
+  if var.FacingRight then
+    press J
+    press Z
+    wait 50ms
+    release Z
+    wait 50ms
+    press C
+    wait 50ms
+    release C
+    wait 50ms
+    press Z
+    wait 50ms
+    release Z
+    release J
+  else  // shooting left/right
+    press J
+    press C
+    wait 50ms
+    release C
+    wait 50ms
+    press Z
+    wait 50ms
+    release Z
+    wait 50ms
+    press C
+    wait 50ms
+    release C
+    release J
+  end
+end
+
+if pressed(var.Slide) then
+  // Sub zero sliding left/right
+  press Z
+  press C
+  press N
+  press(M)
+  press J
+  wait 50ms
+  release J
+  release(M)
+  release N
+  release C
+  release Z
+end
+
+if pressed(var.Shoot) and var.Char=3 then
+// Sub Zero shooting right
+if var.FacingRight then
+  press X
+  wait 50ms
+  release X
+  wait 50ms
+  press C
+  wait 50ms
+  press N
+  release C
+  wait 50ms
+  release N
+else
+  press X
+  wait 50ms
+  release X
+  wait 50ms
+  press Z
+  wait 50ms
+  press N
+  release Z
+  wait 50ms
+  release N
+end
+end
+
+if pressed(var.Shoot) and var.Char=4 then
+  // Sonya shooting left/right
+  press Z
+  press C
+  wait 50ms
+  release C
+  release Z
+  wait 50ms
+  press Z
+  press C
+  press N
+  wait 50ms
+  release N
+  release C
+  release Z
+end
+
+if pressed(var.Shoot) and var.Char=6 then
+  // Liu Kang shooting right
+  if var.FacingRight
+    press C
+    wait 50ms
+    release C
+    wait 50ms
+    press C
+    wait 50ms
+    release C
+    wait 50ms
+    press U
+    wait 50ms
+    release U
+  else
+  // Liu Kang left
+    press Z
+    wait 50ms
+    release Z
+    wait 50ms
+    press Z
+    wait 50ms
+    release Z
+    wait 50ms
+    press U
+    wait 50ms
+    release U
+  end
+end
+
+if pressed(var.Shoot) and var.Char=7 then
+  // Scorpion shooting right
+  if var.FacingRight then
+    press Z
+    wait 50ms
+    release Z
+    wait 50ms
+    press Z
+    wait 50ms
+    release Z
+    wait 50ms
+    press N
+    wait 50ms
+    release N
+  else
+    // Scorpion left
+    press C
+    wait 50ms
+    release C
+    wait 50ms
+    press C
+    wait 50ms
+    release C
+    wait 50ms
+    press N
+    wait 50ms
+    release U
+  end
+end
+
+
+
+var.JK = One
+var.Kano = Two
+var.SZ = Four
+var.Sonya = Five
+var.Rayden = Six
+var.LK = Seven
+var.Scorpion = Eight
+
+if var.JK then
+  var.Char = 1
+  press Z
+  wait 50ms
+  release Z
+end
+
+if var.Kano then
+  var.Char = 2
+end
+
+if var.SZ then
+  var.Char = 4
+  press C
+  wait 50ms
+  release C
+end
+
+if var.Sonya then
+  var.Char = 5
+  press C
+  wait 50ms
+  release C
+  wait 200ms
+  press C
+  wait 50ms
+  release C
+end;
+
+if var.Rayden then
+  var.Char = 6
+  press X
+  wait 50ms
+  release X
+end
+
+if var.LK then
+  var.Char = 7
+  press X
+  wait 50ms
+  release X
+  wait 50ms
+  press C
+  wait 50ms
+  release C
+end;
+
+if var.Scorpion then
+  var.Char = 8
+  press X
+  wait 50ms
+  release X
+  wait 50ms
+  press C
+  wait 50ms
+  release C
+  wait 200ms
+  press C
+  wait 50ms
+  release C
+end;
+
+
+
+
+if pressed(var.Uppercut) then
+  press X
+  wait 150ms
+  press U
+  wait 100ms
+  release U
+  wait 150ms
+  release X
+end
+
+/*if pressed(var.Sweep) then
+  press Z
+//  press C
+  wait 150ms
+  press(M)
+  wait 100ms
+  release(M)
+  wait 150ms
+//  release C
+  release Z
+end*/
+
+if pressed(var.Roundhouse) then
+  press Z
+  press C
+  press I
+  wait 50ms
+  release I
+  release C
+  release Z
+end
+
+if pressed(var.Sweep) then
+  press Z
+  press C
+  press(M)
+  wait 50ms
+  release(M)
+  release C
+  release Z
+end
+
+if pressed(var.CrouchKick) then
+  press X
+  wait 150ms
+  press(M)
+  wait 100ms
+  release(M)
+  wait 150ms
+  release X
+end
+
+
+if pressed(var.ShadowKick) then
+  press Z
+  press C
+  wait 50ms
+  release Z
+  release C
+  wait 50ms
+  Press C
+  Press Z
+  wait 50ms
+  Release Z
+  Release C
+  wait 50ms
+  press key.M
+  wait 50ms
+  release key.M
+end
+
+if pressed(var.GreenBolt) then
+  if var.FacingRight then
+    press Z
+    wait 50ms
+    release Z
+    wait 50ms
+    Press C
+    wait 50ms
+    Release C
+    wait 50ms
+    press key.N
+    wait 50ms
+    release key.N
+  end
+end
+
+//var.ShadowKick => Z,C,M
+//var.GreenBolt => Z,C,N
+
+if pressed(var.BallPunch) then
+  press J
+  press N
+  wait 100ms
+  release N
+  release J
+end
+
+U = var.HighPunch
+N = var.MidPunch or var.Throw
+I = var.HighKick
+M = var.MidKick or var.Knee

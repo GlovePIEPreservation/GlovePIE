@@ -1,0 +1,34 @@
+// Very simple mouse emulation for Vuzix VR920
+// Change all the 375s to some other number to change mouse speed
+
+PIE.FrameRate = 120Hz
+
+var.sensitivy = 2000
+//FakeMouse.DirectInputX += delta(MapRange(VR920.yaw, -90 degrees, 90 degrees, -500, 500))
+//FakeMouse.DirectInputY += delta(MapRange(VR920.pitch, -90 degrees, 90 degrees, 500, -500))
+mouse.leftButton = ctrl
+FakeMouse.DirectInputX += delta(MapRange(VR920.yaw, -90 degrees, 90 degrees, -var.sensitivy, var.sensitivy))
+FakeMouse.DirectInputY += delta(MapRange(VR920.pitch, -90 degrees, 90 degrees, var.sensitivy, -var.sensitivy))
+
+One = keepdown(said("Grabby Arms"),100ms)
+Two = keepdown(said("EMP Rifle"),100ms)
+Three = keepdown(said("Pulse Cannon"),100ms)
+Four = keepdown(said("Fireworks"),100ms)
+Five = keepdown(said("Hover Gun"),100ms)
+H = keepdown(said("Hint"),100ms)
+E = keepdown(said("use"),100ms) or keepdown(said("activate"),100ms)
+esc = keepdown(said("pause game"),100ms) or keepdown(said("computer freeze program"),100ms)
+
+W = Nunchuk.JoyY < -30%
+S = Nunchuk.JoyY > 30%
+A = Nunchuk.JoyX < -30%
+D = Nunchuk.JoyX > 30%
+Space = Nunchuk.CButton
+Mouse.LeftButton = wiimote.B
+Enter = keepdown(said("OK"),100ms)
+Q = Wiimote.A
+up = Wiimote.Up
+down = Wiimote.Down
+Left = Wiimote.Left
+Right = Wiimote.Right
+

@@ -1,0 +1,10 @@
+// Type your program here!
+LShift => HidePie
+RShift => ShowPie
+LCtrl => MinimizePie
+RCtrl => UnMinimizePie
+LAlt => UnMaximizePie
+RAlt => MaximizePie
+AppMenu => RestorePie
+
+

@@ -1,0 +1,15 @@
+// Type your program here!
+var.Punch = p5.index>40 and p5.middle>40 and p5.ring>40 and p5.pinky>40
+
+var.High = p5.y > 400
+var.Low = p5.y < 200
+
+var.Kick = not var.punch
+//p5.index<20 and p5.middle<20 and p5.ring<20 and p5.pinky<20
+
+var.Swing = hypot(p5.xv, p5.yv, p5.zv)>3000
+
+Space = var.High and var.Kick and Var.swing
+z = var.Low and var.Kick and var.Swing
+Ctrl = var.High and var.Punch and var.Swing
+Shift = var.Low and var.Punch and var.Swing

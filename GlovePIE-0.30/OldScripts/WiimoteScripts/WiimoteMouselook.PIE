@@ -1,0 +1,81 @@
+//Wiimote Mouselook GlovePIE script 
+//coolbho3000 
+//uses older wiimote mouse code from vkapidia 
+//please, if you can, put a better mouse script in place 
+//totally untested. probably sloppy. help me and check for errors. 
+
+//speed of mouse when looking 
+var.speed=5 
+
+//variable, turns feature on and off 
+var.on 
+
+if Wiimote.home 
+if on=0 
+on=1 
+endif 
+if on=1 
+on=0 
+endif 
+endif 
+
+//this part modified from vkapidia's mouse control script. 
+
+if on=1 
+if wiimote.dot1vis then 
+if abs(wiimote.dot1x - var.ox) > 1 then 
+var.cursorx = smooth(((1024-wiimote.dot1x) * Screen.Width / 1024) * 1.1 - 50, 10) 
+var.ox = wiimote.dot1x 
+endif 
+if abs(wiimote.dot1y - var.oy) > 1 then 
+var.cursory = smooth(((wiimote.dot1y) * Screen.Height / 768) * 1.1 - 40, 10) 
+var.oy = wiimote.dot1y 
+endif 
+endif 
+endif 
+
+//if feature is off, acts like basic normal mouse with right click and left click 
+
+if on=0 
+if wiimote.dot1vis then 
+if abs(wiimote.dot1x - var.ox) > 1 then 
+Mouse.CursorPosX = smooth(((1024-wiimote.dot1x) * Screen.Width / 1024) * 1.1 - 50, 10) 
+var.ox = wiimote.dot1x 
+endif 
+if abs(wiimote.dot1y - var.oy) > 1 then 
+Mouse.CursorPosY = smooth(((wiimote.dot1y) * Screen.Height / 768) * 1.1 - 40, 10) 
+var.oy = wiimote.dot1y 
+endif 
+endif 
+endif 
+
+Mouse.RightButton = Wiimote.B 
+Mouse.LeftButton = Wiimote.A 
+
+//here's the bounding box part 
+
+if on=1 
+//screen bounding boxes 
+var.topBound=(screen.height/4) 
+var.rightBound=(screen.width/4)*3 
+var.bottomBound=(screen.height/4)*3 
+var.leftBound=screen.width/4 
+
+//if cursor goes into bounding box range, move mouse in approprate direction 
+if cursorx <= topBound 
+Mouse.CursorPosX-=speed 
+endif 
+
+if cursory >= rightBound 
+mouse.CursorPosY+=speed 
+endif 
+
+if cursorx >= bottomBound 
+mouse.CursorPosX+=speed 
+endif 
+
+if cursory <=leftBound 
+mouse.CursorPosY-=speed 
+endif 
+endif 
+

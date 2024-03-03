@@ -1,0 +1,32 @@
+// Tekken Script - By Carl Kenner
+// Use real punches with the nunchuk and wiimote
+// Kick with trigger buttons on each hand
+// Move/crouch/jump/block with nunchuk joystick
+// Start is +
+// PLEASE set emulator to:
+//   square = Z,  triangle = S
+//   x = X,   circle = C
+//   Start = Enter,  Select = Tab
+//   Up = Up,  Down = Down, Left = Left, Right = Right
+
+var.rightpunch = keepdown(wiimote.gz < -2, 50ms)
+var.leftpunch = keepdown(wiimote.nunchuk.RawForceZ < -100, 50ms)
+var.block = (wiimote.pitch > 70 degrees) and (wiimote.nunchuk.RawForceZ >= 25) and (wiimote.nunchuk.RawForceY <= 35)
+var.leftkick = wiimote.nunchuk.ZButton or wiimote.Nunchuk.CButton
+var.rightkick = wiimote.B
+
+wiimote.rumble = var.rightpunch
+
+Z = var.leftpunch
+X = var.leftkick
+S = var.rightpunch
+C = var.rightkick
+
+left = var.block or (-1.2 < wiimote.Nunchuk.JoyX < -0.5)
+right = (0.5 < wiimote.Nunchuk.JoyX < 1.2)
+up = (-1.2 < wiimote.Nunchuk.JoyY < -0.5)
+down = (0.5 < wiimote.Nunchuk.JoyY < 1.2)
+
+Enter = Wiimote.One or Wiimote.Plus
+Tab = Wiimote.Two or Wiimote.Minus
+debug = wiimote.nunchuk.JoyX

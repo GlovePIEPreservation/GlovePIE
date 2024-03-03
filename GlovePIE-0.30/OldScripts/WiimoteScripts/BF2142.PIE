@@ -1,0 +1,251 @@
+//Playable BF2142 Control Script by Wangdogg\\ 
+//based on WinMouse Accel Script by Wangdogg\\ 
+//wangdogg@hotmail.co.uk\\ 
+
+//Calibration:\\ 
+//BF2142 mouse sensibility need to be set to the min\ 
+//Change these values until the debug line says all zeros when the wiimote is at rest.\\ 
+var.trimx = 1 
+var.trimy = 1 
+var.trimz = 1 
+
+//Nunchuck- Movement\\ 
+Right = 1 > Wiimote1.Nunchuk.JoyX > 0.5 
+Left = -1 < Wiimote1.Nunchuk.JoyX < -0.5 
+down = 1 > Wiimote1.Nunchuk.JoyY > 0.5 
+up = -1 < Wiimote1.Nunchuk.JoyY < -0.5 
+
+if wiimote.nunchuk.joyy and wiimote.nunchuk.joyx > .3 //this might need to be lowered 
+Keyboard.S and Keyboard.D = 1 
+Keyboard.S and Keyboard.D = 0 
+else if wiimote.nunchuk.joyy and wiimote.nunchuk.joyx < -.3 
+Keyboard.W and Keyboard.A = 1 
+Keyboard.W and Keyboard.A = 0 
+else 
+Keyboard.S = 0 
+Keyboard.W = 0 
+Keyboard.D = 0 
+Keyboard.A = 0 
+endif 
+
+if wiimote.nunchuk.joyy > .3 and wiimote.nunchuk.joyx < -.3 
+Keyboard.S and Keyboard.A = 1 
+Keyboard.S and Keyboard.A = 0 
+else if wiimote.nunchuk.joyy < -.3 and wiimote.nunchuk.joyx > .3 
+Keyboard.W and Keyboard.D = 1 
+Keyboard.W and Keyboard.D = 0 
+else 
+Keyboard.S = 0 
+Keyboard.W = 0 
+Keyboard.D = 0 
+Keyboard.A = 0 
+endif 
+
+//Pull the nunchuck up to jump\\ 
+if Wiimote.Nunchuk.RawForceY >= 125 
+Keyboard.Space = 1 
+else 
+Keyboard.Space = 0 
+endif 
+
+if Wiimote.rawaccy <= -32 
+
+//Pull the wiimote up to reload\\ 
+Keyboard.R = 1 
+else 
+Keyboard.R = 0 
+endif 
+
+//AIM/ZOOM\\ 
+Mouse.RightButton = Wiimote.A 
+//FIRE\\ 
+Mouse.LeftButton = Wiimote.B 
+//MEDIBAG/AMMO\\ 
+Key.Four = Wiimote.UP 
+//RIFLE/MAIN WEAPON\\ 
+Key.Three = Wiimote.Down 
+//KNIFE\\ 
+Key.One = Wiimote.Left 
+//FRAG\\ 
+Key.Seven = Wiimote.Right 
+//PRONE\\ 
+Key.Z = Wiimote.Nunchuk.cButton 
+//JUMP/PARACHUTE\\ 
+Keyboard.Space = Wiimote.Nunchuk.zButton 
+//SPRINT/SWIM FAST\\ 
+Key.SHIFT = Wiimote.Plus 
+//PICK UP KIT\\ 
+Key.G = Wiimote.Minus 
+//CYCLE WEAPONS\\ 
+Key.F = Wiimote.One 
+//SQUAD SCREEN/COMMANDER SCREEN\\ 
+Keyboard.CapsLock = Wiimote.Two 
+//MENU\\ 
+Keyboard.Esc = Wiimote.Home 
+//ENTER/EXIT(OR EJECT FROM)VEHICLE\\ 
+Key.E = Wiimote.A and Wiimote.B 
+if Wiimote.A and Wiimote.B then 
+Mouse.LeftButton = false 
+Keyboard.E = true 
+Keyboard.Space = false 
+endif 
+
+//LEDs look somewhat like KITT's grill from Knight Rider 
+if 0 = 0 then 
+if var.kitt = 0 then 
+wiimote.Leds = 1 
+//wait 200 ms 
+endif 
+if var.kitt = 1 then 
+wiimote.Leds = 3 
+endif 
+if var.kitt = 2 then 
+wiimote.Leds = 6 
+endif 
+if var.kitt = 3 then 
+wiimote.Leds = 12 
+endif 
+if var.kitt = 4 then 
+wiimote.Leds = 8 
+//wait 200 ms 
+endif 
+if var.kitt = 5 then 
+wiimote.Leds = 12 
+endif 
+if var.kitt = 6 then 
+wiimote.Leds = 6 
+endif 
+if var.kitt = 7 then 
+wiimote.Leds = 3 
+endif 
+wait 100 ms 
+var.kitt = (var.kitt + 1) % 8 
+endif 
+
+//rumble when firing! 
+if Wiimote.B then 
+if var.rmbl = false 
+wiimote.Rumble = 1 
+wait 50 ms 
+wiimote.Rumble = 0 
+endif 
+var.rmbl = true 
+else 
+var.rmbl = false 
+endif 
+
+//****Everything past here deals with mouse movement***** 
+
+// set these to the offsets when the wiimote is at rest 
+// will be different for each wiimote most likely 
+var.x = Wiimote.RawForceX + var.trimx //trim to 0 
+var.y = Wiimote.RawForceY + var.trimy // trim to 0 
+var.z = Wiimote.RawForceZ + var.trimz //trim to 0 
+Mouse.WheelDown = Wiimote.Down 
+Mouse.WheelUp = Wiimote.Up 
+
+//precision 
+var.sense0 = 1000 
+var.thresh0x = 2 
+var.thresh0y = 1 
+
+var.sense = 300 
+var.threshx = 10 
+var.threshy = 5 
+
+var.sense2 = 100 
+var.thresh2x = 15 
+var.thresh2y = 8 
+
+var.sense3 = 50 
+var.thresh3x = 20 
+var.thresh3y = 12 
+
+//first sensitivity setting 
+//xaxis 
+if var.x > var.thresh0x 
+mouse.x = mouse.x - 1/var.sense0 
+endif 
+if var.x < -var.thresh0x 
+mouse.x = mouse.x + 1/var.sense0 
+endif 
+
+//yaxis 
+if var.z > var.thresh0y 
+mouse.y = mouse.y - 1/var.sense0 
+endif 
+if var.z < -var.thresh0y 
+mouse.y = mouse.y + 1/var.sense0 
+endif 
+
+
+//second sensitivity setting 
+//xaxis 
+if var.x > var.threshx 
+mouse.x = mouse.x - 1/var.sense 
+endif 
+if var.x < -var.threshx 
+mouse.x = mouse.x + 1/var.sense 
+endif 
+
+//yaxis 
+if var.z > var.threshy 
+mouse.y = mouse.y - 1/var.sense 
+endif 
+if var.z < -var.threshy 
+mouse.y = mouse.y + 1/var.sense 
+endif 
+
+//third sensitivity setting 
+//xaxis 
+if var.x > var.thresh2x 
+mouse.x = mouse.x - 1/var.sense2 
+endif 
+if var.x < -var.thresh2x 
+mouse.x = mouse.x + 1/var.sense2 
+endif 
+
+//yaxis 
+if var.z > var.thresh2y 
+mouse.y = mouse.y - 1/var.sense2 
+endif 
+if var.z < -var.thresh2y 
+mouse.y = mouse.y + 1/var.sense2 
+endif 
+
+//fourth sensitivity setting 
+//xaxis 
+if var.x > var.thresh3x 
+mouse.x = mouse.x - 1/var.sense3 
+endif 
+if var.x < -var.thresh3x 
+mouse.x = mouse.x + 1/var.sense3 
+endif 
+
+//yaxis 
+if var.z > var.thresh3y 
+mouse.y = mouse.y - 1/var.sense3 
+endif 
+if var.z < -var.thresh3y 
+mouse.y = mouse.y + 1/var.sense3 
+endif 
+
+//Nunchuck 
+if Wiimote.nunchuk.joyy > .2 
+Keyboard.S = 1 
+else if Wiimote.nunchuk.joyy < -.2 
+Keyboard.W = 1 
+else 
+Keyboard.S = 0 
+Keyboard.W = 0 
+endif 
+if wiimote.nunchuk.joyx > .2 
+Keyboard.D = 1 
+else if wiimote.nunchuk.joyx < -.2 
+Keyboard.A = 1 
+else 
+Keyboard.D = 0 
+Keyboard.A = 0 
+endif 
+
+debug = var.x + " " + var.y + " " + var.z

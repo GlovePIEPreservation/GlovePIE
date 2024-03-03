@@ -1,0 +1,35 @@
+// Type your program here!
+if (-10 <= p5.yaw <= 10) then begin
+  var.yaw = 0
+end else begin
+  if (p5.yaw>10) then var.yaw = p5.yaw - 10
+  if (p5.yaw<-10) then var.yaw = p5.yaw + 10
+end;
+
+if (-15 <= p5.roll - 9 <= 15) then begin
+  var.roll = 0
+end else begin
+  if (p5.roll>9+15) then var.roll = p5.roll -15-9
+  if (p5.roll<9-15) then var.roll = p5.roll +15-9
+end;
+
+if (-10 <= p5.pitch+4 <= 7) then begin
+  var.pitch = 0
+end else begin
+ if (p5.pitch+4>7) then var.pitch = p5.pitch +4-7
+ if (p5.pitch+4<-10) then var.pitch = p5.pitch +4+10
+end;
+
+if (var.roll< -4 or var.roll>4) then var.yaw = 0
+
+if abs(var.pitch)>abs(var.roll) and abs(var.pitch)>abs(var.yaw) then
+  var.yaw = 0
+  var.roll = 0
+end if
+
+//if (var.roll>5 or var.roll<-5 or var.yaw>5 or var.yaw<-5) then var.pitch = 0
+
+//debug = var.pitch
+
+debug = var.yaw + ", " + var.roll + ", " + var.pitch + ", " + p5.x
+

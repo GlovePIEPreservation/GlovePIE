@@ -1,0 +1,11 @@
+// Vibrate Gamepad 1
+// Button 1 controls Rumble
+// Button 2 controls Buzz
+// Note that on real force feedback joysticks it will pull to one side
+// But on gamepads it will vibrate
+
+// This script vibrates them on full, but you could also use fractions
+
+Joystick1.Vibration1 = joy1.Button1
+Joystick1.Vibration2 = joy1.Button2
+

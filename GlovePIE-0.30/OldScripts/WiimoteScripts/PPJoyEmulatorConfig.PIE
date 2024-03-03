@@ -1,0 +1,394 @@
+// PPJoy Emulator config script
+// By Carl Kenner
+// This script is ONLY for controlling PPJoy Virtual Joystick's axes
+// and buttons. So that you can set an emulator to the correct digital
+// and analog values. Or so you can set a real game to the correct
+// digital and analog values.
+// You must have PPJoy installed, and have added virtual joystick to it.
+
+// STEP 1: Find out what digitals and analogs you want to set the
+//   emulator to. These will proably be explained in comments at the
+//   top of the actual script you want to use.
+// STEP 2: Run this script.
+// STEP 3: Go into your emulator's controller configuration, and choose
+//   to use PPJoy Virtual Joystick 1, if it lets you choose the
+//   joystick.
+// STEP 4: Click in the box you want to set, and then use the following
+//   set it to the analog or digital input you want based on this list:
+
+// Analog 0: Move the nunchuk joystick left or right
+// Analog 1: Move the nunchuk joystick up or down
+// Analog 2: Hold A, Move the nunchuk joystick left or right
+// Analog 3: Hold A, Move the nunchuk joystick up or down
+// Analog 4: Hold B, Move the nunchuk joystick left or right
+// Analog 5: Hold B, Move the nunchuk joystick up or down
+// Analog 6: Hold A+B, Move the nunchuk joystick left or right
+// Analog 7: Hold A+B, Move the nunchuk joystick up or down
+
+// Digital 0: Press 1
+// Digital 1: Press 2
+// Digital 2: Press -
+// Digital 3: Press Home
+// Digital 4: Press +
+
+// Digital 5: Press A+1
+// Digital 6: Press A+2
+// Digital 7: Press A+-
+// Digital 8: Press A+Home
+// Digital 9: Press A++
+
+// Digital 10: Press B+1
+// Digital 11: Press B+2
+// Digital 12: Press B+-
+// Digital 13: Press B+Home
+// Digital 14: Press B++
+
+// Digital 15: Press A+B+1
+// Digital 16: Press A+B+2
+// Digital 17: Press A+B+-
+// Digital 18: Press A+B+Home
+// Digital 19: Press A+B++
+
+// Digital 20: Press Left+1
+// Digital 21: Press Left+2
+// Digital 22: Press Left+-
+// Digital 23: Press Left+Home
+// Digital 24: Press Left++
+
+// Digital 25: Press Right+1
+// Digital 26: Press Right+2
+// Digital 27: Press Right+-
+// Digital 28: Press Right+Home
+// Digital 29: Press Right++
+
+// Digital 30: Press Up
+// Digital 31: Press Down
+
+if not Wiimote.A then
+  PPJoy1.Analog0 = Wiimote.Nunchuk.JoyX
+  PPJoy1.Analog1 = Wiimote.Nunchuk.JoyY
+else
+  PPJoy1.Analog0 = 0
+  PPJoy1.Analog1 = 0
+end if
+
+if Wiimote.A and (not Wiimote.B) then
+  PPJoy1.Analog2 = Wiimote.Nunchuk.JoyX
+  PPJoy1.Analog3 = Wiimote.Nunchuk.JoyY
+else
+  PPJoy1.Analog2 = 0
+  PPJoy1.Analog3 = 0
+end if
+
+if Wiimote.B and (not Wiimote.A) then
+  PPJoy1.Analog4 = Wiimote.Nunchuk.JoyX
+  PPJoy1.Analog5 = Wiimote.Nunchuk.JoyY
+else
+  PPJoy1.Analog4 = 0
+  PPJoy1.Analog5 = 0
+end if
+
+if Wiimote.A and Wiimote.B then
+  PPJoy1.Analog6 = Wiimote.Nunchuk.JoyX
+  PPJoy1.Analog7 = Wiimote.Nunchuk.JoyY
+else
+  PPJoy1.Analog6 = 0
+  PPJoy1.Analog7 = 0
+end if
+
+// These might be continuous POV hat switches. If so, then they need
+// to be set to 1, or you will get POV hat down for everything.
+PPJoy1.Analog8 = 1
+PPJoy1.Analog9 = 1
+PPJoy1.Analog10 = 1
+PPJoy1.Analog11 = 1
+PPJoy1.Analog12 = 1
+PPJoy1.Analog13 = 1
+PPJoy1.Analog14 = 1
+PPJoy1.Analog15 = 1
+
+PPJoy1.Digital0 = Wiimote.One and (not Wiimote.A) and (not Wiimote.B) and (not Wiimote.Left) and (not Wiimote.Right)
+PPJoy1.Digital1 = Wiimote.Two and (not Wiimote.A) and (not Wiimote.B) and (not Wiimote.Left) and (not Wiimote.Right)
+PPJoy1.Digital2 = Wiimote.Minus and (not Wiimote.A) and (not Wiimote.B) and (not Wiimote.Left) and (not Wiimote.Right)
+PPJoy1.Digital3 = Wiimote.Home and (not Wiimote.A) and (not Wiimote.B) and (not Wiimote.Left) and (not Wiimote.Right)
+PPJoy1.Digital4 = Wiimote.Plus and (not Wiimote.A) and (not Wiimote.B) and (not Wiimote.Left) and (not Wiimote.Right)
+
+PPJoy1.Digital5 = Wiimote.One and Wiimote.A
+PPJoy1.Digital6 = Wiimote.Two and Wiimote.A
+PPJoy1.Digital7 = Wiimote.Minus and Wiimote.A
+PPJoy1.Digital8 = Wiimote.Home and Wiimote.A
+PPJoy1.Digital9 = Wiimote.Plus and Wiimote.A
+
+PPJoy1.Digital10 = Wiimote.One and Wiimote.B
+PPJoy1.Digital11 = Wiimote.Two and Wiimote.B
+PPJoy1.Digital12 = Wiimote.Minus and Wiimote.B
+PPJoy1.Digital13 = Wiimote.Home and Wiimote.B
+PPJoy1.Digital14 = Wiimote.Plus and Wiimote.B
+
+PPJoy1.Digital15 = Wiimote.One and Wiimote.A and Wiimote.B
+PPJoy1.Digital16 = Wiimote.Two and Wiimote.A and Wiimote.B
+PPJoy1.Digital17 = Wiimote.Minus and Wiimote.A and Wiimote.B
+PPJoy1.Digital18 = Wiimote.Home and Wiimote.A and Wiimote.B
+PPJoy1.Digital19 = Wiimote.Plus and Wiimote.A and Wiimote.B
+
+PPJoy1.Digital20 = Wiimote.One and Wiimote.Left
+PPJoy1.Digital21 = Wiimote.Two and Wiimote.Left
+PPJoy1.Digital22 = Wiimote.Minus and Wiimote.Left
+PPJoy1.Digital23 = Wiimote.Home and Wiimote.Left
+PPJoy1.Digital24 = Wiimote.Plus and Wiimote.Left
+
+PPJoy1.Digital25 = Wiimote.One and Wiimote.Right
+PPJoy1.Digital26 = Wiimote.Two and Wiimote.Right
+PPJoy1.Digital27 = Wiimote.Minus and Wiimote.Right
+PPJoy1.Digital28 = Wiimote.Home and Wiimote.Right
+PPJoy1.Digital29 = Wiimote.Plus and Wiimote.Right
+
+PPJoy1.Digital30 = Wiimote.Up
+PPJoy1.Digital31 = Wiimote.Down
+
+if not Wiimote2.A then
+  PPJoy2.Analog0 = Wiimote2.Nunchuk.JoyX
+  PPJoy2.Analog1 = Wiimote2.Nunchuk.JoyY
+else
+  PPJoy2.Analog0 = 0
+  PPJoy2.Analog1 = 0
+end if
+
+if Wiimote2.A and (not Wiimote2.B) then
+  PPJoy2.Analog2 = Wiimote2.Nunchuk.JoyX
+  PPJoy2.Analog3 = Wiimote2.Nunchuk.JoyY
+else
+  PPJoy2.Analog2 = 0
+  PPJoy2.Analog3 = 0
+end if
+
+if Wiimote2.B and (not Wiimote2.A) then
+  PPJoy2.Analog4 = Wiimote2.Nunchuk.JoyX
+  PPJoy2.Analog5 = Wiimote2.Nunchuk.JoyY
+else
+  PPJoy2.Analog4 = 0
+  PPJoy2.Analog5 = 0
+end if
+
+if Wiimote2.A and Wiimote2.B then
+  PPJoy2.Analog6 = Wiimote2.Nunchuk.JoyX
+  PPJoy2.Analog7 = Wiimote2.Nunchuk.JoyY
+else
+  PPJoy2.Analog6 = 0
+  PPJoy2.Analog7 = 0
+end if
+
+// These might be continuous POV hat switches. If so, then they need
+// to be set to 1, or you will get POV hat down for everything.
+PPJoy2.Analog8 = 1
+PPJoy2.Analog9 = 1
+PPJoy2.Analog10 = 1
+PPJoy2.Analog11 = 1
+PPJoy2.Analog12 = 1
+PPJoy2.Analog13 = 1
+PPJoy2.Analog14 = 1
+PPJoy2.Analog15 = 1
+
+PPJoy2.Digital0 = Wiimote2.One and (not Wiimote2.A) and (not Wiimote2.B) and (not Wiimote2.Left) and (not Wiimote2.Right)
+PPJoy2.Digital1 = Wiimote2.Two and (not Wiimote2.A) and (not Wiimote2.B) and (not Wiimote2.Left) and (not Wiimote2.Right)
+PPJoy2.Digital2 = Wiimote2.Minus and (not Wiimote2.A) and (not Wiimote2.B) and (not Wiimote2.Left) and (not Wiimote2.Right)
+PPJoy2.Digital3 = Wiimote2.Home and (not Wiimote2.A) and (not Wiimote2.B) and (not Wiimote2.Left) and (not Wiimote2.Right)
+PPJoy2.Digital4 = Wiimote2.Plus and (not Wiimote2.A) and (not Wiimote2.B) and (not Wiimote2.Left) and (not Wiimote2.Right)
+
+PPJoy2.Digital5 = Wiimote2.One and Wiimote2.A
+PPJoy2.Digital6 = Wiimote2.Two and Wiimote2.A
+PPJoy2.Digital7 = Wiimote2.Minus and Wiimote2.A
+PPJoy2.Digital8 = Wiimote2.Home and Wiimote2.A
+PPJoy2.Digital9 = Wiimote2.Plus and Wiimote2.A
+
+PPJoy2.Digital10 = Wiimote2.One and Wiimote2.B
+PPJoy2.Digital11 = Wiimote2.Two and Wiimote2.B
+PPJoy2.Digital12 = Wiimote2.Minus and Wiimote2.B
+PPJoy2.Digital13 = Wiimote2.Home and Wiimote2.B
+PPJoy2.Digital14 = Wiimote2.Plus and Wiimote2.B
+
+PPJoy2.Digital15 = Wiimote2.One and Wiimote2.A and Wiimote2.B
+PPJoy2.Digital16 = Wiimote2.Two and Wiimote2.A and Wiimote2.B
+PPJoy2.Digital17 = Wiimote2.Minus and Wiimote2.A and Wiimote2.B
+PPJoy2.Digital18 = Wiimote2.Home and Wiimote2.A and Wiimote2.B
+PPJoy2.Digital19 = Wiimote2.Plus and Wiimote2.A and Wiimote2.B
+
+PPJoy2.Digital20 = Wiimote2.One and Wiimote2.Left
+PPJoy2.Digital21 = Wiimote2.Two and Wiimote2.Left
+PPJoy2.Digital22 = Wiimote2.Minus and Wiimote2.Left
+PPJoy2.Digital23 = Wiimote2.Home and Wiimote2.Left
+PPJoy2.Digital24 = Wiimote2.Plus and Wiimote2.Left
+
+PPJoy2.Digital25 = Wiimote2.One and Wiimote2.Right
+PPJoy2.Digital26 = Wiimote2.Two and Wiimote2.Right
+PPJoy2.Digital27 = Wiimote2.Minus and Wiimote2.Right
+PPJoy2.Digital28 = Wiimote2.Home and Wiimote2.Right
+PPJoy2.Digital29 = Wiimote2.Plus and Wiimote2.Right
+
+PPJoy2.Digital30 = Wiimote2.Up
+PPJoy2.Digital31 = Wiimote2.Down
+
+if not Wiimote3.A then
+  PPJoy3.Analog0 = Wiimote3.Nunchuk.JoyX
+  PPJoy3.Analog1 = Wiimote3.Nunchuk.JoyY
+else
+  PPJoy3.Analog0 = 0
+  PPJoy3.Analog1 = 0
+end if
+
+if Wiimote3.A and (not Wiimote3.B) then
+  PPJoy3.Analog2 = Wiimote3.Nunchuk.JoyX
+  PPJoy3.Analog3 = Wiimote3.Nunchuk.JoyY
+else
+  PPJoy3.Analog2 = 0
+  PPJoy3.Analog3 = 0
+end if
+
+if Wiimote3.B and (not Wiimote3.A) then
+  PPJoy3.Analog4 = Wiimote3.Nunchuk.JoyX
+  PPJoy3.Analog5 = Wiimote3.Nunchuk.JoyY
+else
+  PPJoy3.Analog4 = 0
+  PPJoy3.Analog5 = 0
+end if
+
+if Wiimote3.A and Wiimote3.B then
+  PPJoy3.Analog6 = Wiimote3.Nunchuk.JoyX
+  PPJoy3.Analog7 = Wiimote3.Nunchuk.JoyY
+else
+  PPJoy3.Analog6 = 0
+  PPJoy3.Analog7 = 0
+end if
+
+// These might be continuous POV hat switches. If so, then they need
+// to be set to 1, or you will get POV hat down for everything.
+PPJoy3.Analog8 = 1
+PPJoy3.Analog9 = 1
+PPJoy3.Analog10 = 1
+PPJoy3.Analog11 = 1
+PPJoy3.Analog12 = 1
+PPJoy3.Analog13 = 1
+PPJoy3.Analog14 = 1
+PPJoy3.Analog15 = 1
+
+PPJoy3.Digital0 = Wiimote3.One and (not Wiimote3.A) and (not Wiimote3.B) and (not Wiimote3.Left) and (not Wiimote3.Right)
+PPJoy3.Digital1 = Wiimote3.Two and (not Wiimote3.A) and (not Wiimote3.B) and (not Wiimote3.Left) and (not Wiimote3.Right)
+PPJoy3.Digital2 = Wiimote3.Minus and (not Wiimote3.A) and (not Wiimote3.B) and (not Wiimote3.Left) and (not Wiimote3.Right)
+PPJoy3.Digital3 = Wiimote3.Home and (not Wiimote3.A) and (not Wiimote3.B) and (not Wiimote3.Left) and (not Wiimote3.Right)
+PPJoy3.Digital4 = Wiimote3.Plus and (not Wiimote3.A) and (not Wiimote3.B) and (not Wiimote3.Left) and (not Wiimote3.Right)
+
+PPJoy3.Digital5 = Wiimote3.One and Wiimote3.A
+PPJoy3.Digital6 = Wiimote3.Two and Wiimote3.A
+PPJoy3.Digital7 = Wiimote3.Minus and Wiimote3.A
+PPJoy3.Digital8 = Wiimote3.Home and Wiimote3.A
+PPJoy3.Digital9 = Wiimote3.Plus and Wiimote3.A
+
+PPJoy3.Digital10 = Wiimote3.One and Wiimote3.B
+PPJoy3.Digital11 = Wiimote3.Two and Wiimote3.B
+PPJoy3.Digital12 = Wiimote3.Minus and Wiimote3.B
+PPJoy3.Digital13 = Wiimote3.Home and Wiimote3.B
+PPJoy3.Digital14 = Wiimote3.Plus and Wiimote3.B
+
+PPJoy3.Digital15 = Wiimote3.One and Wiimote3.A and Wiimote3.B
+PPJoy3.Digital16 = Wiimote3.Two and Wiimote3.A and Wiimote3.B
+PPJoy3.Digital17 = Wiimote3.Minus and Wiimote3.A and Wiimote3.B
+PPJoy3.Digital18 = Wiimote3.Home and Wiimote3.A and Wiimote3.B
+PPJoy3.Digital19 = Wiimote3.Plus and Wiimote3.A and Wiimote3.B
+
+PPJoy3.Digital20 = Wiimote3.One and Wiimote3.Left
+PPJoy3.Digital21 = Wiimote3.Two and Wiimote3.Left
+PPJoy3.Digital22 = Wiimote3.Minus and Wiimote3.Left
+PPJoy3.Digital23 = Wiimote3.Home and Wiimote3.Left
+PPJoy3.Digital24 = Wiimote3.Plus and Wiimote3.Left
+
+PPJoy3.Digital25 = Wiimote3.One and Wiimote3.Right
+PPJoy3.Digital26 = Wiimote3.Two and Wiimote3.Right
+PPJoy3.Digital27 = Wiimote3.Minus and Wiimote3.Right
+PPJoy3.Digital28 = Wiimote3.Home and Wiimote3.Right
+PPJoy3.Digital29 = Wiimote3.Plus and Wiimote3.Right
+
+PPJoy3.Digital30 = Wiimote3.Up
+PPJoy3.Digital31 = Wiimote3.Down
+
+if not PPJoy4.A then
+  PPJoy4.Analog0 = Wiimote4.Nunchuk.JoyX
+  PPJoy4.Analog1 = Wiimote4.Nunchuk.JoyY
+else
+  PPJoy4.Analog0 = 0
+  PPJoy4.Analog1 = 0
+end if
+
+if PPJoy4.A and (not PPJoy4.B) then
+  PPJoy4.Analog2 = Wiimote4.Nunchuk.JoyX
+  PPJoy4.Analog3 = Wiimote4.Nunchuk.JoyY
+else
+  PPJoy4.Analog2 = 0
+  PPJoy4.Analog3 = 0
+end if
+
+if PPJoy4.B and (not PPJoy4.A) then
+  PPJoy4.Analog4 = Wiimote4.Nunchuk.JoyX
+  PPJoy4.Analog5 = Wiimote4.Nunchuk.JoyY
+else
+  PPJoy4.Analog4 = 0
+  PPJoy4.Analog5 = 0
+end if
+
+if PPJoy4.A and PPJoy4.B then
+  PPJoy4.Analog6 = Wiimote4.Nunchuk.JoyX
+  PPJoy4.Analog7 = Wiimote4.Nunchuk.JoyY
+else
+  PPJoy4.Analog6 = 0
+  PPJoy4.Analog7 = 0
+end if
+
+// These might be continuous POV hat switches. If so, then they need
+// to be set to 1, or you will get POV hat down for everything.
+PPJoy4.Analog8 = 1
+PPJoy4.Analog9 = 1
+PPJoy4.Analog10 = 1
+PPJoy4.Analog11 = 1
+PPJoy4.Analog12 = 1
+PPJoy4.Analog13 = 1
+PPJoy4.Analog14 = 1
+PPJoy4.Analog15 = 1
+
+PPJoy4.Digital0 = Wiimote4.One and (not Wiimote4.A) and (not Wiimote4.B) and (not Wiimote4.Left) and (not Wiimote4.Right)
+PPJoy4.Digital1 = Wiimote4.Two and (not Wiimote4.A) and (not Wiimote4.B) and (not Wiimote4.Left) and (not Wiimote4.Right)
+PPJoy4.Digital2 = Wiimote4.Minus and (not Wiimote4.A) and (not Wiimote4.B) and (not Wiimote4.Left) and (not Wiimote4.Right)
+PPJoy4.Digital3 = Wiimote4.Home and (not Wiimote4.A) and (not Wiimote4.B) and (not Wiimote4.Left) and (not Wiimote4.Right)
+PPJoy4.Digital4 = Wiimote4.Plus and (not Wiimote4.A) and (not Wiimote4.B) and (not Wiimote4.Left) and (not Wiimote4.Right)
+
+PPJoy4.Digital5 = Wiimote4.One and Wiimote4.A
+PPJoy4.Digital6 = Wiimote4.Two and Wiimote4.A
+PPJoy4.Digital7 = Wiimote4.Minus and Wiimote4.A
+PPJoy4.Digital8 = Wiimote4.Home and Wiimote4.A
+PPJoy4.Digital9 = Wiimote4.Plus and Wiimote4.A
+
+PPJoy4.Digital10 = Wiimote4.One and Wiimote4.B
+PPJoy4.Digital11 = Wiimote4.Two and Wiimote4.B
+PPJoy4.Digital12 = Wiimote4.Minus and Wiimote4.B
+PPJoy4.Digital13 = Wiimote4.Home and Wiimote4.B
+PPJoy4.Digital14 = Wiimote4.Plus and Wiimote4.B
+
+PPJoy4.Digital15 = Wiimote4.One and Wiimote4.A and Wiimote4.B
+PPJoy4.Digital16 = Wiimote4.Two and Wiimote4.A and Wiimote4.B
+PPJoy4.Digital17 = Wiimote4.Minus and Wiimote4.A and Wiimote4.B
+PPJoy4.Digital18 = Wiimote4.Home and Wiimote4.A and Wiimote4.B
+PPJoy4.Digital19 = Wiimote4.Plus and Wiimote4.A and Wiimote4.B
+
+PPJoy4.Digital20 = Wiimote4.One and Wiimote4.Left
+PPJoy4.Digital21 = Wiimote4.Two and Wiimote4.Left
+PPJoy4.Digital22 = Wiimote4.Minus and Wiimote4.Left
+PPJoy4.Digital23 = Wiimote4.Home and Wiimote4.Left
+PPJoy4.Digital24 = Wiimote4.Plus and Wiimote4.Left
+
+PPJoy4.Digital25 = Wiimote4.One and Wiimote4.Right
+PPJoy4.Digital26 = Wiimote4.Two and Wiimote4.Right
+PPJoy4.Digital27 = Wiimote4.Minus and Wiimote4.Right
+PPJoy4.Digital28 = Wiimote4.Home and Wiimote4.Right
+PPJoy4.Digital29 = Wiimote4.Plus and Wiimote4.Right
+
+PPJoy4.Digital30 = Wiimote4.Up
+PPJoy4.Digital31 = Wiimote4.Down
+

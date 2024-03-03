@@ -1,0 +1,966 @@
+/* This is Wiitar! v. 3.0      By  Jordan Sanborn (J5892) 
+   It requires the nunchuck or 2 wiimotes. One to control the frets and chords, 
+   and the other to control picking. 
+
+   for Nunchuck instructions, scroll down. 
+
+   To control the frets, start by holding wiimote 1 flat for the first fret, 
+   then for each consecutive fret, tilt it slightly more towards vertical. 
+   There are 5 possible frets. 
+   The 4th is vertical, and the fifth is tilted slightly forward from vertical. 
+   For no fret, hold the "B" button. 
+
+   To pick, hold down a button on wiimote 2, and flick your wrist. 
+   The string keys is as follows: 
+   B - low E string. 
+   A - A string. 
+   Down - D string. 
+   Left - G string. 
+   Right - B string. 
+   Up - high E string. 
+
+   To change the buttons to your liking, just use GlovePIE's replace feature, 
+   search for the current button, and replace it with the one you want. 
+
+   To determine which wiimote is which, simply press A on one of them, 
+   and the debug window will show either "Wiimote 1" or "Wiimote 2". 
+
+
+   Chords: 
+          To use chords, simply hold wiimote1 in the position of the 
+          chord you want, hold "A" on wiimote1, and flick wiimote2. 
+
+          Here's the chord key: 
+          "B" button = A chord 
+          wiimote horizontal = C chord 
+          next position = D chord 
+          next = E chord 
+          vertical = F chord 
+          tilted forward = G chord 
+
+          To arpeggiate, hold "Down" on wiimote1 instead of "A", and 
+          hold the corresponding string button on wiimote2 while you flick it. 
+
+   Nunchuck version: 
+            To use the Wiitar with one wiimote and a nunchuck, simply connect the nunchuck. 
+
+            The same instructions apply, except: 
+            - The B button on wiimote1 
+              is replaced with the Z button. 
+            - The A button on wiimote1 
+              is replaced with the C button. 
+            - The Down button on Wiimote1 
+              is replaced with holding the joystick all the way down. 
+
+*/ 
+       midi.volume = 100% 
+       midi.Instrument = 26 
+
+
+if wiimote1.HasNunchuk == true 
+if wiimote1.Two == true 
+   var.wiinumber = "Wiimote 1" 
+else if wiimote2.Two == true 
+   var.wiinumber = "Wiimote 2" 
+endif 
+debug = var.wiinumber+', '+wiimote1.Nunchuk.rawforceY 
+if wiimote1.Nunchuk.rawforceY <= 50 && wiimote1.Nunchuk.rawforceY >= 42 
+   if var.fret != 0 
+   wiimote.Led1 = true 
+   wiimote.Led2 = false 
+   wiimote.Led3 = false 
+   wiimote.Led4 = false 
+   endif 
+   var.fret = 1 
+   var.chord = 'c' 
+endif 
+if wiimote1.Nunchuk.rawforceY <= 40&& wiimote1.Nunchuk.rawforceY >= 32 
+   if var.fret != 0 
+   wiimote.Led1 = false 
+   wiimote.Led2 = true 
+   wiimote.Led3 = false 
+   wiimote.Led4 = false 
+   endif 
+   var.fret = 2 
+   var.chord = 'd' 
+endif 
+if wiimote1.Nunchuk.rawforceY <= 30 && wiimote1.Nunchuk.rawforceY >= 22 
+   if var.fret != 0 
+   wiimote.Led1 = false 
+   wiimote.Led2 = false 
+   wiimote.Led3 = true 
+   wiimote.Led4 = false 
+   endif 
+   var.fret = 3 
+   var.chord = 'e' 
+
+endif 
+if wiimote1.Nunchuk.rawforceY <= 20 && wiimote1.Nunchuk.rawforceY >= 12 
+   if var.fret != 0 
+   wiimote.Led1 = false 
+   wiimote.Led2 = false 
+   wiimote.Led3 = false 
+   wiimote.Led4 = true 
+   endif 
+   var.fret = 4 
+   var.chord = 'f' 
+endif 
+if wiimote1.Nunchuk.rawforceY <= 10 
+   if var.fret != 0 
+   wiimote.Led1 = true 
+   wiimote.Led2 = false 
+   wiimote.Led3 = false 
+   wiimote.Led4 = true 
+   endif 
+   var.fret = 5 
+   var.chord = 'g' 
+endif 
+if wiimote1.Nunchuk.ZButton == true 
+   var.fret = 0 
+   wiimote.Led1 = false 
+   wiimote.Led2 = false 
+   wiimote.Led3 = false 
+   wiimote.Led4 = false 
+   var.chord = 'a' 
+endif 
+
+if wiimote1.Nunchuk.Cbutton == false && wiimote1.Nunchuk.JoyY < 0.90 
+ if MapRange(wiimote1.RelAccY, -20 m per s per s,20 m per s per s, 0,64) >= 50 
+  if var.fret == 0 
+   if wiimote1.B == true 
+      midi.e3 = true 
+
+   endif 
+   if wiimote1.A == true 
+      midi.a3 = true 
+        
+   endif 
+   if wiimote1.Down == true 
+      midi.d4 = true 
+        
+   endif 
+   if wiimote1.Left == true 
+      midi.g4 = true 
+        
+   endif 
+   if wiimote1.Right == true 
+      midi.b4 = true 
+        
+   endif 
+   if wiimote1.Up == true 
+      midi.e5 = true 
+        
+   endif 
+   wait 200 ms 
+  endif 
+
+  if var.fret == 1 
+   if wiimote1.B == true 
+      midi.f3 = true 
+
+   endif 
+   if wiimote1.A == true 
+      midi.asharp3 = true 
+        
+   endif 
+   if wiimote1.Down == true 
+      midi.dsharp4 = true 
+        
+   endif 
+   if wiimote1.Left == true 
+      midi.gsharp4 = true 
+        
+   endif 
+   if wiimote1.Right == true 
+      midi.c5 = true 
+        
+   endif 
+   if wiimote1.Up == true 
+      midi.f5 = true 
+        
+   endif 
+   wait 150 ms 
+  endif 
+
+  if var.fret == 2 
+   if wiimote1.B == true 
+      midi.fsharp3 = true 
+
+   endif 
+   if wiimote1.A == true 
+      midi.b3 = true 
+        
+   endif 
+   if wiimote1.Down == true 
+      midi.e4 = true 
+        
+   endif 
+   if wiimote1.Left == true 
+      midi.a4 = true 
+        
+   endif 
+   if wiimote1.Right == true 
+      midi.csharp5 = true 
+        
+   endif 
+   if wiimote1.Up == true 
+      midi.fsharp5 = true 
+        
+   endif 
+   wait 150 ms 
+  endif 
+
+  if var.fret == 3 
+   if wiimote1.B == true 
+      midi.g3 = true 
+
+   endif 
+   if wiimote1.A == true 
+      midi.c4 = true 
+        
+   endif 
+   if wiimote1.Down == true 
+      midi.f4 = true 
+        
+   endif 
+   if wiimote1.Left == true 
+      midi.asharp4 = true 
+        
+   endif 
+   if wiimote1.Right == true 
+      midi.d5 = true 
+        
+   endif 
+   if wiimote1.Up == true 
+      midi.g5 = true 
+        
+   endif 
+   wait 150 ms 
+  endif 
+
+  if var.fret == 4 
+   if wiimote1.B == true 
+      midi.gsharp3 = true 
+
+   endif 
+   if wiimote1.A == true 
+      midi.csharp4 = true 
+        
+   endif 
+   if wiimote1.Down == true 
+      midi.fsharp4 = true 
+        
+   endif 
+   if wiimote1.Left == true 
+      midi.b4 = true 
+        
+   endif 
+   if wiimote1.Right == true 
+      midi.dsharp5 = true 
+        
+   endif 
+   if wiimote1.Up == true 
+      midi.gsharp5 = true 
+        
+   endif 
+   wait 150 ms 
+  endif 
+
+  if var.fret == 5 
+   if wiimote1.B == true 
+      midi.a3 = true 
+
+   endif 
+   if wiimote1.A == true 
+      midi.d4 = true 
+        
+   endif 
+   if wiimote1.Down == true 
+      midi.g4 = true 
+        
+   endif 
+   if wiimote1.Left == true 
+      midi.c5 = true 
+        
+   endif 
+   if wiimote1.Right == true 
+      midi.e5 = true 
+        
+   endif 
+   if wiimote1.Up == true 
+      midi.a5 = true 
+        
+   endif 
+   wait 150 ms 
+  endif 
+
+
+ endif 
+endif 
+
+if wiimote1.Nunchuk.CButton == true || wiimote1.Nunchuk.JoyY >= 0.90 
+   if MapRange(wiimote1.RelAccY, -20 m per s per s,20 m per s per s, 0,64) >= 50 
+      if var.chord == 'a' 
+         if wiimote1.Nunchuk.CButton == true 
+            midi.a3 = true 
+            wait 15 ms 
+            midi.e4 = true 
+            wait 15 ms 
+            midi.a4 = true 
+            wait 15 ms 
+            midi.csharp5 = true 
+            wait 15 ms 
+            midi.e5 = true 
+   else if wiimote1.Nunchuk.JoyY >= 0.90 
+            if wiimote1.B == true 
+               midi.e3 = true 
+            endif 
+            if wiimote1.A == true 
+               midi.a3 = true 
+            endif 
+            if wiimote1.Down == true 
+               midi.e4 = true 
+            endif 
+            if wiimote1.Left == true 
+               midi.a4 = true 
+            endif 
+            if wiimote1.Right == true 
+               midi.csharp5 = true 
+            endif 
+            if wiimote1.Up == true 
+               midi.e5 = true 
+            endif 
+         endif 
+      endif 
+
+      if var.chord == 'c' 
+         if wiimote1.Nunchuk.CButton == true 
+            midi.c3 = true 
+            wait 15 ms 
+            midi.e4 = true 
+            wait 15 ms 
+            midi.g4 = true 
+            wait 15 ms 
+            midi.c5 = true 
+            wait 15 ms 
+            midi.e5 = true 
+   else if wiimote1.Nunchuk.JoyY >= 0.90 
+            if wiimote1.B == true 
+               midi.e3 = true 
+            endif 
+            if wiimote1.A == true 
+               midi.c4 = true 
+            endif 
+            if wiimote1.Down == true 
+               midi.e4 = true 
+            endif 
+            if wiimote1.Left == true 
+               midi.g4 = true 
+            endif 
+            if wiimote1.Right == true 
+               midi.c5 = true 
+            endif 
+            if wiimote1.Up == true 
+               midi.e5 = true 
+            endif 
+         endif 
+      endif 
+
+      if var.chord == 'd' 
+         if wiimote1.Nunchuk.CButton == true 
+            midi.d4 = true 
+            wait 15 ms 
+            midi.a4 = true 
+            wait 15 ms 
+            midi.d5 = true 
+            wait 15 ms 
+            midi.fsharp5 = true 
+   else if wiimote1.Nunchuk.JoyY >= 0.90 
+            if wiimote1.B == true 
+               midi.e3 = true 
+            endif 
+            if wiimote1.A == true 
+               midi.a3 = true 
+            endif 
+            if wiimote1.Down == true 
+               midi.d4 = true 
+            endif 
+            if wiimote1.Left == true 
+               midi.a4 = true 
+            endif 
+            if wiimote1.Right == true 
+               midi.d5 = true 
+            endif 
+            if wiimote1.Up == true 
+               midi.fsharp5 = true 
+            endif 
+         endif 
+      endif 
+
+      if var.chord == 'e' 
+         if wiimote1.Nunchuk.CButton == true 
+            midi.e3 = true 
+            wait 15 ms 
+            midi.b3 = true 
+            wait 15 ms 
+            midi.e4 = true 
+            wait 15 ms 
+            midi.gsharp4 = true 
+            wait 15 ms 
+            midi.b4 = true 
+            wait 15 ms 
+            midi.e5 = true 
+   else if wiimote1.Nunchuk.JoyY >= 0.90 
+            if wiimote1.B == true 
+               midi.e3 = true 
+            endif 
+            if wiimote1.A == true 
+               midi.b3 = true 
+            endif 
+            if wiimote1.Down == true 
+               midi.e4 = true 
+            endif 
+            if wiimote1.Left == true 
+               midi.gsharp4 = true 
+            endif 
+            if wiimote1.Right == true 
+               midi.b4 = true 
+            endif 
+            if wiimote1.Up == true 
+               midi.e5 = true 
+            endif 
+         endif 
+      endif 
+
+
+      if var.chord == 'f' 
+         if wiimote1.Nunchuk.CButton == true 
+            midi.f4 = true 
+            wait 15 ms 
+            midi.a4 = true 
+            wait 15 ms 
+            midi.c5 = true 
+            wait 15 ms 
+            midi.f5 = true 
+   else if wiimote1.Nunchuk.JoyY >= 0.90 
+            if wiimote1.B == true 
+               midi.e3 = true 
+            endif 
+            if wiimote1.A == true 
+               midi.a3 = true 
+            endif 
+            if wiimote1.Down == true 
+               midi.f4 = true 
+            endif 
+            if wiimote1.Left == true 
+               midi.a4 = true 
+            endif 
+            if wiimote1.Right == true 
+               midi.c5 = true 
+            endif 
+            if wiimote1.Up == true 
+               midi.f5 = true 
+            endif 
+         endif 
+      endif 
+
+
+
+      if var.chord == 'g' 
+         if wiimote1.Nunchuk.CButton == true 
+            midi.g3 = true 
+            wait 15 ms 
+            midi.b3 = true 
+            wait 15 ms 
+            midi.d4 = true 
+            wait 15 ms 
+            midi.g4 = true 
+            wait 15 ms 
+            midi.d4 = true 
+            wait 15 ms 
+            midi.g5 = true 
+   else if wiimote1.Nunchuk.JoyY >= 0.90 
+            if wiimote1.B == true 
+               midi.g3 = true 
+            endif 
+            if wiimote1.A == true 
+               midi.b3 = true 
+            endif 
+            if wiimote1.Down == true 
+               midi.d4 = true 
+            endif 
+            if wiimote1.Left == true 
+               midi.g4 = true 
+            endif 
+            if wiimote1.Right == true 
+               midi.d5 = true 
+            endif 
+            if wiimote1.Up == true 
+               midi.g5 = true 
+            endif 
+         endif 
+      endif 
+
+
+
+      wait 100 ms 
+   endif 
+endif 
+
+endif 
+
+
+
+
+if Wiimote1.HasNunchuk == false 
+if wiimote1.Two == true 
+   var.wiinumber = "Wiimote 1" 
+else if wiimote2.Two == true 
+   var.wiinumber = "Wiimote 2" 
+endif 
+debug = var.wiinumber+', '+wiimote1.gy+', '+wiimote1.gx+', '+wiimote1.gz 
+if wiimote1.gz >= 0.00 && wiimote1.gz <= 0.20 
+   if var.fret != 0 
+   wiimote.Led1 = true 
+   wiimote.Led2 = false 
+   wiimote.Led3 = false 
+   wiimote.Led4 = false 
+   endif 
+   var.fret = 1 
+   var.chord = 'c' 
+endif 
+if wiimote1.gz >= 0.30 && wiimote1.gz <= 0.50 
+   if var.fret != 0 
+   wiimote.Led1 = false 
+   wiimote.Led2 = true 
+   wiimote.Led3 = false 
+   wiimote.Led4 = false 
+   endif 
+   var.fret = 2 
+   var.chord = 'd' 
+endif 
+if wiimote1.gz >= 0.55 && wiimote1.gz <= 0.80 
+   if var.fret != 0 
+   wiimote.Led1 = false 
+   wiimote.Led2 = false 
+   wiimote.Led3 = true 
+   wiimote.Led4 = false 
+   endif 
+   var.fret = 3 
+   var.chord = 'e' 
+
+endif 
+if wiimote1.gz >= 0.85 && wiimote1.gz <= 1.00 && wiimote1.gy > -0.01 
+   if var.fret != 0 
+   wiimote.Led1 = false 
+   wiimote.Led2 = false 
+   wiimote.Led3 = false 
+   wiimote.Led4 = true 
+   endif 
+   var.fret = 4 
+   var.chord = 'f' 
+endif 
+if wiimote1.gy <= -0.10 
+   if var.fret != 0 
+   wiimote.Led1 = true 
+   wiimote.Led2 = false 
+   wiimote.Led3 = false 
+   wiimote.Led4 = true 
+   endif 
+   var.fret = 5 
+   var.chord = 'g' 
+endif 
+if wiimote1.B == true 
+   var.fret = 0 
+   wiimote.Led1 = false 
+   wiimote.Led2 = false 
+   wiimote.Led3 = false 
+   wiimote.Led4 = false 
+   var.chord = 'a' 
+endif 
+
+if wiimote.A == false && wiimote.Down == false 
+ if MapRange(Wiimote2.RelAccY, -20 m per s per s,20 m per s per s, 0,64) >= 50 
+  if var.fret == 0 
+   if Wiimote2.B == true 
+      midi.e3 = true 
+
+   endif 
+   if Wiimote2.A == true 
+      midi.a3 = true 
+        
+   endif 
+   if Wiimote2.Down == true 
+      midi.d4 = true 
+        
+   endif 
+   if Wiimote2.Left == true 
+      midi.g4 = true 
+        
+   endif 
+   if Wiimote2.Right == true 
+      midi.b4 = true 
+        
+   endif 
+   if Wiimote2.Up == true 
+      midi.e5 = true 
+        
+   endif 
+   wait 200 ms 
+  endif 
+
+  if var.fret == 1 
+   if Wiimote2.B == true 
+      midi.f3 = true 
+
+   endif 
+   if Wiimote2.A == true 
+      midi.asharp3 = true 
+        
+   endif 
+   if Wiimote2.Down == true 
+      midi.dsharp4 = true 
+        
+   endif 
+   if Wiimote2.Left == true 
+      midi.gsharp4 = true 
+        
+   endif 
+   if Wiimote2.Right == true 
+      midi.c5 = true 
+        
+   endif 
+   if Wiimote2.Up == true 
+      midi.f5 = true 
+        
+   endif 
+   wait 150 ms 
+  endif 
+
+  if var.fret == 2 
+   if Wiimote2.B == true 
+      midi.fsharp3 = true 
+
+   endif 
+   if Wiimote2.A == true 
+      midi.b3 = true 
+        
+   endif 
+   if Wiimote2.Down == true 
+      midi.e4 = true 
+        
+   endif 
+   if Wiimote2.Left == true 
+      midi.a4 = true 
+        
+   endif 
+   if Wiimote2.Right == true 
+      midi.csharp5 = true 
+        
+   endif 
+   if Wiimote2.Up == true 
+      midi.fsharp5 = true 
+        
+   endif 
+   wait 150 ms 
+  endif 
+
+  if var.fret == 3 
+   if Wiimote2.B == true 
+      midi.g3 = true 
+
+   endif 
+   if Wiimote2.A == true 
+      midi.c4 = true 
+        
+   endif 
+   if Wiimote2.Down == true 
+      midi.f4 = true 
+        
+   endif 
+   if Wiimote2.Left == true 
+      midi.asharp4 = true 
+        
+   endif 
+   if Wiimote2.Right == true 
+      midi.d5 = true 
+        
+   endif 
+   if Wiimote2.Up == true 
+      midi.g5 = true 
+        
+   endif 
+   wait 150 ms 
+  endif 
+
+  if var.fret == 4 
+   if Wiimote2.B == true 
+      midi.gsharp3 = true 
+
+   endif 
+   if Wiimote2.A == true 
+      midi.csharp4 = true 
+        
+   endif 
+   if Wiimote2.Down == true 
+      midi.fsharp4 = true 
+        
+   endif 
+   if Wiimote2.Left == true 
+      midi.b4 = true 
+        
+   endif 
+   if Wiimote2.Right == true 
+      midi.dsharp5 = true 
+        
+   endif 
+   if Wiimote2.Up == true 
+      midi.gsharp5 = true 
+        
+   endif 
+   wait 150 ms 
+  endif 
+
+  if var.fret == 5 
+   if Wiimote2.B == true 
+      midi.a3 = true 
+
+   endif 
+   if Wiimote2.A == true 
+      midi.d4 = true 
+        
+   endif 
+   if Wiimote2.Down == true 
+      midi.g4 = true 
+        
+   endif 
+   if Wiimote2.Left == true 
+      midi.c5 = true 
+        
+   endif 
+   if Wiimote2.Right == true 
+      midi.e5 = true 
+        
+   endif 
+   if Wiimote2.Up == true 
+      midi.a5 = true 
+        
+   endif 
+   wait 150 ms 
+  endif 
+
+
+ endif 
+endif 
+
+if wiimote1.A == true || wiimote1.Down == true 
+   if MapRange(Wiimote2.RelAccY, -20 m per s per s,20 m per s per s, 0,64) >= 50 
+      if var.chord == 'a' 
+         if wiimote1.A == true 
+            midi.a3 = true 
+            wait 15 ms 
+            midi.e4 = true 
+            wait 15 ms 
+            midi.a4 = true 
+            wait 15 ms 
+            midi.csharp5 = true 
+            wait 15 ms 
+            midi.e5 = true 
+   else if wiimote1.Down == true 
+            if wiimote2.B == true 
+               midi.e3 = true 
+            endif 
+            if wiimote2.A == true 
+               midi.a3 = true 
+            endif 
+            if wiimote2.Down == true 
+               midi.e4 = true 
+            endif 
+            if wiimote2.Left == true 
+               midi.a4 = true 
+            endif 
+            if wiimote2.Right == true 
+               midi.csharp5 = true 
+            endif 
+            if wiimote2.Up == true 
+               midi.e5 = true 
+            endif 
+         endif 
+      endif 
+
+      if var.chord == 'c' 
+         if wiimote1.A == true 
+            midi.c3 = true 
+            wait 15 ms 
+            midi.e4 = true 
+            wait 15 ms 
+            midi.g4 = true 
+            wait 15 ms 
+            midi.c5 = true 
+            wait 15 ms 
+            midi.e5 = true 
+   else if wiimote1.Down == true 
+            if wiimote2.B == true 
+               midi.e3 = true 
+            endif 
+            if wiimote2.A == true 
+               midi.c3 = true 
+            endif 
+            if wiimote2.Down == true 
+               midi.e4 = true 
+            endif 
+            if wiimote2.Left == true 
+               midi.g4 = true 
+            endif 
+            if wiimote2.Right == true 
+               midi.c5 = true 
+            endif 
+            if wiimote2.Up == true 
+               midi.e5 = true 
+            endif 
+         endif 
+      endif 
+
+      if var.chord == 'd' 
+         if wiimote1.A == true 
+            midi.d4 = true 
+            wait 15 ms 
+            midi.a4 = true 
+            wait 15 ms 
+            midi.d5 = true 
+            wait 15 ms 
+            midi.fsharp5 = true 
+   else if wiimote1.Down == true 
+            if wiimote2.B == true 
+               midi.e3 = true 
+            endif 
+            if wiimote2.A == true 
+               midi.a3 = true 
+            endif 
+            if wiimote2.Down == true 
+               midi.d4 = true 
+            endif 
+            if wiimote2.Left == true 
+               midi.a4 = true 
+            endif 
+            if wiimote2.Right == true 
+               midi.d5 = true 
+            endif 
+            if wiimote2.Up == true 
+               midi.fsharp5 = true 
+            endif 
+         endif 
+      endif 
+
+      if var.chord == 'e' 
+         if wiimote1.A == true 
+            midi.e3 = true 
+            wait 15 ms 
+            midi.b3 = true 
+            wait 15 ms 
+            midi.e4 = true 
+            wait 15 ms 
+            midi.gsharp4 = true 
+            wait 15 ms 
+            midi.b4 = true 
+            wait 15 ms 
+            midi.e5 = true 
+   else if wiimote1.Down == true 
+            if wiimote2.B == true 
+               midi.e3 = true 
+            endif 
+            if wiimote2.A == true 
+               midi.b3 = true 
+            endif 
+            if wiimote2.Down == true 
+               midi.e4 = true 
+            endif 
+            if wiimote2.Left == true 
+               midi.gsharp4 = true 
+            endif 
+            if wiimote2.Right == true 
+               midi.b4 = true 
+            endif 
+            if wiimote2.Up == true 
+               midi.e5 = true 
+            endif 
+         endif 
+      endif 
+
+
+      if var.chord == 'f' 
+         if wiimote1.A == true 
+            midi.f4 = true 
+            wait 15 ms 
+            midi.a4 = true 
+            wait 15 ms 
+            midi.c5 = true 
+            wait 15 ms 
+            midi.f5 = true 
+   else if wiimote1.Down == true 
+            if wiimote2.B == true 
+               midi.e3 = true 
+            endif 
+            if wiimote2.A == true 
+               midi.a3 = true 
+            endif 
+            if wiimote2.Down == true 
+               midi.f4 = true 
+            endif 
+            if wiimote2.Left == true 
+               midi.a4 = true 
+            endif 
+            if wiimote2.Right == true 
+               midi.c5 = true 
+            endif 
+            if wiimote2.Up == true 
+               midi.f5 = true 
+            endif 
+         endif 
+      endif 
+
+
+
+      if var.chord == 'g' 
+         if wiimote1.A == true 
+            midi.g3 = true 
+            wait 15 ms 
+            midi.b3 = true 
+            wait 15 ms 
+            midi.d4 = true 
+            wait 15 ms 
+            midi.g4 = true 
+            wait 15 ms 
+            midi.d4 = true 
+            wait 15 ms 
+            midi.g5 = true 
+   else if wiimote1.Down == true 
+            if wiimote2.B == true 
+               midi.g3 = true 
+            endif 
+            if wiimote2.A == true 
+               midi.b3 = true 
+            endif 
+            if wiimote2.Down == true 
+               midi.d4 = true 
+            endif 
+            if wiimote2.Left == true 
+               midi.g4 = true 
+            endif 
+            if wiimote2.Right == true 
+               midi.d5 = true 
+            endif 
+            if wiimote2.Up == true 
+               midi.g5 = true 
+            endif 
+         endif 
+      endif 
+
+
+
+      wait 100 ms 
+   endif 
+endif 
+
+endif 
+

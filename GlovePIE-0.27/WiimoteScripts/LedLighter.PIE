@@ -1,0 +1,90 @@
+// Name: Simple LED Lighter 
+// Version: 0.1 
+// Author: Ellises 
+// Description: Made as a test program for myself, it lights the LEDs. 
+// 
+// Controls: 
+// Minus - Light previous LED. 
+// Plus - Light next LED. 
+// Home - Turn on/off the LED animation. 
+
+if var.setup = 0 then 
+  var.setup = 1
+  var.lastLeds = 1
+  var.animate = 0
+  var.homeDown = 0
+  var.homePressed = 0
+  var.aniDir = 1
+end if 
+
+if wiimote.home then 
+  if var.homeDown = 1 then
+    var.homePressed = 0
+  else
+    var.homePressed = 1
+    var.homeDown = 1
+  end if
+else 
+  var.homePressed = 0
+  var.homeDown = 0
+end if 
+
+if Wiimote.Minus then 
+  if var.lastLeds = 1 then
+    var.lastLeds = 8
+  else if var.lastLeds = 2 then
+    var.lastLeds = 1
+  else if var.lastLeds = 4 then
+    var.lastLeds = 2
+  else if var.lastLeds = 8 then
+    var.lastLeds = 4
+  end if
+  wait 200ms
+else if Wiimote.Plus then 
+  if var.lastLeds = 1 then
+    var.lastLeds = 2
+  else if var.lastLeds = 2 then
+    var.lastLeds = 4
+  else if var.lastLeds = 4 then
+    var.lastLeds = 8
+  else if var.lastLeds = 8 then
+    var.lastLeds = 1
+  end if
+  wait 200ms
+end if 
+
+if var.homePressed = 1 then 
+//if SingleClicked(wiimote.home) then //<-- SingleClicked() doesn't work as I would like. 
+  if var.animate = 0 then
+    var.animate = 1
+  else if var.animate = 1 then
+    var.animate = 0
+  end if
+end if 
+
+if var.animate = 1 then 
+  if var.aniDir = 0 then
+    if var.lastLeds = 1 then
+      var.aniDir = 1
+    else if var.lastLeds = 2 then
+      var.lastLeds = 1
+    else if var.lastLeds = 4 then
+      var.lastLeds = 2
+    else if var.lastLeds = 8 then
+      var.lastLeds = 4
+    end if
+  else if var.aniDir = 1 then
+    if var.lastLeds = 1 then
+      var.lastLeds = 2
+    else if var.lastLeds = 2 then
+      var.lastLeds = 4
+    else if var.lastLeds = 4 then
+      var.lastLeds = 8
+    else if var.lastLeds = 8 then
+      var.aniDir = 0
+    end if
+  end if
+  wait 200ms
+end if 
+
+wiimote.Leds = var.lastLeds

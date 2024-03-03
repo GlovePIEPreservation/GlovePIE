@@ -1,0 +1,11 @@
+// Wiimote Speaker Demonstration
+// GlovePIE 0.29
+
+if pressed(Wiimote.Up) then Wiimote.Frequency = Wiimote.Frequency+50
+if pressed(Wiimote.Down) then Wiimote.Frequency = Wiimote.Frequency-50
+if pressed(Wiimote.Minus) then Wiimote.Volume = Wiimote.Volume - 5%
+if pressed(Wiimote.Plus) then Wiimote.Volume = Wiimote.Volume + 5%
+debug = Wiimote.Frequency+', '+Wiimote.Volume
+
+// Uncomment the next line to only play sounds when A is down
+//Wiimote.Speaker = Wiimote.A

@@ -1,0 +1,9 @@
+// Type your program here!
+if lshift then
+  var.x++
+end
+if rshift then
+  var.x--
+end
+display var.x
+

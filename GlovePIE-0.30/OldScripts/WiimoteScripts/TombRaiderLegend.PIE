@@ -1,0 +1,29 @@
+// Tomb Raider Legend Wiimote script for GlovePIE
+// By Manu131155
+
+//This is my first script for the wiimote. It hasn't got support for
+//the numchuck and camera functions (it becomes crazy when you move
+//the wiimote). For the four functions (light, health, binoculars and
+//change weapons) press home + up down left or right. If you can fix
+//the camera problem, please fix it.
+
+// The following is for turning wii button presses into keyboard presses and mouse clicks 
+w = Wiimote.Up 
+s = Wiimote.Down 
+a = Wiimote.Left 
+d = Wiimote.Right 
+space = Wiimote.B = false 
+q = Wiimote.One 
+f = Wiimote.Two 
+h = Wiimote.A and wiimote.B 
+g = Wiimote.A 
+z = Wiimote.Minus 
+tab = wiimote.Plus and wiimote.Minus 
+e = wiimote.Home 
+home = wiimote.home and wiimote.Up 
+end = wiimote.home and wiimote.Down 
+del = wiimote.home and wiimote.Left 
+pagedown = wiimote.home and wiimote.Right 
+
+
+

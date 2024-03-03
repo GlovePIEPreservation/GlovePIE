@@ -1,0 +1,46 @@
+//Configuration for Zelda: Ocarina of Time
+//Written by vkapadia
+//vkapadia@vkapadia.com
+//
+//Set your emulator to these values:
+//Analog Stick = Up, Down, Left, and Right Arrow Keys
+//Start = S
+//Z-Button = Z
+//R-Button = R
+//A-Button = A
+//B-Button = B
+//C-Up = Numpad 8
+//C-Down = Numpad 2
+//C-Left = Numpad 4
+//C-Right = Numpad 6
+//
+//Controls are as follows:
+//D-Pad = Analog Stick
+//A-Button = A-Button
+//Minus = Z-Button
+//Plus = R-Button
+//Home = C-Up
+//One = C-Left
+//Two = C-Right
+//B-Button = C-Down
+//Shake Wiimote = B-Button
+//Plus and Minus = Start
+
+
+Up = wiimote.Up
+Down = wiimote.Down
+Left = wiimote.Left
+Right = wiimote.Right
+
+S = wiimote.Plus and wiimote.Minus
+Z = wiimote.Minus
+R = wiimote.Plus
+A = wiimote.A
+NUMPAD8 = wiimote.Home
+NUMPAD4 = wiimote.One
+NUMPAD6 = wiimote.Two
+NUMPAD2 = wiimote.B
+
+B and wiimote.Rumble = (wiimote.RawForceX >= 15)
+
+

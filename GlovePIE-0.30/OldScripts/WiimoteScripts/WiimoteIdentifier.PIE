@@ -1,0 +1,31 @@
+// Wiimote identifier
+// By GizmoTheGreen
+
+//I've made a new script!  
+//I always thought it was a hassle knowing which Wiimote was number one
+//or two, so i made this quick script:
+//hope anyone finds it useful
+
+var.count = Wiimote.Count 
+Debug = "You have " + var.count + " Wiimotes connected to your computer." 
+if var.count = 1 
+Wiimote1.Led1 = True 
+endif 
+
+if var.count = 2 
+Wiimote1.Led1 = True 
+Wiimote2.Led2 = True 
+endif 
+
+if var.count = 3 
+Wiimote1.Led1 = True 
+Wiimote2.Led2 = True 
+Wiimote3.Led3 = True 
+endif 
+
+if var.count = 4 
+Wiimote1.Led1 = True 
+Wiimote2.Led2 = True 
+Wiimote3.Led3 = True 
+Wiimote4.Led4 = True 
+endif

@@ -1,0 +1,13 @@
+// Ascension Flock Of Birds Tracker test...
+// Should work on other Ascension trackers also.
+
+// When you click Run, does it display the right values in the box?
+// It should display true, followed by distance right, distance up, distance forward
+// angle right, angle up, roll right
+
+// Please let me know which directions the axes and angles are in.
+
+debug = bird.exists+" ("+bird.x+","+bird.y+","+bird.z+") yaw="+bird.yaw+", pitch="+bird.pitch+", roll="+bird.roll
+
+// try changing all the bird.something to bird2.something or bird3.something
+// to test other birds in your flock.

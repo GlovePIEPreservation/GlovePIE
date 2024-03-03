@@ -1,0 +1,582 @@
+// Merry Christmas!
+// Deck the halls with boughs of holly,
+// featuring the Amazing, Singing, CHRISTMAS PIE
+// Run, then press control to start
+// (Note the keyboard LEDs)
+// Change the settings for speech to make it speak faster
+// if it gets cut off (or lower the tempo).
+
+midi.volume = 100%
+var.tempo = (1 minute / 144) in seconds
+
+
+if LeftCtrl or RightCtrl
+  wait 0.5 seconds
+
+  // Bar 1
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "Deck"
+  speech = "Deck"
+  midi.asharp5 = true
+  midi.dsharp5 = true
+  midi.g4 = true
+  midi.dsharp4 = true
+  wait 1.5*var.tempo
+  midi.asharp5 = false
+  midi.dsharp5 = false
+  midi.g4 = false
+  midi.dsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "the"
+  speech = "the"
+  midi.gsharp5 = true
+  midi.d5 = true
+  midi.c5 = true
+  midi.gsharp4 = true
+  wait 0.5*var.tempo
+  midi.gsharp5 = false
+  midi.d5 = false
+  midi.c5 = false
+  midi.gsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "halls"
+  speech = "halls"
+  midi.g5 = true
+  midi.d5 = true
+  midi.asharp4 = true
+  midi.gsharp4 = true
+  wait var.tempo
+  midi.g5 = false
+  midi.d5 = false
+  midi.asharp4 = false
+  midi.gsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "with"
+  speech = "with"
+  midi.f5 = true
+  midi.d5 = true
+  midi.g4 = true
+  midi.asharp3 = true
+  wait var.tempo
+  midi.f5 = false
+  midi.d5 = false
+  midi.gsharp4 = false
+  midi.asharp3 = false
+
+  // Bar 2
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "boughs"
+  speech = "boughs"
+  midi.dsharp5 = true
+  midi.c5 = true
+  midi.g4 = true
+  midi.c4 = true
+  wait var.tempo
+  midi.dsharp5 = false
+  midi.c5 = false
+  midi.g4 = false
+  midi.c4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "of"
+  speech = "of"
+  midi.f5 = true
+  midi.d5 = true
+  midi.asharp4 = true
+  midi.asharp3 = true
+  wait var.tempo
+  midi.f5 = false
+  midi.d5 = false
+  midi.asharp4 = false
+  midi.asharp3 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "holly."
+  speech = "holly."
+  midi.g5 = true
+  midi.dsharp5 = true
+  midi.a4 = true
+  midi.dsharp4 = true
+  wait var.tempo
+  midi.g5 = false
+  midi.dsharp5 = false
+  midi.a4 = false
+  //midi.dsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+//  debug = "holly"
+//  speech = "holly"
+  midi.d5 = true
+  midi.asharp4 = true
+  midi.g4 = true
+  //midi.dsharp4 = true
+  wait var.tempo
+  midi.d5 = false
+  midi.asharp4 = false
+  midi.g4 = false
+  midi.dsharp4 = false
+
+  // Bar 3
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "Tra"
+  speech = "Tra"
+  midi.c6 = true
+  midi.dsharp5 = true
+  midi.gsharp4 = true
+  midi.channel2.gsharp4 = true
+  wait 0.5*var.tempo
+  midi.a6 = false
+  midi.dsharp5 = false
+//  midi.gsharp4 = false
+//  midi.channel2.gsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "la"
+  speech = "la"
+  midi.c6 = true
+  midi.dsharp5 = true
+//  midi.gsharp4 = true
+//  midi.channel2.gsharp4 = true
+  wait 0.5*var.tempo
+  midi.a6 = false
+  midi.dsharp5 = false
+  midi.gsharp4 = false
+//  midi.channel2.gsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "la"
+  speech = ""
+  speech = "la"
+  midi.c6 = true
+  midi.dsharp5 = true
+  midi.gsharp4 = true
+//  midi.channel2.gsharp4 = true
+  wait 0.5*var.tempo
+  midi.c6 = false
+  midi.dsharp5 = false
+//  midi.gsharp4 = false
+//  midi.channel2.gsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "la"
+  speech = ""
+  speech = "la"
+  midi.c6 = true
+  midi.dsharp5 = true
+//  midi.gsharp4 = true
+//  midi.channel2.gsharp4 = true
+  wait 0.5*var.tempo
+  midi.c6 = false
+  midi.dsharp5 = false
+  midi.gsharp4 = false
+  midi.channel2.gsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "lah, "
+  speech = "lar, "
+  midi.asharp5 = true
+  midi.d5 = true
+  midi.a4 = true
+  midi.gsharp4 = true
+  wait 1.5*var.tempo
+  midi.asharp5 = false
+  midi.d5 = false
+  midi.a4 = false
+  midi.gsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "la"
+  speech = "la"
+  midi.gsharp5 = true
+  midi.f5 = true
+  midi.c5 = true
+  midi.gsharp4 = true
+  wait 0.5*var.tempo
+  midi.gsharp5 = false
+  midi.f5 = false
+  midi.c5 = false
+  midi.gsharp4 = false
+
+  // Bar 4
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "la"
+  speech = ""
+  speech = "la"
+  midi.g5 = true
+  midi.dsharp5 = true
+  midi.asharp4 = true
+  midi.channel2.asharp4 = true
+  wait var.tempo
+  midi.g5 = false
+  midi.dsharp5 = false
+  midi.asharp4 = false
+  midi.channel2.asharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "la"
+  speech = ""
+  speech = "la"
+  midi.f5 = true
+  midi.d5 = true
+  midi.gsharp4 = true
+  midi.asharp3 = true
+  wait var.tempo
+  midi.gsharp5 = false
+  midi.d5 = false
+  midi.gsharp4 = false
+  midi.asharp3 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "lah."
+  speech = "lar."
+  midi.dsharp5 = true
+  midi.channel2.dsharp5 = true
+  midi.g4 = true
+  midi.d4 = true
+  wait 2*var.tempo
+  midi.dsharp5 = false
+  midi.channel2.dsharp5 = false
+  midi.g4 = false
+  midi.d4 = false
+
+  // Bar 5
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "'Tis"
+  speech = "'Tis"
+  midi.asharp5 = true
+  midi.dsharp5 = true
+  midi.g4 = true
+  midi.dsharp4 = true
+  wait 1.5*var.tempo
+  midi.asharp5 = false
+  midi.dsharp5 = false
+  midi.g4 = false
+  midi.dsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "the"
+  speech = "the"
+  midi.gsharp5 = true
+  midi.d5 = true
+  midi.c5 = true
+  midi.gsharp4 = true
+  wait 0.5*var.tempo
+  midi.gsharp5 = false
+  midi.d5 = false
+  midi.c5 = false
+  midi.gsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "season"
+  speech = "season"
+  midi.g5 = true
+  midi.d5 = true
+  midi.asharp4 = true
+  midi.gsharp4 = true
+  wait var.tempo
+  midi.g5 = false
+  midi.d5 = false
+  midi.asharp4 = false
+  midi.gsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  midi.f5 = true
+  midi.d5 = true
+  midi.g4 = true
+  midi.asharp3 = true
+  wait var.tempo
+  midi.f5 = false
+  midi.d5 = false
+  midi.gsharp4 = false
+  midi.asharp3 = false
+
+  // Bar 2
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "to"
+  speech = "to"
+  midi.dsharp5 = true
+  midi.c5 = true
+  midi.g4 = true
+  midi.c4 = true
+  wait var.tempo
+  midi.dsharp5 = false
+  midi.c5 = false
+  midi.g4 = false
+  midi.c4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "be"
+  speech = "be"
+  midi.f5 = true
+  midi.d5 = true
+  midi.asharp4 = true
+  midi.asharp3 = true
+  wait var.tempo
+  midi.f5 = false
+  midi.d5 = false
+  midi.asharp4 = false
+  midi.asharp3 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "jolly."
+  speech = "jolly."
+  midi.g5 = true
+  midi.dsharp5 = true
+  midi.a4 = true
+  midi.dsharp4 = true
+  wait var.tempo
+  midi.g5 = false
+  midi.dsharp5 = false
+  midi.a4 = false
+  //midi.dsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+//  debug = "jolly"
+//  speech = "jolly"
+  midi.d5 = true
+  midi.asharp4 = true
+  midi.g4 = true
+  //midi.dsharp4 = true
+  wait var.tempo
+  midi.d5 = false
+  midi.asharp4 = false
+  midi.g4 = false
+  midi.dsharp4 = false
+
+  // Bar 3
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "Fa"
+  speech = "Fa"
+  midi.c6 = true
+  midi.dsharp5 = true
+  midi.gsharp4 = true
+  midi.channel2.gsharp4 = true
+  wait 0.5*var.tempo
+  midi.c6 = false
+  midi.dsharp5 = false
+//  midi.gsharp4 = false
+//  midi.channel2.gsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "la"
+  speech = "la"
+  midi.c6 = true
+  midi.dsharp5 = true
+//  midi.gsharp4 = true
+//  midi.channel2.gsharp4 = true
+  wait 0.5*var.tempo
+  midi.c6 = false
+  midi.dsharp5 = false
+  midi.gsharp4 = false
+//  midi.channel2.gsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "la"
+  speech = ""
+  speech = "la"
+  midi.c6 = true
+  midi.dsharp5 = true
+  midi.gsharp4 = true
+//  midi.channel2.gsharp4 = true
+  wait 0.5*var.tempo
+  midi.c6 = false
+  midi.dsharp5 = false
+//  midi.gsharp4 = false
+//  midi.channel2.gsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "la"
+  speech = ""
+  speech = "la"
+  midi.c6 = true
+  midi.dsharp5 = true
+//  midi.gsharp4 = true
+//  midi.channel2.gsharp4 = true
+  wait 0.5*var.tempo
+  midi.c6 = false
+  midi.dsharp5 = false
+  midi.gsharp4 = false
+  midi.channel2.gsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "lah,"
+  speech = "lar"
+  midi.asharp5 = true
+  midi.d5 = true
+  midi.a4 = true
+  midi.gsharp4 = true
+  wait 1.5*var.tempo
+  midi.asharp5 = false
+  midi.d5 = false
+  midi.a4 = false
+  midi.gsharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "la"
+  speech = "la"
+  midi.gsharp5 = true
+  midi.f5 = true
+  midi.c5 = true
+  midi.gsharp4 = true
+  wait 0.5*var.tempo
+  midi.gsharp5 = false
+  midi.f5 = false
+  midi.c5 = false
+  midi.gsharp4 = false
+
+  // Bar 4
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "la"
+  speech = ""
+  speech = "la"
+  midi.g5 = true
+  midi.dsharp5 = true
+  midi.asharp4 = true
+  midi.channel2.asharp4 = true
+  wait var.tempo
+  midi.g5 = false
+  midi.dsharp5 = false
+  midi.asharp4 = false
+  midi.channel2.asharp4 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "la"
+  speech = ""
+  speech = "la"
+  midi.f5 = true
+  midi.d5 = true
+  midi.gsharp4 = true
+  midi.asharp3 = true
+  wait var.tempo
+  midi.gsharp5 = false
+  midi.d5 = false
+  midi.gsharp4 = false
+  midi.asharp3 = false
+
+  press CapsLock
+  release CapsLock
+  press NumLock
+  release NumLock
+  debug = "lah."
+  speech = "lar."
+  midi.dsharp5 = true
+  midi.channel2.dsharp5 = true
+  midi.g4 = true
+  midi.d4 = true
+  wait 2*var.tempo
+  midi.dsharp5 = false
+  midi.channel2.dsharp5 = false
+  midi.g4 = false
+  midi.d4 = false
+end if
+

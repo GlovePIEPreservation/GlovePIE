@@ -1,0 +1,34 @@
+debug = wiimote.RawForceX
+
+if wiimote.One
+var.mode = 1
+endif
+if wiimote.Two
+var.mode = 2
+endif
+
+S = wiimote.Home
+Z = wiimote.B
+A = wiimote.Minus
+B = wiimote.Plus
+R = wiimote.A
+
+NUMPAD4 = wiimote.Left
+NUMPAD6 = wiimote.Right
+Left = wiimote.RawForceX + 7 > 10
+Right = wiimote.RawforceX + 7 < -10
+
+if wiimote.A or var.mode = 1 then
+Up = wiimote.RawForceZ + 5 > 8
+Down = wiimote.RawForceZ + 5 < -8
+NUMPAD8 = wiimote.Up
+NUMPAD2 = wiimote.Down
+wiimote.Leds = 1
+else
+Up = wiimote.Up
+Down = wiimote.Down
+NUMPAD8 = wiimote.RawForceZ + 5 > 8
+NUMPAD2 = wiimote.RawForceZ + 5 < -8
+wiimote.Leds = 8
+endif
+

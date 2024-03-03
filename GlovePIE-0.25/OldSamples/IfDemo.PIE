@@ -1,0 +1,22 @@
+// if the shift key is not down then set released to true
+// released will stay true until the keypress has been processed
+// then it will immediately be reset to false
+// this allows us to do stuff only when the button is first pressed
+// without repeating while it is held down
+if (not rshift) and (not var.released) then
+  var.released = true;
+end if;
+
+if rshift and (not var.recorded) and (var.released) then begin
+  var.recx = mouse.cursorpos.x;
+  var.recy := mouse.cursorpos.y;
+  var.recorded = true;
+  var.released = false;
+end;
+
+if rshift and var.recorded and var.released then
+  var.released = false;
+  var.recorded = false;
+  mouse.cursorpos.x = var.recx;
+  mouse.cursorpos.y = var.recy;
+end if;

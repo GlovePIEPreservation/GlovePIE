@@ -1,0 +1,215 @@
+// Joystick/Mouse script using IR sensor (Single Wiimote v1) 
+// Designed for use with MAME as a lightgun replacement 
+// by Lukeage 
+// 
+// Thanks to Carl Kenner for GlovePIE and help with the battery 
+// 
+// Requires PPJoy to work with the joystick! 
+// 
+// This script allows you to utilise both the mouse cursor and a joystick by 
+// switching between them using the 1 (mouse) and 2 (joystick) buttons on the 
+// Wiimote. By default, the joystick is set. To use as a lightgun in mame, you 
+// need to set it up to use a joystick as a lightgun. Setting it to the mouse 
+// does not work as GlovePIE cannot modify RawImput yet. 
+// 
+// Both Modes: 
+// 
+// Direction pad is mapped to the direction keys 
+// - and + together display the battery level on the LEDs 
+// LEDs indicate the number of the wiimote connected 
+// 1 = Mouse Mode 
+// 2 = Joystick Mode 
+// 
+// Mouse Mode: 
+// 
+// B = Left Mouse Button 
+// A = Right Mouse Button 
+// - = Volume Down 
+// Home = Mute 
+// + = Volume Up 
+// 
+// Joystick Mode: 
+// 
+// B = Button 1 (this causes the Wiimote to rumbles) 
+// A = Button 2 
+// - = Button 3 
+// Home = Button 4 
+// + = Button 5 
+// 
+// To add extra Wiimotes, There are a few things you need to add. 
+// 
+// 1) var.WiimoteX = X needs to be added (Where X is the new Wiimote number). 
+//    This is only used to display the correct and obviously is useless after 
+//    the 4th Wiimote 
+// 2) The Wiimote Variables need to be duplicated. 
+// 3) The Entire Wiimote code needs to be copied for each extra Wiimote. 
+// 4) In both the Wiimote variables and code, Wiimote1 needs to be replaced 
+//    with WiimoteX. 
+// 5) ppjoy1 needs to be replaced with ppjoyX. 
+// 6) mouse needs to be replaced with CursorX if the extra cursor is required. 
+
+// General Variables 
+
+// Wiimote Orientation 
+var.Wiimote.Up = 1 
+var.Wiimote.Right = 2 
+var.Wiimote.Down = 3 
+var.Wiimote.Left = 4 
+
+// These values are used to make it easy to add any addition Wiimotes. If you 
+// need to add Wiimotes, just make the new line equals of number of the Wiimote 
+var.Wiimote1 = 1 
+
+// Wiimote Settings 
+
+// Wiimote 1 Variables 
+
+// Used to change the angle at which the Wiimote direction is detected 
+var.Wiimote1.Rotation = 7 
+
+// You can scale the movement to either speed up the movement or allow for 
+// better coverage near the edges of the screen 
+var.Wiimote1.ScaleX = 1.1 
+var.Wiimote1.ScaleY = 1.1 
+
+// Number of pixels the pointer has to move before it is updated 
+var.Wiimote1.Deadzone = 5 
+
+//Adjust these to calibrate your remote 
+var.Wiimote1.xcal = 3 
+var.Wiimote1.ycal = -30 
+var.Wiimote1.zcal = 3 
+
+// Wiimote Control 
+
+// Wiimote 1 Code 
+
+// Debug code 
+if Wiimote1.One and Wiimote1.Two then 
+   debug = "Wiimote1 X: " + Wiimote1.RawForceX * -1 + " Wiimote1 Y: " + Wiimote1.RawForceY * -1 + " Wiimote1 Z: " + Wiimote1.RawForceZ * -1 
+endif 
+
+// Show battery meter 
+if Wiimote1.Minus & Wiimote1.Plus then 
+   Wiimote1.Report15 = 4 | int(Wiimote1.Rumble) // Thanks to Carl Kenner 
+   Wiimote1.Leds = 2 ^ ceil(Wiimote1.Battery / 48) - 1 // I assume the max battery value to be 192 
+else 
+    // Display which Wiimote is which 
+   Wiimote1.Leds = 2 ^ (var.Wiimote1 - 1) 
+endif 
+
+// Set the D-Pad to function as the Arrow Keys 
+if Wiimote1.Up 
+  Up = True 
+else 
+  Up = False 
+endif 
+
+if Wiimote1.Down 
+  Down = True 
+else 
+  Down = False 
+endif 
+
+if Wiimote1.Left 
+  Left = True 
+else 
+  Left = False 
+endif 
+
+if Wiimote1.Right 
+  Right = True 
+else 
+  Right = False 
+endif 
+
+// Set if mouse mode (1) or joystick mode (0) 
+if Wiimote1.One Then 
+   var.Wiimote1.Mode = 1 
+endif 
+
+if Wiimote1.Two Then 
+   var.Wiimote1.Mode = 0 
+endif 
+
+// Calibrate settings 
+var.Wiimote1.ForceX = Wiimote1.RawForceX + var.Wiimote1.xcal 
+var.Wiimote1.ForceY = Wiimote1.RawForceY + var.Wiimote1.ycal 
+var.Wiimote1.ForceZ = Wiimote1.RawForceZ + var.Wiimote1.zcal 
+
+// Find Orientation 
+if var.Wiimote1.ForceY > var.Wiimote1.ycal + var.Rotation then 
+   var.Wiimote1.Orientation = var.Wiimote.Up 
+elseif var.Wiimote1.ForceY < var.Wiimote1.ycal - var.Rotation then 
+   var.Wiimote1.Orientation = var.Wiimote.Down 
+else 
+   if var.Wiimote1.ForceX > 0 then 
+      var.Wiimote1.Orientation = var.Wiimote.Left 
+   else 
+      var.Wiimote1.Orientation = var.Wiimote.Right 
+   endif 
+endif 
+
+// Get absolute screen position 
+if var.Wiimote1.Orientation == var.Wiimote.Up then 
+   var.Wiimote1.X = (1024 - ((Wiimote1.Dot1x + Wiimote1.Dot2x) / 2)) / 1024 * Screen.DesktopWidth 
+   var.Wiimote1.Y = ((Wiimote1.Dot1y + Wiimote1.Dot2y) / 2) / 768 * Screen.DesktopHeight 
+elseif var.Wiimote1.Orientation == var.Wiimote.Down then 
+   var.Wiimote1.X = (Wiimote1.Dot1x + Wiimote1.Dot2x) / 2 / 1024 * Screen.DesktopWidth 
+   var.Wiimote1.Y = (768 - ((Wiimote1.Dot1y + Wiimote1.Dot2y) / 2)) / 768 * Screen.DesktopHeight 
+elseif var.Wiimote1.Orientation == var.Wiimote.Left then 
+   var.Wiimote1.X = (Wiimote1.Dot1y) / 768 * Screen.DesktopWidth 
+   var.Wiimote1.Y = (Wiimote1.Dot1x + Wiimote1.Dot2x) / 2 / 1024 * Screen.DesktopHeight 
+else 
+   var.Wiimote1.X = (768 - Wiimote1.Dot1y) / 768 * Screen.DesktopWidth 
+   var.Wiimote1.Y = (1024 - ((Wiimote1.Dot1x + Wiimote1.Dot2x) / 2)) / 1024 * Screen.DesktopHeight 
+endif 
+
+if var.Wiimote1.Mode then 
+   // Mouse Buttons 
+   mouse.LeftButton = Wiimote1.B 
+   mouse.RightButton = Wiimote1.B 
+   VolumeDown = Wiimote1.Minus 
+   VolumeUp = Wiimote1.Plus 
+   Mute = Wiimote1.Home 
+
+   // Set cursor 
+   if abs(mouse.CursorPosX - var.Wiimote1.X) > var.Wiimote1.Deadzone then 
+      mouse.CursorPosX = (var.Wiimote1.X - (Screen.DesktopWidth /2)) * var.Wiimote1.ScaleX + (Screen.DesktopWidth / 2) 
+   endif 
+
+   if abs(mouse.CursorPosY - var.Wiimote1.Y) > var.Wiimote1.Deadzone then 
+     mouse.CursorPosY = (var.Wiimote1.Y - (Screen.DesktopHeight /2)) * var.Wiimote1.ScaleY + (Screen.DesktopHeight / 2) 
+   endif 
+else 
+   // Joystick Buttons 
+   if not Wiimote1.B then 
+      var.Wiimote1.Pressed = false 
+      ppjoy1.Digital0 = false 
+   endif 
+
+   // Use this to only rumble once per press (since we are simulating a gun) 
+   if Wiimote1.B and not var.Wiimote1.Pressed then 
+      var.Wiimote1.Pressed = true 
+      Wiimote1.Rumble = true 
+      ppjoy1.Digital0 = true 
+      wait 100ms 
+      Wiimote1.Rumble = false 
+      ppjoy1.Digital0 = false 
+   endif 
+
+   // Use these to set coin insert and start buttons 
+   ppjoy1.Digital1 = Wiimote1.A 
+   ppjoy1.Digital2 = Wiimote1.Minus 
+   ppjoy1.Digital3 = Wiimote1.Home 
+   ppjoy1.Digital4 = Wiimote1.Plus 
+
+   // Joystick needs to be between  -1 and 1 so we can't use absolute values directly 
+   if abs(mouse.CursorPosX - var.Wiimote1.X) > var.Wiimote1.Deadzone then 
+      ppjoy1.Analog0 = (var.Wiimote1.X - (Screen.DesktopWidth /2)) * var.Wiimote1.ScaleX / (Screen.DesktopWidth / 2) 
+   endif 
+
+   if abs(mouse.CursorPosY - var.Wiimote1.Y) > var.Wiimote1.Deadzone then 
+     ppjoy1.Analog1 = (var.Wiimote1.Y - (Screen.DesktopHeight /2)) * var.Wiimote1.ScaleY / (Screen.DesktopHeight / 2) 
+   endif 
+endif 

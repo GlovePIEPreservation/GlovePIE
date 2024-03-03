@@ -1,0 +1,7 @@
+// Type your program here!
+midi.FootPedal = 53/127;
+midi.Instrument0 = (var.x)-1;
+midi.Volume = 60%;
+midi.ChorusLevel = key.shift/2
+
+

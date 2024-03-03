@@ -1,0 +1,589 @@
+// Speech commands for:
+// X-Wing, TIE Fighter, X-Wing Vs TIE Fighter, X-Wing Alliance
+// But mostly for the original (DOS VGA) X-Wing in DOSBox
+
+// Change these depending on how fast your computer/emulator is
+Pie.SeqGap = 100 ms
+Pie.SeqDuration = 100 ms
+var.m = 1.0 // mouse multiplier, change until mouse works right
+
+
+if not var.Initialized then
+//  Execute("C:\Program Files\DOSBox-0.65\DOSBox.exe","-conf c:\games\xwing\xwing.conf")
+  var.ShipType = 1
+  var.NewMission = true
+  var.Initialized = true
+end if
+
+if var.NewMission then
+  var.ShieldPosition = 1  // 1 normal, 2 rear, 3 forward
+  var.DesiredShieldPosition = 1
+  var.ShieldLevel = 2
+  var.LaserLevel = 2
+  var.DesiredShieldLevel = 2
+  var.DesiredLaserLevel = 2
+  var.Weapon = 1
+  var.DesiredWeapon = 1
+  var.LasersLinked = 1
+  var.DesiredLasersLinked = 1
+  var.IonsLinked = 1
+  var.DesiredIonsLinked = 1
+  var.ProtonsLinked = 1
+  var.DesiredProtonsLinked = 1
+  var.NewMission = false
+end if
+
+// Adjust Laser, Shield, and Engine Levels, and Weapon
+if pressed(F9) then Inc(var.LaserLevel)
+if pressed(F10) then Inc(var.ShieldLevel)
+if pressed(W) but (not var.InSpacePort) and (not Shift) then Inc(var.Weapon)
+if pressed(S) then Inc(var.ShieldPosition)
+if var.ShieldPosition>3 then var.ShieldPosition = 1
+// skip ion cannons on ships that don't have them
+if var.Weapon = 2 and ((var.ShipType=1) or (var.ShipType=3)) then Inc(var.Weapon)
+if var.Weapon = 4 then var.Weapon = 1
+if pressed(X) then
+  if var.Weapon = 1 then Inc(var.LasersLinked)
+  if var.Weapon = 2 then Inc(var.IonsLinked)
+  if var.Weapon = 3 then Inc(var.ProtonsLinked)
+end if
+if var.ShipType = 1 then
+  if var.LasersLinked >= 4 then var.LasersLinked = 1
+else
+  if var.LasersLinked >= 3 then var.LasersLinked = 1
+end if
+if var.IonsLinked >= 3 then var.IonsLinked = 1
+if var.ProtonsLinked >= 3 then var.ProtonsLinked = 1
+if var.LaserLevel=5 then var.LaserLevel=0
+if var.ShieldLevel=5 then var.ShieldLevel=0
+var.EngineLevel = 4 - (var.LaserLevel+var.ShieldLevel)*0.5
+
+if said("shields fowards") then var.DesiredShieldPosition = 3
+if said("shields rear") then var.DesiredShieldPosition = 2
+if said("shields equal") then var.DesiredShieldPosition = 1
+if said("lasers") then
+  say("lasers")
+  var.DesiredWeapon = 1
+end if
+if said("ion cannons") then
+  say("ion cannons")
+  var.DesiredWeapon = 2
+end if
+if var.DesiredWeapon = 2 and var.ShipType=1 then Dec(var.DesiredWeapon)
+if said("proton torpedos") or said("concussion missiles") then
+  if var.ShipType = 3 then
+    say("concussion missiles")
+  else
+    say("proton torpedos")
+  end if
+  var.DesiredWeapon = 3
+end if
+if said("maximum lasers") then var.DesiredLaserLevel = 4
+if said("increased lasers") then var.DesiredLaserLevel = 3
+if said("normal lasers") then var.DesiredLaserLevel = 2
+if said("decreased lasers") then var.DesiredLaserLevel = 1
+if said("minimum lasers") then var.DesiredLaserLevel = 0
+
+if said("maximum shields") then var.DesiredShieldLevel = 4
+if said("increased shields") then var.DesiredShieldLevel = 3
+if said("normal shields") then var.DesiredShieldLevel = 2
+if said("decreased shields") then var.DesiredShieldLevel = 1
+if said("minimum shields") then var.DesiredShieldLevel = 0
+
+if said("single fire") then
+  if var.Weapon = 1 then var.DesiredLasersLinked = 1
+  if var.Weapon = 2 then var.DesiredIonsLinked = 1
+  if var.Weapon = 3 then var.DesiredProtonsLinked = 1
+end if
+if said("dual fire") then
+  if var.Weapon = 1 then var.DesiredLasersLinked = 2
+  if var.Weapon = 2 then var.DesiredIonsLinked = 2
+  if var.Weapon = 3 then var.DesiredProtonsLinked = 2
+end if
+if said("fire linked") or said("triple fire") then
+  if (var.Weapon = 1) and (var.ShipType=1) then var.DesiredLasersLinked = 3
+  if (var.Weapon = 1) and (var.ShipType<>1) then var.DesiredLasersLinked = 2
+  if var.Weapon = 2 then var.DesiredIonsLinked = 2
+  if var.Weapon = 3 then var.DesiredProtonsLinked = 2
+end if
+
+if var.ShieldPosition<>var.DesiredShieldPosition then
+  press(s)
+  wait 100 ms
+  release(s)
+  wait 250 ms
+end if
+
+if var.EngineLevel<>4 and said("maximum engines") then
+  var.DesiredLaserLevel = 0
+  var.DesiredShieldLevel = 0
+  var.ReplenishShields = true
+  wait 100 ms
+  var.ReplenishShields = false
+end if
+
+if var.EngineLevel<>3 and said("increased engines") then
+  var.DesiredLaserLevel = 0
+  var.DesiredShieldLevel = 2
+  var.ReplenishShields = true
+  wait 100 ms
+  var.ReplenishShields = false
+end if
+
+if var.EngineLevel<>2 and said("normal engines") then
+  var.DesiredLaserLevel = 2
+  var.DesiredShieldLevel = 2
+  var.ReplenishLasers = true
+  wait 100 ms
+  var.ReplenishLasers = false
+end if
+
+if var.EngineLevel<>1 and said("decreased engines") then
+  var.DesiredLaserLevel = 3
+  var.DesiredShieldLevel = 3
+  var.ReplenishLasers = true
+  wait 100 ms
+  var.ReplenishLasers = false
+end if
+
+if var.EngineLevel<>0 and said("minimum engines") then
+  var.DesiredLaserLevel = 4
+  var.DesiredShieldLevel = 4
+  var.ReplenishLasers = true
+  wait 100 ms
+  var.ReplenishLasers = false
+end if
+
+if var.Weapon <> var.DesiredWeapon then
+  press W
+  wait 100 ms
+  release W
+  wait 200 ms
+end if
+
+if var.Weapon = 1 and (var.LasersLinked <> var.DesiredLasersLinked) then
+  press(X)
+  wait 100 ms
+  release(X)
+  wait 200 ms
+end if
+if var.Weapon = 2 and (var.IonsLinked <> var.DesiredIonsLinked) then
+  press(X)
+  wait 100 ms
+  release(X)
+  wait 200 ms
+end if
+if var.Weapon = 3 and (var.ProtonsLinked <> var.DesiredProtonsLinked) then
+  press(X)
+  wait 100 ms
+  release(X)
+  wait 200 ms
+end if
+
+if var.LaserLevel<>var.DesiredLaserLevel then
+  press(F9)
+  wait 100 ms
+  release(F9)
+  wait 250 ms
+end if
+
+if var.ShieldLevel<>var.DesiredShieldLevel then
+  press(F10)
+  wait 100 ms
+  release(F10)
+  wait 250 ms
+end if
+
+if said("raise shields") then
+  var.DesiredShieldLevel = 4
+  var.RepairShields = true
+  var.ReplenishShields = true
+  wait 100 ms
+  var.ReplenishShields = false
+  var.RepairShields = false
+end if
+
+var.RepairShields => S
+var.ReplenishShields => Quote, Quote, Quote, Quote, Quote, Quote, Quote, Quote
+var.ReplenishLasers => Semicolon, Semicolon, Semicolon
+
+
+// Wingman commands
+Shift+A = said("wingmen attack my target") or said("everyone attack my target")
+Shift+I = said("wingman ignore my target") or said("everyone ignore my target")
+
+// Targetted Wingman commands
+Shift+E = said("evasive maneuvers")
+Shift+R = said("report in")
+Shift+H = said("hyperspace")
+Shift+W = said("wait here")
+Shift+B = said("dock with me") // TIE Fighter or above
+Shift+C = said("help me")
+said("everyone evasive maneuvers") => Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E,T,Shift+E
+said("everyone report in") => Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R,T,Shift+R
+said("everyone hyperspace") => Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H,T,Shift+H
+said("everyone wait here") => Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W,T,Shift+W
+said("everyone help me") => Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C,T,Shift+C
+
+// Inflight stuff
+M = said("inflight map")
+B = said("inflight briefing")
+D = said("inflight damage control")
+L = said("inflight log") or said("load footage")
+P = said("pause mission") or said("play footage")
+Escape = said("main menu",5)
+Alt+C = said("calibrate joystick")
+Alt+V = said("version information")
+Alt+D = said("change detail level")
+
+// Targetting computer
+O = said("switch off targetting computer") or said("track next object")
+T = said("next target") or said("target next") or said("stop tracking")
+Y = said("previous target") or said("yes please") or said("save footage")
+R = said("nearest fighter") or said("target nearest") or said("rewind footage")
+I = said("targetting mode") or said("identification mode")
+Mouse.RightButton = said("target this") or KeepDown(said("zoom out"), 500ms) or said("skip cutscene")
+Mouse.LeftButton = KeepDown(said("zoom in"), 500ms)
+Space = said("affirmative") or said("OK") or said("target missile")
+
+// Engine
+Backspace = said("full speed")
+RightBracket = said("two thirds speed")
+LeftBracket = said("one third speed")
+Backslash = said("complete stop")
+Equals = said("faster")
+Minus = said("slower")
+Enter = said("match speed with target") // TIE Fighter or above
+
+// Shields
+S = said("shield switch") or said("save footage") or said("enter simulation")
+said("transfer to shields") => apostrophe, apostrophe
+
+// Lasers
+said("transfer to lasers") => semicolon, semicolon
+//said("change weapon") => Inc(var.DesiredWeapon)
+if var.DesiredWeapon = 2 and (var.shiptype = 1 or var.shiptype = 3) then var.DesiredWeapon = 3
+if var.DesiredWeapon = 4 then var.DesiredWeapon = 1
+
+// Views
+NumPad7 = said("front left view")
+NumPad8 = said("forward view") or said("front view")
+NumPad9 = said("front right view")
+NumPad4 = said("left view")
+NumPad5 = said("up view")
+NumPad6 = said("right view")
+NumPad1 = said("rear left view")
+NumPad2 = said("rear view")
+NumPad3 = said("rear right view")
+NumPad0 = said("toggle higher view")
+NumPadDot = said("show cockpit") or said("hide cockpit")
+F3 = said("external view") or said("internal view")
+
+// Hyperspace
+H = said("artoo jump to hyperspace")
+Alt+E = said("eject eject")
+F = said("free mode") or said("follow mode")
+
+// Camera
+C = said("start recording") or said("stop recording") or said("camera position")
+V = said("view camera footage") or said("view footage")
+E = said("Exit")
+A = said("Advance") or said("fast forward") or said("advance footage")
+N = said("no thank you")
+
+// You must register
+Said("Carl Kenner") => Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,C,A,R,L
+Said("Andrew Kenner",5) => Press(var.InSpaceport),Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,A,N,D,R,E,W,Say("Andrew"),Release(var.InSpaceport)
+// Comes with Imperial Pursuit
+Said("Top Ace One") => Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,T,O,P,A,C,E,One
+Said("Top Ace Two") => Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,T,O,P,A,C,E,Two
+Said("Top Ace Three") => Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,T,O,P,A,C,E,Three
+// Comes with B-Wing
+Said("Top Ace Four") => Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,Backspace,T,O,P,A,C,E,Four
+
+// Joke
+Say("cable detached") = said("detach cable")
+
+if microphone.partialphrase<>'' then debug = microphone.PartialPhrase
+
+if said("tech room") then
+  press E
+  wait 200 ms
+  release E
+  mouse.DirectInputX = mouse.DirectInputX +2000
+  mouse.DirectInputY = mouse.DirectInputY +2000
+  wait 100 ms
+  mouse.DirectInputX = mouse.DirectInputX -2000
+  mouse.DirectInputY = mouse.DirectInputY -2000
+  wait 100 ms
+  mouse.DirectInputX = mouse.DirectInputX+140*var.m
+  mouse.DirectInputY = mouse.DirectInputY+240*var.m
+  wait 100 ms
+  mouse.LeftButton = true
+  wait 100 ms
+  mouse.LeftButton = false
+end if
+
+if said("pilot proving ground") then
+  // works from concorse, tech room, tour desk, historical combat
+  // and registration.
+  mouse.DirectInputX = mouse.DirectInputX +2000
+  mouse.DirectInputY = mouse.DirectInputY +2000
+  wait 100 ms
+  mouse.DirectInputX = mouse.DirectInputX -2000
+  mouse.DirectInputY = mouse.DirectInputY -2000
+  wait 100 ms
+  mouse.DirectInputX = mouse.DirectInputX+40*var.m
+  mouse.DirectInputY = mouse.DirectInputY+130*var.m
+  wait 100 ms
+  mouse.LeftButton = true
+  wait 100 ms
+  mouse.LeftButton = false
+end if
+
+if said("historical combat") then
+  // works from concorse
+  mouse.DirectInputX = mouse.DirectInputX +2000
+  mouse.DirectInputY = mouse.DirectInputY +2000
+  wait 100 ms
+  mouse.DirectInputX = mouse.DirectInputX -2000
+  mouse.DirectInputY = mouse.DirectInputY -2000
+  wait 100 ms
+  mouse.DirectInputX = mouse.DirectInputX+300*var.m
+  mouse.DirectInputY = mouse.DirectInputY+80*var.m
+  wait 100 ms
+  mouse.LeftButton = true
+  wait 100 ms
+  mouse.LeftButton = false
+end if
+
+if said("film room") then
+  mouse.DirectInputX = mouse.DirectInputX +2000
+  mouse.DirectInputY = mouse.DirectInputY +2000
+  wait 100 ms
+  mouse.DirectInputX = mouse.DirectInputX -2000
+  mouse.DirectInputY = mouse.DirectInputY -2000
+  wait 100 ms
+  mouse.DirectInputX = mouse.DirectInputX+520*var.m
+  mouse.DirectInputY = mouse.DirectInputY+240*var.m
+  wait 100 ms
+  mouse.LeftButton = true
+  wait 100 ms
+  mouse.LeftButton = false
+end if
+
+if said("may I proceed") or said("enter spaceport") then
+  mouse.DirectInputX = mouse.DirectInputX +2000
+  mouse.DirectInputY = mouse.DirectInputY +2000
+  wait 100 ms
+  mouse.DirectInputX = mouse.DirectInputX -2000
+  mouse.DirectInputY = mouse.DirectInputY -2000
+  wait 100 ms
+  mouse.DirectInputX = mouse.DirectInputX+40*var.m
+  mouse.DirectInputY = mouse.DirectInputY+240*var.m
+  wait 100 ms
+  mouse.LeftButton = true
+  wait 100 ms
+  mouse.LeftButton = false
+end if
+
+if said("registration") then
+  mouse.DirectInputX = mouse.DirectInputX -2000
+  mouse.DirectInputY = mouse.DirectInputY -2000
+  wait 100 ms
+  mouse.DirectInputX = mouse.DirectInputX +2000
+  mouse.DirectInputY = mouse.DirectInputY +2000
+  wait 100 ms
+  mouse.LeftButton = true
+  wait 100 ms
+  mouse.LeftButton = false
+end if
+
+if said("tour desk") or said("tour of duty") then
+  mouse.DirectInputX = mouse.DirectInputX +2000
+  mouse.DirectInputY = mouse.DirectInputY +2000
+  wait 100 ms
+  mouse.DirectInputX = mouse.DirectInputX -2000
+  mouse.DirectInputY = mouse.DirectInputY -2000
+  wait 100 ms
+  mouse.DirectInputX = mouse.DirectInputX+470*var.m
+  mouse.DirectInputY = mouse.DirectInputY+120*var.m
+  wait 100 ms
+  mouse.LeftButton = true
+  wait 100 ms
+  mouse.LeftButton = false
+end if
+
+if said("tour desk") or said("tour of duty") then
+  mouse.DirectInputX = mouse.DirectInputX +2000
+  mouse.DirectInputY = mouse.DirectInputY +2000
+  wait 100 ms
+  mouse.DirectInputX = mouse.DirectInputX -2000
+  mouse.DirectInputY = mouse.DirectInputY -2000
+  wait 100 ms
+  mouse.DirectInputX = mouse.DirectInputX+470
+  mouse.DirectInputY = mouse.DirectInputY+120
+  wait 100 ms
+  mouse.LeftButton = true
+  wait 100 ms
+  mouse.LeftButton = false
+end if
+
+if said("continue tour of duty") then
+  mouse.DirectInputX = mouse.DirectInputX +2000
+  mouse.DirectInputY = mouse.DirectInputY +2000
+  wait 80 ms
+  mouse.DirectInputX = mouse.DirectInputX -2000
+  mouse.DirectInputY = mouse.DirectInputY -2000
+  wait 80 ms
+  mouse.DirectInputX = mouse.DirectInputX+600*var.m
+  mouse.DirectInputY = mouse.DirectInputY+130*var.m
+  wait 100 ms
+  mouse.LeftButton = true
+  wait 100 ms
+  mouse.LeftButton = false
+end if
+
+if said("enter mission") then
+  mouse.DirectInputX = mouse.DirectInputX +2000
+  mouse.DirectInputY = mouse.DirectInputY +2000
+  wait 80 ms
+  mouse.DirectInputX = mouse.DirectInputX -2000
+  mouse.DirectInputY = mouse.DirectInputY -2000
+  wait 80 ms
+  mouse.DirectInputX = mouse.DirectInputX+600*var.m
+  mouse.DirectInputY = mouse.DirectInputY+250*var.m
+  wait 100 ms
+  mouse.LeftButton = true
+  wait 100 ms
+  mouse.LeftButton = false
+  var.NewMission = true
+end if
+
+if said("new mission") then
+  var.NewMission = true
+end if
+
+if said("new X Wing mission",5) then
+  var.ShipType = 1
+  var.NewMission = true
+  say("Flying an X-Wing")
+end if
+
+if said("new why wing mission",5) then
+  var.ShipType = 2
+  var.NewMission = true
+  say("Flying a why Wing")
+end if
+
+if said("new A Wing mission",5) then
+  var.ShipType = 3
+  var.NewMission = true
+  say("Flying an A-Wing")
+end if
+
+if said("new B Wing mission",5) then
+  var.ShipType = 4
+  var.NewMission = true
+  say("Flying a B-Wing")
+end if
+
+if said("exit debriefing") then
+  mouse.DirectInputX = mouse.DirectInputX +2000
+  mouse.DirectInputY = mouse.DirectInputY +2000
+  wait 80 ms
+  mouse.DirectInputX = mouse.DirectInputX -2000
+  mouse.DirectInputY = mouse.DirectInputY -2000
+  wait 80 ms
+  mouse.DirectInputX = mouse.DirectInputX+480*var.m
+  mouse.DirectInputY = mouse.DirectInputY+80*var.m
+  wait 100 ms
+  mouse.LeftButton = true
+  wait 100 ms
+  mouse.LeftButton = false
+end if
+
+if said("what can I say") then
+  say("Please ask: What can I say in flight? What can I say in the space port? Or What can I say in the film room?");
+end if
+
+if said("what can I say in the space port") then
+  say("You can say: Enter spaceport. Pilot Proving Ground. Historical Combat. Tour Desk. Continue Tour of Duty. "
+... + "Tech room. Film Room. Registration.")
+end if
+
+if said("what can I say in flight") then
+  say("You can say: Full speed. Two thirds speed. One third speed. Complete stop. Match speed with target. Faster. Slower. "
+... + "Raise shields. Shield Switch. Shield Energy. Lasers to shields. Shields to lasers. "
+... + "Laser Energy. Fire Linked. Change Weapon. "
+... + "R2, jump to hyperspace. Eject Eject. "
+... + "Nearest target. Next target. Previous target. Target this. Affirmative. "
+... + "Switch off targetting computer. Tagetting mode. Identification mode. "
+... + "Wingmen attack my target. Wingmen ignore my target. "
+... + "Report in. Wait here. Hyperspace. Evasive maneuvers. Help me. Dock with me. "
+... + "Inflight map. Inflight briefing. Inflight damage control. Inflight log. "
+... + "Pause mission. Forward view. External view. Internal view. Show cockpit. Hide cockpit. Raise View. Lower View. "
+... )
+end if
+
+// If the script gets in an inconsistent state, you can tell it the
+// real state. For example if you set shields to forwards, but they
+// are actually rear, say "shields are currently rear" and it will
+// fix it for you
+if said("shields are currently forwards") then var.ShieldPosition = 3
+if said("shields are currently rear") then var.ShieldPosition = 2
+if said("shields are currently equal") then var.ShieldPosition = 1
+if said("shields are currently maximum") then var.ShieldLevel = 4
+if said("shields are currently increased") then var.ShieldLevel = 3
+if said("shields are currently normal") then var.ShieldLevel = 2
+if said("shields are currently decreased") then var.ShieldLevel = 1
+if said("shields are currently minimum") then var.ShieldLevel = 0
+if said("weapon is currently lasers") then var.Weapon = 1
+if said("weapon is currently ion cannons") then var.Weapon = 2
+if said("weapon is currently proton torpedos") or said("weapon is currently concussion missiles") then var.weapon = 3
+if said("weapon is currently single fire") then
+  if var.weapon=1 then var.LasersLinked = 1
+  if var.weapon=2 then var.IonsLinked = 1
+  if var.weapon=3 then var.ProtonsLinked = 1
+end if
+if said("weapon is currently dual fire") then
+  if var.weapon=1 then var.LasersLinked = 2
+  if var.weapon=2 then var.IonsLinked = 2
+  if var.weapon=3 then var.ProtonsLinked = 2
+end if
+if said("weapon is currently fire linked") then
+  if var.weapon=1 and var.shiptype=1 then var.LasersLinked = 3
+  if var.weapon=1 and var.shiptype<>1 then var.LasersLinked = 2
+  if var.weapon=2 then var.IonsLinked = 2
+  if var.weapon=3 then var.ProtonsLinked = 2
+end if
+if said("weapon is currently maximum") then var.LaserLevel = 4
+if said("weapon is currently increased") then var.LaserLevel = 3
+if said("weapon is currently normal") then var.LaserLevel = 2
+if said("weapon is currently decreased") then var.LaserLevel = 1
+if said("weapon is currently minimum") then var.LaserLevel = 0
+if said("this is an X wing") then var.ShipType = 1
+if said("this is a why wing") then var.ShipType = 2
+if said("this is an A Wing") then var.ShipType = 3
+if said("this is a Bee Wing") then var.ShipType = 4
+Ctrl+F12 = said("increase emulation speed")
+Ctrl+F11 = said("decrease emulation speed")
+
+if said("status report") then
+  var.text = "shields are "
+  if var.DesiredShieldLevel = 0 then var.text = var.text + "minimum"
+  if var.DesiredShieldLevel = 1 then var.text = var.text + "decreased"
+  if var.DesiredShieldLevel = 2 then var.text = var.text + "normal"
+  if var.DesiredShieldLevel = 3 then var.text = var.text + "increased"
+  if var.DesiredShieldLevel = 4 then var.text = var.text + "maximum"
+  if var.DesiredShieldPosition = 1 then var.text = var.text + " and equal"
+  if var.DesiredShieldPosition = 2 then var.text = var.text + " and rear"
+  if var.DesiredShieldPosition = 3 then var.text = var.text + " and forwards"
+  var.text = var.text + ". Lasers are "
+  if var.DesiredLaserLevel = 0 then var.text = var.text + "minimum"
+  if var.DesiredLaserLevel = 1 then var.text = var.text + "decreased"
+  if var.DesiredLaserLevel = 2 then var.text = var.text + "normal"
+  if var.DesiredLaserLevel = 3 then var.text = var.text + "increased"
+  if var.DesiredLaserLevel = 4 then var.text = var.text + "maximum"
+  say(var.text+".")
+end if

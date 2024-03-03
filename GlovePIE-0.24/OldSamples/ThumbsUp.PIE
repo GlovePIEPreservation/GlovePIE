@@ -1,0 +1,23 @@
+// Type your program here!
+if p5.thumbDown then
+  debug = "No"
+  var.Instrument = 42
+  var.SoundNo = true
+end if
+
+if p5.thumbUp then
+  debug = "Yes"
+  var.Instrument = 42
+  var.SoundYes = true
+end if
+
+if ((not p5.thumbDown) and (not p5.thumbUp)) then
+  debug = ""
+  var.SoundNo = false
+  var.SoundYes = false
+end if
+
+Midi.Instrument = var.instrument
+Midi.c3 = var.SoundNo
+Midi.a4 = var.SoundYes
+

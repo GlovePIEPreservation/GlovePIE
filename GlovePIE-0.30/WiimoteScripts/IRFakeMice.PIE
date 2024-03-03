@@ -1,0 +1,95 @@
+// Wiimote multiple fake cursors script for Windows desktop
+// Requires a sensor bar
+// A=LMB, B=RMB, Home=MMB, -=XButton1, +=XButton2, Up=WheelUp, Down=WheelDown
+
+// By Carl Kenner
+
+if starting then
+  var.ButtonFreezeTime = 250ms
+
+  Wiimote1.Led1 = true
+  Wiimote2.Led2 = true
+  Wiimote3.Led3 = true
+  Wiimote4.Led4 = true
+  cursor1.Colour = [1.0, 0.0, 1.0]
+  cursor1.PermanentCursor = -2
+  cursor1.Caption = ""
+  cursor2.Colour = [1.0, 0.0, 0.0]
+  cursor2.PermanentCursor = -2
+  cursor2.Caption = ""
+  cursor3.Colour = [0.0, 1.0, 0.0]
+  cursor3.PermanentCursor = -2
+  cursor3.Caption = ""
+  cursor4.Colour = [1.0, 1.0, 0.0]
+  cursor4.PermanentCursor = -2
+  cursor4.Caption = ""
+end if
+
+cursor1.ctrl = ctrl
+cursor2.ctrl = ctrl
+cursor3.ctrl = ctrl
+cursor4.ctrl = ctrl
+cursor1.shift = shift
+cursor2.shift = shift
+cursor3.shift = shift
+cursor4.shift = shift
+
+cursor1.Visible = Wiimote1.PointerVisible
+cursor1.Roll = Wiimote1.Roll
+cursor1.LeftButton = Wiimote1.A and KeepDown(Wiimote1.PointerVisible,0.5s)
+cursor1.RightButton = Wiimote1.B and KeepDown(Wiimote1.PointerVisible,0.5s)
+cursor1.MiddleButton = Wiimote1.Home and KeepDown(Wiimote1.PointerVisible,0.5s)
+cursor1.XButton1 = Wiimote1.Minus
+cursor1.XButton2 = Wiimote1.Plus
+var.PointerBump1 = KeepDown(Pressed(Wiimote1.A),var.ButtonFreezeTime) or KeepDown(Pressed(Wiimote1.B),var.ButtonFreezeTime)
+if Wiimote1.PointerVisible but not var.PointerBump1 then
+  cursor1.x = Wiimote1.PointerX
+  cursor1.y = Wiimote1.PointerY
+end if
+cursor2.Visible = Wiimote2.PointerVisible
+cursor2.LeftButton = Wiimote2.A and KeepDown(Wiimote2.PointerVisible,0.5s)
+cursor2.RightButton = Wiimote2.B and KeepDown(Wiimote2.PointerVisible,0.5s)
+cursor2.MiddleButton = Wiimote2.Home and KeepDown(Wiimote2.PointerVisible,0.5s)
+cursor2.XButton1 = Wiimote2.Minus
+cursor2.XButton2 = Wiimote2.Plus
+var.PointerBump2 = KeepDown(Pressed(Wiimote2.A),var.ButtonFreezeTime) or KeepDown(Pressed(Wiimote2.B),var.ButtonFreezeTime)
+if Wiimote2.PointerVisible but not var.PointerBump2 then
+  cursor2.x = Wiimote2.PointerX
+  cursor2.y = Wiimote2.PointerY
+end if
+cursor3.Visible = Wiimote3.PointerVisible
+cursor3.LeftButton = Wiimote3.A and KeepDown(Wiimote3.PointerVisible,0.5s)
+cursor3.RightButton = Wiimote3.B and KeepDown(Wiimote3.PointerVisible,0.5s)
+cursor3.MiddleButton = Wiimote3.Home and KeepDown(Wiimote3.PointerVisible,0.5s)
+cursor3.XButton1 = Wiimote3.Minus
+cursor3.XButton2 = Wiimote3.Plus
+var.PointerBump3 = KeepDown(Pressed(Wiimote3.A),var.ButtonFreezeTime) or KeepDown(Pressed(Wiimote3.B),var.ButtonFreezeTime)
+if Wiimote3.PointerVisible but not var.PointerBump3 then
+  cursor3.x = Wiimote3.PointerX
+  cursor3.y = Wiimote3.PointerY
+end if
+cursor4.Visible = Wiimote4.PointerVisible
+cursor4.LeftButton = Wiimote4.A and KeepDown(Wiimote4.PointerVisible,0.5s)
+cursor4.RightButton = Wiimote4.B and KeepDown(Wiimote4.PointerVisible,0.5s)
+cursor4.MiddleButton = Wiimote4.Home and KeepDown(Wiimote4.PointerVisible,0.5s)
+cursor4.XButton1 = Wiimote4.Minus
+cursor4.XButton2 = Wiimote4.Plus
+var.PointerBump4 = KeepDown(Pressed(Wiimote4.A),var.ButtonFreezeTime) or KeepDown(Pressed(Wiimote4.B),var.ButtonFreezeTime)
+if Wiimote4.PointerVisible but not var.PointerBump4 then
+  cursor4.x = Wiimote4.PointerX
+  cursor4.y = Wiimote4.PointerY
+end if
+if Wiimote1.Up or Wiimote2.Up or Wiimote3.Up or Wiimote4.Up then
+  mouse.WheelUp = true
+  wait 30ms
+  mouse.WheelUp = false
+  wait 30ms
+end if
+if Wiimote1.Down or Wiimote2.Down or Wiimote3.Down or Wiimote4.Down then
+  mouse.WheelDown = true
+  wait 30ms
+  mouse.WheelDown = false
+  wait 30ms
+end if
+
+

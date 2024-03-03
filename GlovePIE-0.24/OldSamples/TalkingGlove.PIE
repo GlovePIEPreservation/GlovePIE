@@ -1,0 +1,9 @@
+// Talking Glove
+
+// While you are grabbing the computer will speak
+// your glove's horizontal position (in centimetres)
+
+if p5.xnnnn then
+  speech = p5.x in cm
+  wait 5 seconds
+endif

@@ -1,0 +1,40 @@
+// Doom3
+// for VR920 + Wiimote + Nunchuk
+
+pie.FrameRate = 60Hz
+
+var.sensitivity = 1200 // for default setting of 3 in the game
+
+if starting then
+  say "Welcome to the appeture science labs glove-pie script. Subjects are warned that appeture corporation will not accept any responsibility for injuries resulting from use of this script with non-default input settings."
+  wait 18 seconds
+  say "This script requires a wee remote and nunchuck."
+end if
+
+var.yaw = RemoveUnits(VR920.ContinuousYaw)/90*var.Sensitivity
+var.pitch = RemoveUnits(VR920.Pitch)/90*var.Sensitivity
+
+fakemouse.DirectInputX+=delta(var.yaw)
+fakemouse.DirectInputY-=delta(var.pitch)
+
+WASD = Nunchuk.Joy
+Space = Nunchuk.CButton
+Ctrl = Nunchuk.ZButton
+E = |Nunchuk.roll| > 30 degrees or Wiimote.Plus
+LMB = Wiimote.A
+RMB = Wiimote.B
+Esc = Wiimote.Home
+
+if pressed(Wiimote.A) then Wiimote.Leds = 1
+if pressed(Wiimote.B) then Wiimote.Leds = 8
+Wiimote.Rumble = Wiimote.A or Wiimote.B or Wiimote.Plus
+
+if Wiimote.Up then
+  fakemouse.DirectInputY -= 60
+  wait 50ms
+end if
+if Wiimote.Down then
+  fakemouse.DirectInputY += 60
+  wait 50ms
+end if
+

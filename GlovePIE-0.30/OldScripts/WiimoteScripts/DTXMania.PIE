@@ -1,0 +1,102 @@
+/* Code created by Charles J. "Skeeter8887"  Skeeter87@comcast.net 
+   Possible configuration for DTX Mania 
+
+   Hats of to Bob of Bobsomers.com for setting up the core of this code. 
+
+   So basically here's how it works. 
+
+   First off you need two wiimotes. Can't have a drum game without two sticks 
+   right? Anyway once you have that you're set. 
+
+   The controls are a bit weird but I was too lazy to figure out a perfect scheme, 
+   but for the most part it works. Also you have to strike down in order to play 
+   the note you want. 
+
+   ************************************************ 
+   Wiimote 1 (indicated with LED's) 
+
+   No buttons = snare 
+   A = green tom tom 
+   Down = red tom tom 
+   Up = High Hat 
+
+   Wiimote 2 (indicated with LED's) 
+
+   No buttons = High Hat 
+   A = red tom tom 
+   Down = green tom tom 
+   Up = snare 
+   ************************************************ 
+
+   I have yet to figure out how to utilize the bass drum, so for now I just leave 
+   it on Auto. 
+
+
+   Feel free to change it up to your liking just tell me if you find a better control 
+   scheme so I can start using it. 
+
+   Enjoi ya'll. 
+
+*/ 
+
+
+
+
+
+var.xOffset = 8 
+var.yOffset = -37 
+var.zOffset = 12 
+
+var.xRot = Wiimote1.RawForceX + var.xOffset 
+var.yRot = Wiimote1.RawForceY + var.yOffset 
+var.zRot = Wiimote1.RawForceZ + var.zOffset 
+
+var.xRot2 = Wiimote2.RawForceX + var.xOffset 
+var.yRot2 = Wiimote2.RawForceY + var.yOffset 
+var.zRot2 = Wiimote2.RawForceZ + var.zOffset 
+
+// Debug 
+debug = "(X=" + var.xRot + "   Y=" + var.yRot + "   Z=" + var.zRot + ")  (X2=" + var.xRot2 + "   Y=" + var.yRot2 + "   Z=" + var.zRot2 + ")" 
+
+// Downward drum beat triggered for Stick 1 
+if var.yRot > 30 then 
+   var.Snare = not(Wiimote1.A or Wiimote1.down or Wiimote1.up) 
+   var.Green = Wiimote1.A and not (Wiimote1.down or Wiimote1.up) 
+   var.Red = Wiimote1.down and not (Wiimote1.A or Wiimote1.up) 
+   var.HH = Wiimote1.Up and not (Wiimote1.A or Wiimote1.down) 
+else 
+    var.Snare = false 
+    var.Green = false 
+    var.Red = false 
+    var.HH = false 
+endif 
+
+// Downward drum beat triggered for Stick 2 
+if var.yRot2 > 30 then 
+   var.Green2 = Wiimote2.Down and not (Wiimote2.A or Wiimote2.B or Wiimote2.Up) 
+   var.Red2 = Wiimote2.A and not (Wiimote2.down or Wiimote2.B or Wiimote2.Up) 
+   var.HH2 = not(Wiimote2.A or Wiimote2.down or Wiimote2.B or Wiimote2.Up) 
+   var.Cym = Wiimote2.B and not (Wiimote2.A or Wiimote2.down or Wiimote2.Up) 
+   var.Snare2 = Wiimote2.Up and not (Wiimote2.A or Wiimote2.down or Wiimote2.B) 
+else 
+    var.Green2 = false 
+    var.Red2 = false 
+    var.HH2 = false 
+    var.Cym = false 
+    var.Snare2 = false 
+endif 
+
+
+wiimote1.Leds = 1 
+wiimote2.Leds = 2 
+
+X = var.Snare 
+X = var.Snare2 
+V = var.Green 
+V = var.Green2 
+B = var.Red 
+B = var.Red2 
+Z = var.HH 
+Z = var.HH2 
+M = var.Cym 
+

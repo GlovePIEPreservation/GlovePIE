@@ -1,0 +1,47 @@
+// RoboBlitz
+// for VR920 + Wiimote + Nunchuk
+
+PIE.FrameRate = 120Hz
+
+var.sensitivity = 2000
+FakeMouse.DirectInputX += delta(MapRange(VR920.ContinuousYaw, -90 degrees, 90 degrees, -var.sensitivity, var.sensitivity))
+FakeMouse.DirectInputY += delta(MapRange(VR920.pitch, -90 degrees, 90 degrees, var.sensitivity, -var.sensitivity))
+
+if said("look up") then FakeMouse.DirectInputY -= var.sensitivity/10
+if said("look down") then FakeMouse.DirectInputY += var.sensitivity/10
+
+One = keepdown(said("Grabby Arms"),100ms)
+Two = keepdown(said("EMP Rifle"),100ms)
+Three = keepdown(said("Pulse Cannon"),100ms)
+Four = keepdown(said("Fireworks"),100ms)
+Five = keepdown(said("Hover Gun"),100ms)
+H = keepdown(said("Hint"),100ms)
+E = keepdown(said("use"),100ms) or keepdown(said("activate"),100ms)
+esc = keepdown(said("pause game"),100ms) or keepdown(said("computer freeze program"),100ms)
+Enter = keepdown(said("OK"),100ms) or keepdown(said("go away"),100ms) or keepdown(said("Hi Karl"),100ms)  or keepdown(said("Hello"),100ms)
+
+
+W = Nunchuk.JoyY < -30%
+S = Nunchuk.JoyY > 30%
+A = Nunchuk.JoyX < -30%
+D = Nunchuk.JoyX > 30%
+Space = Nunchuk.CButton
+
+Mouse.LeftButton = wiimote.B
+Mouse.MiddleButton = wiimote.1
+Mouse.RightButton = wiimote.2
+
+Enter = Nunchuk.ZButton or Wiimote.A
+
+up = Wiimote.Up
+down = Wiimote.Down
+Left = Wiimote.Left
+Right = Wiimote.Right
+
+var.test = (AngleBetween(Smooth(Wiimote.RelAcc),[0,0,1])<45 deg) and Smooth(|Wiimote.RelAcc|) > 5
+var.test2 = (AngleBetween(Smooth(Wiimote.RelAcc),[1,0,0])<45 deg) and Smooth(|Wiimote.RelAcc|) > 8
+var.test3 = (AngleBetween(Smooth(Wiimote.RelAcc),[0,1,0])<45 deg) and Smooth(|Wiimote.RelAcc|) > 8
+
+E = keepdown(var.test or var.test3,500ms)
+Q = keepdown(var.test2,200ms)
+

@@ -1,0 +1,59 @@
+// Mienaikage's ocarina script (for use with Click MusicalKEYS) 
+// When you download Click MusicalKEYS, open the program and press F9, type in 79 (for the ocarina) 
+// SCRIPT IS UNFINISHED!!! 
+
+Wiimote1.Leds = 0 
+
+Y = Wiimote1.Left and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.b or Wiimote1.Plus or Wiimote1.Minus) 
+R = Wiimote1.Down and not (Wiimote1.up or Wiimote1.left or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.b or Wiimote1.Plus or Wiimote1.Minus) 
+E = Wiimote1.Up and not (Wiimote1.left or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.b or Wiimote1.Plus or Wiimote1.Minus) 
+Q = Wiimote1.Right and not (Wiimote1.up or Wiimote1.down or Wiimote1.left or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.b or Wiimote1.Plus or Wiimote1.Minus) 
+Key.Dot = Wiimote1.A and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.left or Wiimote1.b or Wiimote1.Plus or Wiimote1.Minus) 
+
+Key.Seven = Wiimote1.Left + Wiimote1.B and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.Plus or Wiimote1.Minus) 
+T = Wiimote1.Down + Wiimote1.B and not (Wiimote1.up or Wiimote1.Left or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.Plus or Wiimote1.Minus) 
+Key.four = Wiimote1.up + Wiimote1.b and not (Wiimote1.Left or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.Plus or Wiimote1.Minus) 
+Key.two = Wiimote1.Right + Wiimote1.b and not (Wiimote1.up or Wiimote1.down or Wiimote1.Left or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.Plus or Wiimote1.Minus) 
+Key.Semicolon = Wiimote1.A + Wiimote1.b and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.Left or Wiimote1.Plus or Wiimote1.Minus) 
+
+Key.Seven = Wiimote1.Left + Wiimote1.plus and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.B or Wiimote1.Minus) 
+T = Wiimote1.Down + Wiimote1.plus and not (Wiimote1.up or Wiimote1.Left or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.B or Wiimote1.Minus) 
+Key.four = Wiimote1.up + Wiimote1.plus and not (Wiimote1.Left or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.B or Wiimote1.Minus) 
+Key.two = Wiimote1.Right + Wiimote1.plus and not (Wiimote1.up or Wiimote1.down or Wiimote1.Left or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.B or Wiimote1.Minus) 
+Key.Semicolon = Wiimote1.A + Wiimote1.plus and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.Left or Wiimote1.B or Wiimote1.Minus) 
+
+Key.six = Wiimote1.Left + Wiimote1.minus and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.B or Wiimote1.plus) 
+Key.four = Wiimote1.Down + Wiimote1.minus and not (Wiimote1.up or Wiimote1.Left or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.B or Wiimote1.plus) 
+Key.three = Wiimote1.up + Wiimote1.minus and not (Wiimote1.Left or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.B or Wiimote1.plus) 
+Key.Slash = Wiimote1.Right + Wiimote1.minus and not (Wiimote1.up or Wiimote1.down or Wiimote1.Left or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.B or Wiimote1.plus) 
+L = Wiimote1.A + Wiimote1.minus and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.Left or Wiimote1.B or Wiimote1.plus) 
+
+Y = Wiimote1.Left + Wiimote.Plus + Wiimote.Minus and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.b) 
+R = Wiimote1.Down + Wiimote.Plus + Wiimote.Minus and not (Wiimote1.up or Wiimote1.left or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.b) 
+E = Wiimote1.Up + Wiimote.Plus + Wiimote.Minus and not (Wiimote1.left or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.b) 
+Q = Wiimote1.Right + Wiimote.Plus + Wiimote.Minus and not (Wiimote1.up or Wiimote1.down or Wiimote1.left or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.b) 
+Key.Dot = Wiimote1.A + Wiimote.Plus + Wiimote.Minus and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.left or Wiimote1.b) 
+
+Key.Seven = Wiimote1.Left + Wiimote1.B + Wiimote.Plus + Wiimote.Minus and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A) 
+T = Wiimote1.Down + Wiimote1.B + Wiimote.Plus + Wiimote.Minus and not (Wiimote1.up or Wiimote1.Left or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A) 
+Key.four = Wiimote1.up + Wiimote1.b + Wiimote.Plus + Wiimote.Minus and not (Wiimote1.Left or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A) 
+Key.two = Wiimote1.Right + Wiimote1.b + Wiimote.Plus + Wiimote.Minus and not (Wiimote1.up or Wiimote1.down or Wiimote1.Left or Wiimote1.one or Wiimote1.two or Wiimote1.A) 
+Key.Semicolon = Wiimote1.A + Wiimote1.b + Wiimote.Plus + Wiimote.Minus and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.Left) 
+
+Y = Wiimote1.Left + Wiimote.b + Wiimote.Minus and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.plus) 
+R = Wiimote1.Down + Wiimote.b + Wiimote.Minus and not (Wiimote1.up or Wiimote1.left or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.plus) 
+E = Wiimote1.Up + Wiimote.b + Wiimote.Minus and not (Wiimote1.left or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.plus) 
+Q = Wiimote1.Right + Wiimote.b + Wiimote.Minus and not (Wiimote1.up or Wiimote1.down or Wiimote1.left or Wiimote1.one or Wiimote1.two or Wiimote1.A or Wiimote1.plus) 
+Key.Dot = Wiimote1.A + Wiimote.b + Wiimote.Minus and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.one or Wiimote1.two or Wiimote1.left or Wiimote1.plus) 
+
+U = Wiimote1.Left + Wiimote1.one and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.b or Wiimote1.two or Wiimote1.A or Wiimote1.Plus or Wiimote1.Minus) 
+Key.Six = Wiimote1.Down + Wiimote1.one and not (Wiimote1.up or Wiimote1.Left or Wiimote1.right or Wiimote1.b or Wiimote1.two or Wiimote1.A or Wiimote1.Plus or Wiimote1.Minus) 
+R = Wiimote1.up + Wiimote1.one and not (Wiimote1.Left or Wiimote1.down or Wiimote1.right or Wiimote1.b or Wiimote1.two or Wiimote1.A or Wiimote1.Plus or Wiimote1.Minus) 
+W = Wiimote1.Right + Wiimote1.one and not (Wiimote1.up or Wiimote1.down or Wiimote1.Left or Wiimote1.b or Wiimote1.two or Wiimote1.A or Wiimote1.Plus or Wiimote1.Minus) 
+Key.Slash = Wiimote1.A + Wiimote1.one and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.b or Wiimote1.two or Wiimote1.Left or Wiimote1.Plus or Wiimote1.Minus) 
+
+T = Wiimote1.Left + Wiimote1.two and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.b or Wiimote1.one or Wiimote1.A or Wiimote1.Plus or Wiimote1.Minus) 
+E = Wiimote1.Down + Wiimote1.two and not (Wiimote1.up or Wiimote1.Left or Wiimote1.right or Wiimote1.b or Wiimote1.one or Wiimote1.A or Wiimote1.Plus or Wiimote1.Minus) 
+W = Wiimote1.up + Wiimote1.two and not (Wiimote1.Left or Wiimote1.down or Wiimote1.right or Wiimote1.b or Wiimote1.one or Wiimote1.A or Wiimote1.Plus or Wiimote1.Minus) 
+key.Semicolon = Wiimote1.Right + Wiimote1.two and not (Wiimote1.up or Wiimote1.down or Wiimote1.Left or Wiimote1.b or Wiimote1.one or Wiimote1.A or Wiimote1.Plus or Wiimote1.Minus) 
+Key.Comma = Wiimote1.A + Wiimote1.two and not (Wiimote1.up or Wiimote1.down or Wiimote1.right or Wiimote1.b or Wiimote1.one or Wiimote1.Left or Wiimote1.Plus or Wiimote1.Minus)

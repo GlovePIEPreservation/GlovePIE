@@ -1,0 +1,61 @@
+pie.SeqDuration = 200 ms
+pie.SeqGap = 50 ms
+
+Esc = said("escape") or said("no",3) or said("no thank you")
+Enter = said("select") or said("inventory") or said("OK")
+Right = said("next page") or said("next") or said("right")
+Left = said("previous page") or said("previous") or said("left")
+Up = said("up") or KeepDown(Said("look up"), 2 seconds)
+Up = said("enter building") or said("enter door") or said("go through the door")
+Up = said("flick switch") or said("press button") or said("push button")
+Down = said("down") or KeepDown(Said("look down"), 2 seconds)
+Y = said("yes",3) or said("yes please")
+Ctrl = said("low jump") or said("enter village") or said("enter level") or KeepDown(Said("jump"),1 second) or KeepDown(said("high jump"),1 second)
+Alt = said("pogo")
+Space = said("shoot") or said("fire",6)
+Ctrl+Down = said("drop down")
+Up+Space = said("fire up",5)
+Down+Space = said("fire down",5)
+Left+Space = said("fire left",5)
+Right+Space = said("fire right",5)
+said("climb up") => Ctrl,press(up),wait(3 seconds),release(up)
+said("climb down") or said("slide down") => press(down),wait(3 seconds),release(down)
+
+if said("super jump") then
+  press Ctrl
+  wait 1.2 seconds
+  press Alt
+  wait 100 ms
+  release Alt
+  wait 100 ms
+  press Alt
+  wait 500 ms
+  release Alt
+  release Ctrl
+end if
+
+// Try again menu
+said("try again") => Up, Enter
+said("exit to shadowlands") or said("exit to armaggedon") or said("exit to Fribbulus Zax") => Down, Enter
+
+// Help
+F1 = said("help")
+said("computer wrist") => F1,Up,Up,Up,Up,Enter
+said("the game",3) => F1,Up,Up,Up,Up,Down,Enter
+said("the story",3) => F1,Up,Up,Up,Up,Down,Down,Enter
+said("order info") or said("ordering info") => F1,Down,Down,Down,Down,Up,Enter
+said("about ID") => F1,Down,Down,Down,Down,Enter
+
+// Computer wrist main menu
+said("new game") => Esc,Esc,Up,Up,Up,Up,Up,Up,Up,Enter
+said("load game") => Esc,Esc,Up,Up,Up,Up,Up,Up,Up,Down,Enter
+said("save game") => Esc,Esc,Up,Up,Up,Up,Up,Up,Up,Down,Down,Enter
+said("configure") => Esc,Esc,Up,Up,Up,Up,Up,Up,Up,Down,Down,Down,Enter
+said("return to game") or said("return to demo") => Esc,Esc,Up,Up,Up,Up,Up,Up,Up,Down,Down,Down,Down,Enter
+said("end game") => Esc,Esc,Down,Down,Down,Down,Down,Down,Down,Up,Up,Enter
+said("paddle war") => Esc,Esc,Down,Down,Down,Down,Down,Down,Down,Up,Enter
+said("quit") => Esc,Esc,Esc
+
+
+
+

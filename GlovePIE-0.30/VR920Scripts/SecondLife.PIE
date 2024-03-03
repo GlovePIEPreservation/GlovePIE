@@ -1,0 +1,25 @@
+PIE.FrameRate = 60Hz
+
+var.sensitivity = 900
+
+if abs(vr920.pitch+9) >= 30 then var.middle = false
+if abs(vr920.pitch+9) <= 2 then var.middle = true
+//key.End = var.middle
+
+// mouse
+//if wiimote.PointerVisible then
+//  mouse.x = wiimote.PointerX
+//  mouse.y = wiimote.PointerY
+//else
+var.yaw = RemoveUnits(VR920.ContinuousYaw)/90*var.Sensitivity
+var.pitch = RemoveUnits(VR920.Pitch)/90*var.Sensitivity
+
+if var.PDA then
+  fakemouse.DirectInputX+=sqr(deadzone(nunchuk.joyX))*sign(nunchuk.JoyX)*900 mickeys per second
+  fakemouse.DirectInputY+=sqr(deadzone(nunchuk.JoyY))*sign(nunchuk.JoyY)*900 mickeys per second
+else
+  fakemouse.DirectInputX+=delta(var.yaw)
+  fakemouse.DirectInputY-=delta(var.pitch)
+end if
+
+

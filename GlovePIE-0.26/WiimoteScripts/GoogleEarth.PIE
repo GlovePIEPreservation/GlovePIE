@@ -1,0 +1,87 @@
+// Google Earth Interface using Wii Remote 
+// by J.Coulston 
+// 
+//Instructions: 
+// Start the GlovePIE script, then calibrate your Wiimote (see next section). 
+// After calibrating, make sure Google Earth is the top window. 
+// Tilting up, down, left and right will simulate arrow keys. 
+// Holding B while tilting up and down will tilt the view up and down. 
+// Holding B while tilting left and right will rotate the view. 
+// Pressing + and - will zoom when the Wiimote is level. 
+// Pressing Home will center the view. 
+// Pressing 1 will toggle fullscreen. 
+
+
+//Calibrate your Wiimote! 
+//Place the Wiimote face up on a flat surface. Change these values until the 
+//debug line next to the run button shows zero for each axis. 
+var.xOffset = 8 
+var.yOffset = -32 
+var.zOffset = 8 
+
+//Set your Wiimote LEDs to your liking. Binary value, 1-15 
+var.leds = 1 
+
+var.xRot = Wiimote.RawForceX + var.xOffset 
+var.yRot = Wiimote.RawForceY + var.yOffset 
+var.zRot = Wiimote.RawForceZ + var.zOffset 
+
+// Debug window output 
+debug = "X=" + var.xRot + "   Y=" + var.yRot + "   Z=" + var.zRot 
+
+Wiimote.Leds = var.leds 
+
+//Key-press and tilt functions 
+if abs(var.zRot) > 10 then 
+   Shift = Wiimote.B 
+else 
+   Shift = false 
+endif 
+
+if var.zRot >10 then 
+   Up = true 
+elseif var.zRot < -10 then 
+   Down = true 
+else 
+   Up = false 
+   Down = false 
+endif 
+
+if abs(var.xRot) > 15 then 
+   Shift = Wiimote.B 
+else 
+   Shift = false 
+endif 
+
+if var.xRot > 15 then 
+   Left = true 
+elseif var.xRot < -15 then 
+   Right = true 
+else 
+   Left = false 
+   Right = false 
+endif 
+
+if Wiimote.minus then 
+   Ctrl+Down = not(abs(var.zRot)>10) 
+else 
+   Ctrl = false 
+endif 
+
+if Wiimote.plus then 
+   Ctrl+Up = not(abs(var.zRot)>10) 
+else 
+   Ctrl = false 
+endif 
+
+if Wiimote.home then 
+   r = true 
+else 
+   r = false 
+endif 
+
+if Wiimote.One then 
+   F11 = true 
+else 
+   F11 = false 
+endif

@@ -1,0 +1,81 @@
+//WiinAmp controller v1.0
+//By Penmonicus
+//Penmonicus@gmail.com
+
+//This config file is designed so I can walk around my house with the Wiimote in my pocket, controlling WinAmp from the kitchen, toilet, outiside, whatever. As such, it merely uses the buttons as universal Hotkeys for WinAmp. Tilting the controller will not control anything, and, since the controller will spend a fair amount of time in my pocket, and we don't want accidents, you will need to hold down the B button in order for any other buttons to function. I'm hoping that this will be as simple as setting the Wiimote's buttons to certain keyboard combinations, then entering WinAmp and telling it what to do when those buttons are pushed. We'll find out at the end of my first draft.
+
+//Please keep in mind that, in order to use this, after you've connected to the device, you'll need to open up the "Global Hotkey" option in WinAmp, and set each command. Press Ctrl+P to open the Preferences window, then select "Global Hotkeys". Change "Play" to "Play/Pause", hold down the B-trigger, press A, then click on "Set". Then do the rest, too.
+
+//Button Config:
+
+//B button: Universal "On" Key
+//A button: Play/Pause
+//D-Pad Left:  Previous Track
+//D-Pad Right: Next Track
+//D-Pad Up: Unused
+//D-Pad Down: Unused
+//Minus: Volume Down
+//Plus: Volume Up
+//Home: Toggle Visualisations
+//1 button: Toggle Repeat
+//2 button: Toggle Shuffle
+
+//LED Config:
+//LED1: Indicates 'Repeat' setting (On = Repeat All, Off = Off. WinAmp also seems to have a "Repeat One" function, though that can't be controlled by Hotkeys, apparently.)
+//LED2: Indicates 'Shuffle' setting (On = On, Off = Off)
+
+//Setting the Universal "On" key:
+Ctrl+Alt = Wiimote.B
+
+//WinAmp controls (These can be set to any key you like, if these keys are already in use):
+a = Wiimote.A
+b = Wiimote.Left
+c = Wiimote.Right
+d = Wiimote.Up
+e = Wiimote.Down
+//f = Wiimote.Minus
+//g = Wiimote.Plus - these ended up not getting used in the final version... Perhaps for something else later.
+h = Wiimote.Home
+i = Wiimote.One
+k = Wiimote.Two
+
+//TODO: Any way to get Visualisations to be fullscreen automatically?
+//Would it be better to set B to "Ctrl" and everything else to "Alt+[X]", thereby allowing essentially twice as many buttons? What could those extra buttons be used for?
+
+//Getting the LEDs to work correctly was confusing for a while. Of course, you'll have to keep in mind how likely it is that Repeat or Shuffle may have already been selected before you connected the device. (300 ms may be too long, but it helps to be certain):
+
+if Wiimote.One = true and Wiimote.B = true
+	wait 300 ms
+	var.Repeat = var.Repeat + 1
+endif
+
+if Wiimote.Two = true and Wiimote.B = true
+	wait 300 ms
+	var.Shuffle = var.Shuffle + 1
+endif
+
+if odd(var.Repeat) and odd (var.Shuffle)
+	Wiimote.LEDs = 3
+else
+	if odd(var.Repeat)
+		Wiimote.LEDs = 1
+	else
+		if odd(var.Shuffle)
+			Wiimote.LEDs = 2
+			else
+				Wiimote.LEDs = 0
+		endif
+	endif
+endif
+
+//Using "Volume Up" in Winamp sucked, as holding down the button didn't work. Luckily enough, I've got a Multimedia keyboard, so I can use "VolumeUp" and "VolumeDown". If you don't have a Multimedia Keyboard, you may still be able to use this, but I am unsure.
+
+If Wiimote.Plus = true and Wiimote.B = true
+	VolumeUp = true
+endif
+
+If Wiimote.Minus = true and Wiimote.B = true
+	VolumeDown = true
+endif
+
+// Any questions/suggestions/thanks/reminders of how this is useful only to me can be sent to the email above. Cheers! Thanks to: vkapadia@vkapadia.com for writing a bunch of scripts that helped me get the idea of what to do; Carl Kenner (http://carl.kenner.googlepages.com/) for GlovePIE; LiquidIce's blog (http://wiihacks.blogspot.com/) for showing me this initially; Nintendo for being so fucking awesome.

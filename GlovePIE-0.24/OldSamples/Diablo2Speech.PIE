@@ -1,0 +1,176 @@
+// Diablo 2, Speech and Keyboard
+// Walk around by using the < > / " keys
+// Talk by talking
+// Click on a character and say "gossip" to gossip, but don't click on talk first
+// or it won't work
+
+Esc = said("menu") or said("escape") or said("cancel")
+W = said("swap weapons")
+C = said("character") or said("attributes") or said("character attributes")
+B = said("inventory") or said("backpack")
+P = said("party")
+M = said("message log") or said("messages")
+Q = said("quest log") or said("quests")
+H = said("show help")
+T = said("skills") or said("skill tree")
+S = said("skill menu overlay")
+V = said("mini map") or said("toggle mini map")
+O = said("hireling") or said("hirelings") or said("rogue")
+F1 = said("skill one")
+F2 = said("skill two")
+F3 = said("skill three")
+F4 = said("skill four")
+F5 = said("skill five")
+F6 = said("skill six")
+F7 = said("skill seven")
+F8 = said("skill eight")
+mouse.WheelUp = said("next skill")
+mouse.WheelDown = said("previous skill")
+console = said("belt")
+enter = said("chat")
+R = /*said("run") or */ said("start running") or said("stop running") or said("walk")
+if said("show labels")
+  press alt
+end
+if said("hide labels")
+  release alt
+end
+Z = said("portraits") or said("party portraits")
+tab = said("automap") or said("map")
+F9 = said("center map") or said("center automap")
+F10 = said("fade map") or said("fade automap")
+F11 = said("show party on map") or said("party on map") or said("party on automap")
+F12 = said("show names on map") or said("names on map") or said("names on automap")
+NumPad0 = said("help") or said("help me")
+NumPad1 = said("follow me") or said("come on")
+NumPad2 = said("for you") or said("this is yours") or said("this is for you")
+NumPad3 = said("thanks") or said("thankyou")
+NumPad4 = said("sorry") or said("forgive me") or said("ah oops") or said("oops")
+NumPad5 = said("bye") or said("goodbye")
+NumPad6 = /*said("die") or*/ said("time to die") or said("now you die")
+NumPad7 = said("retreat") or said("say run")/*or said("run")*/ or said("run away")
+Space = said("hide windows") or said("clear screen")
+N = said("clear text messages") or said("clear messages")
+printscreen = said("screen shot") or said("screen capture") or said("capture screen")
+One = said("heal") or said("drink one")
+Two = said("mana") or said("drink two")
+Three = said("teleport") or said("town portal") or said("drink three")
+Four = said("restore") or said("drink four")
+if MMB then
+  speech = mouse.CursorPosX + ", "+ mouse.CursorPosY
+end
+
+/*if key.B then
+  speech = ""
+  if var.inventory then
+    var.inventory=false
+    speech = "no inventory"
+    debug = "no inventory"
+  else
+    var.inventory = true
+    speech = "inventory"
+    debug = "inventory"
+  end
+end
+
+if key.Escape then
+  if var.inventory=true then
+    var.inventory=false
+    speech = "no inventory"
+    debug = "no inventory"
+  end
+end*/
+//speech = B
+
+if said("left") or said("west") or comma then
+  mouse.CursorPosX = 400-20
+  mouse.CursorPosY = 285
+  wait 100ms
+  Mouse.LeftMouseButton = true
+  wait 100ms
+  Mouse.LeftMouseButton = false
+end
+if said("right") or said("east") or fullstop then
+  mouse.CursorPosX = 400+20
+  mouse.CursorPosY = 285
+  wait 100ms
+  Mouse.LeftMouseButton = true
+  wait 100ms
+  Mouse.LeftMouseButton = false
+end
+if said("up") or said("north") or key.Apostophe then
+  mouse.CursorPosX = 400
+  mouse.CursorPosY = 285-15
+  wait 100ms
+  Mouse.LeftMouseButton = true
+  wait 100ms
+  Mouse.LeftMouseButton = false
+end
+if said("down") or said("south") or slash then
+  mouse.CursorPosX = 400
+  mouse.CursorPosY = 285+15
+  wait 100ms
+  Mouse.LeftMouseButton = true
+  wait 100ms
+  Mouse.LeftMouseButton = false
+end
+if said("hello") then
+  LMB = true
+  wait 100ms
+  LMB = false
+end
+if said("introduction") then
+  press Enter
+  wait 100ms
+  release Enter
+  wait 100ms
+  press Enter
+  wait 100ms
+  release Enter
+  wait 100ms
+end
+if said("trade") or said("repair") then
+  press Down
+  wait 100ms
+  release Down
+  wait 100ms
+  press Enter
+  wait 100ms
+  release Enter
+  wait 100ms
+end
+if said("gossip") or said("what do you think about the others") then
+  press Enter
+  wait 100ms
+  release Enter
+  wait 100ms
+  press Down
+  wait 100ms
+  release Down
+  wait 100ms
+  press Enter
+  wait 100ms
+  release Enter
+  wait 100ms
+end
+if said("tell me about the quest") or said("den of evil") then
+  press Enter
+  wait 100ms
+  release Enter
+  wait 100ms
+  press Down
+  wait 100ms
+  release Down
+  wait 100ms
+  press Down
+  wait 100ms
+  release Down
+  wait 100ms
+  press Enter
+  wait 100ms
+  release Enter
+  wait 100ms
+end
+
+
+

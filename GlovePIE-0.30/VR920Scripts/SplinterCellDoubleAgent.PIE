@@ -1,0 +1,193 @@
+// Splinter Cell, Double Agent
+// for VR920 + Wiimote + Nunchuk
+
+PIE.FrameRate = 120Hz
+
+//var.sensitivity = 10000 // for lowest in-game setting
+var.sensitivity = 400
+
+// mouse
+//if wiimote.PointerVisible then
+//  mouse.x = wiimote.PointerX
+//  mouse.y = wiimote.PointerY
+//else
+  FakeMouse.DirectInputX += delta(MapRange(VR920.ContinuousYaw, -90 degrees, 90 degrees, -var.sensitivity, var.sensitivity))
+  FakeMouse.DirectInputY += delta(MapRange(VR920.pitch, -90 degrees, 90 degrees, var.sensitivity*2, -var.sensitivity*2))
+//end if
+
+if said("look up") then FakeMouse.DirectInputY -= var.sensitivity/4
+if said("look down") then FakeMouse.DirectInputY += var.sensitivity/4
+
+// Movement
+if var.Watch then
+  // your nunchuk is sideways, so left becomes up
+  A = any.Down
+  D = any.Up
+  W = any.Left
+  S = any.Right
+else
+  A = any.Left
+  D = any.right
+  W = any.up
+  S = any.down
+end if
+var.moving = (any.Left or any.Right or any.Up or any.down)
+//alt = var.moving but (not any.Joy1Run)
+
+// Crouch and jump and watch buttons
+C = any.L2 and (var.Submenu or (not var.Watch))
+Shift = any.RightThumbButton1 and (not var.Watch)
+Enter = any.L1 and var.Watch
+if pressed(any.L2) and (not var.Subsubmenu) then var.Submenu = false
+if pressed(any.L2) and (var.Subsubmenu) then var.SubSubmenu = false
+if pressed(any.L1) and var.Submenu then var.SubSubmenu = true
+if pressed(any.L1) and var.Watch then var.Submenu = true
+
+E = keepdown(said("use"),100ms) or keepdown(said("activate"),100ms)
+esc = keepdown(said("pause game") or said("escape"),100ms) or keepdown(said("computer freeze program") or said("menu"),100ms)
+Enter = keepdown(said("OK") or said("Enter") or said("Continue"),100ms)
+
+// Action and grab
+E = any.Start
+
+// choose items
+Ctrl = any.Select or keepdown(said("choose item"),100ms)
+Esc = any.Home
+
+// Watch
+if Nunchuk.Roll > 70 or Nunchuk.Roll<-160 then var.Watch = true
+if Nunchuk.Roll < 50 and Nunchuk.Roll>-140 then var.Watch = false
+if pressed(var.Watch) then
+  press F1
+  wait 100ms
+  release F1
+  var.Submenu = false
+end if
+if released(var.Watch) and (not var.Submenu) then
+  press C
+  wait 100ms
+  release C
+end if
+if released(var.Watch) and var.Submenu and (not var.SubSubmenu) then
+  press C
+  wait 100ms
+  release C
+  var.Submenu = false
+  wait 100ms
+  press C
+  wait 100ms
+  release C
+end if
+if released(var.Watch) and var.Submenu and var.SubSubmenu then
+  press C
+  wait 100ms
+  release C
+  var.SubSubmenu = false
+  wait 100ms
+  press C
+  wait 100ms
+  release C
+  var.Submenu = false
+  wait 100ms
+  press C
+  wait 100ms
+  release C
+end if
+
+Wiimote.Led1 = true
+Mouse.leftButton = wiimote.B
+
+// Drawing weapon
+
+/*if (Wiimote.Pitch < -50) and (Nunchuk.Pitch < -50) then var.GunsDown = true
+if (Wiimote.Pitch > -30) and (Nunchuk.Pitch > -30) then var.GunsDown = false
+
+if Pressed(var.GunsDown) and (var.GunsDrawn) then
+  var.ManualAiming = false
+  var.CombatMode = false
+  var.GunsDrawn = false
+  var.HolsteredWeapon = true
+  mouse.RightButton = true
+  wait 100ms
+  mouse.RightButton = false
+else if pressed(var.GunsDown) then
+  mouse.RightButton = true
+  wait 400ms
+  mouse.RightButton = false
+end if
+
+if Released(var.GunsDown) and (not var.HolsteredWeapon) then
+  var.ManualAiming = true
+  var.GunsDrawn = true
+  press Z
+  wait 500ms
+  release Z
+end if
+if not var.GunsDown then var.HolsteredWeapon = false
+
+if var.ManualAiming and any.Joy1Run then
+  var.ManualAiming = false
+  var.CombatMode = true
+  mouse.RightButton = true
+end if
+if var.CombatMode and HeldDown(not var.Moving, 1 second) and HeldDown(not any.Joy1Run, 2 seconds) then
+  var.CombatMode = false
+  var.ManualAiming = true
+  mouse.RightButton = false
+  press Z
+  wait 500ms
+  release Z
+end if
+
+// reload
+
+if (Wiimote.Pitch > 50) and (Nunchuk.Pitch > 40) then var.ReloadGesture = true
+if (Wiimote.Pitch < 30) or (Nunchuk.Pitch < 25) then var.ReloadGesture = false
+if var.GunsDrawn and pressed(var.ReloadGesture) then
+  press E
+  wait 100ms
+  release E
+  wait 500ms
+  press Z
+  wait 100ms
+  release Z
+end if
+
+// Two guns, if you use the same gun all the time, your firing rate
+// will be only half as good, force the user to alternate guns
+if TimeStamp >= var.RightGunReadyTime then var.RightGunReady = true
+if TimeStamp >= var.LeftGunReadyTime then var.LeftGunReady = true
+if (pressed(any.R1 or any.RightTrigger)) and var.RightGunReady then
+  var.RightGunReady = false
+  var.LeftGunReady = true
+  var.RightGunFiring = true
+  var.RightGunReadyTime = TimeStamp + 1 second
+end if
+if pressed(any.L1) and var.LeftGunReady then
+  var.LeftGunReady = false
+  var.RightGunReady = true
+  var.LeftGunFiring = true
+  var.LeftGunReadyTime = TimeStamp + 1 second
+end if
+if released(any.R1 or wiimote.B) then var.RightGunFiring = false
+if released(any.L1) then var.LeftGunFiring = false
+H = var.RightGunFiring or var.LeftGunFiring
+
+var.SwingRight = (AngleBetween(Smooth(Wiimote.RelAcc),[1,0,0])<45 deg) and Smooth(|Wiimote.RelAcc|) > 8
+var.SwingLeft = (AngleBetween(Smooth(Wiimote.RelAcc),[-1,0,0])<45 deg) and Smooth(|Wiimote.RelAcc|) > 8
+var.NunchukSwingRight = (AngleBetween(Smooth(Nunchuk.RelAcc),[1,0,0])<45 deg) and Smooth(|Nunchuk.RelAcc|) > 8
+var.NunchukSwingLeft = (AngleBetween(Smooth(Nunchuk.RelAcc),[-1,0,0])<45 deg) and Smooth(|Nunchuk.RelAcc|) > 8
+var.Stab = (AngleBetween(Smooth(Wiimote.RelAcc),[0,0,1])<45 deg) and Smooth(|Wiimote.RelAcc|) > 9
+var.SwingDown = (AngleBetween(Smooth(Wiimote.RelAcc),[0,1,0])<45 deg) and Smooth(|Wiimote.RelAcc|) > 8
+
+E = (KeepDown(var.SwingDown,500ms) or Wiimote.Pitch <-50) and (not var.GunsDrawn) and (not var.ReloadGesture) and (not KeepDown(var.HolsteredWeapon,3 seconds))
+Q = (KeepDown(var.Stab,500ms) and (not var.GunsDrawn) and (not var.ReloadGesture) and (not KeepDown(var.HolsteredWeapon,3 seconds)) ) or Wiimote.1
+
+//E = keepdown(var.test or var.test3,500ms)
+//Q = keepdown(var.test2,200ms)
+
+//debug = keepdown(released(var.GunsDown),100ms)
+A = KeepDown(var.SwingLeft or var.NunchukSwingLeft,60ms)
+D = KeepDown(var.SwingRight or var.NunchukSwingRight,60ms)
+*/
+

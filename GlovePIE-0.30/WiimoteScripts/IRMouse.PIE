@@ -1,0 +1,34 @@
+// Wiimote mouse script for Windows desktop
+// Requires a sensor bar
+
+var.ButtonFreezeTime = 250ms
+var.PointerBump = KeepDown(Pressed(wiimote.A),var.ButtonFreezeTime) or KeepDown(Pressed(wiimote.B),var.ButtonFreezeTime)
+Wiimote.Led1 = true
+
+// Mouse movement
+if wiimote.PointerVisible but not var.PointerBump then
+  mouse.x = wiimote.PointerX
+  mouse.y = wiimote.PointerY
+end if
+
+// Mouse Buttons
+mouse.LeftButton = Wiimote.A and KeepDown(Wiimote.PointerVisible,0.5s)
+mouse.RightButton = Wiimote.B and KeepDown(Wiimote.PointerVisible,0.5s)
+mouse.MiddleButton = Wiimote.Home and KeepDown(Wiimote.PointerVisible,0.5s)
+mouse.XButton1 = Wiimote.Minus
+mouse.XButton2 = Wiimote.Plus
+
+// Mouse Wheel
+if wiimote.Up then
+  mouse.WheelUp = true
+  wait 30ms
+  mouse.WheelUp = false
+  wait 30ms
+end if
+if wiimote.Down then
+  mouse.WheelDown = true
+  wait 30ms
+  mouse.WheelDown = false
+  wait 30ms
+end if
+

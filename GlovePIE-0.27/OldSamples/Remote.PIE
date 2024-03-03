@@ -1,0 +1,38 @@
+// Type your program here!
+Up = remote.Up
+Down = remote.Down
+Left = remote.Left
+Right = remote.Right
+Alt = remote.FullScreen
+Enter = remote.Ok or Remote.FullScreen
+
+One = remote.One
+Two = remote.Two
+Three = remote.Three
+Four = remote.Four
+Five = remote.Five
+Six = remote.Six
+Seven = remote.Seven
+Eight = remote.Eight
+Nine = remote.Nine
+Zero = remote.Zero
+
+P = remote.P
+L = remote.L
+I = remote.I
+Z = remote.Zoom
+Mute = remote.Mute
+
+Escape = Remote.Off
+NextTrack = Remote.NextTrack
+PrevTrack = Remote.PrevTrack
+
+VolumePlus = Remote.VolumePlus
+VolumeMinus = Remote.VolumeMinus
+PlayPause = Remote.Play or Remote.Pause
+Pause = Remote.Pause
+MediaStop = Remote.Stop
+Media = Remote.TV
+AppMenu = Remote.Menu
+
+

@@ -1,0 +1,123 @@
+//Mouse Control Script using IR
+//by vkapadia
+//vkapadia@vkapadia.com
+//
+//Options:
+var.smooth = 10 //how many frames to smooth over. higher = more smooth, less precise
+//var.smooth doesnt work yet, if you want to change the smoothing,
+//find the "Mouse.CursorPosX =" and "Mouse.CursorPosY =" lines and change
+//the very last number (should be 10 initially) to whatever value.
+var.KITTspeed = 100 ms //delay speed for flashing LEDs. higher = slower
+var.rumble = false //makes the wiimote rumble if you hit the edge of the screen
+//more options to be added later
+
+//Controls:
+//Point Wiimote = Move Mouse
+//D-Pad = Arrow Keys
+//B-Button = Left Click
+//Home = Middle Click
+//A-Button = Right Click
+//Plus and Minus = Control Volume
+//One = Unmapped
+//Two = Unmapped
+//
+//If the pointer hits the edge of the screen, the Wiimote will rumble a bit.
+//
+//The LEDs attempt to emulate KITT's grill from Knight Rider
+
+//Display the location of the mouse in Pixels
+//debug = round(RemoveUnits(Mouse.x * screen.Width)) + ", " + round(RemoveUnits(Mouse.y * screen.Height))
+
+//Set the D-Pad to function as the Arrow Keys
+if wiimote.Up
+Up = true
+Wait 200 ms
+Up = false
+endif
+if wiimote.Down
+Down = true
+Wait 200 ms
+Down = false
+endif
+if wiimote.Left
+Left = true
+Wait 200 ms
+Left = false
+endif
+if wiimote.Right
+Right = true
+Wait 200 ms
+Right = false
+endif
+
+//Mouse Buttons
+Mouse.RightButton = Wiimote.A
+Mouse.LeftButton = Wiimote.B
+Mouse.MiddleButton = Wiimote.Home
+
+//Plus and Minus handle Volume
+if wiimote.plus then
+   volumeup = true
+   wait 60 ms
+   volumeup = false
+endif
+if wiimote.minus then
+   volumedown = true
+   wait 60 ms
+   volumedown = false
+endif
+
+//wiimote.One
+//wiimote.Two
+
+//LEDs look somewhat like KITT's grill from Knight Rider
+if 0 = 0 then
+if var.kitt = 0 then
+wiimote.Leds = 1
+endif
+if var.kitt = 1 then
+wiimote.Leds = 3
+endif
+if var.kitt = 2 then
+wiimote.Leds = 6
+endif
+if var.kitt = 3 then
+wiimote.Leds = 12
+endif
+if var.kitt = 4 then
+wiimote.Leds = 8
+endif
+if var.kitt = 5 then
+wiimote.Leds = 12
+endif
+if var.kitt = 6 then
+wiimote.Leds = 6
+endif
+if var.kitt = 7 then
+wiimote.Leds = 3
+endif
+wait var.KITTspeed
+var.kitt = (var.kitt + 1) % 8
+endif
+
+//If the mouse reaches the end, rumble for 200 milliseconds
+if var.rumble and (mouse.x = 0 or mouse.x = 1 or mouse.y = 0 or mouse.y = 1) then
+if var.rmbl = false
+wiimote.Rumble = 1
+wait 200 ms
+wiimote.Rumble = 0
+endif
+var.rmbl = true
+else
+var.rmbl = false
+endif
+
+//motion (with help from Dunks)
+if wiimote.dot1vis then
+var.actualX=((1-(round(Wiimote.dot1x)/1024))*Screen.Width)
+var.speedX = ((var.actualX/((Screen.Width /2))) - 1) * 10
+if abs(var.speedX) > 1 then Mouse.CursorPosX = Mouse.CursorPosX+var.speedX
+var.actualY=(((round(Wiimote.dot1y)/1024))*Screen.Height)
+var.speedY = ((var.actualY/((Screen.Height /2))) - 1) * 10
+if abs(var.speedY) > 1 then Mouse.CursorPosY = Mouse.CursorPosY+var.speedY
+endif

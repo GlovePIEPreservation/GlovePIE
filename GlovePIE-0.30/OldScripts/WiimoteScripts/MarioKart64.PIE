@@ -1,0 +1,74 @@
+//Mario Kart N64 controls 
+//By petergriffin and TweaK
+
+var.zCutoff1 = 6/30 
+var.zCutoff2 = 12/30 
+var.zCutoff3 = 23/30 
+// Hold the controller sideways like you do in Exite Truck 1 is A, 2 is B 
+// And Right (or Up if held sideways) is use item. Steering is as simple as 
+// Turning the Wiimote right or left. Home is Start. Plus is up and minus is  //down 
+// A is R and B is L 
+// Set the Emulator so that A=A B=B Z=Z Start=S R=R L=L And the Directions set to the arrow keys 
+var.xRot =Wiimote.gx 
+var.yRot =Wiimote.gy 
+var.zRot =Wiimote.gz 
+
+debug = 'X:' + var.xRot + ', ' + 'Y:' + var.yRot + ', ' + 'Z:' + var.zRot 
+
+if var.zRot > var.zCutoff3 then 
+  key.right = true 
+  key.left = true 
+  key.left = false 
+  wait 20ms 
+  key.right = false 
+else if var.zRot < -var.zCutoff3 then 
+  key.left = true 
+  key.right = true 
+  key.right = false 
+  wait 20ms 
+  key.left = false 
+else if var.zRot > var.zCutoff2 then 
+  key.right = true 
+  key.left = true 
+  key.left = false 
+  wait 12ms 
+  key.right = false 
+else if var.zRot < -var.zCutoff2 then 
+  key.left = true 
+  key.right = true 
+  key.right = false 
+  wait 12ms 
+  key.left = false 
+else if var.zRot > var.zCutoff1 then 
+  key.right = true 
+  key.left = true 
+  key.left = false 
+  wait 2ms 
+  key.right = false 
+else if var.zRot < -var.zCutoff1 then 
+  key.left = true 
+  key.right = true 
+  key.right = false 
+  wait 2ms 
+  key.left = false 
+else 
+  key.left = True 
+  key.right = True 
+  key.left = false 
+  key.right = false 
+endif 
+
+
+key.a = Wiimote.One 
+key.b = Wiimote.Two 
+key.z = Wiimote.Right 
+key.s = Wiimote.Home 
+key.up = Wiimote.Plus 
+key.down = Wiimote.Minus 
+key.r = Wiimote.A 
+key.l = Wiimote.B 
+Wiimote.leds = 9 
+
+// The Wiimote will rumble as you press 1 (or accelerate) 
+Wiimote.Rumble = Wiimote.One 
+

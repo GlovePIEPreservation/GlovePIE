@@ -1,0 +1,32 @@
+// Spin the Dreidel!
+// LEDs are as follows:
+// 1 = Shin: Put chocolate coin in pot
+// 2 = Hey: You win half the coins in the pot
+// 3 = Gimel: You win all coins in the pot
+// 4 = Nun: Nothing happens
+// These letters on the Dreidel are yiddish and stand for:
+// nisht, gants, halb, and shtel ayn
+
+// Each player in turns spins or rocks the Wiimote, then either
+// wins or loses chocolate coins.
+
+// Carl Kenner
+
+var.x = delta(wiimote.gx)
+var.movement = Smooth(var.x,30)
+if var.movement > 0.005 then
+  var.movetime = now
+end if
+
+var.stillgoing = now-var.movetime <= 1 second
+
+if var.stillgoing then
+  var.side++
+  if var.side>=5 then var.side=1
+  wait 100 ms
+end if
+if var.side=1 then Wiimote.Leds = 1
+if var.side=2 then Wiimote.Leds = 2
+if var.side=3 then Wiimote.Leds = 4
+if var.side=4 then Wiimote.Leds = 8
+

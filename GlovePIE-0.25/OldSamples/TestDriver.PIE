@@ -1,0 +1,5 @@
+// Type your program here!
+if glove2.led4vis then
+  debug = glove2.led4v1
+end
+

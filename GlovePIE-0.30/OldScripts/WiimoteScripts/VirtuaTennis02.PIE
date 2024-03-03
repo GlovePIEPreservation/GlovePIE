@@ -1,0 +1,40 @@
+// Virtua Tennis PC Script V.0.2 by Jm6tm ! 
+// Work on AZERTY Keyboard 
+
+//Debug 
+debug = "X:"+ Wiimote.RelAccX + "  Y:"+ Wiimote.RelAccY 
+
+// Control Movement 
+
+// In menu 
+Enter = Wiimote.Home 
+Up = Wiimote.Up 
+Down = Wiimote.Down 
+Left = Wiimote.Left 
+Right = Wiimote.Right 
+key.A = Wiimote.Plus = Wiimote.A 
+key.S = Wiimote.Minus = Wiimote.B 
+Tab = Wiimote.One 
+Space = Wiimote.Two 
+
+// In game using the nunchuck 
+Up = Wiimote.Nunchuk.JoyY < -0.4                    //Displacement of the player on the ground 
+Down = Wiimote.Nunchuk.JoyY > 0.4 
+Left = Wiimote.Nunchuk.JoyX < -0.4 
+Right = Wiimote.Nunchuk.JoyX > 0.4 
+
+
+if Wiimote.RelAccX >= 30  then       //  For smash 
+   Press(A) 
+   Wiimote.Rumble = True 
+   Wait 200 ms 
+   Release(A) 
+   Wiimote.Rumble = False 
+elseif( Wiimote.RelAccX >= 10 and Wiimote.RelAccY >= 10) then   // For Lob 
+   Press(S) 
+   Wiimote.Rumble = True 
+   Wait 200 ms 
+   Release(S) 
+   Wiimote.Rumble= False 
+endif 
+

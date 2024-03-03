@@ -1,0 +1,108 @@
+// Carl Kenner's Wiimote Speaker Test script! Version 2
+// A = start sound, B = stop sound
+// Minus = decrease sample frequency
+// Plus = increase sample frequency
+// It takes a short time to start (due to delays built into Poke)
+
+// Change the next line to set the rate at which sound data is sent
+// BUT it must be low enough for the wiimote to respond to the B button
+// it may depend on your PC speed. Must be at least 91 for freq 13.
+pie.FrameRate = 120 Hz
+
+if not var.initialized then
+  var.freq = 13 // Set sample rate = 3640 Hz (so computer can keep up)
+  var.volume = 0x40 // volume = 40 ??? Seems to be about max
+  debug = var.freq
+  var.initialized = true
+end if
+
+if var.On and (not Wiimote.One) and (not Wiimote.Two) then
+  // Report 18, send 20 bytes, square wave, 1/4 sample rate freq
+  WiimoteSend(1, 0x18, 20 shl 3, 0xCC,0x33,0xCC,0x33,0xCC,0x33,0xCC,0x33,0xCC,0x33, 0xCC,0x33,0xCC,0x33,0xCC,0x33,0xCC,0x33,0xCC,0x33)
+else if var.On and Wiimote.One then
+  // Report 18, send 20 bytes, square wave, 1/2 sample rate freq
+//  WiimoteSend(1, 0x18, 20 shl 3, 0xC3,0xC3,0xC3,0xC3,0xC3,0xC3,0xC3,0xC3,0xC3,0xC3, 0xC3,0xC3,0xC3,0xC3,0xC3,0xC3,0xC3,0xC3,0xC3,0xC3)
+  WiimoteSend(1, 0x18, 20 shl 3, 0xCC,0xCC,0xCC,0xCC,0xCC,0xCC,0xCC,0xCC,0xCC,0xCC, 0xCC,0xCC,0xCC,0xCC,0xCC,0xCC,0xCC,0xCC,0xCC,0xCC)
+else if var.On and Wiimote.Two then
+  // Report 18, send 20 bytes, square wave, 1/8 sample rate freq
+  WiimoteSend(1, 0x18, 20 shl 3, 0xCC,0xCC,0x33,0x33,0xCC,0xCC,0x33,0x33,0xCC,0xCC, 0x33,0x33,0xCC,0xCC,0x33,0x33,0xCC,0xCC,0x33,0x33)
+end if
+
+
+if pressed(Wiimote.A) then
+  // Enable Speaker
+  Wiimote.Report14 = 0x04 | Int(Wiimote.Rumble)
+  // Mute Speaker
+  Wiimote.Report19 = 0x04 | Int(Wiimote.Rumble)
+  // Write 0x01 to register 0xa20009
+  WiimotePoke(1, 0x04a20009, 0x01)
+  // Write 0x08 to register 0xa20001
+  WiimotePoke(1, 0x04a20001, 0x08)
+  // Write 7-byte configuration to registers 0xa20001-0xa20008
+  WiimotePoke(1, 0x04a20001, 0x00)
+  WiimotePoke(1, 0x04a20002, 0x00)
+  WiimotePoke(1, 0x04a20003, 0x00)
+  WiimotePoke(1, 0x04a20004, var.freq)
+  WiimotePoke(1, 0x04a20005, var.volume) // 40
+  WiimotePoke(1, 0x04a20006, 0x00)
+  WiimotePoke(1, 0x04a20007, 0x00)
+  // Write 0x01 to register 0xa20008
+  WiimotePoke(1, 0x04a20008, 0x01)
+  // Unmute speaker
+  Wiimote.Report19 = 0x00 | Int(Wiimote.Rumble)
+  var.On = true
+end if
+
+if pressed(Wiimote.B) then
+  var.On = false
+  Wiimote.Report19 = 0x04 | Int(Wiimote.Rumble) // Mute Speaker
+  Wiimote.Report14 = 0x00 | Int(Wiimote.Rumble) // Disable speaker
+end if
+
+if pressed(Wiimote.Plus) then
+  var.freq--
+  debug = var.freq
+  // Mute Speaker
+  Wiimote.Report19 = 0x04 | Int(Wiimote.Rumble)
+  // Write 0x01 to register 0xa20009
+  WiimotePoke(1, 0x04a20009, 0x01)
+  // Write 0x08 to register 0xa20001
+  WiimotePoke(1, 0x04a20001, 0x08)
+  // Write 7-byte configuration to registers 0xa20001-0xa20008
+  WiimotePoke(1, 0x04a20001, 0x00)
+  WiimotePoke(1, 0x04a20002, 0x00)
+  WiimotePoke(1, 0x04a20003, 0x00)
+  WiimotePoke(1, 0x04a20004, var.freq) // max volume?
+  WiimotePoke(1, 0x04a20005, var.volume)
+  WiimotePoke(1, 0x04a20006, 0x00)
+  WiimotePoke(1, 0x04a20007, 0x00)
+  // Write 0x01 to register 0xa20008
+  WiimotePoke(1, 0x04a20008, 0x01)
+  // Unmute speaker
+  Wiimote.Report19 = 0x00 | Int(Wiimote.Rumble)
+end if
+
+if pressed(Wiimote.Minus) then
+  var.freq++
+  debug = var.freq
+  // Mute Speaker
+  Wiimote.Report19 = 0x04 | Int(Wiimote.Rumble)
+  // Write 0x01 to register 0xa20009
+  WiimotePoke(1, 0x04a20009, 0x01)
+  // Write 0x08 to register 0xa20001
+  WiimotePoke(1, 0x04a20001, 0x08)
+  // Write 7-byte configuration to registers 0xa20001-0xa20008
+  WiimotePoke(1, 0x04a20001, 0x00)
+  WiimotePoke(1, 0x04a20002, 0x00)
+  WiimotePoke(1, 0x04a20003, 0x00)
+  WiimotePoke(1, 0x04a20004, var.freq) // max volume?
+  WiimotePoke(1, 0x04a20005, var.volume)
+  WiimotePoke(1, 0x04a20006, 0x00)
+  WiimotePoke(1, 0x04a20007, 0x00)
+  // Write 0x01 to register 0xa20008
+  WiimotePoke(1, 0x04a20008, 0x01)
+  // Unmute speaker
+  Wiimote.Report19 = 0x00 | Int(Wiimote.Rumble)
+end if
+
+var.samplelength =

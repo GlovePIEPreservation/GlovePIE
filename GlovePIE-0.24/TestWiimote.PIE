@@ -1,0 +1,60 @@
+// This script is just to show you how Wiimote scripts look
+// If you want to use the wiimote as a mouse, you will need to write
+// or find something fancier. See the Wiili forums or chat for help.
+// Or join the GlovePIE Yahoo group:
+//   http://groups.yahoo.com/group/glovepie
+
+// Set keys to wiimote buttons
+Up = Wiimote.Up
+Down = Wiimote.Down
+Left = Wiimote.Left
+Right = Wiimote.Right
+A = Wiimote.A
+B = Wiimote.B
+One = Wiimote.One
+Two = Wiimote.Two
+Home = Wiimote.Home
+Minus = Wiimote.Minus
+Equals = Wiimote.Plus
+
+// Rumble when shift is pressed
+Wiimote.Rumble = Shift
+
+// Set the middle two LEDs to ON
+Wiimote.Led1 = false
+Wiimote.Led2 = true
+Wiimote.Led3 = true
+Wiimote.Led4 = false
+
+// Show the IR dots as fake cursors
+Cursor1.Visible = Wiimote.dot1vis
+Cursor1.x = Wiimote.dot1x / 1023
+Cursor1.y = Wiimote.dot1y / 1023
+
+Cursor2.Visible = Wiimote.dot2vis
+Cursor2.x = Wiimote.dot2x / 1023
+Cursor2.y = Wiimote.dot2y / 1023
+
+Cursor3.Visible = Wiimote.dot3vis
+Cursor3.x = Wiimote.dot3x / 1023
+Cursor3.y = Wiimote.dot3y / 1023
+
+Cursor4.Visible = Wiimote.dot4vis
+Cursor4.x = Wiimote.dot4x / 1023
+Cursor4.y = Wiimote.dot4y / 1023
+
+// Check expansion
+if Wiimote.HasClassic then
+  var.expansion = "Has Classic ("+IntToHex(Wiimote.Expansion)+")"
+else if Wiimote.HasNunchuk then
+  var.expansion = "Has Nunchuk ("+IntToHex(Wiimote.Expansion)+")"
+else if Wiimote.Expansion<>0 then
+  var.expansion = "Has ? ("+IntToHex(Wiimote.Expansion)+")"
+else
+  var.expansion = ""
+end if
+
+// Show expansion and wiimote forces
+debug = var.Expansion+';   '+Wiimote.RawForceX+',   '+Wiimote.RawForceY+',   '+Wiimote.RawForceZ
+
+

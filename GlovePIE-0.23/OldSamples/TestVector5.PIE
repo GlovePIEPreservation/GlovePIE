@@ -1,0 +1,7 @@
+// Type your program here!
+var.u = [1,0,0]
+var.v = [-1,1,0]
+var.cos = (var.u . var.v) / (|var.u| * |var.v|)
+var.angle = acos(var.cos)
+debug = var.angle
+

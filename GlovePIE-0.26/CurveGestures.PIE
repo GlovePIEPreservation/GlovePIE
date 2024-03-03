@@ -1,0 +1,17 @@
+debug = var.CompleteCircleZ+', '+ pie.FrameRate
+// Get the acceleration and velocity
+var.a = RemoveUnits(smooth(p5.Acceleration in m per s per s))
+var.v = RemoveUnits(smooth(p5.Velocity in m per s))
+
+//debug = sin(math.AngleBetween(var.a, var.v))* |var.a|*|var.v|
+
+// Calculate the cross product
+// Cross product is large if both are large, and large if they are perpendicular
+// It is also at right angles to both.
+var.curvature = smooth(var.a cross var.v)
+var.ClockwiseZ = var.curvature[3]
+var.ClockwiseY = var.curvature[2]
+var.ClockwiseX = var.curvature[1]
+
+var.CompleteCircleZ = (var.ClockwiseZ>2) and (var.v[2]<-1), (var.ClockwiseZ>2) and (var.v[2]>1)//, (var.ClockwiseZ>2) and (var.v[2]1)
+

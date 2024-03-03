@@ -1,0 +1,559 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Programmable Input Emulator 0.41</title>
+                    
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+           
+  <meta name="author" content="Carl Kenner">
+</head>
+  <body>
+     
+<h1>Programmable Input Emulator 0.41 Introduction</h1>
+   <br>
+
+(Don't forget to also read the Documentation.rtf file)<p>
+   The GlovePIE Programmable Input Emulator (previously known as PIE) emulates input devices 
+by using other input devices.<br>
+   This means you can use the joystick in a keyboard only game (eg. DOOM3)
+ or the keyboard in a joystick only game (eg. Return Of The King Co-op mode). 
+ Or you can control any game with a virtual reality glove. Or you can create 
+ macros to do complex moves at the touch of a button (eg. Mortal Kombat). 
+Or you can play musical instruments from your PC.<br>
+   <br>
+   This is still a beta version, so it will be buggy and incomplete.<br>
+     
+<h2>You can emulate:</h2>
+     
+<ul>
+     <li>the mouse</li>
+     <li>the keyboard (on windows 2000 and XP)</li>
+     <li>Multiple joysticks or gamepads (if you download and install PPJoy)</li>
+     <li>Multiple MIDI devices (if you download and install Midi Yoke or
+Hubi's  loopback driver)</li>
+     <li>Microphone input (in theory)</li>
+     
+</ul>
+   <br>
+     
+<h2>You can get input from:</h2>
+     
+<ul>
+     <li>multiple mice</li>
+     <li>multiple keyboards</li>
+     <li>multiple joysticks or gamepads</li>
+     <li>Multiple Essential Reality P5 virtual reality gloves</li>
+     <li>multiple MIDI devices</li>
+     <li>a microphone</li>
+     
+</ul>
+   <br>
+     
+<h2>Requirements:</h2>
+     
+<ul>
+     <li>DirectX 8 or higher</li>
+     <li>PPJoy if you want to use virtual joysticks</li>
+     <li>Midi Yoke if you want to emulate MIDI
+input</li>
+     <li>Windows 2000 or above if you want to emulate the keyboard</li>
+     <li>SAPI 5.0 (Comes with Windows XP and Office XP) or SAPI 5.1 if you
+ want speech synthesis and recognition</li>
+     
+</ul>
+   I highly recommend buying an Essential Reality P5 virtual reality glove. 
+ They are very cheap. You can do wonderous 
+things with a virtual reality glove and PIE! Actually you should buy two since
+they are cheap and you save on shipping if you buy both at once.<br>
+   <br>
+     
+<h2>Installing:</h2>
+   <br>
+   Just extract the ZIP file into whatever folder you want. &nbsp;There is
+ no installation program.<br>
+   You will also need to download and install PPJoy and Midi Yoke if you
+want  to use them. After you install PPJoy you need to create at least one
+virtual  joystick.<br>
+   You should associate .PIE files with GlovePIE in windows, so you can just click 
+ on PIE scripts and open them in GlovePIE.<br>
+   <br>
+     
+<h2>Uninstalling:</h2>
+   Just delete the folder you installed GlovePIE into.<br>
+   You may also want to remove or change the association for .PIE files.<br>
+   <br>
+     
+<h2>Running:</h2>
+   You can start GlovePIE by double clicking on its icon in windows explorer,
+or  by double clicking on a .PIE file if you have set up the associations.
+You  can also start it from a command prompt (aka DOS window), or create
+a shortcut  to it on your desktop, quick-launch bar, or start menu. <br>
+   <br>
+   By default, when PIE starts it displays an empty script window. You can
+ write a new PIE script there, or you can load an existing file from the
+file  menu. But it will not actually do anything until you choose "Run" from
+the  "Run!" menu. Then it will check your script for errors and run it. If
+there  are any errors it will just ignore those lines. When you have finished
+playing  you can choose "Stop" from the "Run!" menu. PIE will not emulate
+anything  unless it is running. Exiting PIE by closing its window will stop
+all emulation.  You can also just check your program for errors without running
+it by choosing  "Check for errors" from the "Run" menu. If there are any
+errors a box will  pop up at the bottom of the window with a list of errors
+and line numbers.  If nothing appears then there are no errors. You can tell
+when your script  is running because the title bar at the top of the window
+will change.<br>
+   <br>
+   If you run PIE from the command prompt or a shortcut then you can specify 
+ command line parameters. You must use quotation marks around any parameter 
+ which includes a space.<br>
+     
+<table cellpadding="2" cellspacing="2" border="1" width="60%">
+     <tbody>
+       <tr>
+         <td valign="top"><i>filename.PIE</i><br>
+         </td>
+         <td valign="top">The name of a PIE script to open. You may or may
+ not include the .PIE extension. The script will not do anything until you
+ choose "Run" from the "Run!" menu.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">                     
+      <pre>-<i>filename.PIE</i></pre>
+         </td>
+         <td valign="top">The name of a PIE script to open and run. You may 
+ or may not include the .PIE extension. It will start running automatically<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">                     
+      <pre>/r:<i>filename.EXE</i></pre>
+         </td>
+         <td valign="top">The name of a .EXE file or other program to start 
+ running automatically when PIE starts. This allows you to start the game 
+and PIE at the same time.<br>
+         </td>
+       </tr>
+           
+  </tbody>   
+</table>
+   <br>
+   <br>
+     
+<h2>Menus:</h2>
+   PIE has the following menus:<br>
+   <br>
+     
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+     <tbody>
+       <tr>
+         <td valign="top">File<br>
+         </td>
+         <td valign="top"><br>
+         </td>
+         <td valign="top">Standard file menu. Except the only way to save 
+files  is by choosing "Save As..."<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">File<br>
+         </td>
+         <td valign="top">New<br>
+         </td>
+         <td valign="top">Clears the script window. You will lose your work 
+ if you haven't saved it.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">File<br>
+         </td>
+         <td valign="top">Open...<br>
+         </td>
+         <td valign="top">Load a PIE script file. This will not start it
+running  until you choose "Run" from the "Run!" menu. <br>
+   You will lose your work if you haven't saved it.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">File<br>
+         </td>
+         <td valign="top">Save As...<br>
+         </td>
+         <td valign="top">The only way to save a file. If you don't use this 
+ you will lose your work! <br>
+   You need to choose the filename every time. Sorry.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">File<br>
+         </td>
+         <td valign="top">Exit<br>
+         </td>
+         <td valign="top">Quit PIE and stop emulating anything. Please save 
+ your work before you choose this. <br>
+   It will NOT ask you whether you want to save.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">Edit<br>
+         </td>
+         <td valign="top"><br>
+         </td>
+         <td valign="top">Standard edit commands<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">Run!<br>
+         </td>
+         <td valign="top"><br>
+         </td>
+         <td valign="top">The Run menu is for running and checking your script. 
+ It won't emulate anything unless it is running.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">Run!<br>
+         </td>
+         <td valign="top">Check for errors<br>
+         </td>
+         <td valign="top">Check the script for errors. This was called "Compile" 
+ in the previous version. <br>
+   Only use this while your program is not running.<br>
+   A box will pop up at the bottom of the window if there are any errors. 
+Errors  will also be highlighted in red.<br>
+   You can single-click on an error in the box to go to that line.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">Run!<br>
+         </td>
+         <td valign="top">Run<br>
+         </td>
+         <td valign="top">Start your script going. This starts the actual 
+emulation  process. <br>
+   Basically it will just loop through your script about 40 times per second.<br>
+   If there are any errors they will be highlighted and included in the error 
+ box, but the script will still run and just ignore those lines.<br>
+   The script will keep running until you chose "Stop" from the "Run!" menu, 
+ or try to close the PIE window.<br>
+   While running, your script may move the cursor around or press keys which 
+ may do bad things to the PIE window if it is in the foreground.<br>
+   I recommend starting notepad and placing it in the foreground while you
+ are running a script that presses keys.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">Run!<br>
+         </td>
+         <td valign="top">Stop<br>
+         </td>
+         <td valign="top">Stops your script running. You should do this before 
+ you check for errors or run your program again. <br>
+   You don't need to do this before closing the window, that will stop it 
+automatically.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">Settings<br>
+         </td>
+         <td valign="top"><br>
+         </td>
+         <td valign="top">Turns the P5 gloves' mouse mode off, or brings
+up  Control Panel applets for the various input devices PIE uses.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">Settings<br>
+         </td>
+         <td valign="top">Turn P5 Mouse Mode Off<br>
+         </td>
+         <td valign="top">If you have any P5 virtual reality gloves connected, 
+ this will switch off mouse mode for all of them. <br>
+   Don't do this while your script is running or the P5 will no longer work 
+ with it.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">Settings<br>
+         </td>
+         <td valign="top">Control Panel<br>
+         </td>
+         <td valign="top">Starts control panel<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">Settings<br>
+         </td>
+         <td valign="top">P5<br>
+         </td>
+         <td valign="top">This will bring up the P5 control panel (for your 
+ virtual reality glove) if it is installed.<br>
+   You can calibrate or test your bend sensors, change the mouse mode settings, 
+ or test the buttons.<br>
+   This is the original Essential Reality version that only supports a single 
+ glove. If you want to calibrate or change the settings for multiple gloves, 
+ you should download the Dual Mode Driver and use its VBControlPanel instead.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">Settings<br>
+         </td>
+         <td valign="top">PPJoy<br>
+         </td>
+         <td valign="top">Brings up the PPJoy control panel, if PPJoy is
+installed.  This allows you to add virtual joysticks or set the number of
+buttons, axes  and hats the virtual joystick has. You can also chose which
+axes or hats correspond to analog0 to analog15, and what buttons or hats
+correspond to digital0 to digital31.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">Settings<br>
+         </td>
+         <td valign="top">Joystick<br>
+         </td>
+         <td valign="top">Brings up the Game Controllers or Joystick control 
+ panel. It allows you to test your virtual joystick. I don't recommend calibrating 
+ virtual joysticks.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">Settings<br>
+         </td>
+         <td valign="top">Mouse<br>
+         </td>
+         <td valign="top">Brings up the mouse control panel.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">Settings<br>
+         </td>
+         <td valign="top">Keyboard<br>
+         </td>
+         <td valign="top">Brings up the keyboard control panel.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">Settings<br>
+         </td>
+         <td valign="top">MIDI<br>
+         </td>
+         <td valign="top">Brings up the closest thing to a MIDI control panel. 
+ This should allow you to chose which MIDI device you want to use as the default
+ output.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">Settings<br>
+         </td>
+         <td valign="top">Speech<br>
+         </td>
+         <td valign="top">Tries to bring up the Speech control panel to change 
+ the default text to speech voice. This may not work if the SAPI is not installed 
+ in the default directory.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">TroubleShooter<br>
+         </td>
+         <td valign="top"><br>
+         </td>
+         <td valign="top">This menu allows you to disable features that you 
+ don't think are working or are giving you errors. The settings are not saved 
+ between sessions. <br>
+   It was designed for an error some people got with the joystick, but those 
+ error messages no longer appear so it is unnecessary.<br>
+         </td>
+       </tr>
+       <tr>
+         <td valign="top">Help<br>
+         </td>
+         <td valign="top"><br>
+         </td>
+         <td valign="top">Get help on PIE.<br>
+         </td>
+       </tr>
+           
+  </tbody>   
+</table>
+   <br>
+   <br>
+     
+<h2>Scripting Tutorial:</h2>
+     
+<h3>Tutorial 1 - easy stuff</h3>
+   Lets make a pie script to simulate pressing the W, A, S and D keys when
+ you press the arrow keys.<br>
+   This will not work on Windows 98.<br>
+   <br>
+   Start up PIE.<br>
+   Choose the "File" Menu, then click "New". This will clear whatever was 
+in  the big white box so you can type your own script.<br>
+   We want the W key to be controlled by the up key so type this on one line 
+ then press Enter:<br>
+   <br>
+   W = Up<br>
+   <br>
+   This is a working PIE Script so you can test it by choosing the "Run!" 
+menu  and clicking "Run". <br>
+   <br>
+   Whenever you press the up arrow key (on the cursor pad, not the numeric
+ keypad) it will type a "w". Try it out! This will work in any program.<br>
+   Note that it will still move the cursor up. The Up arrow key still has 
+its  original function, but it emulates a w at the same time. Try holding 
+down  shift and pressing Up. It will type a capital W, unless capslock is 
+on. Unlike  the real "W" key, holding down the Up arrow will only type a single
+"w".<br>
+   <br>
+   Now chose the "Run!" menu and click "Stop". This will return our keyboard 
+ to normal.<br>
+   <br>
+   Now do the other keys like this:<br>
+   <br>
+   A = Left<br>
+   S = Down<br>
+   D = Right<br>
+   <br>
+   (Don't worry if the S is orange, that is because S is also an abbreviation 
+ for seconds).<br>
+   <br>
+   Save your script as Tutorial1.PIE by chosing the "File" menu then "Save
+ As...".<br>
+   And run it again. Stop it when you have finished playing.<br>
+   <br>
+   You can change it to use any keys you want. You can even use keys that 
+don't  exist on your keyboard, like the MediaPlay key which is on some multimedia 
+ keyboards. If you don't know what a key is called, just guess. It is not 
+fussy about the key names. You could have written this and it would still 
+work:<br>
+   <br>
+   W = UpArrow<br>
+   A = CursorLeft<br>
+   <br>
+   If you want to make it clear that it is a key on the keyboard, you can 
+type  this:<br>
+   <br>
+   key.W = key.Up<br>
+   <br>
+   (When you type the dot it will pop up with a list of keys. If you can't
+ get out of this, click somewhere in the PIE window. Then press Control +
+Space and the list will pop up again, but this time it should work. If not,
+choose the "Troubleshooter" menu and click "Disable Code Completion")<br>
+   <br>
+   or this:<br>
+   <br>
+   keyboard.W = keyboard.Up<br>
+   <br>
+   or even this:<br>
+   <br>
+   keyboard's W = UpArrow of Keyboard<br>
+   <br>
+   <br>
+     
+<h3>Tutorial 2 - emulating a joystick</h3>
+   This time we will control a virtual joystick using the keyboard.<br>
+   This will only work if you have downloaded and installed PPJoy.<br>
+   <br>
+   This is not really much harder to do in PIE than the keyboard, but we
+have  know how to use PPJoy and the joystick control panel first. So please
+be patient.<br>
+   <br>
+   Start PIE.<br>
+   Click File/New.<br>
+   <br>
+   But before we write our script, we need to make sure PPJoy is set up correctly.<br>
+   Chose the "Settings" menu and click "PPJoy".<br>
+   If PPJoy is installed it should pop up with a window titled &nbsp;"PPJoy 
+ Joystick and Gamepad Configuration Utility".<br>
+   There is a big white list box in the middle of the window with the heading 
+ "Configured joysticks". One of the items in the list needs to be "Virtual 
+ Joystick 1".<br>
+   <br>
+   If Virtual Joystick 1 is not there, or the box is empty then you need
+to  do the following:<br>
+     
+<ul>
+     <li>click the "Add..." button.</li>
+     <li>Where it says "Parallel port" choose "Virtual port"</li>
+     <li>Where it says "Controller number" choose "Controller 1"</li>
+     <li>Click the "Add" button</li>
+     <li>Now wait and go through the hardware setup dialog boxes that pop 
+up</li>
+     <li>Choose the default options in any dialog boxes</li>
+     <li>Be patient, it needs to find and install several drivers</li>
+     
+</ul>
+   Regardless of whether it was there before, or you just added it, you should 
+ have a "Virtual Joystick 1" in the list box. Select it and choose "Mapping". 
+ It will pop up with the dialog box saying "Welcome to the Joystick/Pad mapping 
+ wizard". If it doesn't work then you probably weren't patient enough in the
+ previous step. Choose "Set a custom mapping for this controller" (which should
+ already be selected) and click "Next &gt;".&nbsp; Now you can choose how
+many axes, buttons and hats the virtual joystick should have, and which axes
+they are. Leave the default settings and click "Next &gt;". Now you can choose
+ which analog inputs control which axes. You will notice that analog0 controls
+ the x axis (horizontal), and analog1 controls the y axis (vertical). These
+ are good defaults so click "Next &gt;". Now you can choose which digital
+inputs should control which buttons. Notice digital 0 controls joystick button
+1, and digital 1 controls joystick button 2. These are also good defaults
+so choose next. Now you can choose which analog or digital inputs control
+the imaginary hats on the top of the joystick. One will be controlled by
+digitals 16-19 and the other will be controlled by analog 8. These are good
+defaults too, so click Next and then Finish.<br>
+   <br>
+   Click "Done" in the PPJoy control panel and go back to PIE.<br>
+   <br>
+   We can test the virtual joystick we just made by choosing the "Settings" 
+ menu and chosing "Joystick". This will open up the joystick control panel. 
+ Choose PPJoy Virtual Joystick 1 and click "Properties". Now it will pop up
+ with another dialog box, choose the "Test" tab. This displays all the axes
+ and buttons on the virtual joystick. They should all be in the middle.<br>
+   <br>
+   Now lets make a PIE script to control the virtual joystick. Assuming your 
+ screen resolution is 1024 by 768, Type the following:<br>
+   <br>
+   ppjoy.analog0 = (mouse.cursorposx - 512) / 512<br>
+   <br>
+   Remember how analog 0 was the x axis in the mapping before? Well it was. 
+ <br>
+  <br>
+  The above line sets the analog 0 value for virtual joystick 1 to a number 
+ between -1 and 1 depending on the location of the mouse cursor on the screen.<br>
+   <br>
+   Now run your script by choosing Run/Run on the menu. Go back to the Joystick 
+ control panel's test tab and see how the horizontal position of the cross 
+ in the box is controlled by the mouse.<br>
+   <br>
+   Now let's do the same for the y axis (384 is half the screen height):<br>
+   <br>
+   ppjoy.analog1 = &nbsp;(mouse.cursorposy - 384) / 384<br>
+   <br>
+   This works because PIE uses joystick values between -1 and 1. The cursor 
+ position is in pixels from 0 to 767. Subtracting 384 gives a value between 
+ -384 and 383. Dividing by 384 gives a value between -1 and (almost) 1.<br>
+   <br>
+   There is an easier way to do the exact same above calculations in PIE:<br>
+   <br>
+   ppjoy.analog0 = MapRange(mouse.cursorposx, 0,1023, -1,1)<br>
+   ppjoy.analog1 = MapRange(mouse.cursorposy, 0,767, -1,1)<br>
+   <br>
+   Now let's do the buttons:<br>
+   <br>
+   ppjoy.digital0 = mouse.LeftButton<br>
+   ppjoy.digital1 = mouse.RightButton<br>
+   ppjoy.digital2 = mouse.MiddleButton<br>
+   ppjoy.digital3 = mouse.XButton1<br>
+   ppjoy.digital4 = mouse.XButton2<br>
+   <br>
+   Now run your script and test it in the joystick control panel or a game. 
+ You should be able to control the joystick with the mouse.<br>
+   <br>
+   If you wanted to control virtual joystick 2, you would just change ppjoy
+ to ppjoy2.<br>
+  eg. ppjoy2.digital0 = mouse.LeftButton<br>
+  <br>
+  <br>
+ 
+</body>
+</html>

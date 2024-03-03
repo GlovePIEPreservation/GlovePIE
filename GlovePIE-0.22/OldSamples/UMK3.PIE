@@ -1,0 +1,164 @@
+// Type your program here!
+var.Fist = glove1.index>40 and glove1.middle>40 and glove1.ring>40 and glove1.pinky>40
+
+var.HandHigh = glove1.y > 300
+var.HandLow = glove1.y <= 300
+
+//p5.index<20 and p5.middle<20 and p5.ring<20 and p5.pinky<20
+
+var.FootHigh = glove2.y > 300
+var.FootLow = glove2.y <= 300
+
+var.Uppercut = (var.Fist) and (glove1.FingersUp) and ((glove1.PalmBack) or (glove1.PalmLeft)) and (glove1.yv>3000)
+var.Jetpunch = var.Fist and glove1.yv > 3000 and not var.Uppercut
+
+var.Jump = (glove2.yv > 1000) and (abs(glove2.xv) < 1000) and (abs(glove2.zv) < 1000)
+var.Sweep = (glove2.zv < - 2000) and (abs(glove2.yv) < 2000)
+
+var.LiuKangFireRight = (glove1.xllll and glove1.FingersForward and glove1.PalmRight and glove1.xv > 500)
+var.LiuKangFireLeft = (glove1.xllll and (glove1.FingersForward or glove1.FingersBack) and glove1.PalmLeft and glove1.xv < -500)
+
+var.ReptileBallRight = (glove1.xrrrr and glove1.FingersRight and glove1.PalmUp and glove1.yv < -1000)
+
+if ((Key.AppMenu or var.Uppercut) and (var.NumUppercut = 0)) then var.NumUppercut = 1
+if ((var.JetPunch) and (var.NumJetPunch = 0)) then var.NumJetPunch = 1
+if ((var.LiuKangFireRight and var.HandHigh) and (var.NumFFHP=0)) then var.NumFFHP = 1
+if ((var.LiuKangFireRight and var.HandLow) and (var.NumFFLP=0) and (var.NumFFHP=0)) then var.NumFFLP = 1
+
+var.HandSwing = (hypot(glove1.xv, glove1.yv, glove1.zv)>3000) and (not var.Uppercut) and (not var.JetPunch)
+var.FootSwing = (hypot(glove2.xv, glove2.yv, glove2.zv)>3000) and (not var.Jump) and (not var.Sweep)
+
+if ((RSHIFT or var.ReptileBallRight or ((glove1.xv > 2000) and not var.Fist)) and (var.NumFFHPLP = 0) and (var.NumFFHP = 0) and (var.NumFFLP = 0)) then
+  var.NumFFHPLP = 1
+end
+if ((RCtrl or ((glove1.xv < -2000) and not var.Fist)) and (var.NumBBHPLP = 0)) then
+  var.NumBBHPLP = 1
+end
+
+
+if var.NumFFHP div 2 = 1 then var.CoolForwards = true
+if var.NumFFHP div 2 = 2 then var.CoolForwards = false
+if var.NumFFHP div 2 = 3 then var.CoolForwards = true
+if var.NumFFHP div 2 = 4 then var.CoolForwards = false
+if var.NumFFHP div 2 = 5 then var.CoolHP = true
+if var.NumFFHP div 2 = 6 then var.CoolHP = false
+if var.NumFFHP div 2 = 7 then var.NumFFHP = 0
+if var.NumFFHP > 0 then var.NumFFHP = var.NumFFHP + 1
+
+if var.NumFFLP div 2 = 1 then var.CoolForwards = true
+if var.NumFFLP div 2 = 2 then var.CoolForwards = false
+if var.NumFFLP div 2 = 3 then var.CoolForwards = true
+if var.NumFFLP div 2 = 4 then var.CoolForwards = false
+if var.NumFFLP div 2 = 5 then var.CoolLP = true
+if var.NumFFLP div 2 = 6 then var.CoolLP = false
+if var.NumFFLP div 2 = 7 then var.NumFFLP = 0
+if var.NumFFLP > 0 then var.NumFFLP = var.NumFFLP + 1
+
+
+
+if var.NumUppercut div 2 = 1 then var.CoolDown = true
+if var.NumUppercut div 2 = 5 then var.CoolHP = true
+if var.NumUppercut div 2 = 6 then var.CoolHP = false
+if var.NumUppercut div 2 = 7 then var.CoolDown = false
+if var.NumUppercut div 2 = 8 then var.NumUppercut = 0
+if var.NumUppercut > 0 then var.NumUppercut = var.NumUppercut + 1
+
+if var.NumJetPunch div 2 = 1 then var.CoolDown = true
+if var.NumJetPunch div 2 = 2 then var.CoolDown = false
+if var.NumJetPunch div 2 = 3 then var.CoolBack = true
+if var.NumJetPunch div 2 = 4 then var.CoolBack = false
+if var.NumJetPunch div 2 = 5 then var.CoolHP = true
+if var.NumJetPunch div 2 = 6 then var.CoolHP = false
+if var.NumJetPunch div 2 = 8 then var.NumJetPunch = 0
+if var.NumJetPunch > 0 then var.NumJetPunch = var.NumJetPunch + 1
+
+if var.NumFFHPLP div 2 = 1 then var.CoolForwards = true
+if var.NumFFHPLP div 2 = 2 then var.CoolForwards = false
+if var.NumFFHPLP div 2 = 3 then var.CoolForwards = true
+if var.NumFFHPLP div 2 = 4 then var.CoolForwards = false
+if var.NumFFHPLP div 2 = 5 then
+  var.CoolHP = true
+  var.CoolLP = true
+end
+if var.NumFFHPLP div 2 = 6 then
+  var.CoolHP = false
+  var.CoolLP = false
+end
+if var.NumFFHPLP div 2 = 7 then var.CoolForwards = true
+if var.NumFFHPLP div 2 = 8 then var.CoolForwards = false
+if var.NumFFHPLP div 2 = 9 then var.CoolForwards = true
+if var.NumFFHPLP div 2 = 10 then var.CoolForwards = false
+if var.NumFFHPLP div 2 = 11 then
+  var.CoolHP = true
+end
+if var.NumFFHPLP div 2 = 12 then
+  var.CoolHP = false
+end
+if var.NumFFHPLP div 2 >= 13 then var.NumFFHPLP = 0
+if var.NumFFHPLP > 0 then
+  var.NumFFHPLP = var.NumFFHPLP + 1
+end
+
+if ((RAlt or p5.y > 900) and (var.NumBBBHP=0)) then var.NumBBBHP = 1
+if var.NumBBBHP div 2 = 1 then var.CoolBack = true
+if var.NumBBBHP div 2 = 2 then var.CoolBack = false
+if var.NumBBBHP div 2 = 3 then var.CoolBack = true
+if var.NumBBBHP div 2 = 4 then var.CoolBack = false
+if var.NumBBBHP div 2 = 5 then var.CoolBack = true
+if var.NumBBBHP div 2 = 6 then var.CoolBack = false
+if var.NumBBBHP div 2 = 7 then var.CoolHP = true
+if var.NumBBBHP div 2 = 8 then var.CoolHP = false
+if var.NumBBBHP div 2 = 10 then var.NumBBBHP = 0
+if var.NumBBBHP > 0 then var.NumBBBHP = var.NumBBBHP + 1
+
+if var.NumBBHPLP div 2 = 1 then var.CoolBack = true
+if var.NumBBHPLP div 2 = 2 then var.CoolBack = false
+if var.NumBBHPLP div 2 = 3 then var.CoolBack = true
+if var.NumBBHPLP div 2 = 4 then var.CoolBack = false
+if var.NumBBHPLP div 2 = 5 then
+  var.CoolHP = true
+  var.CoolLP = true
+end
+if var.NumBBHPLP div 2 = 6 then
+  var.CoolHP = false
+  var.CoolLP = false
+end
+if var.NumBBHPLP div 2 >= 7 then var.NumBBHPLP = 0
+if var.NumBBHPLP > 0 then
+  var.NumBBHPLP = var.NumBBHPLP + 1
+end
+
+var.HighKick = var.FootHigh and var.FootSwing
+var.LowKick = var.FootLow and var.FootSwing
+
+var.HighPunch = (var.HandHigh and var.Fist and var.HandSwing) and not var.Uppercut
+var.LowPunch = (var.HandLow and var.Fist and var.HandSwing) and not var.Uppercut
+
+var.Block = (glove.FingersUp and glove.PalmLeft and not var.Uppercut)
+
+var.HP = var.HighPunch or var.CoolHP
+var.LP = var.LowPunch or var.CoolLP
+var.HK = var.HighKick
+var.LK = var.LowKick or var.Sweep
+var.BL = var.Block
+
+var.Down = var.CoolDown or (p5.y < -400)
+var.Back = var.Sweep or var.CoolBack
+var.Forward = var.CoolForwards
+var.Up = var.Jump
+
+Space = var.HK
+z = var.LK
+Ctrl = var.HP
+Shift = var.LP
+Alt = var.BL
+Left = var.Back
+Down = var.Down
+Right = var.Forward
+Up = var.Up
+Five = p5.A or F1
+One = p5.A or F1
+
+
+
+

@@ -1,0 +1,5 @@
+// set frame rate to 60 Hz
+pie.FrameRate = 60 Hz
+
+// display pitch, yaw and roll in the debug box
+debug = TrackIR.Exists+" ("+TrackIR.x+","+TrackIR.y+","+TrackIR.z+") "+TrackIR.pitch+", "+TrackIR.yaw+", "+TrackIR.roll

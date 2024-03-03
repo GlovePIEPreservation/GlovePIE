@@ -1,0 +1,125 @@
+// Zelda: Ocarina of Time, with Twilight Princess controls!
+// Version 1 - Now with Wiimote sword swings and Nunchuk spin attack
+// By Carl Kenner
+
+//Set your emulator to these values: 
+//Analog Stick = PPJoy Virtual Joystick
+//A-Button = X, B-Button = C, Start = S
+//L-Button = A, R-Button = D, Z-Button = Z
+//C-Left = j, C-Up = I
+//C-Right = l, C-Down = k
+
+// Note, I haven't played Twilight Princess. And I haven't got very
+// far in Ocarina of Time. So this is just an early version.
+
+// Note: Roll the nunchuk to the right to use your shield
+
+// analog = movement
+Up = Wiimote.Nunchuk.JoyY < -0.2
+Down = Wiimote.Nunchuk.JoyY > 0.2
+Left = Wiimote.Nunchuk.JoyX < -0.2
+Right = Wiimote.Nunchuk.JoyX > 0.2
+
+// A = Talk / open doors / interact
+X = Wiimote.A
+
+// Roll nunchuk right to use your shield
+var.Shield = Wiimote.Nunchuk.Roll > 60 degrees
+//D = var.Shield
+
+// B = trigger
+// swing wiimote = sword
+Z = Wiimote.B
+
+if abs(wiimote.RelAccX) >= 15 and (not var.swinging) and (not var.Shield) then
+  var.swinging = true
+  press(Z)
+  wait 100 ms
+  release(Z)
+  wait 100 ms
+  var.swinging = false
+end if
+
+if abs(wiimote.RelAccY) >= 15 and (not var.swinging) and (not var.Shield) then
+  var.swinging = true
+  press(Z)
+  wait 100 ms
+  release(Z)
+  wait 100 ms
+  var.swinging = false
+end if
+
+if abs(wiimote.RelAccZ) >= 15 and (not var.swinging) and (not var.Shield) then
+  var.swinging = true
+  press(Z)
+  wait 100 ms
+  release(Z)
+  wait 100 ms
+  var.swinging = false
+end if
+
+if abs(wiimote.RelAccZ) >= 15 and (not var.swinging) and (var.Shield) then
+  var.swinging = true
+  press(Z)
+  wait 100 ms
+  release(Z)
+  wait 100 ms
+  var.swinging = false
+end if
+
+if abs(wiimote.Nunchuk.RelAccX) >= 15 and (not var.swinging) and (not var.Shield) then
+  var.swinging = true
+  press(Z)
+  wait 1.2 seconds
+  release(Z)
+  wait 100 ms
+  var.swinging = false
+end if
+
+if abs(wiimote.RelAccY) >= 15 and (not var.swinging) and var.Shield and Wiimote.Nunchuk.ZButton then
+  var.swinging = true
+  press(Z)
+  wait 100 ms
+  release(Z)
+  wait 100 ms
+  var.swinging = false
+end if
+
+
+
+// 1 = reveals Map
+// 2 = toggle on screen map
+S = Wiimote.One or Wiimote.Two
+
+
+// up = talk with midna, er. I mean Naki
+// C = first person
+
+// left, right, down = items
+A = Wiimote.Down or Wiimote.Left or Wiimote.Right
+
+// Z = Z-Target
+
+// + / - = item screen / status menu (maybe in other order)
+Enter = Wiimote.Minus or Wiimote.Home
+RightShift = Wiimote.Plus
+
+
+
+
+
+// A = Talk / open doors / interact
+// + / - = item screen / status menu (maybe in other order)
+// 1 = reveals Map
+// 2 = toggle on screen map
+// left, right, down = items
+// up = talk with midna / transform into/from wolf / twilight warp
+// analog = movement
+// z = z-targets ?
+// C = first person
+// B = trigger
+// swing wiimote = sword
+// shake nunchuk = spin attack
+// wiimote vibrates when you fire arrow
+
+
